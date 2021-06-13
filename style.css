@@ -1,0 +1,15 @@
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #ffffff;
+}
+
+canvas {
+  margin: 0 auto;
+  display: block;
+}
+
+/* @font-face {
+  font-family: myWebFont;
+  src: url("...name.otf");
+} */
