@@ -4,16 +4,30 @@
 
 // sound.play();
 
-import TextAnimation from "./TextAnimation";
-let firstsentence = new TextAnimation(
-  "Duper",
-  30,
-  "Ist Ihnen denn die Arbeit und ",
+import TextAnimationWithMultipleSentences from "./TextAnimationWithMultipleSentences";
+let textBox = new TextAnimationWithMultipleSentences(
   100,
   100,
-  50
+  25,
+  35,
+  50,
+  color(255),
+  "Ist Ihnen denn die Arbeit und",
+  "Duper-Bold",
+  "das Geld wichtiger als Ihre Frau? ",
+  "Duper-Bold",
+  "Arbeiten Sie daran, ein besserer",
+  "Partner für sie zu werden. Das",
+  "wird einiges Verändern, sie ",
+  "schaffen das!",
+  "",
+  "",
+  "",
+  ""
 );
 
 function draw() {
-  firstsentence.typeWriter();
+  background(0);
+  textBox.sentences();
+  // textBox.displayAllTextAtOnce(); //bei klick wird alles angezeigt
 }

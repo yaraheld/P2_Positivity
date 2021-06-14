@@ -41,13 +41,13 @@ function mouseClicked() {
 
 function userStats() {}
 
-function draw() 
+function draw() {
   standardSettings();
 
-  chefMainScene.showNPCProblemScreen();
+  // chefMainScene.showNPCProblemScreen();
 
   //02_chefMainScene
   chefMainScene.panoramaScreen();
   chefMainScene.spellButtonHitTest();
   chefMainScene.npcProblemScreen();
-
+}
