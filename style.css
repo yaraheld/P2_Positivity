@@ -1,7 +1,23 @@
+:root {
+  --white: #fff;
+  --black: #000;
+  --blackAlt: #231359;
+  --first: #3e1376;
+  --second: #21f1cf;
+  --third: #ffec35;
+  --fourth: #94e0ff;
+  --fifth: #ffa5ff;
+}
+
 body {
   padding: 0;
   margin: 0;
-  background-color: #ffffff;
+  background-color: var(--white);
+}
+
+body * {
+  font-family: duper_bold;
+  text-align: center;
 }
 
 canvas {
@@ -9,7 +25,42 @@ canvas {
   display: block;
 }
 
-/* @font-face {
-  font-family: myWebFont;
-  src: url("...name.otf");
+.MainTitle {
+  font-family: "Syne";
+  text-align: center;
+  margin-top: 250px;
+  margin-bottom: 50px;
+}
+
+@font-face {
+  font-family: duper_bold;
+  src: url("01_Javascript/00_Links/00_Fonts/duper_bold.otf");
+}
+@font-face {
+  font-family: duper_regular;
+  src: url("01_Javascript/00_Links/00_Fonts/duper_regular.otf");
+}
+
+h1 {
+  font-size: 100px;
+  color: var(--first);
+  margin-bottom: 0px;
+}
+
+h2 {
+  font-family: duper_regular;
+  font-size: 15px;
+  color: var(--first);
+}
+
+/* @media only screen and (max-width: 900px) {
+  h1 {
+    font-size: 5em;
+    margin-top: 0px;
+    margin-bottom: 110px;
+  }
+  h2 {
+    font-size: 1em;
+    margin-bottom: -10px;
+  }
 } */

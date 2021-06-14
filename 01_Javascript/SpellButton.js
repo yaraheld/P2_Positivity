@@ -48,11 +48,11 @@ export default class SpellButton {
       image(this.spellButtonEffect, this.x, this.y, 250, 250);
       // this.magicSound.play();
 
-      this.counter += 1;
-      if (this.counter > 50) {
-        this.spellButtonEffect.pause();
-        // this.magicSound.pause();
-      }
+      // this.counter += 1;
+      // if (this.counter > 50) {
+      //   this.spellButtonEffect.pause();
+      //   // this.magicSound.pause();
+      // }
     }
   }
 }

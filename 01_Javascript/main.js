@@ -1,3 +1,6 @@
+import MainScene from "./MainScene";
+let chefMainScene = new MainScene();
+
 //variables & commentaries = english
 //classes: Capital Letter
 //variables: lowercaseInitial
@@ -30,26 +33,21 @@ function standardSettings() {
   scale(1);
 }
 
-import MainScene from "./MainScene";
-let chefMainScene = new MainScene();
-
 function mouseClicked() {
   if (chefMainScene.spellButtonHitTest) {
-    console.log("HIIII");
+    chefMainScene.showNPCProblemScreen();
   }
 }
 
 function userStats() {}
 
-let magicSound = loadSound("00_Links/00_Audio/magic.mp3");
-magicSound.play();
-
-function draw() {
+function draw() 
   standardSettings();
+
+  chefMainScene.showNPCProblemScreen();
 
   //02_chefMainScene
   chefMainScene.panoramaScreen();
   chefMainScene.spellButtonHitTest();
-}
+  chefMainScene.npcProblemScreen();
 
-//<3 Hello Shimone
