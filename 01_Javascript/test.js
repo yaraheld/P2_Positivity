@@ -41,8 +41,14 @@ let textBox = new TextAnimationWithMultipleSentences(
   ""
 );
 
+import TextAnimation from "./TextAnimation";
+import SpellButton from "./SpellButton";
 import ChooseButton from "./chooseButton";
-let firstChooseButton = new ChooseButton(-300, -200);
+let firstChooseButton = new ChooseButton(
+  -300,
+  -200,
+  "GEHT MICH EIGENTLICH NICHTS AN ..."
+);
 
 function draw() {
   standardSettings();
@@ -52,5 +58,7 @@ function draw() {
   //textBox.displayAllTextAtOnce();
   console.log(textBox.everySentenceHasEnded);
 
-  firstChooseButton.hitTest();
+  firstChooseButton.displayActiveOrSleeping();
+  firstChooseButton.displayButtonSentence();
+  firstChooseButton.fadeIn();
 }

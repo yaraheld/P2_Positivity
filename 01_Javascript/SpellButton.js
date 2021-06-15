@@ -1,3 +1,4 @@
+import TextAnimation from "./TextAnimation";
 export default class SpellButton {
   constructor(x, y) {
     this.x = x;
@@ -15,9 +16,29 @@ export default class SpellButton {
     // this.magicSound = loadSound("Audio/magic.mp3");
 
     this.counter = 0;
-    this.active = false;
+
+    this.buttonText = new TextAnimation(
+      "duper-bold",
+      15,
+      color(157, 157, 157),
+      "ZAUBER AKTIVIEREN",
+      0,
+      0,
+      50
+    );
+
+    this.fadeInVariable = 0;
   }
+
+  fadeIn() {
+    this.fadeInVariable += 10;
+    if (this.fadeInVariable > 255) {
+      this.fadeInVariable = 255;
+    }
+  }
+
   designSleeping() {
+    tint(255, this.fadeInVariable);
     image(
       this.buttonSleeping,
       this.x,
@@ -25,9 +46,11 @@ export default class SpellButton {
       this.buttonSleeping.width / 2,
       this.buttonSleeping.height / 2
     );
-    this.active = false;
+    this.buttonText.textColor = color(157, 157, 157, this.fadeInVariable);
   }
+
   designActive() {
+    tint(255, this.fadeInVariable);
     image(
       this.buttonActive,
       this.x,
@@ -43,6 +66,7 @@ export default class SpellButton {
     //   this.buttonEffect.pause();
     //   // this.magicSound.pause();
     // }
+    this.buttonText.textColor = color(255, 236, 53, this.fadeInVariable);
   }
 
   displayActiveOrSleeping() {
@@ -61,6 +85,12 @@ export default class SpellButton {
     } else {
       this.designSleeping();
     }
+  }
+
+  displayButtonSentence() {
+    this.buttonText.x = this.x - 58;
+    this.buttonText.y = this.y + 5;
+    this.buttonText.typeWriter();
   }
 
   click() {

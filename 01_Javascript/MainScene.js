@@ -1,3 +1,4 @@
+import ChooseButton from "./chooseButton";
 import SpellButton from "./SpellButton";
 export default class MainScene {
   constructor() {
@@ -20,22 +21,25 @@ export default class MainScene {
 
     this.ground = loadImage("00_Links/00_UI-Elements/ground.png");
 
+    //Panorama Screen
     this.spellButton = new SpellButton(-10, 200);
     this.showPanoramaScreenBool = true;
     this.showNPCProblemScreenBool = false;
+
+    //NPCproblem Screen
+    this.firstTextButton = new ChooseButton(-350, -100, "ERSTE ANTWORT");
+    this.secondTextButton = new ChooseButton(-350, -25, "ZWEITE ANTWORT");
+    this.thirdTextButton = new ChooseButton(-350, 50, "DRITTE ANTWORT");
+    this.fourthTextButton = new ChooseButton(-350, 125, "VIERTE ANTWORT");
   }
 
   showPanoramaScreen() {
     this.showPanoramaScreenBool = true;
   }
 
-  showNPCProblemScreen() {
-    this.showPanoramaScreenBool = false;
-    this.showNPCProblemScreenBool = true;
-  }
-
   panoramaScreen() {
     if (this.showPanoramaScreenBool === true) {
+      //Pics
       image(
         this.panoramaScreenImage,
         -20,
@@ -44,9 +48,11 @@ export default class MainScene {
         this.panoramaScreenImage.height / 1.1
       );
 
+      //Button
       //checks the state of the button every time
-      //
       this.spellButton.displayActiveOrSleeping();
+      this.spellButton.displayButtonSentence();
+      this.spellButton.fadeIn();
     }
   }
 
@@ -57,7 +63,13 @@ export default class MainScene {
     }
   }
 
+  showNPCProblemScreen() {
+    this.showPanoramaScreenBool = false;
+    this.showNPCProblemScreenBool = true;
+  }
+
   npcProblemScreen() {
+    //Pics
     if (this.showNPCProblemScreenBool === true) {
       image(
         this.ground,
@@ -82,6 +94,23 @@ export default class MainScene {
         this.NPCproblem.width / 1.3,
         this.NPCproblem.height / 1.3
       );
+
+      // //buttons
+      this.firstTextButton.displayActiveOrSleeping();
+      this.firstTextButton.fadeIn();
+      this.firstTextButton.displayButtonSentence();
+
+      this.secondTextButton.displayActiveOrSleeping();
+      this.secondTextButton.fadeIn();
+      this.secondTextButton.displayButtonSentence();
+
+      this.thirdTextButton.displayActiveOrSleeping();
+      this.thirdTextButton.fadeIn();
+      this.thirdTextButton.displayButtonSentence();
+
+      this.fourthTextButton.displayActiveOrSleeping();
+      this.fourthTextButton.fadeIn();
+      this.fourthTextButton.displayButtonSentence();
     }
   }
 

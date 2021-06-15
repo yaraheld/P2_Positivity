@@ -1,3 +1,7 @@
+import SpellButton from "./SpellButton";
+import ChooseButton from "./chooseButton";
+import TextAnimation from "./TextAnimation";
+import TextAnimationWithMultipleSentences from "./TextAnimationWithMultipleSentences";
 import MainScene from "./MainScene";
 let chefMainScene = new MainScene();
 
