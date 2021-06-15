@@ -28,13 +28,13 @@ function standardSettings() {
   rectMode(CORNER);
   imageMode(CENTER);
   angleMode(DEGREES);
-  textAlign(CENTER);
+  textAlign(CORNER);
 
   scale(1);
 }
 
 function mouseClicked() {
-  if (chefMainScene.spellButtonHitTest) {
+  if (chefMainScene.spellButtonClick()) {
     chefMainScene.showNPCProblemScreen();
   }
 }
@@ -48,6 +48,5 @@ function draw() {
 
   //02_chefMainScene
   chefMainScene.panoramaScreen();
-  chefMainScene.spellButtonHitTest();
   chefMainScene.npcProblemScreen();
 }

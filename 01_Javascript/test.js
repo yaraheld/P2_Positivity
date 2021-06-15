@@ -1,13 +1,28 @@
 // let myImage = loadImage("00_Links/02_chefMainScene/chef_szene_1.png");
-
 // let sound = loadSound("00_Links/00_Audio/magic.mp3");
-
 // sound.play();
+function standardSettings() {
+  //Screen center (midpoint)
+  translate(550, 310);
+
+  //16:9 Background (1100x620 px)
+  noStroke();
+  fill(255);
+  rect(-550, -310, 1100, 620);
+
+  //Mode settings
+  rectMode(CORNER);
+  imageMode(CENTER);
+  angleMode(DEGREES);
+  textAlign(CORNER);
+
+  scale(1);
+}
 
 import TextAnimationWithMultipleSentences from "./TextAnimationWithMultipleSentences";
 let textBox = new TextAnimationWithMultipleSentences(
-  100,
-  100,
+  -300,
+  -200,
   25,
   35,
   50,
@@ -26,10 +41,16 @@ let textBox = new TextAnimationWithMultipleSentences(
   ""
 );
 
+import ChooseButton from "./chooseButton";
+let firstChooseButton = new ChooseButton(-300, -200);
+
 function draw() {
+  standardSettings();
   background(0);
   textBox.sentences();
   //for mouseClicked: everything appears at once
   //textBox.displayAllTextAtOnce();
   console.log(textBox.everySentenceHasEnded);
+
+  firstChooseButton.hitTest();
 }

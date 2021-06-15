@@ -3,30 +3,49 @@ export default class SpellButton {
     this.x = x;
     this.y = y;
 
-    this.spellbuttonSleeping = loadImage(
+    this.buttonSleeping = loadImage(
       "00_Links/00_UI-Elements/spellButtonSleeping.png"
     );
-    this.spellbuttonActive = loadImage(
+    this.buttonActive = loadImage(
       "00_Links/00_UI-Elements/spellButtonActive.png"
     );
-    this.spellButtonEffect = loadImage(
+    this.buttonEffect = loadImage(
       "00_Links/00_UI-Elements/spellButtonEffect.gif"
     );
     // this.magicSound = loadSound("Audio/magic.mp3");
 
     this.counter = 0;
+    this.active = false;
   }
-  design() {
+  designSleeping() {
     image(
-      this.spellbuttonSleeping,
+      this.buttonSleeping,
       this.x,
       this.y,
-      this.spellbuttonSleeping.width / 2,
-      this.spellbuttonSleeping.height / 2
+      this.buttonSleeping.width / 2,
+      this.buttonSleeping.height / 2
     );
+    this.active = false;
+  }
+  designActive() {
+    image(
+      this.buttonActive,
+      this.x,
+      this.y,
+      this.buttonActive.width / 2,
+      this.buttonActive.height / 2
+    );
+    image(this.buttonEffect, this.x, this.y, 250, 250);
+    // this.magicSound.play();
+
+    // this.counter += 1;
+    // if (this.counter > 50) {
+    //   this.buttonEffect.pause();
+    //   // this.magicSound.pause();
+    // }
   }
 
-  hitTest() {
+  displayActiveOrSleeping() {
     //first value: midPoint
     //second value: translate Value
     //third value: button detection range:
@@ -38,21 +57,27 @@ export default class SpellButton {
       mouseY < 310 + this.y + 25 &&
       mouseY > 310 + this.y - 25
     ) {
-      image(
-        this.spellbuttonActive,
-        this.x,
-        this.y,
-        this.spellbuttonActive.width / 2,
-        this.spellbuttonActive.height / 2
-      );
-      image(this.spellButtonEffect, this.x, this.y, 250, 250);
-      // this.magicSound.play();
+      this.designActive();
+    } else {
+      this.designSleeping();
+    }
+  }
 
-      // this.counter += 1;
-      // if (this.counter > 50) {
-      //   this.spellButtonEffect.pause();
-      //   // this.magicSound.pause();
-      // }
+  click() {
+    //first value: midPoint
+    //second value: translate Value
+    //third value: button detection range:
+    //Button image width: 150 px / 2 = +-75 px,
+    //Button image height: 50 px / 2 = +-25 px
+    if (
+      mouseX > 550 + this.x - 75 &&
+      mouseX < 550 + this.x + 75 &&
+      mouseY < 310 + this.y + 25 &&
+      mouseY > 310 + this.y - 25
+    ) {
+      return true;
+    } else {
+      return false;
     }
   }
 }

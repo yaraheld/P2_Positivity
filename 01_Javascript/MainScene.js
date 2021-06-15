@@ -43,13 +43,17 @@ export default class MainScene {
         this.panoramaScreenImage.width / 1.1,
         this.panoramaScreenImage.height / 1.1
       );
-      this.spellButton.design();
+
+      //checks the state of the button every time
+      //
+      this.spellButton.displayActiveOrSleeping();
     }
   }
 
-  spellButtonHitTest() {
+  spellButtonClick() {
+    //returns true when it is clicked in the correct area
     if (this.showPanoramaScreenBool === true) {
-      this.spellButton.hitTest();
+      return this.spellButton.click();
     }
   }
 
