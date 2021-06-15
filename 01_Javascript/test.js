@@ -29,5 +29,7 @@ let textBox = new TextAnimationWithMultipleSentences(
 function draw() {
   background(0);
   textBox.sentences();
-  // textBox.displayAllTextAtOnce(); //bei klick wird alles angezeigt
+  //for mouseClicked: everything appears at once
+  //textBox.displayAllTextAtOnce();
+  console.log(textBox.everySentenceHasEnded);
 }
