@@ -1,6 +1,6 @@
 function setup() {
   //1100x620px
-  let myCanvas = createCanvas(windowWidth, windowHeight);
+  let myCanvas = createCanvas(1100, 620);
   myCanvas.parent("positivity");
 
   frameRate(30);

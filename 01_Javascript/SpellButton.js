@@ -1,4 +1,4 @@
-import TextAnimation from "./TextAnimation";
+import TextAnimation from "./TextAnimation.js";
 export default class SpellButton {
   constructor(x, y) {
     this.x = x;
@@ -22,8 +22,8 @@ export default class SpellButton {
       15,
       color(157, 157, 157),
       "ZAUBER AKTIVIEREN",
-      0,
-      0,
+      this.x - 58,
+      this.y + 5,
       50
     );
 
@@ -58,7 +58,9 @@ export default class SpellButton {
       this.buttonActive.width / 2,
       this.buttonActive.height / 2
     );
+
     image(this.buttonEffect, this.x, this.y, 250, 250);
+
     // this.magicSound.play();
 
     // this.counter += 1;
@@ -66,6 +68,7 @@ export default class SpellButton {
     //   this.buttonEffect.pause();
     //   // this.magicSound.pause();
     // }
+
     this.buttonText.textColor = color(255, 236, 53, this.fadeInVariable);
   }
 
@@ -88,8 +91,6 @@ export default class SpellButton {
   }
 
   displayButtonSentence() {
-    this.buttonText.x = this.x - 58;
-    this.buttonText.y = this.y + 5;
     this.buttonText.typeWriter();
   }
 

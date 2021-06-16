@@ -1,4 +1,4 @@
-import TextAnimation from "./TextAnimation";
+import TextAnimation from "./TextAnimation.js";
 
 export default class TextAnimationWithMultipleSentences {
   constructor(

@@ -1,4 +1,6 @@
-import TextAnimation from "./TextAnimation";
+import TextAnimation from "./TextAnimation.js";
+import SpellButton from "./SpellButton.js";
+
 export default class ChooseButton extends SpellButton {
   constructor(x, y, buttonSentence) {
     super(x, y);

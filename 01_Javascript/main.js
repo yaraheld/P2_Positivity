@@ -1,8 +1,4 @@
-import SpellButton from "./SpellButton";
-import ChooseButton from "./chooseButton";
-import TextAnimation from "./TextAnimation";
-import TextAnimationWithMultipleSentences from "./TextAnimationWithMultipleSentences";
-import MainScene from "./MainScene";
+import MainScene from "./MainScene.js";
 let chefMainScene = new MainScene();
 
 //variables & commentaries = english
@@ -11,9 +7,9 @@ let chefMainScene = new MainScene();
 //functions: self-explanatory naming
 
 //textFont("Duper");
-let duper = loadFont("00_Links/00_Fonts/duper.otf");
+let duper = loadFont("00_Links/00_Fonts/duper_regular.otf");
 //textFont("Duper-Ita");
-let duperItalic = loadFont("00_Links/00_Fonts/duper_italic.otf");
+let duperItalic = loadFont("00_Links/00_Fonts/duper-italic.otf");
 // textFont("Duper-Bold");
 let duperBold = loadFont("00_Links/00_Fonts/duper_bold.otf");
 //textFont("Duper-BoldIta");
@@ -41,10 +37,16 @@ function mouseClicked() {
   if (chefMainScene.spellButtonClick()) {
     chefMainScene.showNPCProblemScreen();
   }
+  if (chefMainScene.weiterButtonToAnswerScreenClick()) {
+    chefMainScene.showChooseAnswerScreen();
+  }
 }
 
 function userStats() {}
 
+//All events die p5 nutzt, muss ans fenster anhängen muss
+window.mouseClicked = mouseClicked;
+window.draw = draw;
 function draw() {
   standardSettings();
 

@@ -25,20 +25,13 @@ canvas {
   display: block;
 }
 
-.MainTitle {
-  font-family: "Syne";
-  text-align: center;
-  margin-top: 250px;
-  margin-bottom: 50px;
-}
-
 @font-face {
   font-family: duper_bold;
-  src: url("01_Javascript/00_Links/00_Fonts/duper_bold.otf");
+  src: url("00_Links/00_Fonts/duper_bold.otf");
 }
 @font-face {
   font-family: duper_regular;
-  src: url("01_Javascript/00_Links/00_Fonts/duper_regular.otf");
+  src: url("00_Links/00_Fonts/duper_regular.otf");
 }
 
 h1 {
