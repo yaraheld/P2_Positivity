@@ -4,6 +4,12 @@ import SpellButton from "./SpellButton.js";
 export default class WeiterButton extends SpellButton {
   constructor(x, y) {
     super(x, y);
+
+    this.buttonSound = loadSound("00_Links/00_Audio/weiter.mp3");
+
+    this.buttonSound = loadSound("00_Links/00_Audio/glitter.mp3");
+    this.buttonClickSound = loadSound("00_Links/00_Audio/click.wav");
+
     this.buttonSleeping = loadImage(
       "00_Links/00_UI-Elements/weiterButtonSleeping.png"
     );
@@ -16,22 +22,10 @@ export default class WeiterButton extends SpellButton {
       25,
       color(157, 157, 157),
       "WEITER",
-      this.x - 35,
-      this.y + 7,
-      50
+      this.x - 37,
+      this.y + 8,
+      5
     );
-  }
-
-  designSleeping() {
-    tint(255, this.fadeInVariable);
-    image(
-      this.buttonSleeping,
-      this.x,
-      this.y,
-      this.buttonSleeping.width / 2,
-      this.buttonSleeping.height / 2
-    );
-    this.buttonText.textColor = color(157, 157, 157, this.fadeInVariable);
   }
 
   designActive() {
@@ -44,8 +38,34 @@ export default class WeiterButton extends SpellButton {
       this.buttonActive.height / 2
     );
 
-    image(this.buttonEffect, this.x, this.y, 250, 250);
+    image(this.buttonEffect, this.x - 15, this.y + 5, 110, 80);
+    image(this.buttonEffect, this.x + 20, this.y - 15, 110, 80);
+    this.buttonEffect.delay(60);
 
     this.buttonText.textColor = color(255, 236, 53, this.fadeInVariable);
+
+    //Boolean makes it possible, that the sound isn`t played 30 times per second
+    if (this.playButtonSound === true) {
+      this.buttonSound.play();
+      this.playButtonSound = false;
+    }
+  }
+
+  displayActiveOrSleeping() {
+    //first value: midPoint
+    //second value: translate Value
+    //third value: button detection range:
+    //Button image width: 150 px / 2 = +-75 px,
+    //Button image height: 50 px / 2 = +-25 px
+    if (
+      mouseX > 550 + this.x - 60 &&
+      mouseX < 550 + this.x + 60 &&
+      mouseY < 310 + this.y + 25 &&
+      mouseY > 310 + this.y - 25
+    ) {
+      this.designActive();
+    } else {
+      this.designSleeping();
+    }
   }
 }

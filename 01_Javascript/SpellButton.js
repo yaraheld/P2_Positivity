@@ -1,8 +1,10 @@
 import TextAnimation from "./TextAnimation.js";
 export default class SpellButton {
   constructor(x, y) {
-    this.x = x;
-    this.y = y;
+    this.buttonEffect = loadImage("00_Links/00_UI-Elements/glitter.gif");
+
+    this.buttonSound = loadSound("00_Links/00_Audio/magic.mp3");
+    this.buttonClickSound = loadSound("00_Links/00_Audio/click.wav");
 
     this.buttonSleeping = loadImage(
       "00_Links/00_UI-Elements/spellButtonSleeping.png"
@@ -10,10 +12,9 @@ export default class SpellButton {
     this.buttonActive = loadImage(
       "00_Links/00_UI-Elements/spellButtonActive.png"
     );
-    this.buttonEffect = loadImage(
-      "00_Links/00_UI-Elements/spellButtonEffect.gif"
-    );
-    // this.magicSound = loadSound("Audio/magic.mp3");
+
+    this.x = x;
+    this.y = y;
 
     this.counter = 0;
 
@@ -24,10 +25,10 @@ export default class SpellButton {
       "ZAUBER AKTIVIEREN",
       this.x - 58,
       this.y + 5,
-      50
+      20
     );
-
     this.fadeInVariable = 0;
+    this.playButtonSound = false;
   }
 
   fadeIn() {
@@ -47,6 +48,11 @@ export default class SpellButton {
       this.buttonSleeping.height / 2
     );
     this.buttonText.textColor = color(157, 157, 157, this.fadeInVariable);
+
+    //sets boolean to "true". Thus the sound can be played when the mouse is hovering over the button again
+    //& then the sound is starting from the beginning because of "stop"
+    this.playButtonSound = true;
+    this.buttonSound.stop();
   }
 
   designActive() {
@@ -59,17 +65,17 @@ export default class SpellButton {
       this.buttonActive.height / 2
     );
 
-    image(this.buttonEffect, this.x, this.y, 250, 250);
-
-    // this.magicSound.play();
-
-    // this.counter += 1;
-    // if (this.counter > 50) {
-    //   this.buttonEffect.pause();
-    //   // this.magicSound.pause();
-    // }
+    image(this.buttonEffect, this.x - 50, this.y + 5, 160, 90);
+    image(this.buttonEffect, this.x + 55, this.y - 15, 160, 90);
+    this.buttonEffect.delay(60);
 
     this.buttonText.textColor = color(255, 236, 53, this.fadeInVariable);
+
+    //Boolean makes it possible, that the sound isn`t played 30 times per second
+    if (this.playButtonSound === true) {
+      this.buttonSound.play();
+      this.playButtonSound = false;
+    }
   }
 
   displayActiveOrSleeping() {
@@ -106,6 +112,10 @@ export default class SpellButton {
       mouseY < 310 + this.y + 25 &&
       mouseY > 310 + this.y - 25
     ) {
+      //sets volume to half valume & plays sound til the end
+      this.buttonClickSound.setVolume(0.5);
+      this.buttonClickSound.playMode("untilDone");
+      this.buttonClickSound.play();
       return true;
     } else {
       return false;

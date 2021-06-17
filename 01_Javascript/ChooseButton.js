@@ -2,7 +2,7 @@ import TextAnimation from "./TextAnimation.js";
 import SpellButton from "./SpellButton.js";
 
 export default class ChooseButton extends SpellButton {
-  constructor(x, y, buttonSentence) {
+  constructor(x, y, buttonSentence, speed) {
     super(x, y);
 
     this.buttonSleeping = loadImage(
@@ -15,6 +15,7 @@ export default class ChooseButton extends SpellButton {
     this.movingButton = 0;
     this.movingButtonVariable = 3;
 
+    this.speed = speed;
     this.buttonSentence = buttonSentence;
     this.buttonText = new TextAnimation(
       "duper-bold",
@@ -23,7 +24,7 @@ export default class ChooseButton extends SpellButton {
       this.buttonSentence,
       0,
       0,
-      50
+      this.speed
     );
 
     this.fadeInVariable = 0;

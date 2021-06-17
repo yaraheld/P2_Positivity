@@ -28,15 +28,15 @@ export default class MainScene {
     //NPCproblem Screen
     this.NPCproblem = loadImage("00_Links/02_chefMainScene/NPCproblem.png");
     this.showNPCProblemScreenBool = false;
-    this.weiterButtonAnswerScreen = new WeiterButton(-350, -100);
+    this.weiterButtonAnswerScreen = new WeiterButton(-250, 150);
 
     //AnswerScreen
     this.showAnswerScreenBool = false;
 
-    this.firstTextButton = new ChooseButton(-350, -100, "ERSTE ANTWORT");
-    this.secondTextButton = new ChooseButton(-350, -25, "ZWEITE ANTWORT");
-    this.thirdTextButton = new ChooseButton(-350, 50, "DRITTE ANTWORT");
-    this.fourthTextButton = new ChooseButton(-350, 125, "VIERTE ANTWORT");
+    this.firstTextButton = new ChooseButton(-350, -100, "ERSTE ANTWORT", 20);
+    this.secondTextButton = new ChooseButton(-350, -25, "ZWEITE ANTWORT", 20);
+    this.thirdTextButton = new ChooseButton(-350, 50, "DRITTE ANTWORT", 20);
+    this.fourthTextButton = new ChooseButton(-350, 125, "VIERTE ANTWORT", 20);
   }
 
   //for mouseClicked

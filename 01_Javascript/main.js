@@ -37,7 +37,7 @@ function mouseClicked() {
   if (chefMainScene.spellButtonClick()) {
     chefMainScene.showNPCProblemScreen();
   }
-  if (chefMainScene.weiterButtonToAnswerScreenClick()) {
+  if (chefMainScene.weiterButtonAnswerScreenClick()) {
     chefMainScene.showChooseAnswerScreen();
   }
 }
@@ -50,9 +50,11 @@ window.draw = draw;
 function draw() {
   standardSettings();
 
-  // chefMainScene.showNPCProblemScreen();
+  //Jump to next Scene (for Coding)
+  chefMainScene.showNPCProblemScreen();
 
   //02_chefMainScene
   chefMainScene.panoramaScreen();
   chefMainScene.npcProblemScreen();
+  chefMainScene.chooseAnswerScreen();
 }
