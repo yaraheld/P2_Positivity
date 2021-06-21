@@ -38,7 +38,16 @@ function mouseClicked() {
     chefMainScene.showNPCProblemScreen();
   }
   if (chefMainScene.weiterButtonAnswerScreenClick()) {
-    chefMainScene.showChooseAnswerScreen();
+    //If you click on the "Weiterbutton" when the text-animation isn't finished yet,
+    //every sentence will be displayed instantly. Then you can click to get to the next screen
+    if (
+      chefMainScene.npcProblemSpeechbubble.NPCProblemSpeech.tenth
+        .typingEnded === false
+    ) {
+      chefMainScene.npcProblemSpeechbubble.NPCProblemSpeech.displayAllTextAtOnce();
+    } else {
+      chefMainScene.showChooseAnswerScreen();
+    }
   }
 }
 
@@ -52,6 +61,7 @@ function draw() {
 
   //Jump to next Scene (for Coding)
   // chefMainScene.showNPCProblemScreen();
+  // chefMainScene.showChooseAnswerScreen();
 
   //02_chefMainScene
   chefMainScene.panoramaScreen();

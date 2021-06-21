@@ -2,7 +2,7 @@ import SpellButton from "./SpellButton.js";
 import ChooseButton from "./chooseButton.js";
 import WeiterButton from "./weiterButton.js";
 import TextAnimationWithMultipleSentences from "./TextAnimationWithMultipleSentences.js";
-import NPCproblemSpeechBubble from "./NPCproblemSpeechBubble.js";
+import NPCProblemSpeechBubble from "./NPCProblemSpeechBubble.js";
 
 export default class MainScene {
   constructor() {
@@ -32,39 +32,56 @@ export default class MainScene {
 
     this.showNPCProblemScreenBool = false;
     this.weiterButtonAnswerScreen = new WeiterButton(-210, 205);
+    this.npcProblemSpeechbubble = new NPCProblemSpeechBubble(
+      "Ich dachte, dass Geld immer",
+      "Duper-Bold",
+      "alles wett macht...",
+      "Duper-Bold",
+      "Aber was soll ich damit, wenn",
+      "sich meine Frau immer mehr",
+      "von mir distanziert?",
+      "Moment, warum erzähle ich",
+      "Ihnen das überhaupt?",
+      "",
+      "",
+      ""
+    );
 
     this.typingInDotsFade = 0;
     this.typingInDotsFadeVariable = 0;
 
     //AnswerScreen
-    this.showAnswerScreenBool = false;
+    this.showChooseAnswerScreenBool = false;
 
-    this.firstTextButton = new ChooseButton(
+    this.positiveTextButton = new ChooseButton(
       -300,
       -80,
       "VERSUCHEN SIE, PRIORITÄTEN ZU SETZEN.",
       0.7
     );
-    this.secondTextButton = new ChooseButton(
+    this.negativeTextButton = new ChooseButton(
       -300,
       -9,
       "DAS GEHT MICH EIGENTLICH NICHTS AN...",
       0.7
     );
-    this.thirdTextButton = new ChooseButton(
+    this.neutralTextButton = new ChooseButton(
       -300,
       63,
       "UIUIUI MEINE BLASE...",
       0.7
     );
-    this.fourthTextButton = new ChooseButton(
+    this.toxicTextButton = new ChooseButton(
       -300,
       135,
       "VERSUCHEN SIE, POSITIV ZU BLEIBEN.",
       0.7
     );
+
+    this.randomAnswerOrder = Math.floor(random(0, 4));
   }
 
+  //-------------------------------------------------------------------------------------------------Panorama screen
   //for mouseClicked
   showPanoramaScreen() {
     this.showPanoramaScreenBool = true;
@@ -97,6 +114,7 @@ export default class MainScene {
     }
   }
 
+  //-------------------------------------------------------------------------------------------------NPC problem screen
   //for mouseClicked
   showNPCProblemScreen() {
     this.showPanoramaScreenBool = false;
@@ -135,6 +153,10 @@ export default class MainScene {
         this.NPCproblem.width / 1.2,
         this.NPCproblem.height / 1.2
       );
+
+      this.npcProblemSpeechbubble.fadeIn();
+      this.npcProblemSpeechbubble.displaySpeechBubble();
+      this.npcProblemSpeechbubble.displaySpeechSentences();
     }
   }
 
@@ -145,13 +167,15 @@ export default class MainScene {
     }
   }
 
+  //-------------------------------------------------------------------------------------------------Choose answer screen
   //for mouseClicked
   showChooseAnswerScreen() {
+    this.showPanoramaScreenBool = false;
     this.showNPCProblemScreenBool = false;
-    this.showAnswerScreenBool = true;
+    this.showChooseAnswerScreenBool = true;
   }
 
-  //3 Dots // doesnt need to be clalled in Main, because chooseAnswerScreen includes Method
+  //doesn't need to be clalled in Main, because chooseAnswerScreen includes this Method
   typingInDots() {
     //-1 makes the animation appear later
     this.typingInDotsFade = Math.sin(this.typingInDotsFadeVariable - 1);
@@ -172,26 +196,60 @@ export default class MainScene {
     ellipse(-437, -130, 8, 8);
   }
 
+  //doesn't need to be clalled in Main, because chooseAnswerScreen includes this Method
+  randomChooseAnswer() {
+    // let arr = [1, 2, 3, 4, 5, 6];
+    // let randomReihenfolgeOnce = "false";
+    // let showShowRandomReihenfolge = "false";
+    //   if (pleaseStop === true) {
+    //     if (countToNewRandom.length === 6) {
+    //       levelUpPhase = "true";
+    //       levelUpFadeBoolian = "true";
+    //     }
+    //   }
+    //   if (randomReihenfolgeOnce === "true") {
+    //     signforCard = [];
+    //     counter = arr.length;
+    //     blendInShuffleVariable = "true";
+    //     round.push(1);
+    //     roundCount = "true";
+    //     // While there are elements in the array
+    //     while (counter > 0) {
+    //       // Pick a random index
+    //       index = Math.floor(Math.random() * counter);
+    //       // Decrease counter by 1
+    //       counter--;
+    //       // And swap the last element with it
+    //       temp = arr[counter];
+    //       arr[counter] = arr[index];
+    //       arr[index] = temp;
+    //     }
+    //     randomReihenfolgeOnce = "false";
+    //   }
+    // }
+  }
+
   chooseAnswerScreen() {
-    if (this.showAnswerScreenBool === true) {
+    if (this.showChooseAnswerScreenBool === true) {
+      this.randomChooseAnswer();
       //push() & pop(), so that the NPC and the aura isn`t affected from the fade in again (same pic, but fades in two times)
       push();
       //buttons (comes first, that the fade in works properly)
-      this.firstTextButton.fadeIn();
-      this.firstTextButton.displayActiveOrSleeping();
-      this.firstTextButton.displayButtonSentence();
+      this.positiveTextButton.fadeIn();
+      this.positiveTextButton.displayActiveOrSleeping();
+      this.positiveTextButton.displayButtonSentence();
 
-      this.secondTextButton.fadeIn();
-      this.secondTextButton.displayActiveOrSleeping();
-      this.secondTextButton.displayButtonSentence();
+      this.negativeTextButton.fadeIn();
+      this.negativeTextButton.displayActiveOrSleeping();
+      this.negativeTextButton.displayButtonSentence();
 
-      this.thirdTextButton.fadeIn();
-      this.thirdTextButton.displayActiveOrSleeping();
-      this.thirdTextButton.displayButtonSentence();
+      this.neutralTextButton.fadeIn();
+      this.neutralTextButton.displayActiveOrSleeping();
+      this.neutralTextButton.displayButtonSentence();
 
-      this.fourthTextButton.fadeIn();
-      this.fourthTextButton.displayActiveOrSleeping();
-      this.fourthTextButton.displayButtonSentence();
+      this.toxicTextButton.fadeIn();
+      this.toxicTextButton.displayActiveOrSleeping();
+      this.toxicTextButton.displayButtonSentence();
 
       //"Typing in"-Dots
       this.typingInDots();

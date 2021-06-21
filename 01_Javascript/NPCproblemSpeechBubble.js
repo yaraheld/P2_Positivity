@@ -32,13 +32,16 @@ export default class NPCproblemSpeechBubble {
     this.ninthSen = ninthSen;
     this.tenthSen = tenthSen;
 
-    //entspr.  varieablen nich einsetze!
+    this.fadeInVariable = 0;
+
+    //
     this.NPCProblemSpeech = new TextAnimationWithMultipleSentences(
       -435,
       -60,
       19,
       25,
       1,
+      color(62, 19, 118),
       this.firstSen,
       this.firstSenType,
       this.secondSen,
@@ -56,10 +59,45 @@ export default class NPCproblemSpeechBubble {
     this.NPCproblemSpeechBubble = loadImage(
       "00_Links/00_UI-Elements/textBoxSad.png"
     );
+
+    this.exclamationMark = loadImage("00_Links/00_UI-Elements/exclamSad.png");
+    this.exclamMarkFade = 0;
+    this.exclamMarkFadeVariable = 0;
+  }
+
+  fadeIn() {
+    this.fadeInVariable += 10;
+    if (this.fadeInVariable > 255) {
+      this.fadeInVariable = 255;
+    }
+  }
+
+  //this function doesn't need to be called in the MainScene – its included in the displaySpeechBubble() function
+  exclamationMarkBling() {
+    //-1 makes the animation appear later
+    this.exclamMarkFade = Math.sin(this.exclamMarkFadeVariable);
+    this.exclamMarkFadeVariable += 0.1;
+
+    noStroke();
+    //sinus is from 0 to 1 – so it has to be multiplied with 255 (color). Then it is from 0 to 255
+    //the first value is delaying the appearence of the dots / I just experimented some time
+
+    tint(255, this.exclamMarkFade * 255);
+    image(
+      this.exclamationMark,
+      -120,
+      -77,
+      this.exclamationMark.width / 1.6,
+      this.exclamationMark.height / 1.6
+    );
   }
 
   displaySpeechBubble() {
-    //-------------a class for itself (FADE IN!)
+    //needs push() & pop(). Otherwise the Speechbubble would blink, too
+    push();
+    this.exclamationMarkBling();
+    pop();
+
     //NPC problem speechbubble
     image(
       this.NPCproblemSpeechBubble,
@@ -72,7 +110,21 @@ export default class NPCproblemSpeechBubble {
 
   displaySpeechSentences() {
     //NPC problem speech
-    this.NPCProblemSpeech.generalTextColor = color(0, 0, 0, 0);
+    //"Fade in" runs only, when you call the color of the origin class. Because "textColor" is in the (draw) function.
+    //"this.generalTextColor" is just defined once in the constructor and doesn`t update itself
+    this.NPCProblemSpeech.first.textColor = color(
+      62,
+      19,
+      118,
+      this.fadeInVariable
+    );
+    this.NPCProblemSpeech.second.textColor = color(
+      62,
+      19,
+      118,
+      this.fadeInVariable
+    );
+
     this.NPCProblemSpeech.sentences();
   }
 }
