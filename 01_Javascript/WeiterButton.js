@@ -24,10 +24,11 @@ export default class WeiterButton extends SpellButton {
       "WEITER",
       this.x - 37,
       this.y + 8,
-      5
+      0.15
     );
   }
 
+  //Method doesn`t need to be called in MainScene (is contained in displayActiveOrSleeping)
   designActive() {
     tint(255, this.fadeInVariable);
     image(

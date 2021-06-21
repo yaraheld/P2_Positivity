@@ -1,6 +1,8 @@
 import SpellButton from "./SpellButton.js";
 import ChooseButton from "./chooseButton.js";
 import WeiterButton from "./weiterButton.js";
+import TextAnimationWithMultipleSentences from "./TextAnimationWithMultipleSentences.js";
+import NPCproblemSpeechBubble from "./NPCproblemSpeechBubble.js";
 
 export default class MainScene {
   constructor() {
@@ -27,16 +29,40 @@ export default class MainScene {
 
     //NPCproblem Screen
     this.NPCproblem = loadImage("00_Links/02_chefMainScene/NPCproblem.png");
+
     this.showNPCProblemScreenBool = false;
-    this.weiterButtonAnswerScreen = new WeiterButton(-250, 150);
+    this.weiterButtonAnswerScreen = new WeiterButton(-210, 205);
+
+    this.typingInDotsFade = 0;
+    this.typingInDotsFadeVariable = 0;
 
     //AnswerScreen
     this.showAnswerScreenBool = false;
 
-    this.firstTextButton = new ChooseButton(-350, -100, "ERSTE ANTWORT", 20);
-    this.secondTextButton = new ChooseButton(-350, -25, "ZWEITE ANTWORT", 20);
-    this.thirdTextButton = new ChooseButton(-350, 50, "DRITTE ANTWORT", 20);
-    this.fourthTextButton = new ChooseButton(-350, 125, "VIERTE ANTWORT", 20);
+    this.firstTextButton = new ChooseButton(
+      -300,
+      -80,
+      "VERSUCHEN SIE, PRIORITÄTEN ZU SETZEN.",
+      0.7
+    );
+    this.secondTextButton = new ChooseButton(
+      -300,
+      -9,
+      "DAS GEHT MICH EIGENTLICH NICHTS AN...",
+      0.7
+    );
+    this.thirdTextButton = new ChooseButton(
+      -300,
+      63,
+      "UIUIUI MEINE BLASE...",
+      0.7
+    );
+    this.fourthTextButton = new ChooseButton(
+      -300,
+      135,
+      "VERSUCHEN SIE, POSITIV ZU BLEIBEN.",
+      0.7
+    );
   }
 
   //for mouseClicked
@@ -52,6 +78,7 @@ export default class MainScene {
       this.spellButton.displayButtonSentence();
 
       //Pics
+      //fade in, too because of the tint fade of the .fadeIn() method
       image(
         this.panoramaScreenImage,
         -20,
@@ -78,9 +105,36 @@ export default class MainScene {
 
   npcProblemScreen() {
     if (this.showNPCProblemScreenBool === true) {
+      //WeiterButton
       this.weiterButtonAnswerScreen.fadeIn();
       this.weiterButtonAnswerScreen.displayActiveOrSleeping();
       this.weiterButtonAnswerScreen.displayButtonSentence();
+
+      //Pics
+      //pics fade in because auf weiterButtonAnswerScreen.fadeIn (nopush() and pop() were used
+      image(
+        this.ground,
+        300,
+        230,
+        this.ground.width / 1.5,
+        this.ground.height / 1.5
+      );
+
+      image(
+        this.aura_sad,
+        180,
+        -20,
+        this.aura_sad.width / 1.3,
+        this.aura_sad.height / 1.3
+      );
+
+      image(
+        this.NPCproblem,
+        180,
+        10,
+        this.NPCproblem.width / 1.2,
+        this.NPCproblem.height / 1.2
+      );
     }
   }
 
@@ -97,8 +151,31 @@ export default class MainScene {
     this.showAnswerScreenBool = true;
   }
 
+  //3 Dots // doesnt need to be clalled in Main, because chooseAnswerScreen includes Method
+  typingInDots() {
+    //-1 makes the animation appear later
+    this.typingInDotsFade = Math.sin(this.typingInDotsFadeVariable - 1);
+    this.typingInDotsFadeVariable += 0.1;
+
+    noStroke();
+    //sinus is from 0 to 1 – so it has to be multiplied with 255 (color). Then it is from 0 to 255
+    //the first value is delaying the appearence of the dots / I just experimented some time
+
+    //first dot
+    fill(62, 19, 118, 150 + this.typingInDotsFade * 255);
+    ellipse(-463, -130, 8, 8);
+    //second dot
+    fill(62, 19, 118, 75 + this.typingInDotsFade * 255);
+    ellipse(-450, -130, 8, 8);
+    //third dot
+    fill(62, 19, 118, this.typingInDotsFade * 255);
+    ellipse(-437, -130, 8, 8);
+  }
+
   chooseAnswerScreen() {
     if (this.showAnswerScreenBool === true) {
+      //push() & pop(), so that the NPC and the aura isn`t affected from the fade in again (same pic, but fades in two times)
+      push();
       //buttons (comes first, that the fade in works properly)
       this.firstTextButton.fadeIn();
       this.firstTextButton.displayActiveOrSleeping();
@@ -116,11 +193,15 @@ export default class MainScene {
       this.fourthTextButton.displayActiveOrSleeping();
       this.fourthTextButton.displayButtonSentence();
 
+      //"Typing in"-Dots
+      this.typingInDots();
+      pop();
+
       //Pics
       image(
         this.ground,
         300,
-        200,
+        230,
         this.ground.width / 1.5,
         this.ground.height / 1.5
       );
@@ -128,7 +209,7 @@ export default class MainScene {
       image(
         this.aura_sad,
         180,
-        0,
+        -20,
         this.aura_sad.width / 1.3,
         this.aura_sad.height / 1.3
       );
@@ -136,9 +217,9 @@ export default class MainScene {
       image(
         this.NPCproblem,
         180,
-        0,
-        this.NPCproblem.width / 1.3,
-        this.NPCproblem.height / 1.3
+        10,
+        this.NPCproblem.width / 1.2,
+        this.NPCproblem.height / 1.2
       );
     }
   }

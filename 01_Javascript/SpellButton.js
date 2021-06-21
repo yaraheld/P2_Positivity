@@ -25,7 +25,7 @@ export default class SpellButton {
       "ZAUBER AKTIVIEREN",
       this.x - 58,
       this.y + 5,
-      20
+      0.3
     );
     this.fadeInVariable = 0;
     this.playButtonSound = false;
@@ -38,6 +38,7 @@ export default class SpellButton {
     }
   }
 
+  //Method doesn`t need to be called in MainScene (is contained in displayActiveOrSleeping)
   designSleeping() {
     tint(255, this.fadeInVariable);
     image(
@@ -47,6 +48,8 @@ export default class SpellButton {
       this.buttonSleeping.width / 2,
       this.buttonSleeping.height / 2
     );
+
+    //Fade in for font
     this.buttonText.textColor = color(157, 157, 157, this.fadeInVariable);
 
     //sets boolean to "true". Thus the sound can be played when the mouse is hovering over the button again
@@ -55,6 +58,7 @@ export default class SpellButton {
     this.buttonSound.stop();
   }
 
+  //Method doesn`t need to be called in MainScene (is contained in displayActiveOrSleeping)
   designActive() {
     tint(255, this.fadeInVariable);
     image(

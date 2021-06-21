@@ -19,7 +19,7 @@ export default class ChooseButton extends SpellButton {
     this.buttonSentence = buttonSentence;
     this.buttonText = new TextAnimation(
       "duper-bold",
-      14,
+      17,
       color(157, 157, 157),
       this.buttonSentence,
       0,
@@ -28,6 +28,10 @@ export default class ChooseButton extends SpellButton {
     );
 
     this.fadeInVariable = 0;
+
+    this.playButtonSound = false;
+    this.buttonSound = loadSound("00_Links/00_Audio/woosh_2.wav");
+    this.buttonClickSound = loadSound("00_Links/00_Audio/click.wav");
   }
 
   fadeIn() {
@@ -43,8 +47,8 @@ export default class ChooseButton extends SpellButton {
       this.buttonSleeping,
       this.x,
       this.y,
-      this.buttonSleeping.width / 2,
-      this.buttonSleeping.height / 2
+      this.buttonSleeping.width / 1.7,
+      this.buttonSleeping.height / 1.7
     );
     this.active = false;
 
@@ -52,16 +56,21 @@ export default class ChooseButton extends SpellButton {
     this.movingButton = 0;
 
     this.buttonText.textColor = color(157, 157, 157, this.fadeInVariable);
+
+    //sets boolean to "true". Thus the sound can be played when the mouse is hovering over the button again
+    //& then the sound is starting from the beginning because of "stop"
+    this.playButtonSound = true;
+    this.buttonSound.stop();
   }
 
   designActive() {
     tint(255, this.fadeInVariable);
     image(
       this.buttonActive,
-      this.x - 35 + this.movingButton,
+      this.x - 65 + this.movingButton,
       this.y,
-      this.buttonActive.width / 2,
-      this.buttonActive.height / 2
+      this.buttonActive.width / 1.7,
+      this.buttonActive.height / 1.7
     );
 
     //Moves Button when selected
@@ -74,6 +83,12 @@ export default class ChooseButton extends SpellButton {
     }
 
     this.buttonText.textColor = color(255, 236, 53, this.fadeInVariable);
+
+    //Boolean makes it possible, that the sound isn`t played 30 times per second
+    if (this.playButtonSound === true) {
+      this.buttonSound.play();
+      this.playButtonSound = false;
+    }
   }
 
   displayActiveOrSleeping() {
@@ -95,7 +110,7 @@ export default class ChooseButton extends SpellButton {
   }
 
   displayButtonSentence() {
-    this.buttonText.x = this.x - 123 + this.movingButton;
+    this.buttonText.x = this.x - 145 + this.movingButton;
     this.buttonText.y = this.y + 4;
     this.buttonText.typeWriter();
   }

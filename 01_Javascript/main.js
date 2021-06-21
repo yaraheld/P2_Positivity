@@ -51,7 +51,7 @@ function draw() {
   standardSettings();
 
   //Jump to next Scene (for Coding)
-  chefMainScene.showNPCProblemScreen();
+  // chefMainScene.showNPCProblemScreen();
 
   //02_chefMainScene
   chefMainScene.panoramaScreen();

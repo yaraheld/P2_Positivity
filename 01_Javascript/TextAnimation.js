@@ -54,7 +54,7 @@ export default class TextAnimation {
 
     //speed, how fast the next letter is displayed
     this.counter += this.speed;
-    if (this.counter > 50) {
+    if (this.counter > 1) {
       this.counter = 0;
       this.typeSpeed = true;
     }
