@@ -3,6 +3,7 @@ import ChooseButton from "./chooseButton.js";
 import WeiterButton from "./weiterButton.js";
 import TextAnimationWithMultipleSentences from "./TextAnimationWithMultipleSentences.js";
 import NPCProblemSpeechBubble from "./NPCProblemSpeechBubble.js";
+import Timer from "./Timer.js";
 
 export default class MainScene {
   constructor() {
@@ -20,14 +21,14 @@ export default class MainScene {
 
     this.ground = loadImage("00_Links/00_UI-Elements/ground.png");
 
-    //Panorama Screen
+    //-----------------------------------------------------Panorama Screen
     this.panoramaScreenImage = loadImage(
       "00_Links/02_chefMainScene/panoramaScreen.png"
     );
     this.spellButton = new SpellButton(-10, 200);
     this.showPanoramaScreenBool = true;
 
-    //NPCproblem Screen
+    //-----------------------------------------------------NPCproblem Screen
     this.NPCproblem = loadImage("00_Links/02_chefMainScene/NPCproblem.png");
 
     this.showNPCProblemScreenBool = false;
@@ -50,19 +51,19 @@ export default class MainScene {
     this.typingInDotsFade = 0;
     this.typingInDotsFadeVariable = 0;
 
-    //AnswerScreen
+    //-----------------------------------------------------chooseAnswerScreen
     this.showChooseAnswerScreenBool = false;
 
-    this.positiveTextButton = new ChooseButton(
+    this.toxicTextButton = new ChooseButton(
       -300,
       -80,
-      "VERSUCHEN SIE, PRIORITÄTEN ZU SETZEN.",
+      "VERSUCHEN SIE, POSITIV ZU BLEIBEN.",
       0.7
     );
-    this.negativeTextButton = new ChooseButton(
+    this.positiveTextButton = new ChooseButton(
       -300,
       -9,
-      "DAS GEHT MICH EIGENTLICH NICHTS AN...",
+      "VERSUCHEN SIE, PRIORITÄTEN ZU SETZEN.",
       0.7
     );
     this.neutralTextButton = new ChooseButton(
@@ -71,14 +72,29 @@ export default class MainScene {
       "UIUIUI MEINE BLASE...",
       0.7
     );
-    this.toxicTextButton = new ChooseButton(
+    this.negativeTextButton = new ChooseButton(
       -300,
       135,
-      "VERSUCHEN SIE, POSITIV ZU BLEIBEN.",
+      "DAS GEHT MICH EIGENTLICH NICHTS AN...",
       0.7
     );
 
-    this.randomAnswerOrder = Math.floor(random(0, 4));
+    //for random order
+    this.buttonArray = [1, 2, 3, 4];
+    this.randomOrderJustOnce = false;
+    this.counter = 0;
+    this.temp = 0;
+
+    // Toxic => FIRST Button (-80)
+    // Positive => SECOND (-9)
+    // Neutral => THIRD (63),
+    // Negative => FOURTH (135)
+    this.buttonPositionValues = [-80, -9, 63, 135];
+
+    this.chooseAnswerScreenTimer = new Timer(480, -250, 0.5);
+
+    //-----------------------------------------------------AnswerScreen
+    this.showAnswerScreenBool = false;
   }
 
   //-------------------------------------------------------------------------------------------------Panorama screen
@@ -198,58 +214,71 @@ export default class MainScene {
 
   //doesn't need to be clalled in Main, because chooseAnswerScreen includes this Method
   randomChooseAnswer() {
-    // let arr = [1, 2, 3, 4, 5, 6];
-    // let randomReihenfolgeOnce = "false";
-    // let showShowRandomReihenfolge = "false";
-    //   if (pleaseStop === true) {
-    //     if (countToNewRandom.length === 6) {
-    //       levelUpPhase = "true";
-    //       levelUpFadeBoolian = "true";
-    //     }
-    //   }
-    //   if (randomReihenfolgeOnce === "true") {
-    //     signforCard = [];
-    //     counter = arr.length;
-    //     blendInShuffleVariable = "true";
-    //     round.push(1);
-    //     roundCount = "true";
-    //     // While there are elements in the array
-    //     while (counter > 0) {
-    //       // Pick a random index
-    //       index = Math.floor(Math.random() * counter);
-    //       // Decrease counter by 1
-    //       counter--;
-    //       // And swap the last element with it
-    //       temp = arr[counter];
-    //       arr[counter] = arr[index];
-    //       arr[index] = temp;
-    //     }
-    //     randomReihenfolgeOnce = "false";
-    //   }
-    // }
+    if (this.randomOrderJustOnce === false) {
+      this.counter = this.buttonArray.length;
+
+      // While there are elements in the array
+      while (this.counter > 0) {
+        // Pick a random index: random number in the range 0 to less than 1; then scale it up to counter (4 Buttons)
+        this.index = Math.floor(Math.random() * this.counter);
+
+        // Decrease counter by 1
+        this.counter--;
+
+        // And swap the last element with it
+        this.temp = this.buttonArray[this.counter];
+        this.buttonArray[this.counter] = this.buttonArray[this.index];
+        this.buttonArray[this.index] = this.temp;
+      }
+      console.log(this.buttonArray);
+      //So from the last value (counter = 4) to the first value (counter = 1) of the array the values are replaced with a random value
+      this.randomOrderJustOnce = true;
+    }
   }
 
   chooseAnswerScreen() {
     if (this.showChooseAnswerScreenBool === true) {
       this.randomChooseAnswer();
+
       //push() & pop(), so that the NPC and the aura isn`t affected from the fade in again (same pic, but fades in two times)
       push();
+
+      //sets buttons in random position:
+      //this.buttonArray = [1, 2, 3, 4];
+      // this.buttonPositionValues = [-80, -9, 63, 135];
+      for (this.i = 0; this.i < 4; this.i++) {
+        switch (true) {
+          case this.buttonArray[this.i] === 1:
+            this.toxicTextButton.y = this.buttonPositionValues[this.i];
+            break;
+          case this.buttonArray[this.i] === 2:
+            this.positiveTextButton.y = this.buttonPositionValues[this.i];
+            break;
+          case this.buttonArray[this.i] === 3:
+            this.neutralTextButton.y = this.buttonPositionValues[this.i];
+            break;
+          case this.buttonArray[this.i] === 4:
+            this.negativeTextButton.y = this.buttonPositionValues[this.i];
+            break;
+        }
+      }
+
       //buttons (comes first, that the fade in works properly)
+      this.toxicTextButton.fadeIn();
+      this.toxicTextButton.displayActiveOrSleeping();
+      this.toxicTextButton.displayButtonSentence();
+
       this.positiveTextButton.fadeIn();
       this.positiveTextButton.displayActiveOrSleeping();
       this.positiveTextButton.displayButtonSentence();
-
-      this.negativeTextButton.fadeIn();
-      this.negativeTextButton.displayActiveOrSleeping();
-      this.negativeTextButton.displayButtonSentence();
 
       this.neutralTextButton.fadeIn();
       this.neutralTextButton.displayActiveOrSleeping();
       this.neutralTextButton.displayButtonSentence();
 
-      this.toxicTextButton.fadeIn();
-      this.toxicTextButton.displayActiveOrSleeping();
-      this.toxicTextButton.displayButtonSentence();
+      this.negativeTextButton.fadeIn();
+      this.negativeTextButton.displayActiveOrSleeping();
+      this.negativeTextButton.displayButtonSentence();
 
       //"Typing in"-Dots
       this.typingInDots();
@@ -279,10 +308,60 @@ export default class MainScene {
         this.NPCproblem.width / 1.2,
         this.NPCproblem.height / 1.2
       );
+
+      //timer
+      this.chooseAnswerScreenTimer.start();
+      this.chooseAnswerScreenTimer.timeIsUp();
+
+      //when timer ends, you choose automatically "neutral" answer
+      if (this.chooseAnswerScreenTimer.timeIsUp()) {
+        this.neutralTextButton.state = "choosed";
+        this.showAnswerScreen();
+      }
     }
   }
 
-  answerScreen() {}
+  //for mouseClicked
+  chooseAnswerScreenClick() {
+    if (this.showChooseAnswerScreenBool === true) {
+      return (
+        this.toxicTextButton.click() ||
+        this.positiveTextButton.click() ||
+        this.neutralTextButton.click() ||
+        this.negativeTextButton.click()
+      );
+    }
+  }
+
+  //for mouseClicked
+  showAnswerScreen() {
+    this.showPanoramaScreenBool = false;
+    this.showNPCProblemScreenBool = false;
+    this.showChooseAnswerScreenBool = false;
+    this.showAnswerScreenBool = true;
+  }
+
+  answerScreen() {
+    if (this.showAnswerScreenBool === true) {
+      if (this.toxicTextButton.state === "choosed") {
+        fill(0);
+        textSize(20);
+        text("TOXIC", 0, 0);
+      } else if (this.positiveTextButton.state === "choosed") {
+        fill(0);
+        textSize(20);
+        text("POSITIVE", 0, 0);
+      } else if (this.neutralTextButton.state === "choosed") {
+        fill(0);
+        textSize(20);
+        text("NEUTRAL", 0, 0);
+      } else if (this.negativeTextButton.state === "choosed") {
+        fill(0);
+        textSize(20);
+        text("NEGATIVE", 0, 0);
+      }
+    }
+  }
 
   npcReactionScreen() {}
 

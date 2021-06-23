@@ -37,6 +37,7 @@ function mouseClicked() {
   if (chefMainScene.spellButtonClick()) {
     chefMainScene.showNPCProblemScreen();
   }
+
   if (chefMainScene.weiterButtonAnswerScreenClick()) {
     //If you click on the "Weiterbutton" when the text-animation isn't finished yet,
     //every sentence will be displayed instantly. Then you can click to get to the next screen
@@ -48,6 +49,9 @@ function mouseClicked() {
     } else {
       chefMainScene.showChooseAnswerScreen();
     }
+  }
+  if (chefMainScene.chooseAnswerScreenClick()) {
+    chefMainScene.showAnswerScreen();
   }
 }
 
@@ -67,4 +71,5 @@ function draw() {
   chefMainScene.panoramaScreen();
   chefMainScene.npcProblemScreen();
   chefMainScene.chooseAnswerScreen();
+  chefMainScene.answerScreen();
 }

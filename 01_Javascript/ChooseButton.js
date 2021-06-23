@@ -50,6 +50,9 @@ export default class ChooseButton extends SpellButton {
     // });
 
     // this.buttonTweet.pause();
+
+    //to check the state out of multiple buttons from the same class
+    this.state = "notChoosed";
   }
 
   fadeIn() {
@@ -119,10 +122,10 @@ export default class ChooseButton extends SpellButton {
     //Button image width: 285 px / 2 = +-142 px,
     //Button image height: 55 px / 2 = +-27 px
     if (
-      mouseX > 550 + this.x - 142 &&
-      mouseX < 550 + this.x + 142 &&
-      mouseY < 310 + this.y + 27 &&
-      mouseY > 310 + this.y - 27
+      mouseX > 550 + this.x - 165 &&
+      mouseX < 550 + this.x + 165 &&
+      mouseY < 310 + this.y + 34 &&
+      mouseY > 310 + this.y - 34
     ) {
       this.designActive();
     } else {
@@ -135,6 +138,35 @@ export default class ChooseButton extends SpellButton {
       // + this.movingTweet.x;
       (this.buttonText.y = this.y + 4);
     this.buttonText.typeWriter();
+  }
+
+  click() {
+    //first value: midPoint
+    //second value: translate Value
+    //third value: button detection range:
+    //Button image width: 150 px / 2 = +-75 px,
+    //Button image height: 50 px / 2 = +-25 px
+    if (
+      mouseX > 550 + this.x - 165 &&
+      mouseX < 550 + this.x + 165 &&
+      mouseY < 310 + this.y + 34 &&
+      mouseY > 310 + this.y - 34
+    ) {
+      //sets volume to half valume & plays sound til the end
+      this.buttonClickSound.setVolume(0.5);
+      this.buttonClickSound.playMode("untilDone");
+      this.buttonClickSound.play();
+
+      //to check the state out of multiple buttons from the same class
+      this.state = "choosed";
+
+      return true;
+    } else {
+      //to check the state out of multiple buttons from the same class
+      this.state = "notChoosed";
+
+      return false;
+    }
   }
 }
 //click-function is right here! Do not forget – its an inheritance
