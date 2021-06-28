@@ -1,7 +1,9 @@
 import TextAnimationWithMultipleSentences from "./TextAnimationWithMultipleSentences.js";
 
-export default class NPCproblemSpeechBubble {
+export default class SpeechBubble {
   constructor(
+    speechBubbleType,
+    exclamType,
     firstSen,
     firstSenType,
     secondSen,
@@ -35,7 +37,7 @@ export default class NPCproblemSpeechBubble {
     this.fadeInVariable = 0;
 
     //
-    this.NPCProblemSpeech = new TextAnimationWithMultipleSentences(
+    this.speech = new TextAnimationWithMultipleSentences(
       -435,
       -60,
       19,
@@ -56,11 +58,17 @@ export default class NPCproblemSpeechBubble {
       this.tenthSen
     );
 
-    this.NPCproblemSpeechBubble = loadImage(
-      "00_Links/00_UI-Elements/textBoxSad.png"
+    this.speechBubbleType = speechBubbleType;
+    this.exclamType = exclamType;
+
+    this.speechBubble = loadImage(
+      "00_Links/00_UI-Elements/" + this.speechBubbleType + ".png"
     );
 
-    this.exclamationMark = loadImage("00_Links/00_UI-Elements/exclamSad.png");
+    this.exclamationMark = loadImage(
+      "00_Links/00_UI-Elements/" + this.exclamType + ".png"
+    );
+
     this.exclamMarkFade = 0;
     this.exclamMarkFadeVariable = 0;
   }
@@ -75,7 +83,7 @@ export default class NPCproblemSpeechBubble {
   //this function doesn't need to be called in the MainScene – its included in the displaySpeechBubble() function
   exclamationMarkBling() {
     //-1 makes the animation appear later
-    this.exclamMarkFade = Math.sin(this.exclamMarkFadeVariable);
+    this.exclamMarkFade = Math.sin(this.exclamMarkFadeVariable - 1);
     this.exclamMarkFadeVariable += 0.1;
 
     noStroke();
@@ -100,11 +108,11 @@ export default class NPCproblemSpeechBubble {
 
     //NPC problem speechbubble
     image(
-      this.NPCproblemSpeechBubble,
+      this.speechBubble,
       -297,
       10,
-      this.NPCproblemSpeechBubble.width / 1.64,
-      this.NPCproblemSpeechBubble.height / 1.44
+      this.speechBubble.width / 1.64,
+      this.speechBubble.height / 1.44
     );
   }
 
@@ -112,19 +120,9 @@ export default class NPCproblemSpeechBubble {
     //NPC problem speech
     //"Fade in" runs only, when you call the color of the origin class. Because "textColor" is in the (draw) function.
     //"this.generalTextColor" is just defined once in the constructor and doesn`t update itself
-    this.NPCProblemSpeech.first.textColor = color(
-      62,
-      19,
-      118,
-      this.fadeInVariable
-    );
-    this.NPCProblemSpeech.second.textColor = color(
-      62,
-      19,
-      118,
-      this.fadeInVariable
-    );
+    this.speech.first.textColor = color(62, 19, 118, this.fadeInVariable);
+    this.speech.second.textColor = color(62, 19, 118, this.fadeInVariable);
 
-    this.NPCProblemSpeech.sentences();
+    this.speech.sentences();
   }
 }

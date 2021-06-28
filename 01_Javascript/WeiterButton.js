@@ -47,6 +47,7 @@ export default class WeiterButton extends SpellButton {
 
     //Boolean makes it possible, that the sound isn`t played 30 times per second
     if (this.playButtonSound === true) {
+      this.buttonSound.setVolume(0.5);
       this.buttonSound.play();
       this.playButtonSound = false;
     }
