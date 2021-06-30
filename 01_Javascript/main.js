@@ -1,12 +1,193 @@
 import MainScene from "./MainScene.js";
 import WeiterButton from "./WeiterButton.js";
 
-let chefMainScene = new MainScene();
-
 //variables & commentaries = english
 //classes: Capital Letter
 //variables: lowercaseInitial
 //functions: self-explanatory naming
+
+let chefMainScene = new MainScene(
+  "02_chefMainScene",
+
+  //Spellbutton x-Postion//
+  -10,
+
+  //Type of Aura, Textbox and exclamation mark (NPC problem screen)
+  //Types:  |  Aura_sad  |  Aura_negative (angry)  |   Aura_shock  |  Aura_black
+  "Aura_sad",
+  "textBoxSad",
+  "exclamSad",
+
+  //NPC problem speechbububle text
+  "Ich dachte, dass Geld immer",
+  "Duper-Bold",
+  "alles wett macht...",
+  "Duper-Bold",
+  "Aber was soll ich damit, wenn",
+  "sich meine Frau immer mehr",
+  "von mir distanziert?",
+  "Moment, warum erzähle ich",
+  "Ihnen das überhaupt?",
+  "",
+  "",
+  "",
+
+  //Duration of answer Time
+  0.5,
+
+  //Choose answers:
+  //toxic
+  "VERSUCHEN SIE, POSITIV ZU BLEIBEN.",
+  //positive
+  "VERSUCHEN SIE, PRIORITÄTEN ZU SETZEN.",
+  //neutral
+  "UIUIUI MEINE BLASE...",
+  //negative
+  "DAS GEHT MICH EIGENTLICH NICHTS AN...",
+
+  //Answers
+  //Toxic
+  "Alles passiert aus einem Grund...",
+  "Duper-Bold",
+  "vielleicht sollten Sie einfach",
+  "Duper",
+  "lernen, das Beste auch in so",
+  "einer Situation zu sehen.",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  //positive
+  "Ist Ihnen denn die Arbeit und",
+  "Duper-Bold",
+  "das Geld wichtiger, als Ihre Frau?",
+  "Duper-Bold",
+  "Arbeiten Sie daran, ein ",
+  "besserer Partner für sie",
+  "zu werden. Das wird einiges",
+  "Verändern, sie schaffen das!",
+  "",
+  "",
+  "",
+  "",
+  //neutral
+  "Ich war bis jetzt noch",
+  "Duper-Bold",
+  "nicht auf dem Klo. ",
+  "Duper-Bold",
+  "Entschuldigen Sie, es ist ",
+  "schon fast zu spät!",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  //negative
+  "Sie haben sich doch",
+  "Duper-Bold",
+  "den Job ausgesucht,",
+  "Duper-Bold",
+  "kommen sie damit klar.",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+
+  //NPC Reaction
+  //toxic
+  "Sehen Sie! Das habe ich mir auch",
+  "Duper-Bold",
+  "schon gesagt.",
+  "Duper-Bold",
+  "Soll sich meine Frau mal nicht",
+  "so anstellen. Und wer kann",
+  "sich schon eine Rolli gönnen?",
+  "",
+  "",
+  "",
+  "",
+  "",
+  //positive
+  "Das ist aber ehrlich von Ihnen... ",
+  "Duper-Bold",
+  "Zum Glück sind mir meine Sorgen ",
+  "Duper",
+  "einfach so rausgerutscht!",
+  "Mehr Zeit für meine Familie, ",
+  "das ist gut! Sagen Sie – wollen Sie",
+  "nicht vielleicht meine Stelle",
+  "übernehmen?",
+  "",
+  "",
+  "",
+  //neutral
+  "Äähh... ",
+  "Duper-Bold",
+  "was... ",
+  "Duper-Bold",
+  "ist das hier?!",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  //negative
+  "Machen Sie sich an die Arbeit!",
+  "Duper-Bold",
+  "Vergessen Sie ganz schnell, was",
+  "Duper",
+  "ich Ihnen gerade erzählt habe!",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+
+  //Parameter User
+  //Health:
+  10,
+  //Speed
+  0,
+  //Positivity
+  10,
+  //Shield
+  20,
+
+  // Parameter Boss
+  //Toxic
+  //Health:
+  0,
+  //Object damage:
+  10,
+  //Object amount:
+  10,
+  //Object speed
+  10,
+
+  //Neutral
+  //Object amount:
+  20,
+
+  //Negative
+  //Health:
+  20,
+  //Object damage:
+  0,
+  //Object amount:
+  0,
+  //Object speed
+  10
+);
 
 //textFont("Duper");
 let duper = loadFont("00_Links/00_Fonts/duper_regular.otf");
@@ -59,7 +240,7 @@ let userPositivity = 0;
 let userShield = 0;
 
 function userStats() {
-  //entspr. Szenen per Mainszene Aktualisieren!!!
+  //entspr. Szenen pro Mainszene Aktualisieren!!!
   if (chefMainScene.showPanoramaScreenBool === false) {
     push();
     tint(255, 255);
@@ -71,8 +252,12 @@ function userStats() {
       usersHeartIcon.width / 5,
       usersHeartIcon.height / 5
     );
-    //entspr. Szenen per Mainszene Aktualisieren!!!
-    userHealth = chefMainScene.userHealth;
+
+    //entspr. Szenen pro Mainszene Aktualisieren!!!
+    userHealth =
+      //chefmainScene
+      chefMainScene.userHealth;
+
     noStroke();
     fill(255, 165, 255);
     rect(-500, -280, 10 + userHealth, 10, 10);
@@ -85,8 +270,12 @@ function userStats() {
       usersSpeedIcon.width / 5,
       usersSpeedIcon.height / 5
     );
-    //entspr. Szenen per Mainszene Aktualisieren!!!
-    userSpeed = chefMainScene.userSpeed;
+
+    //entspr. Szenen pro Mainszene Aktualisieren!!!
+    userSpeed =
+      //chefmainScene
+      chefMainScene.userSpeed;
+
     fill(33, 241, 207);
     rect(-500, -253, 10 + userSpeed, 10, 10);
 
@@ -98,8 +287,12 @@ function userStats() {
       usersPositivityIcon.width / 5,
       usersPositivityIcon.height / 5
     );
-    //entspr. Szenen per Mainszene Aktualisieren!!!
-    userPositivity = chefMainScene.userPositivity;
+
+    //entspr. Szenen pro Mainszene Aktualisieren!!!
+    userPositivity =
+      //chefmainScene
+      chefMainScene.userPositivity;
+
     fill(148, 224, 255);
     rect(-500, -226, 10 + userPositivity, 10, 10);
 
@@ -111,8 +304,12 @@ function userStats() {
       usersShieldIcon.width / 5,
       usersShieldIcon.height / 5
     );
-    //entspr. Szenen per Mainszene Aktualisieren!!!
-    userShield = chefMainScene.userShield;
+
+    //entspr. Szenen pro Mainszene Aktualisieren!!!
+    userShield =
+      //chefmainScene
+      chefMainScene.userShield;
+
     fill(130, 94, 196);
     rect(-500, -199, 10 + userShield, 10, 10);
 
@@ -129,7 +326,27 @@ let bossHealth = 0;
 let bossObjectDamage = 0;
 let bossObjectAmount = 0;
 let bossObjectSpeed = 0;
-function bossStats() {}
+function bossStats() {
+  //entspr. Szenen pro Mainszene Aktualisieren!!!
+  bossHealth =
+    //chefmainScene
+    chefMainScene.bossHealth;
+
+  //entspr. Szenen pro Mainszene Aktualisieren!!!
+  bossObjectDamage =
+    //chefmainScene
+    chefMainScene.bossObjectDamage;
+
+  //entspr. Szenen pro Mainszene Aktualisieren!!!
+  bossObjectAmount =
+    //chefmainScene
+    chefMainScene.bossObjectAmount;
+
+  //entspr. Szenen pro Mainszene Aktualisieren!!!
+  bossObjectSpeed =
+    //chefmainScene
+    chefMainScene.bossObjectSpeed;
+}
 
 let showUserlook = false;
 let userBody = loadImage("00_Links/00_UI-Elements/user.png");
@@ -337,7 +554,8 @@ function draw() {
 
   userStats();
   userLook();
-
+  bossStats();
+  console.log(bossHealth, bossObjectDamage, bossObjectAmount, bossObjectSpeed);
   //JUST FOR TESTING (NEXT SCENE)
   nextScene();
 }
