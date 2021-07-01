@@ -1,10 +1,53 @@
 import MainScene from "./MainScene.js";
 import WeiterButton from "./WeiterButton.js";
-
+import ChefToCoffeeScene from "./ChefToCoffeeScene.js";
 //variables & commentaries = english
 //classes: Capital Letter
 //variables: lowercaseInitial
 //functions: self-explanatory naming
+
+//textFont("Duper");
+let duper = loadFont("00_Links/00_Fonts/duper_regular.otf");
+//textFont("Duper-Ita");
+let duperItalic = loadFont("00_Links/00_Fonts/duper-italic.otf");
+// textFont("Duper-Bold");
+let duperBold = loadFont("00_Links/00_Fonts/duper_bold.otf");
+//textFont("Duper-BoldIta");
+let duperBoldItalic = loadFont("00_Links/00_Fonts/duper_bolditalic.otf");
+
+//JUST FOR TESTING (BEGIN BUTTON)
+let showStartTestButton = true;
+let startTestButton = new WeiterButton(0, 0);
+//JUST FOR TESTING (NEXT SCENE)
+let showNextScene = false;
+function nextScene() {
+  if (showNextScene === true) {
+    textFont("Duper-Bold");
+    fill(61, 18, 117);
+    textSize(70);
+    text("NEXT SCENE", -160, 0);
+  }
+}
+
+function standardSettings() {
+  //Screen center (midpoint)
+  translate(550, 310);
+
+  //16:9 Background (1100x620 px)
+  noStroke();
+  fill(255);
+  rect(-550, -310, 1100, 620);
+
+  //Mode settings
+  rectMode(CORNER);
+  imageMode(CENTER);
+  angleMode(DEGREES);
+  textAlign(CORNER);
+
+  scale(1);
+}
+
+//----------------Define classes from all scenes and between scenes
 
 let chefMainScene = new MainScene(
   "02_chefMainScene",
@@ -189,47 +232,9 @@ let chefMainScene = new MainScene(
   10
 );
 
-//textFont("Duper");
-let duper = loadFont("00_Links/00_Fonts/duper_regular.otf");
-//textFont("Duper-Ita");
-let duperItalic = loadFont("00_Links/00_Fonts/duper-italic.otf");
-// textFont("Duper-Bold");
-let duperBold = loadFont("00_Links/00_Fonts/duper_bold.otf");
-//textFont("Duper-BoldIta");
-let duperBoldItalic = loadFont("00_Links/00_Fonts/duper_bolditalic.otf");
+let chefToCoffeeScene = new ChefToCoffeeScene();
 
-//JUST FOR TESTING (BEGIN BUTTON)
-let showStartTestButton = true;
-let startTestButton = new WeiterButton(0, 0);
-//JUST FOR TESTING (NEXT SCENE)
-let showNextScene = false;
-function nextScene() {
-  if (showNextScene === true) {
-    textFont("Duper-Bold");
-    fill(61, 18, 117);
-    textSize(70);
-    text("NEXT SCENE", -160, 0);
-  }
-}
-
-function standardSettings() {
-  //Screen center (midpoint)
-  translate(550, 310);
-
-  //16:9 Background (1100x620 px)
-  noStroke();
-  fill(255);
-  rect(-550, -310, 1100, 620);
-
-  //Mode settings
-  rectMode(CORNER);
-  imageMode(CENTER);
-  angleMode(DEGREES);
-  textAlign(CORNER);
-
-  scale(1);
-}
-
+//------------------------------"Global" functions, update it when adding a new mainscene
 let usersHeartIcon = loadImage("00_Links/00_UI-Elements/heart.png");
 let usersSpeedIcon = loadImage("00_Links/00_UI-Elements/speed.png");
 let usersPositivityIcon = loadImage("00_Links/00_UI-Elements/positivity.png");
@@ -396,7 +401,8 @@ function userLook() {
     }
   }
 }
-
+//All events die p5 uses, have to be anhängt ans window
+window.mouseClicked = mouseClicked;
 function mouseClicked() {
   //JUST FOR TESTING (BEGIN BUTTON)
   if (startTestButton.click()) {
@@ -501,9 +507,11 @@ function mouseClicked() {
       chefMainScene.neutralTextButton.state === "choosed" &&
       chefMainScene.neutralReaction.speech.tenth.typingEnded === true
     ) {
+      //Jumps directly to next scene!
       countSceneButtonClicks.push("Clicked");
       chefMainScene.showReactionScreenBool = false;
-      showNextScene = true;
+      //CALL HERE THE NEXT BETWEEN-SCENE!
+      chefToCoffeeScene.showFirstScreen();
     }
   }
 
@@ -519,12 +527,18 @@ function mouseClicked() {
   ) {
     countSceneButtonClicks.push("Clicked");
     showUserlook = false;
-    showNextScene = true;
+    //CALL HERE THE NEXT BETWEEN-SCENE!
+    chefToCoffeeScene.showFirstScreen();
+  }
+
+  //-----------------------------------------------------------------------chefToCoffeScene (Between-Scene)
+
+  if (chefToCoffeeScene.weiterButtonSecondScreenClick()) {
+    chefToCoffeeScene.showSecondScreen();
   }
 }
 
 //All events die p5 uses, have to be anhängt ans window
-window.mouseClicked = mouseClicked;
 window.draw = draw;
 function draw() {
   standardSettings();
@@ -552,10 +566,18 @@ function draw() {
   chefMainScene.reactionScreen();
   chefMainScene.itemScreen();
 
+  //Jump to next Scene (for Coding)
+  chefToCoffeeScene.showFirstScreen();
+
+  //02_ChefToCoffeeScene
+  chefToCoffeeScene.firstScreen();
+  chefToCoffeeScene.secondScreen();
+
+  //"Global" functions
   userStats();
   userLook();
   bossStats();
-  console.log(bossHealth, bossObjectDamage, bossObjectAmount, bossObjectSpeed);
+
   //JUST FOR TESTING (NEXT SCENE)
   nextScene();
 }
