@@ -1,4 +1,5 @@
 import MainScene from "./MainScene.js";
+import MainSceneSelf from "./MainSceneSelf.js";
 import WeiterButton from "./WeiterButton.js";
 import ChefToCoffeeScene from "./ChefToCoffeeScene.js";
 //variables & commentaries = english
@@ -54,6 +55,7 @@ let chefMainScene = new MainScene(
 
   //Spellbutton x-Postion//
   10,
+  200,
 
   //Type of Aura, Textbox and exclamation mark (NPC problem screen)
   //Types:  |  Aura_sad  |  Aura_negative (angry)  |   Aura_shock  |  Aura_black
@@ -234,6 +236,190 @@ let chefMainScene = new MainScene(
 
 let chefToCoffeeScene = new ChefToCoffeeScene();
 
+let coffeeMainScene = new MainSceneSelf(
+  "03_coffeeScene",
+
+  //Spellbutton x-Postion//
+  0,
+  115,
+
+  //Type of Aura, Textbox and exclamation mark (NPC problem screen)
+  //Types:  |  Aura_sad  |  Aura_negative (angry)  |   Aura_shock  |  Aura_black
+  "Aura_sad",
+  "textBoxSad",
+  "exclamSad",
+
+  //NPC problem speechbububle text
+  "Ich dachte, dass Geld immer",
+  "Duper-Bold",
+  "alles wett macht...",
+  "Duper-Bold",
+  "Aber was soll ich damit, wenn",
+  "sich meine Frau immer mehr",
+  "von mir distanziert?",
+  "Moment, warum erzähle ich",
+  "Ihnen das überhaupt?",
+  "",
+  "",
+  "",
+
+  //Duration of answer Time
+  0.5,
+
+  //Choose answers:
+  //toxic
+  "VERSUCHEN SIE, POSITIV ZU BLEIBEN.",
+  //positive
+  "VERSUCHEN SIE, PRIORITÄTEN ZU SETZEN.",
+  //neutral
+  "UIUIUI MEINE BLASE...",
+  //negative
+  "DAS GEHT MICH EIGENTLICH NICHTS AN...",
+
+  //Answers
+  //Toxic
+  "Alles passiert aus einem Grund...",
+  "Duper-Bold",
+  "vielleicht sollten Sie einfach",
+  "Duper",
+  "lernen, das Beste auch in so",
+  "einer Situation zu sehen.",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  //positive
+  "Ist Ihnen denn die Arbeit und",
+  "Duper-Bold",
+  "das Geld wichtiger, als Ihre Frau?",
+  "Duper-Bold",
+  "Arbeiten Sie daran, ein ",
+  "besserer Partner für sie",
+  "zu werden. Das wird einiges",
+  "Verändern, sie schaffen das!",
+  "",
+  "",
+  "",
+  "",
+  //neutral
+  "Ich war bis jetzt noch",
+  "Duper-Bold",
+  "nicht auf dem Klo. ",
+  "Duper-Bold",
+  "Entschuldigen Sie, es ist ",
+  "schon fast zu spät!",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  //negative
+  "Sie haben sich doch",
+  "Duper-Bold",
+  "den Job ausgesucht,",
+  "Duper-Bold",
+  "kommen sie damit klar.",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+
+  //NPC Reaction
+  //toxic
+  "Sehen Sie! Das habe ich mir auch",
+  "Duper-Bold",
+  "schon gesagt.",
+  "Duper-Bold",
+  "Soll sich meine Frau mal nicht",
+  "so anstellen. Und wer kann",
+  "sich schon eine Rolli gönnen?",
+  "",
+  "",
+  "",
+  "",
+  "",
+  //positive
+  "Das ist aber ehrlich von Ihnen... ",
+  "Duper-Bold",
+  "Zum Glück sind mir meine Sorgen ",
+  "Duper",
+  "einfach so rausgerutscht!",
+  "Mehr Zeit für meine Familie, ",
+  "das ist gut! Sagen Sie – wollen Sie",
+  "nicht vielleicht meine Stelle",
+  "übernehmen?",
+  "",
+  "",
+  "",
+  //neutral
+  "Äähh... ",
+  "Duper-Bold",
+  "was... ",
+  "Duper-Bold",
+  "ist das hier?!",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  //negative
+  "Machen Sie sich an die Arbeit!",
+  "Duper-Bold",
+  "Vergessen Sie ganz schnell, was",
+  "Duper",
+  "ich Ihnen gerade erzählt habe!",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+
+  //Parameter User
+  //Health:
+  10,
+  //Speed
+  0,
+  //Positivity
+  10,
+  //Shield
+  20,
+
+  // Parameter Boss
+  //Toxic
+  //Health:
+  0,
+  //Object damage:
+  10,
+  //Object amount:
+  10,
+  //Object speed
+  10,
+
+  //Neutral
+  //Object amount:
+  20,
+
+  //Negative
+  //Health:
+  20,
+  //Object damage:
+  0,
+  //Object amount:
+  0,
+  //Object speed
+  10
+);
+
 //------------------------------"Global" functions, update it when adding a new mainscene
 let usersHeartIcon = loadImage("00_Links/00_UI-Elements/heart.png");
 let usersSpeedIcon = loadImage("00_Links/00_UI-Elements/speed.png");
@@ -412,7 +598,7 @@ window.mouseClicked = mouseClicked;
 function mouseClicked() {
   //JUST FOR TESTING (BEGIN BUTTON)
   if (startTestButton.click()) {
-    chefMainScene.showPanoramaScreen();
+    coffeeMainScene.showPanoramaScreen();
     showStartTestButton = false;
   }
 
@@ -545,6 +731,21 @@ function mouseClicked() {
     } else {
       chefToCoffeeScene.showSecondScreen();
     }
+  } else if (chefToCoffeeScene.weiterButtonThirdScreenClick()) {
+    if (chefToCoffeeScene.secondScreenText.sentence.typingEnded === false) {
+      chefToCoffeeScene.secondScreenText.sentence.displayAllTextAtOnce();
+    } else {
+      chefToCoffeeScene.showThirdScreen();
+    }
+  } else if (
+    chefToCoffeeScene.weiterButtonNextPanoramaScreenFromMainSceneClick()
+  ) {
+    if (chefToCoffeeScene.thirdScreenText.sentence.typingEnded === false) {
+      chefToCoffeeScene.thirdScreenText.sentence.displayAllTextAtOnce();
+    } else {
+      chefToCoffeeScene.showNextPanoramaScreenFromMainScene();
+      coffeeMainScene.showPanoramaScreen();
+    }
   }
 }
 
@@ -553,20 +754,12 @@ window.draw = draw;
 function draw() {
   standardSettings();
 
-  //Just for testing at the Beginning
+  //-------Start Button (Just for testing)
   if (showStartTestButton === true) {
     startTestButton.fadeIn();
     startTestButton.displayActiveOrSleeping();
     startTestButton.displayButtonSentence();
   }
-
-  //Jump to next Scene (for Coding)
-  // chefMainScene.showNPCProblemScreen();
-  // chefMainScene.showChooseAnswerScreen();
-  // chefMainScene.negativeTextButton.state = "choosed";
-  // chefMainScene.showAnswerScreen();
-  // chefMainScene.positiveTextButton.state = "choosed";
-  // chefMainScene.showItemScreen();
 
   //02_chefMainScene
   chefMainScene.panoramaScreen();
@@ -576,12 +769,32 @@ function draw() {
   chefMainScene.reactionScreen();
   chefMainScene.itemScreen();
 
-  //Jump to next Scene (for Coding)
-  chefToCoffeeScene.showFirstScreen();
+  //Jump to between scene Just for testing
+  //set firstScreenBool = false when finished testing
+  // if (chefToCoffeeScene.firstScreenBool === true) {
+  //   chefToCoffeeScene.showFirstScreen();
+  // }
 
   //02_ChefToCoffeeScene
   chefToCoffeeScene.firstScreen();
   chefToCoffeeScene.secondScreen();
+  chefToCoffeeScene.thirdScreen();
+
+  //-------Jump to next Scene (Just for testing)
+  // coffeeMainScene.showNPCProblemScreen();
+  // chefMainScene.showChooseAnswerScreen();
+  // chefMainScene.negativeTextButton.state = "choosed";
+  // chefMainScene.showAnswerScreen();
+  // chefMainScene.positiveTextButton.state = "choosed";
+  // chefMainScene.showItemScreen();
+
+  //02_chefMainScene
+  coffeeMainScene.panoramaScreen();
+  coffeeMainScene.npcProblemScreen();
+  coffeeMainScene.chooseAnswerScreen();
+  coffeeMainScene.answerScreen();
+  coffeeMainScene.reactionScreen();
+  coffeeMainScene.itemScreen();
 
   //"Global" functions
   userStats();

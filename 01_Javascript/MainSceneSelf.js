@@ -5,7 +5,7 @@ import SpeechBubble from "./SpeechBubble.js";
 import Timer from "./Timer.js";
 import UserAnswerSpeechBubble from "./UserAnswerSpeechBubble.js";
 
-export default class MainScene {
+export default class MainSceneSelf {
   constructor(
     sceneType,
 
