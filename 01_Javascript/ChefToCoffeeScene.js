@@ -11,7 +11,7 @@ export default class ChefToCoffeeScene extends BetweenScene {
     this.firstScreenText = new BetweenScenesText(
       "Duper",
       19,
-      "Die Zeit vergeht...",
+      "Als du mit deiner alltäglichen Arbeit beginnst, vergeht die Zeit magisch schnell. Schon Mittagspause – geil!",
       0,
       -200,
       1,
@@ -20,6 +20,12 @@ export default class ChefToCoffeeScene extends BetweenScene {
     this.weiterButtonToSecondScreen = new WeiterButton(430, 240);
     this.firstScreenBool = false;
     this.secondScreenBool = false;
+
+    //Second Screen
+    this.secondScreenImageFadeIn = 0;
+    this.secondScreenImage = loadImage(
+      "00_Links/02_chefToCoffeeScene/secondScreen.png"
+    );
   }
 
   showFirstScreen() {
@@ -59,5 +65,20 @@ export default class ChefToCoffeeScene extends BetweenScene {
     this.secondScreenBool = true;
   }
 
-  secondScreen() {}
+  secondScreen() {
+    if (this.secondScreenBool === true) {
+      this.secondScreenImageFadeIn += 5;
+      if (this.secondScreenImageFadeIn > 255) {
+        this.secondScreenImageFadeIn = 255;
+      }
+      tint(255, this.secondScreenImageFadeIn);
+      image(
+        this.secondScreenImage,
+        0,
+        0,
+        this.secondScreenImage.width / 1,
+        this.secondScreenImage.height / 1
+      );
+    }
+  }
 }

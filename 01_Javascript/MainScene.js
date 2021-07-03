@@ -209,6 +209,7 @@ export default class MainScene {
     this.panoramaScreenImage = loadImage(
       "00_Links/" + sceneType + "/panoramaScreen.png"
     );
+    this.panoramaFadeIn = 0;
     this.spellButtonXposition = spellButtonXposition;
     this.spellButton = new SpellButton(this.spellButtonXposition, 200);
     this.showPanoramaScreenBool = false;
@@ -649,20 +650,28 @@ export default class MainScene {
 
   panoramaScreen() {
     if (this.showPanoramaScreenBool === true) {
-      //checks the state of the button every time
+      //Pics
+      //pics fade in automatically, because of the tint fade of the .fadeIn() method of the spellbutton
+      //But has additional fade in, because otherwise the image would be displayed at first and then fades in (there is a flackering at first)
+      //Has to be this order so that the button is drawn over the image
+      this.panoramaFadeIn += 5;
+      if (this.panoramaFadeIn > 255) {
+        this.panoramaFadeIn = 255;
+      }
+      tint(255, this.panoramaFadeIn);
+      image(
+        this.panoramaScreenImage,
+        0,
+        0,
+        this.panoramaScreenImage.width / 1,
+        this.panoramaScreenImage.height / 1
+      );
+
+      //Button is drawn over the image
+      //(checks the state of the button every time)
       this.spellButton.fadeIn();
       this.spellButton.displayActiveOrSleeping();
       this.spellButton.displayButtonSentence();
-
-      //Pics
-      //fade in, too because of the tint fade of the .fadeIn() method
-      image(
-        this.panoramaScreenImage,
-        -20,
-        -20,
-        this.panoramaScreenImage.width / 1.1,
-        this.panoramaScreenImage.height / 1.1
-      );
     }
   }
 

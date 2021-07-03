@@ -43,7 +43,7 @@ export default class BetweenScenesText {
       fill(255, this.fade);
       noStroke();
     }
-    //rectangle expands
+    //rectangle expands | related to string counter "n"
     rect(this.x, this.y - 5, 50 + this.sentence.n * 6.9, 40, 2);
     pop();
   }

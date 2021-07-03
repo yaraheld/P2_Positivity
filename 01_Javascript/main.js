@@ -53,7 +53,7 @@ let chefMainScene = new MainScene(
   "02_chefMainScene",
 
   //Spellbutton x-Postion//
-  -10,
+  10,
 
   //Type of Aura, Textbox and exclamation mark (NPC problem screen)
   //Types:  |  Aura_sad  |  Aura_negative (angry)  |   Aura_shock  |  Aura_black
@@ -246,7 +246,13 @@ let userShield = 0;
 
 function userStats() {
   //entspr. Szenen pro Mainszene Aktualisieren!!!
-  if (chefMainScene.showPanoramaScreenBool === false) {
+  if (
+    //MainScenes
+    chefMainScene.showPanoramaScreenBool === false &&
+    //betweenScenes
+    chefToCoffeeScene.firstScreenBool === false &&
+    chefToCoffeeScene.secondScreenBool === false
+  ) {
     push();
     tint(255, 255);
     //Heart
@@ -534,7 +540,11 @@ function mouseClicked() {
   //-----------------------------------------------------------------------chefToCoffeScene (Between-Scene)
 
   if (chefToCoffeeScene.weiterButtonSecondScreenClick()) {
-    chefToCoffeeScene.showSecondScreen();
+    if (chefToCoffeeScene.firstScreenText.sentence.typingEnded === false) {
+      chefToCoffeeScene.firstScreenText.sentence.displayAllTextAtOnce();
+    } else {
+      chefToCoffeeScene.showSecondScreen();
+    }
   }
 }
 
