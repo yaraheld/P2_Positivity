@@ -382,6 +382,8 @@ export default class MainSceneSelf {
     );
     this.fadeInAuraSlow = 0;
     this.weiterButtonItemScreen = new WeiterButton(-210, 205);
+    this.fadeInPic = 0;
+    this.fadeInAuraTranceparency = 0;
 
     //User parameter
     this.userHealth = 0;
@@ -418,7 +420,7 @@ export default class MainSceneSelf {
     this.showItemScreenBool = false;
 
     this.fadeInStatsText = 0;
-    this.fadeInStatsTextVariable = 5;
+    this.fadeInStatsTextVariable = 3;
 
     this.positiveItem = loadImage(
       "00_Links/" + sceneType + "/positive_Item.png"
@@ -696,7 +698,8 @@ export default class MainSceneSelf {
       //when timer ends, you choose automatically "neutral" answer
       if (this.chooseAnswerScreenTimer.timeIsUp()) {
         this.neutralTextButton.state = "choosed";
-        this.showAnswerScreen();
+        //IMPORTANT: It Jumps directly to reaction screen, because the thought mainscene has to AnswerScreen
+        this.showReactionScreen();
       }
     }
   }
@@ -712,18 +715,35 @@ export default class MainSceneSelf {
       );
     }
   }
+
+  //Not needed for thoughts main scene, but fade in is needed
   //-------------------------------------------------------------------------------------------------Answer screen
 
   //for mouseClicked
   showAnswerScreen() {}
 
   //For fading in the aura pic slowly
-  fadeInAuraSlowly() {}
+  fadeInAuraSlowly() {
+    this.fadeInAuraSlow += 5;
+    if (this.fadeInAuraSlow > 255) {
+      this.fadeInAuraSlow = 255;
+    }
+  }
 
   //For fading in the answer pic
-  fadeInAnswerPic() {}
+  fadeInAnswerPic() {
+    this.fadeInPic += 10;
+    if (this.fadeInPic > 255) {
+      this.fadeInPic = 255;
+    }
+  }
   //For fading in the answer aura (tranceparency)
-  fadeInAnswerAuraTranceparency() {}
+  fadeInAnswerAuraTranceparency() {
+    this.fadeInAuraTranceparency += 2;
+    if (this.fadeInAuraTranceparency > 100) {
+      this.fadeInAuraTranceparency = 100;
+    }
+  }
 
   answerScreen() {}
 
@@ -736,7 +756,6 @@ export default class MainSceneSelf {
     this.showPanoramaScreenBool = false;
     this.showNPCProblemScreenBool = false;
     this.showChooseAnswerScreenBool = false;
-    this.showAnswerScreenBool = false;
     this.showReactionScreenBool = true;
   }
 
@@ -748,10 +767,6 @@ export default class MainSceneSelf {
       this.weiterButtonItemScreen.displayButtonSentence();
 
       if (this.toxicTextButton.state === "choosed") {
-        this.toxicReaction.fadeIn();
-        this.toxicReaction.displaySpeechBubble();
-        this.toxicReaction.displaySpeechSentences();
-
         //PARAMETER
         this.bossHealth = this.bossHealthGainToxic;
         this.bossObjectDamage = this.bossObjectDamageGainToxic;
@@ -765,26 +780,20 @@ export default class MainSceneSelf {
         //Pics
         image(
           this.aura_toxic,
-          185,
-          -140,
-          this.aura_toxic.width * 1.1,
-          this.aura_toxic.height * 1.1
+          180,
+          -20,
+          this.aura_toxic.width / 1.1,
+          this.aura_toxic.height / 1.1
         );
         this.fadeInAnswerPic();
         tint(255, this.fadeInPic);
-        image(
-          this.toxic,
-          165,
-          270,
-          this.toxic.width * 2,
-          this.toxic.height * 2
-        );
+        image(this.toxic, 175, 10, this.toxic.width, this.toxic.height);
+
+        this.toxicReaction.fadeIn();
+        this.toxicReaction.displaySpeechBubble();
+        this.toxicReaction.displaySpeechSentences();
       }
       if (this.positiveTextButton.state === "choosed") {
-        this.positiveReaction.fadeIn();
-        this.positiveReaction.displaySpeechBubble();
-        this.positiveReaction.displaySpeechSentences();
-
         //PARAMETER
         this.userHealth = this.userHealthGain;
         this.userSpeed = this.userSpeedGain;
@@ -798,26 +807,26 @@ export default class MainSceneSelf {
         //Pics
         image(
           this.aura_positive,
-          185,
-          -140,
-          this.aura_positive.width * 1.1,
-          this.aura_positive.height * 1.1
+          180,
+          -20,
+          this.aura_positive.width / 1.1,
+          this.aura_positive.height / 1.1
         );
         this.fadeInAnswerPic();
         tint(255, this.fadeInPic);
         image(
           this.positive,
-          165,
-          270,
-          this.positive.width * 2,
-          this.positive.height * 2
+          175,
+          10,
+          this.positive.width,
+          this.positive.height
         );
+
+        this.positiveReaction.fadeIn();
+        this.positiveReaction.displaySpeechBubble();
+        this.positiveReaction.displaySpeechSentences();
       }
       if (this.neutralTextButton.state === "choosed") {
-        this.neutralReaction.fadeIn();
-        this.neutralReaction.displaySpeechBubble();
-        this.neutralReaction.displaySpeechSentences();
-
         //PARAMETER
         this.bossHealth = 0;
         this.bossObjectDamage = 0;
@@ -831,26 +840,20 @@ export default class MainSceneSelf {
         //Pics
         image(
           this.aura_neutral,
-          185,
-          -140,
-          this.aura_neutral.width * 1.1,
-          this.aura_neutral.height * 1.1
+          180,
+          -20,
+          this.aura_neutral.width / 1.1,
+          this.aura_neutral.height / 1.1
         );
         this.fadeInAnswerPic();
         tint(255, this.fadeInPic);
-        image(
-          this.neutral,
-          165,
-          270,
-          this.neutral.width * 2,
-          this.neutral.height * 2
-        );
+        image(this.neutral, 175, 10, this.neutral.width, this.neutral.height);
+
+        this.neutralReaction.fadeIn();
+        this.neutralReaction.displaySpeechBubble();
+        this.neutralReaction.displaySpeechSentences();
       }
       if (this.negativeTextButton.state === "choosed") {
-        this.negativeReaction.fadeIn();
-        this.negativeReaction.displaySpeechBubble();
-        this.negativeReaction.displaySpeechSentences();
-
         //PARAMETER
         this.bossHealth = this.bossHealthGainNegative;
         this.bossObjectDamage = this.bossObjectDamageGainNegative;
@@ -864,25 +867,29 @@ export default class MainSceneSelf {
         //Pics
         image(
           this.aura_negative,
-          185,
-          -140,
-          this.aura_negative.width * 1.1,
-          this.aura_negative.height * 1.1
+          180,
+          -20,
+          this.aura_negative.width / 1.1,
+          this.aura_negative.height / 1.1
         );
         this.fadeInAnswerPic();
         tint(255, this.fadeInPic);
         image(
           this.negative,
-          165,
-          270,
-          this.negative.width * 2,
-          this.negative.height * 2
+          175,
+          10,
+          this.negative.width,
+          this.negative.height
         );
+
+        this.negativeReaction.fadeIn();
+        this.negativeReaction.displaySpeechBubble();
+        this.negativeReaction.displaySpeechSentences();
       }
 
       this.fadeInStatsText += this.fadeInStatsTextVariable;
       if (this.fadeInStatsText > 255) {
-        this.fadeInStatsTextVariable -= 5;
+        this.fadeInStatsTextVariable -= 3;
       }
       if (this.fadeInStatsText < 0) {
         this.fadeInStatsTextVariable = 0;
@@ -942,7 +949,6 @@ export default class MainSceneSelf {
     this.showPanoramaScreenBool = false;
     this.showNPCProblemScreenBool = false;
     this.showChooseAnswerScreenBool = false;
-    this.showAnswerScreenBool = false;
     this.showReactionScreenBool = false;
     this.showItemScreenBool = true;
   }

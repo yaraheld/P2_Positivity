@@ -318,14 +318,14 @@ let coffeeMainScene = new MainSceneSelf(
   "",
   "",
   //negative
-  "Wofür hab ich denn bitte Zauberkräfte,",
+  "Wofür habe",
   "Duper-Bold",
-  "wenn ich noch nicht einmal richtig trinken kann?!",
+  "ich denn bitte Zauberkräfte,",
   "Duper",
-  "Ich hab noch was schlimmeres als",
-  "die lange Unterhose verdient.",
-  "",
-  "",
+  "wenn ich noch nicht einmal richtig",
+  "trinken kann?! Ich habe etwas",
+  "schlimmeres als die lange",
+  "Unterhose verdient.",
   "",
   "",
   "",
@@ -382,6 +382,7 @@ function userStats() {
   if (
     //MainScenes
     chefMainScene.showPanoramaScreenBool === false &&
+    coffeeMainScene.showPanoramaScreenBool === false &&
     //betweenScenes
     chefToCoffeeScene.firstScreenBool === false &&
     chefToCoffeeScene.secondScreenBool === false
@@ -399,8 +400,8 @@ function userStats() {
 
     //entspr. Szenen pro Mainszene Aktualisieren!!!
     userHealth =
-      //chefmainScene
-      chefMainScene.userHealth;
+      //Mainscenes
+      chefMainScene.userHealth + coffeeMainScene.userHealth;
 
     noStroke();
     fill(255, 165, 255);
@@ -417,8 +418,8 @@ function userStats() {
 
     //entspr. Szenen pro Mainszene Aktualisieren!!!
     userSpeed =
-      //chefmainScene
-      chefMainScene.userSpeed;
+      //Mainscenes
+      chefMainScene.userSpeed + coffeeMainScene.userSpeed;
 
     fill(33, 241, 207);
     rect(-500, -253, 10 + userSpeed, 10, 10);
@@ -434,8 +435,8 @@ function userStats() {
 
     //entspr. Szenen pro Mainszene Aktualisieren!!!
     userPositivity =
-      //chefmainScene
-      chefMainScene.userPositivity;
+      //Mainscenes
+      chefMainScene.userPositivity + coffeeMainScene.userPositivity;
 
     fill(148, 224, 255);
     rect(-500, -226, 10 + userPositivity, 10, 10);
@@ -451,8 +452,8 @@ function userStats() {
 
     //entspr. Szenen pro Mainszene Aktualisieren!!!
     userShield =
-      //chefmainScene
-      chefMainScene.userShield;
+      //Mainscenes
+      chefMainScene.userShield + coffeeMainScene.userShield;
 
     fill(130, 94, 196);
     rect(-500, -199, 10 + userShield, 10, 10);
@@ -473,23 +474,23 @@ let bossObjectSpeed = 0;
 function bossStats() {
   //entspr. Szenen pro Mainszene Aktualisieren!!!
   bossHealth =
-    //chefmainScene
-    chefMainScene.bossHealth;
+    //Mainscenes
+    chefMainScene.bossHealth + coffeeMainScene.bossHealth;
 
   //entspr. Szenen pro Mainszene Aktualisieren!!!
   bossObjectDamage =
-    //chefmainScene
-    chefMainScene.bossObjectDamage;
+    //Mainscenes
+    chefMainScene.bossObjectDamage + coffeeMainScene.bossObjectDamage;
 
   //entspr. Szenen pro Mainszene Aktualisieren!!!
   bossObjectAmount =
-    //chefmainScene
-    chefMainScene.bossObjectAmount;
+    //Mainscenes
+    chefMainScene.bossObjectAmount + coffeeMainScene.bossObjectAmount;
 
   //entspr. Szenen pro Mainszene Aktualisieren!!!
   bossObjectSpeed =
-    //chefmainScene
-    chefMainScene.bossObjectSpeed;
+    // Mainscenes
+    chefMainScene.bossObjectSpeed + coffeeMainScene.bossObjectSpeed;
 }
 
 let showUserlook = false;
@@ -537,6 +538,16 @@ function userLook() {
     }
     if (chefMainScene.state === "negative") {
       chefMainScene.returnNegativeLook();
+    }
+    //-----CoffeeMainScene
+    if (coffeeMainScene.state === "toxic") {
+      coffeeMainScene.returnToxicLook();
+    }
+    if (coffeeMainScene.state === "positive") {
+      coffeeMainScene.returnPositiveLook();
+    }
+    if (coffeeMainScene.state === "negative") {
+      coffeeMainScene.returnNegativeLook();
     }
   }
 }

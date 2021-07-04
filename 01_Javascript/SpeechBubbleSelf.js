@@ -38,6 +38,8 @@ export default class SpeechBubbleSelf {
 
     this.fadeInVariable = 0;
 
+    this.speechCanAppearNow = false;
+
     //change the position of the text
     this.speech = new TextAnimationWithMultipleSentences(
       -290,
@@ -110,7 +112,7 @@ export default class SpeechBubbleSelf {
     pop();
 
     //NPC problem speechbubble
-    this.speechBubble.delay(130);
+    this.speechBubble.delay(100); //standard speed
     image(
       this.speechBubble,
       -285,
@@ -122,6 +124,7 @@ export default class SpeechBubbleSelf {
     //Stops Gif (12 Pics)
     if (this.speechBubble.getCurrentFrame() === 9) {
       this.speechBubble.pause();
+      this.speechCanAppearNow = true;
     }
 
     //------NEW: Text has to be centered at the y-axis, too
@@ -268,15 +271,17 @@ export default class SpeechBubbleSelf {
   }
   //To center the sentences
   displaySpeechSentences() {
-    push();
-    textAlign(CENTER);
-    //NPC problem speech
-    //"Fade in" runs only, when you call the color of the origin class. Because "textColor" is in the (draw) function.
-    //"this.generalTextColor" is just defined once in the constructor and doesn`t update itself
-    this.speech.first.textColor = color(62, 19, 118, this.fadeInVariable);
-    this.speech.second.textColor = color(62, 19, 118, this.fadeInVariable);
+    if (this.speechCanAppearNow === true) {
+      push();
+      textAlign(CENTER);
+      //NPC problem speech
+      //"Fade in" runs only, when you call the color of the origin class. Because "textColor" is in the (draw) function.
+      //"this.generalTextColor" is just defined once in the constructor and doesn`t update itself
+      this.speech.first.textColor = color(62, 19, 118, this.fadeInVariable);
+      this.speech.second.textColor = color(62, 19, 118, this.fadeInVariable);
 
-    this.speech.sentences();
-    pop();
+      this.speech.sentences();
+      pop();
+    }
   }
 }

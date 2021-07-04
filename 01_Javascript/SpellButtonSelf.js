@@ -10,8 +10,8 @@ export default class SpellButtonSelf extends SpellButton {
       15,
       color(157, 157, 157),
       "ZAUBER AUF SICH SELBST ANWENDEN",
-      this.x - 105,
-      this.y + 5,
+      this.x - 106,
+      this.y + 4,
       1
     );
 
