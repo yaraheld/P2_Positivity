@@ -215,7 +215,7 @@ export default class MainScene {
     this.spellButtonYposition = spellButtonYposition;
     this.spellButton = new SpellButton(
       this.spellButtonXposition,
-      spellButtonYposition
+      this.spellButtonYposition
     );
     this.showPanoramaScreenBool = false;
 
@@ -735,7 +735,7 @@ export default class MainScene {
   }
 
   //for mouseClicked
-  weiterButtonAnswerScreenClick() {
+  weiterButtonChooseAnswerScreenClick() {
     if (this.showNPCProblemScreenBool === true) {
       return this.weiterButtonAnswerScreen.click();
     }
@@ -821,7 +821,7 @@ export default class MainScene {
         }
       }
 
-      //buttons (comes first, that the fade in works properly)
+      //buttons (comes first, thus the fade in works properly)
       this.toxicTextButton.fadeIn();
       this.toxicTextButton.displayActiveOrSleeping();
       this.toxicTextButton.displayButtonSentence();

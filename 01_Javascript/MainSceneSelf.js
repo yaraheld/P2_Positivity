@@ -1,10 +1,11 @@
-import SpellButton from "./SpellButton.js";
 import ChooseButton from "./chooseButton.js";
 import WeiterButton from "./weiterButton.js";
-import SpeechBubble from "./SpeechBubble.js";
 import Timer from "./Timer.js";
 import UserAnswerSpeechBubble from "./UserAnswerSpeechBubble.js";
+import SpellButtonSelf from "./SpellButtonSelf.js";
+import SpeechBubbleSelf from "./SpeechBubbleSelf.js";
 
+//CANT MAKE A F***** EXTENSION BECAUSE OF A DOUBLED PNG ERROR (CLASS EXTENSION DIDN´T OVERWRITE PNG TO GIF)
 export default class MainSceneSelf {
   constructor(
     sceneType,
@@ -44,60 +45,6 @@ export default class MainSceneSelf {
     chooseNeutralAnswer,
     //negative
     chooseNegativeAnswer,
-
-    //Answers
-    //Toxic
-    firstToxicAnswertext,
-    firstToxicAnswerFont,
-    secondToxicAnswertext,
-    secondToxicAnswerFont,
-    thirdToxicAnswertext,
-    fourthToxicAnswertext,
-    fifthToxicAnswertext,
-    sixthToxicAnswertext,
-    seventhToxicAnswertext,
-    eighthToxicAnswertext,
-    ninthToxicAnswertext,
-    tenthToxicAnswertext,
-    //positive
-    firstPositiveAnswertext,
-    firstPositiveAnswerFont,
-    secondPositiveAnswertext,
-    secondPositiveAnswerFont,
-    thirdPositiveAnswertext,
-    fourthPositiveAnswertext,
-    fifthPositiveAnswertext,
-    sixthPositiveAnswertext,
-    seventhPositiveAnswertext,
-    eighthPositiveAnswertext,
-    ninthPositiveAnswertext,
-    tenthPositiveAnswertext,
-    //neutral
-    firstNeutralAnswertext,
-    firstNeutralAnswerFont,
-    secondNeutralAnswertext,
-    secondNeutralAnswerFont,
-    thirdNeutralAnswertext,
-    fourthNeutralAnswertext,
-    fifthNeutralAnswertext,
-    sixthNeutralAnswertext,
-    seventhNeutralAnswertext,
-    eighthNeutralAnswertext,
-    ninthNeutralAnswertext,
-    tenthNeutralAnswertext,
-    //negative
-    firstNegativeAnswertext,
-    firstNegativeAnswerFont,
-    secondNegativeAnswertext,
-    secondNegativeAnswerFont,
-    thirdNegativeAnswertext,
-    fourthNegativeAnswertext,
-    fifthNegativeAnswertext,
-    sixthNegativeAnswertext,
-    seventhNegativeAnswertext,
-    eighthNegativeAnswertext,
-    ninthNegativeAnswertext,
-    tenthNegativeAnswertext,
 
     //NPC Reaction
     //toxic
@@ -213,10 +160,13 @@ export default class MainSceneSelf {
     this.panoramaFadeIn = 0;
     this.spellButtonXposition = spellButtonXposition;
     this.spellButtonYposition = spellButtonYposition;
-    this.spellButton = new SpellButton(
+
+    //Panorama screen changes:
+    this.spellButton = new SpellButtonSelf(
       this.spellButtonXposition,
-      spellButtonYposition
+      this.spellButtonYposition
     );
+
     this.showPanoramaScreenBool = false;
 
     //-----------------------------------------------------NPCproblem Screen
@@ -246,7 +196,8 @@ export default class MainSceneSelf {
     this.ninthNPCproblemtext = ninthNPCproblemtext;
     this.tenthNPCproblemtext = tenthNPCproblemtext;
 
-    this.npcProblemSpeechbubble = new SpeechBubble(
+    //-----------NPC-Problem changes (=> Own problem)
+    this.npcProblemSpeechbubble = new SpeechBubbleSelf(
       this.npcProblemScreenTextBoxType,
       this.npcProblemScreenExclamType,
       this.firstNPCproblemtext,
@@ -313,135 +264,8 @@ export default class MainSceneSelf {
     this.timeEndurance = timeEndurance;
     this.chooseAnswerScreenTimer = new Timer(480, -250, this.timeEndurance);
 
-    //-----------------------------------------------------AnswerScreen
-    this.showAnswerScreenBool = false;
-
-    this.firstToxicAnswertext = firstToxicAnswertext;
-    this.firstToxicAnswerFont = firstToxicAnswerFont;
-    this.secondToxicAnswertext = secondToxicAnswertext;
-    this.secondToxicAnswerFont = secondToxicAnswerFont;
-    this.thirdToxicAnswertext = thirdToxicAnswertext;
-    this.fourthToxicAnswertext = fourthToxicAnswertext;
-    this.fifthToxicAnswertext = fifthToxicAnswertext;
-    this.sixthToxicAnswertext = sixthToxicAnswertext;
-    this.seventhToxicAnswertext = seventhToxicAnswertext;
-    this.eighthToxicAnswertext = eighthToxicAnswertext;
-    this.ninthToxicAnswertext = ninthToxicAnswertext;
-    this.tenthToxicAnswertext = tenthToxicAnswertext;
-    this.toxicAnswer = new UserAnswerSpeechBubble(
-      // Have to use the first two attributes everytime, otherwise the browser can`t load pics from an origin class through an inherited class
-
-      "textBoxUser",
-      "exclamUser",
-      this.firstToxicAnswertext,
-      this.firstToxicAnswerFont,
-      this.secondToxicAnswertext,
-      this.secondToxicAnswerFont,
-      this.thirdToxicAnswertext,
-      this.fourthToxicAnswertext,
-      this.fifthToxicAnswertext,
-      this.sixthToxicAnswertext,
-      this.seventhToxicAnswertext,
-      this.eighthToxicAnswertext,
-      this.ninthToxicAnswertext,
-      this.tenthToxicAnswertext
-    );
-
-    this.firstPositiveAnswertext = firstPositiveAnswertext;
-    this.firstPositiveAnswerFont = firstPositiveAnswerFont;
-    this.secondPositiveAnswertext = secondPositiveAnswertext;
-    this.secondPositiveAnswerFont = secondPositiveAnswerFont;
-    this.thirdPositiveAnswertext = thirdPositiveAnswertext;
-    this.fourthPositiveAnswertext = fourthPositiveAnswertext;
-    this.fifthPositiveAnswertext = fifthPositiveAnswertext;
-    this.sixthPositiveAnswertext = sixthPositiveAnswertext;
-    this.seventhPositiveAnswertext = seventhPositiveAnswertext;
-    this.eighthPositiveAnswertext = eighthPositiveAnswertext;
-    this.ninthPositiveAnswertext = ninthPositiveAnswertext;
-    this.tenthPositiveAnswertext = tenthPositiveAnswertext;
-    this.positiveAnswer = new UserAnswerSpeechBubble(
-      "textBoxUser",
-      "exclamUser",
-      this.firstPositiveAnswertext,
-      this.firstPositiveAnswerFont,
-      this.secondPositiveAnswertext,
-      this.secondPositiveAnswerFont,
-      this.thirdPositiveAnswertext,
-      this.fourthPositiveAnswertext,
-      this.fifthPositiveAnswertext,
-      this.sixthPositiveAnswertext,
-      this.seventhPositiveAnswertext,
-      this.eighthPositiveAnswertext,
-      this.ninthPositiveAnswertext,
-      this.tenthPositiveAnswertext
-    );
-
-    this.firstNeutralAnswertext = firstNeutralAnswertext;
-    this.firstNeutralAnswerFont = firstNeutralAnswerFont;
-    this.secondNeutralAnswertext = secondNeutralAnswertext;
-    this.secondNeutralAnswerFont = secondNeutralAnswerFont;
-    this.thirdNeutralAnswertext = thirdNeutralAnswertext;
-    this.fourthNeutralAnswertext = fourthNeutralAnswertext;
-    this.fifthNeutralAnswertext = fifthNeutralAnswertext;
-    this.sixthNeutralAnswertext = sixthNeutralAnswertext;
-    this.seventhNeutralAnswertext = seventhNeutralAnswertext;
-    this.eighthNeutralAnswertext = eighthNeutralAnswertext;
-    this.ninthNeutralAnswertext = ninthNeutralAnswertext;
-    this.tenthNeutralAnswertext = tenthNeutralAnswertext;
-    this.neutralAnswer = new UserAnswerSpeechBubble(
-      "textBoxUser",
-      "exclamUser",
-      this.firstNeutralAnswertext,
-      this.firstNeutralAnswerFont,
-      this.secondNeutralAnswertext,
-      this.secondNeutralAnswerFont,
-      this.thirdNeutralAnswertext,
-      this.fourthNeutralAnswertext,
-      this.fifthNeutralAnswertext,
-      this.sixthNeutralAnswertext,
-      this.seventhNeutralAnswertext,
-      this.eighthNeutralAnswertext,
-      this.ninthNeutralAnswertext,
-      this.tenthNeutralAnswertext
-    );
-
-    this.firstNegativeAnswertext = firstNegativeAnswertext;
-    this.firstNegativeAnswerFont = firstNegativeAnswerFont;
-    this.secondNegativeAnswertext = secondNegativeAnswertext;
-    this.secondNegativeAnswerFont = secondNegativeAnswerFont;
-    this.thirdNegativeAnswertext = thirdNegativeAnswertext;
-    this.fourthNegativeAnswertext = fourthNegativeAnswertext;
-    this.fifthNegativeAnswertext = fifthNegativeAnswertext;
-    this.sixthNegativeAnswertext = sixthNegativeAnswertext;
-    this.seventhNegativeAnswertext = seventhNegativeAnswertext;
-    this.eighthNegativeAnswertext = eighthNegativeAnswertext;
-    this.ninthNegativeAnswertext = ninthNegativeAnswertext;
-    this.tenthNegativeAnswertext = tenthNegativeAnswertext;
-    this.negativeAnswer = new UserAnswerSpeechBubble(
-      "textBoxUser",
-      "exclamUser",
-      this.firstNegativeAnswertext,
-      this.firstNegativeAnswerFont,
-      this.secondNegativeAnswertext,
-      this.secondNegativeAnswerFont,
-      this.thirdNegativeAnswertext,
-      this.fourthNegativeAnswertext,
-      this.fifthNegativeAnswertext,
-      this.sixthNegativeAnswertext,
-      this.seventhNegativeAnswertext,
-      this.eighthNegativeAnswertext,
-      this.ninthNegativeAnswertext,
-      this.tenthNegativeAnswertext
-    );
-
-    this.fadeInPic = 0;
-    this.fadeInAuraTranceparency = 0;
-
-    this.weiterButtonReactionScreen = new WeiterButton(-210, 205);
-
+    //===>Jumps directly to reaction screen (no own formulated Answer)
     //-----------------------------------------------------ReactionScreen
-    this.showReactionScreenBool = false;
-
     this.firstToxicReactiontext = firstToxicReactiontext;
     this.firstToxicReactionFont = firstToxicReactionFont;
     this.secondToxicReactiontext = secondToxicReactiontext;
@@ -454,8 +278,8 @@ export default class MainSceneSelf {
     this.eighthToxicReactiontext = eighthToxicReactiontext;
     this.ninthToxicReactiontext = ninthToxicReactiontext;
     this.tenthToxicReactiontext = tenthToxicReactiontext;
-    this.toxicReaction = new SpeechBubble(
-      "textBoxToxic",
+    this.toxicReaction = new SpeechBubbleSelf(
+      "thoughtBubbleToxic",
       "exclamToxic",
       this.firstToxicReactiontext,
       this.firstToxicReactionFont,
@@ -483,8 +307,8 @@ export default class MainSceneSelf {
     this.eighthPositiveReactiontext = eighthPositiveReactiontext;
     this.ninthPositiveReactiontext = ninthPositiveReactiontext;
     this.tenthPositiveReactiontext = tenthPositiveReactiontext;
-    this.positiveReaction = new SpeechBubble(
-      "textBoxPositive",
+    this.positiveReaction = new SpeechBubbleSelf(
+      "thoughtBubblePositive",
       "exclamPositive",
       this.firstPositiveReactiontext,
       this.firstPositiveReactionFont,
@@ -512,8 +336,8 @@ export default class MainSceneSelf {
     this.eighthNeutralReactiontext = eighthNeutralReactiontext;
     this.ninthNeutralReactiontext = ninthNeutralReactiontext;
     this.tenthNeutralReactiontext = tenthNeutralReactiontext;
-    this.neutralReaction = new SpeechBubble(
-      "textBoxNeutral",
+    this.neutralReaction = new SpeechBubbleSelf(
+      "thoughtBubbleNeutral",
       "exclamNeutral",
       this.firstNeutralReactiontext,
       this.firstNeutralReactionFont,
@@ -528,7 +352,6 @@ export default class MainSceneSelf {
       this.ninthNeutralReactiontext,
       this.tenthNeutralReactiontext
     );
-
     this.firstNegativeReactiontext = firstNegativeReactiontext;
     this.firstNegativeReactionFont = firstNegativeReactionFont;
     this.secondNegativeReactiontext = secondNegativeReactiontext;
@@ -541,8 +364,8 @@ export default class MainSceneSelf {
     this.eighthNegativeReactiontext = eighthNegativeReactiontext;
     this.ninthNegativeReactiontext = ninthNegativeReactiontext;
     this.tenthNegativeReactiontext = tenthNegativeReactiontext;
-    this.negativeReaction = new SpeechBubble(
-      "textBoxMad",
+    this.negativeReaction = new SpeechBubbleSelf(
+      "thoughtBubbleMad",
       "exclamMad",
       this.firstNegativeReactiontext,
       this.firstNegativeReactionFont,
@@ -612,7 +435,6 @@ export default class MainSceneSelf {
 
     this.state = "none";
   }
-
   //-------------------------------------------------------------------------------------------------
   //-------------------------------------------------------------------------------------------------
 
@@ -646,7 +468,6 @@ export default class MainSceneSelf {
       this.negativeLook.height / 1.4
     );
   }
-
   //-------------------------------------------------------------------------------------------------Panorama screen
   //for mouseClicked
   showPanoramaScreen() {
@@ -695,6 +516,7 @@ export default class MainSceneSelf {
     this.showNPCProblemScreenBool = true;
   }
 
+  //NPC Problem Screen changes (=> Own problem)
   npcProblemScreen() {
     if (this.showNPCProblemScreenBool === true) {
       //WeiterButton
@@ -735,7 +557,7 @@ export default class MainSceneSelf {
   }
 
   //for mouseClicked
-  weiterButtonAnswerScreenClick() {
+  weiterButtonChooseAnswerScreenClick() {
     if (this.showNPCProblemScreenBool === true) {
       return this.weiterButtonAnswerScreen.click();
     }
@@ -821,7 +643,7 @@ export default class MainSceneSelf {
         }
       }
 
-      //buttons (comes first, that the fade in works properly)
+      //buttons (comes first, thus the fade in works properly)
       this.toxicTextButton.fadeIn();
       this.toxicTextButton.displayActiveOrSleeping();
       this.toxicTextButton.displayButtonSentence();
@@ -890,93 +712,23 @@ export default class MainSceneSelf {
       );
     }
   }
-
   //-------------------------------------------------------------------------------------------------Answer screen
 
   //for mouseClicked
-  showAnswerScreen() {
-    this.showPanoramaScreenBool = false;
-    this.showNPCProblemScreenBool = false;
-    this.showChooseAnswerScreenBool = false;
-    this.showAnswerScreenBool = true;
-  }
+  showAnswerScreen() {}
 
   //For fading in the aura pic slowly
-  fadeInAuraSlowly() {
-    this.fadeInAuraSlow += 5;
-    if (this.fadeInAuraSlow > 255) {
-      this.fadeInAuraSlow = 255;
-    }
-  }
+  fadeInAuraSlowly() {}
 
   //For fading in the answer pic
-  fadeInAnswerPic() {
-    this.fadeInPic += 10;
-    if (this.fadeInPic > 255) {
-      this.fadeInPic = 255;
-    }
-  }
+  fadeInAnswerPic() {}
   //For fading in the answer aura (tranceparency)
-  fadeInAnswerAuraTranceparency() {
-    this.fadeInAuraTranceparency += 2;
-    if (this.fadeInAuraTranceparency > 100) {
-      this.fadeInAuraTranceparency = 100;
-    }
-  }
+  fadeInAnswerAuraTranceparency() {}
 
-  answerScreen() {
-    if (this.showAnswerScreenBool === true) {
-      if (this.toxicTextButton.state === "choosed") {
-        this.toxicAnswer.fadeIn();
-        this.toxicAnswer.displaySpeechBubble();
-        this.toxicAnswer.displaySpeechSentences();
-      } else if (this.positiveTextButton.state === "choosed") {
-        this.positiveAnswer.fadeIn();
-        this.positiveAnswer.displaySpeechBubble();
-        this.positiveAnswer.displaySpeechSentences();
-      } else if (this.neutralTextButton.state === "choosed") {
-        this.neutralAnswer.fadeIn();
-        this.neutralAnswer.displaySpeechBubble();
-        this.neutralAnswer.displaySpeechSentences();
-      } else if (this.negativeTextButton.state === "choosed") {
-        this.negativeAnswer.fadeIn();
-        this.negativeAnswer.displaySpeechBubble();
-        this.negativeAnswer.displaySpeechSentences();
-      }
-
-      this.weiterButtonReactionScreen.fadeIn();
-      this.weiterButtonReactionScreen.displayActiveOrSleeping();
-      this.weiterButtonReactionScreen.displayButtonSentence();
-
-      //Pics
-      this.fadeInAnswerAuraTranceparency();
-      tint(255, this.fadeInAuraTranceparency);
-      image(
-        this.aura_sad,
-        180,
-        -20,
-        this.aura_sad.width / 1.3,
-        this.aura_sad.height / 1.3
-      );
-
-      this.fadeInAnswerPic();
-      tint(255, this.fadeInPic);
-      image(
-        this.NPCproblem,
-        180,
-        100,
-        this.NPCproblem.width * 1.2,
-        this.NPCproblem.height * 1.2
-      );
-    }
-  }
+  answerScreen() {}
 
   //for mouseClicked
-  weiterButtonReactionScreenClick() {
-    if (this.showAnswerScreenBool === true) {
-      return this.weiterButtonReactionScreen.click();
-    }
-  }
+  weiterButtonReactionScreenClick() {}
 
   //-------------------------------------------------------------------------------------------------Reaction screen
   //for mouseClicked

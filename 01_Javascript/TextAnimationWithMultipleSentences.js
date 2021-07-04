@@ -202,5 +202,6 @@ export default class TextAnimationWithMultipleSentences {
     this.seventh.displayAllTextAtOnce();
     this.eighth.displayAllTextAtOnce();
     this.ninth.displayAllTextAtOnce();
+    this.tenth.displayAllTextAtOnce();
   }
 }

@@ -243,22 +243,22 @@ let coffeeMainScene = new MainSceneSelf(
   0,
   115,
 
-  //Type of Aura, Textbox and exclamation mark (NPC problem screen)
+  //Type of Aura, ThoughtBubble and exclamation mark (NPC problem screen changes to "own problem thought screen")
   //Types:  |  Aura_sad  |  Aura_negative (angry)  |   Aura_shock  |  Aura_black
   "Aura_sad",
-  "textBoxSad",
+  "thoughtBubbleSad",
   "exclamSad",
 
   //NPC problem speechbububle text
-  "Ich dachte, dass Geld immer",
+  "Och nööö...",
   "Duper-Bold",
-  "alles wett macht...",
+  "Meine Hose ist total nass.",
   "Duper-Bold",
-  "Aber was soll ich damit, wenn",
-  "sich meine Frau immer mehr",
-  "von mir distanziert?",
-  "Moment, warum erzähle ich",
-  "Ihnen das überhaupt?",
+  "Shit! Ist nicht gleich das Meeting mit",
+  "dem Investor?! Jetzt muss ich mir wohl wieder",
+  "die lange Unterhose meiner Kollegin leihen.",
+  "Moment, befinde ich mich gerade",
+  "in meinen Gedanken?",
   "",
   "",
   "",
@@ -268,101 +268,48 @@ let coffeeMainScene = new MainSceneSelf(
 
   //Choose answers:
   //toxic
-  "VERSUCHEN SIE, POSITIV ZU BLEIBEN.",
+  "DEN GEDANKEN IGNORIEREN.",
   //positive
-  "VERSUCHEN SIE, PRIORITÄTEN ZU SETZEN.",
+  "AUF DEN GEDANKEN EINGEHEN",
   //neutral
-  "UIUIUI MEINE BLASE...",
+  "ICH HOLE MIR NEUEN KAFFEE.",
   //negative
-  "DAS GEHT MICH EIGENTLICH NICHTS AN...",
+  "ICH HABE HALT ZWEI LINKE HÄNDE.",
 
-  //Answers
-  //Toxic
-  "Alles passiert aus einem Grund...",
-  "Duper-Bold",
-  "vielleicht sollten Sie einfach",
-  "Duper",
-  "lernen, das Beste auch in so",
-  "einer Situation zu sehen.",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  //positive
-  "Ist Ihnen denn die Arbeit und",
-  "Duper-Bold",
-  "das Geld wichtiger, als Ihre Frau?",
-  "Duper-Bold",
-  "Arbeiten Sie daran, ein ",
-  "besserer Partner für sie",
-  "zu werden. Das wird einiges",
-  "Verändern, sie schaffen das!",
-  "",
-  "",
-  "",
-  "",
-  //neutral
-  "Ich war bis jetzt noch",
-  "Duper-Bold",
-  "nicht auf dem Klo. ",
-  "Duper-Bold",
-  "Entschuldigen Sie, es ist ",
-  "schon fast zu spät!",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  //negative
-  "Sie haben sich doch",
-  "Duper-Bold",
-  "den Job ausgesucht,",
-  "Duper-Bold",
-  "kommen sie damit klar.",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-
-  //NPC Reaction
+  //Jumps directly to reaction (formulated answer is not needed)
+  //NPC Reaction => own Reaction
   //toxic
-  "Sehen Sie! Das habe ich mir auch",
+  "Den Gedanken",
   "Duper-Bold",
-  "schon gesagt.",
-  "Duper-Bold",
-  "Soll sich meine Frau mal nicht",
-  "so anstellen. Und wer kann",
-  "sich schon eine Rolli gönnen?",
+  "schiebe ich einfach unter meinen",
+  "Duper",
+  "Sorgenstapel. Und mit der langen",
+  "Unterhose sehe ich eigentlich",
+  "ganz sexy aus.",
   "",
   "",
   "",
   "",
   "",
   //positive
-  "Das ist aber ehrlich von Ihnen... ",
+  "Ich bin wohl etwas nervös,",
   "Duper-Bold",
-  "Zum Glück sind mir meine Sorgen ",
+  "aber das ist normal. Ich versuche",
   "Duper",
-  "einfach so rausgerutscht!",
-  "Mehr Zeit für meine Familie, ",
-  "das ist gut! Sagen Sie – wollen Sie",
-  "nicht vielleicht meine Stelle",
-  "übernehmen?",
+  "jetzt klare Gedanken zu fassen und",
+  "schnell eine Alternative zur langen",
+  "Unterhose zu finden.",
+  "",
+  "",
   "",
   "",
   "",
   //neutral
-  "Äähh... ",
+  "Kaffe leer... egal.",
   "Duper-Bold",
-  "was... ",
-  "Duper-Bold",
-  "ist das hier?!",
+  "Hmmm... brauche...",
+  "Duper",
+  "neuen... Kaffee...",
   "",
   "",
   "",
@@ -371,12 +318,12 @@ let coffeeMainScene = new MainSceneSelf(
   "",
   "",
   //negative
-  "Machen Sie sich an die Arbeit!",
+  "Wofür hab ich denn bitte Zauberkräfte,",
   "Duper-Bold",
-  "Vergessen Sie ganz schnell, was",
+  "wenn ich noch nicht einmal richtig trinken kann?!",
   "Duper",
-  "ich Ihnen gerade erzählt habe!",
-  "",
+  "Ich hab noch was schlimmeres als",
+  "die lange Unterhose verdient.",
   "",
   "",
   "",
@@ -550,7 +497,7 @@ let userBody = loadImage("00_Links/00_UI-Elements/user.png");
 let weiterButtonToNextScene = new WeiterButton(0, 240);
 let userEffectGIF = loadImage("00_Links/00_UI-Elements/getItem.gif");
 let fadeInItem = 0;
-let countSceneButtonClicks = [];
+let countSceneButtonClicks = [1];
 
 function userLook() {
   if (showUserlook === true) {
@@ -607,7 +554,7 @@ function mouseClicked() {
     chefMainScene.showNPCProblemScreen();
   }
 
-  if (chefMainScene.weiterButtonAnswerScreenClick()) {
+  if (chefMainScene.weiterButtonChooseAnswerScreenClick()) {
     //If you click on the "Weiterbutton" when the text-animation isn't finished yet,
     //every sentence will be displayed instantly. Then you can click to get to the next screen
     if (
@@ -747,6 +694,101 @@ function mouseClicked() {
       coffeeMainScene.showPanoramaScreen();
     }
   }
+  //-----------------------------------------------------------------------COFFEE MAINSCENE
+  if (coffeeMainScene.spellButtonClick()) {
+    coffeeMainScene.showNPCProblemScreen();
+  }
+
+  if (coffeeMainScene.weiterButtonChooseAnswerScreenClick()) {
+    //If you click on the "Weiterbutton" when the text-animation isn't finished yet,
+    //every sentence will be displayed instantly. Then you can click to get to the next screen
+    if (
+      coffeeMainScene.npcProblemSpeechbubble.speech.tenth.typingEnded === false
+    ) {
+      coffeeMainScene.npcProblemSpeechbubble.speech.displayAllTextAtOnce();
+    } else {
+      coffeeMainScene.showChooseAnswerScreen();
+    }
+  }
+  if (coffeeMainScene.chooseAnswerScreenClick()) {
+    coffeeMainScene.showReactionScreen();
+  }
+
+  //Has to be an "Else If" condition, because button is on the same place than before,
+  //it would make 2 clicks directly after another an jump directly to the next action
+  if (coffeeMainScene.weiterButtonItemScreenClick()) {
+    //Had to define every state very detailed because of the "neutral"-button,
+    //which has another condition than the others
+    if (
+      coffeeMainScene.toxicTextButton.state === "choosed" &&
+      coffeeMainScene.toxicReaction.speech.tenth.typingEnded === false
+    ) {
+      coffeeMainScene.toxicReaction.speech.displayAllTextAtOnce();
+    } else if (
+      coffeeMainScene.toxicTextButton.state === "choosed" &&
+      coffeeMainScene.toxicReaction.speech.tenth.typingEnded === true
+    ) {
+      coffeeMainScene.showItemScreen();
+    }
+
+    if (
+      coffeeMainScene.positiveTextButton.state === "choosed" &&
+      coffeeMainScene.positiveReaction.speech.tenth.typingEnded === false
+    ) {
+      coffeeMainScene.positiveReaction.speech.displayAllTextAtOnce();
+    } else if (
+      coffeeMainScene.positiveTextButton.state === "choosed" &&
+      coffeeMainScene.positiveReaction.speech.tenth.typingEnded === true
+    ) {
+      coffeeMainScene.showItemScreen();
+    }
+
+    if (
+      coffeeMainScene.negativeTextButton.state === "choosed" &&
+      coffeeMainScene.negativeReaction.speech.tenth.typingEnded === false
+    ) {
+      coffeeMainScene.negativeReaction.speech.displayAllTextAtOnce();
+    } else if (
+      coffeeMainScene.negativeTextButton.state === "choosed" &&
+      coffeeMainScene.negativeReaction.speech.tenth.typingEnded === true
+    ) {
+      coffeeMainScene.showItemScreen();
+    }
+
+    if (
+      coffeeMainScene.neutralTextButton.state === "choosed" &&
+      coffeeMainScene.neutralReaction.speech.tenth.typingEnded === false
+    ) {
+      coffeeMainScene.neutralReaction.speech.displayAllTextAtOnce();
+    } else if (
+      coffeeMainScene.neutralTextButton.state === "choosed" &&
+      coffeeMainScene.neutralReaction.speech.tenth.typingEnded === true
+    ) {
+      //Jumps directly to next scene!
+      countSceneButtonClicks.push("Clicked");
+      coffeeMainScene.showReactionScreenBool = false;
+      //CALL HERE THE NEXT BETWEEN-SCENE!
+      coffeeToInvestorScene.showFirstScreen();
+    }
+  }
+
+  if (coffeeMainScene.weiterButtonYourLookScreenClick()) {
+    coffeeMainScene.showItemScreenBool = false;
+    showUserlook = true;
+    //Has to be an "Else If" condition, because button is on the same place than before,
+    //it would make 2 clicks directly after another an jump directly to the next action
+    //countSceneButtonClicks: Same Weiterbutton, different following scenes. The Array helps to define which scene is next
+  } else if (
+    weiterButtonToNextScene.click() &&
+    countSceneButtonClicks.length === 1
+  ) {
+    countSceneButtonClicks.push("Clicked");
+    showUserlook = false;
+    //CALL HERE THE NEXT BETWEEN-SCENE!
+    coffeeToInvestorScene.showFirstScreen();
+  }
+
+  //-----------------------------------------------------------------------chefToCoffeScene (Between-Scene)
 }
 
 //All events die p5 uses, have to be anhängt ans window
@@ -788,11 +830,10 @@ function draw() {
   // chefMainScene.positiveTextButton.state = "choosed";
   // chefMainScene.showItemScreen();
 
-  //02_chefMainScene
+  //03_coffeeMainScene
   coffeeMainScene.panoramaScreen();
   coffeeMainScene.npcProblemScreen();
   coffeeMainScene.chooseAnswerScreen();
-  coffeeMainScene.answerScreen();
   coffeeMainScene.reactionScreen();
   coffeeMainScene.itemScreen();
 

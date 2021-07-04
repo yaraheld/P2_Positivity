@@ -22,9 +22,9 @@ export default class SpellButton {
       "duper-bold",
       15,
       color(157, 157, 157),
-      "ZAUBER AKTIVIEREN",
-      this.x - 58,
-      this.y + 5,
+      "ZAUBER ANWENDEN",
+      this.x - 60,
+      this.y + 4,
       0.3
     );
     this.fadeInVariable = 0;
