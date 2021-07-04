@@ -124,6 +124,7 @@ export default class SpeechBubbleSelf {
     //Stops Gif (12 Pics)
     if (this.speechBubble.getCurrentFrame() === 9) {
       this.speechBubble.pause();
+      //Text appears, when speechBubble-GIF has ended
       this.speechCanAppearNow = true;
     }
 
