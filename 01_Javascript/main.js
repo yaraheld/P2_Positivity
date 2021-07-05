@@ -731,7 +731,7 @@ function userLook() {
     textFont("Duper-Bold");
     fill(61, 18, 117, fadeInItem);
     textSize(70);
-    text("YOUR", -310, 0);
+    text("DEIN", -310, 0);
     text("LOOK", 150, 0);
     image(
       userEffectGIF,

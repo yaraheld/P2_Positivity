@@ -1214,7 +1214,7 @@ export default class MainScene {
       textFont("Duper-Bold");
       fill(61, 18, 117, this.fadeInItem);
       textSize(30);
-      text("YOUR", -35, -200);
+      text("DEIN", -35, -200);
       textSize(70);
       text("ITEM:", -70, -150);
       tint(255, this.fadeInItem);
