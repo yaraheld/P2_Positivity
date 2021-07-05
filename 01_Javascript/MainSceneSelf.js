@@ -612,7 +612,7 @@ export default class MainSceneSelf {
         this.buttonArray[this.counter] = this.buttonArray[this.index];
         this.buttonArray[this.index] = this.temp;
       }
-      console.log(this.buttonArray);
+
       //So from the last value (counter = 4) to the first value (counter = 1) of the array the values are replaced with a random value
       this.randomOrderJustOnce = true;
     }

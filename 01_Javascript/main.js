@@ -3,6 +3,9 @@ import MainSceneSelf from "./MainSceneSelf.js";
 import WeiterButton from "./WeiterButton.js";
 import SoccerToChefScene from "./SoccerToChefScene.js";
 import ChefToCoffeeScene from "./ChefToCoffeeScene.js";
+import CoffeeToInvestorScene from "./CoffeeToInvestorScene.js";
+import InvestorToSocialScene from "./InvestorToSocialSene.js";
+import SocialToDimensionScene from "./SocialToDimensionScene.js";
 
 //variables & commentaries = english
 //classes: Capital Letter
@@ -21,16 +24,6 @@ let duperBoldItalic = loadFont("00_Links/00_Fonts/duper_bolditalic.otf");
 //JUST FOR TESTING (BEGIN BUTTON)
 let showStartTestButton = true;
 let startTestButton = new WeiterButton(0, 0);
-//JUST FOR TESTING (NEXT SCENE)
-let showNextScene = false;
-function nextScene() {
-  if (showNextScene === true) {
-    textFont("Duper-Bold");
-    fill(61, 18, 117);
-    textSize(70);
-    text("NEXT SCENE", -160, 0);
-  }
-}
 
 function standardSettings() {
   //Screen center (midpoint)
@@ -230,7 +223,7 @@ let soccerMainScene = new MainScene(
 
   //Negative
   //Health:
-  20,
+  30,
   //Object damage:
   0,
   //Object amount:
@@ -416,19 +409,19 @@ let chefMainScene = new MainScene(
 
   //Negative
   //Health:
-  20,
+  40,
   //Object damage:
   0,
   //Object amount:
   0,
   //Object speed
-  10
+  0
 );
 
 let chefToCoffeeScene = new ChefToCoffeeScene();
 
 let coffeeMainScene = new MainSceneSelf(
-  "03_coffeeScene",
+  "03_coffeeMainScene",
 
   //Spellbutton x-Postion//
   0,
@@ -537,11 +530,331 @@ let coffeeMainScene = new MainSceneSelf(
   //Health:
   0,
   //Object damage:
+  20,
+  //Object amount:
   10,
+  //Object speed
+  0,
+
+  //Neutral
+  //Object amount:
+  20,
+
+  //Negative
+  //Health:
+  30,
+  //Object damage:
+  0,
+  //Object amount:
+  0,
+  //Object speed
+  10
+);
+
+let coffeeToInvestorScene = new CoffeeToInvestorScene();
+
+let investorMainScene = new MainScene(
+  "04_investorMainScene",
+
+  //Spellbutton x-y-Postion//
+  23,
+  190,
+
+  //Type of Aura, Textbox and exclamation mark (NPC problem screen)
+  //Types:  |  Aura_sad  |  Aura_negative (angry)  |   Aura_shock  |  Aura_black
+  "Aura_sad",
+  "textBoxSad",
+  "exclamSad",
+
+  //NPC problem speechbububle text
+  "Meine Schildkröte muss heute",
+  "Duper-Bold",
+  "eingeschläfert werden...",
+  "Duper-Bold",
+  "Speedo war mein ein und alles! Mit",
+  "wem gucke ich denn jetzt Tierdokus?",
+  "In meiner Verfassung muss ich das",
+  "Meeting verschieben... Moment,",
+  " warum erzähle ich Ihnen das?",
+  "",
+  "",
+  "",
+
+  //Duration of answer Time
+  0.5,
+
+  //Choose answers:
+  //toxic
+  "ES IST, WIE ES IST.",
+  //positive
+  "LASSEN SIE ES RAUS...",
+  //neutral
+  "ÄHH... ICH HABE PLATZANGST.",
+  //negative
+  "FÄLLT DAS MEETING ALSO AUS?",
+
+  //Answers
+  //Toxic
+  "So ist das im Leben.",
+  "Duper-Bold",
+  "Konzentrieren Sie sich auf",
+  "Duper",
+  "das Positive. Sie haben einen",
+  "freien Tag! Nutzen Sie ihn.",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  //positive
+  "Das tut mir leid...",
+  "Duper-Bold",
+  "lassen Sie es raus.",
+  "Duper-Bold",
+  "Wenn ich Ihnen helfen kann",
+  "oder Sie jemanden für einen",
+  "Doku-Abend brauchen,",
+  "sagen Sie bescheid.",
+  "",
+  "",
+  "",
+  "",
+  //neutral
+  "Ehrlich gesagt",
+  "Duper-Bold",
+  "bekomme ich in Aufzügen",
+  "Duper",
+  "schnell Platzangst...",
+  "ich nehme die Treppen.",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  //negative
+  "Jetzt machen Sie mal LANGSAM...",
+  "Duper-Bold",
+  "das Meeting fällt aus!?",
+  "Duper",
+  "Dann pack ich mal speedomäßig",
+  "meine Sachen. Ach...",
+  "und herzliches Beileid.",
+  "",
+  "",
+  "",
+  "",
+  "",
+
+  //NPC Reaction
+  //toxic
+  "Meinen Sie? Ich fühle mich",
+  "Duper-Bold",
+  "so kraftlos...",
+  "Duper-Bold",
+  "dann lass ich das Meeting zwar",
+  "erstmal sausen, aber versuche",
+  "mich trotzdem an etwas Produktivem.",
+  "Das Leben muss ja weitergehen...",
+  "",
+  "",
+  "",
+  "",
+  //positive
+  "Das tut so gut,",
+  "Duper-Bold",
+  "einfach mal trauern zu können...",
+  "Duper",
+  "Ich werde das Meeting erstmal",
+  "ausfallen lassen... Sie können mir",
+  "gerne Ihre Nummer geben,",
+  "es gibt bald eine neue Staffel von",
+  "„Unser Planet“ auf Netflix (schnief).",
+  "",
+  "",
+  "",
+  //neutral
+  "Warum sind sie dann überhaupt ",
+  "Duper-Bold",
+  "zum Aufzug gegangen?...",
+  "Duper-Bold",
+  "Naja, ich werde das Meeting",
+  "erstmal ausfallen lassen.",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  //negative
+  "l...langsam?",
+  "Duper-Bold",
+  "Speedo - w... was?",
+  "Duper-Bold",
+  "Ich werde das Meeting",
+  "erstmal ausfallen lassen...",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+
+  //Parameter User
+  //Health:
+  10,
+  //Speed
+  0,
+  //Positivity
+  10,
+  //Shield
+  20,
+
+  // Parameter Boss
+  //Toxic
+  //Health:
+  0,
+  //Object damage:
+  20,
   //Object amount:
   10,
   //Object speed
   10,
+
+  //Neutral
+  //Object amount:
+  20,
+
+  //Negative
+  //Health:
+  10,
+  //Object damage:
+  0,
+  //Object amount:
+  10,
+  //Object speed
+  20
+);
+
+let investorToSocialScene = new InvestorToSocialScene();
+
+let socialMainScene = new MainSceneSelf(
+  "05_socialMainScene",
+
+  //Spellbutton x-Postion//
+  5,
+  73,
+
+  //Type of Aura, ThoughtBubble and exclamation mark (NPC problem screen changes to "own problem thought screen")
+  //Types:  |  Aura_sad  |  Aura_negative (angry)  |   Aura_shock  |  Aura_black
+  "Aura_sad",
+  "thoughtBubbleSad",
+  "exclamSad",
+
+  //NPC problem speechbububle text
+  "Läuft bei meiner Kollegin…",
+  "Duper-Bold",
+  "Bei anderen scheint immer",
+  "Duper",
+  "alles super zu sein. Hier in der",
+  "Description steht auch noch",
+  "„positive vibes only“…",
+  "",
+  "",
+  "",
+  "",
+  "",
+
+  //Duration of answer Time
+  0.5,
+
+  //Choose answers:
+  //toxic
+  "POSITIVES DENKEN = POSITIVER SELBSTWERT.",
+  //positive
+  "ALLE GEFÜHLE SIND GLEICH WICHTIG.",
+  //neutral
+  "WEITER SCROLLEN",
+  //negative
+  "WARUM IST MEIN LEBEN NICHT AUCH SO?",
+
+  //Jumps directly to reaction (formulated answer is not needed)
+  //NPC Reaction => own Reaction
+  //toxic
+  "Ich like das Bild jetzt auch.",
+  "Duper-Bold",
+  "Der Post hat mich motiviert!",
+  "Duper",
+  "Mein Lächeln werde ich",
+  "wieder aufsetzen.",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  //positive
+  "Ich kann nicht nur",
+  "Duper-Bold",
+  "die positiven Gefühle fühlen",
+  "Duper-Bold",
+  "und die negativen ausblenden.",
+  "Alle Gefühle sind relevant.",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+
+  //neutral
+  "Wieder ein Urlaubsbild.",
+  "Duper-Bold",
+  "Ich scrolle noch ein bisschen weiter.",
+  "Duper",
+  "Vielleicht gibts ja einen ",
+  "witzigen Katzenpost",
+  "von der h_da.",
+  "",
+  "",
+  "",
+  "",
+  "",
+  //negative
+  "Im Vergleich zu ihr",
+  "Duper-Bold",
+  "ist mein Leben scheiße...",
+  "Duper-Bold",
+  "Egal was ich mache, das Glück",
+  "ist einfach nicht auf meiner Seite.",
+  "Ich will mich auch so",
+  "fühlen wie sie...",
+  "",
+  "",
+  "",
+  "",
+
+  //Parameter User
+  //Health:
+  10,
+  //Speed
+  0,
+  //Positivity
+  20,
+  //Shield
+  10,
+
+  // Parameter Boss
+  //Toxic
+  //Health:
+  0,
+  //Object damage:
+  20,
+  //Object amount:
+  10,
+  //Object speed
+  0,
 
   //Neutral
   //Object amount:
@@ -555,8 +868,10 @@ let coffeeMainScene = new MainSceneSelf(
   //Object amount:
   0,
   //Object speed
-  10
+  20
 );
+
+let socialToDimensionScene = new SocialToDimensionScene();
 
 //------------------------------"Global" functions, update it when adding a new mainscene
 let usersHeartIcon = loadImage("00_Links/00_UI-Elements/heart.png");
@@ -569,7 +884,7 @@ let userPositivity = 0;
 let userShield = 0;
 
 function userStats() {
-  //entspr. Szenen pro Mainszene Aktualisieren!!!
+  //entspr. Szenen pro Main- & BetweenScenes aktualisieren!!!
   if (
     //MainScenes
     soccerMainScene.showPanoramaScreenBool === false &&
@@ -578,13 +893,24 @@ function userStats() {
     //
     coffeeMainScene.showPanoramaScreenBool === false &&
     //
+    investorMainScene.showPanoramaScreenBool === false &&
+    //
+    socialMainScene.showPanoramaScreenBool === false &&
+    //
     //betweenScenes
     //
     soccerToChefScene.firstScreenBool === false &&
     //
     chefToCoffeeScene.firstScreenBool === false &&
     chefToCoffeeScene.secondScreenBool === false &&
-    chefToCoffeeScene.thirdScreenBool === false
+    chefToCoffeeScene.thirdScreenBool === false &&
+    //
+    coffeeToInvestorScene.firstScreenBool === false &&
+    coffeeToInvestorScene.secondScreenBool === false &&
+    //
+    investorToSocialScene.firstScreenBool === false &&
+    investorToSocialScene.secondScreenBool === false &&
+    investorToSocialScene.thirdScreenBool === false
   ) {
     push();
     tint(255, 255);
@@ -602,7 +928,9 @@ function userStats() {
       //Mainscenes
       soccerMainScene.userHealth +
       chefMainScene.userHealth +
-      coffeeMainScene.userHealth;
+      coffeeMainScene.userHealth +
+      investorMainScene.userHealth +
+      socialMainScene.userHealth;
 
     noStroke();
     fill(255, 165, 255);
@@ -622,7 +950,9 @@ function userStats() {
       //Mainscenes
       soccerMainScene.userSpeed +
       chefMainScene.userSpeed +
-      coffeeMainScene.userSpeed;
+      coffeeMainScene.userSpeed +
+      investorMainScene.userSpeed +
+      socialMainScene.userSpeed;
 
     fill(33, 241, 207);
     rect(-500, -253, 10 + userSpeed, 10, 10);
@@ -641,7 +971,9 @@ function userStats() {
       //Mainscenes
       soccerMainScene.userPositivity +
       chefMainScene.userPositivity +
-      coffeeMainScene.userPositivity;
+      coffeeMainScene.userPositivity +
+      investorMainScene.userPositivity +
+      socialMainScene.userPositivity;
 
     fill(148, 224, 255);
     rect(-500, -226, 10 + userPositivity, 10, 10);
@@ -660,7 +992,9 @@ function userStats() {
       //Mainscenes
       soccerMainScene.userShield +
       chefMainScene.userShield +
-      coffeeMainScene.userShield;
+      coffeeMainScene.userShield +
+      investorMainScene.userShield +
+      socialMainScene.userShield;
 
     fill(130, 94, 196);
     rect(-500, -199, 10 + userShield, 10, 10);
@@ -685,14 +1019,18 @@ function bossStats() {
     //Mainscenes
     soccerMainScene.bossHealth +
     chefMainScene.bossHealth +
-    coffeeMainScene.bossHealth;
+    coffeeMainScene.bossHealth +
+    investorMainScene.bossHealth +
+    socialMainScene.bossHealth;
 
   //entspr. Szenen pro Mainszene Aktualisieren!!!
   bossObjectDamage =
     //Mainscenes
     soccerMainScene.bossObjectDamage +
     chefMainScene.bossObjectDamage +
-    coffeeMainScene.bossObjectDamage;
+    coffeeMainScene.bossObjectDamage +
+    investorMainScene.bossObjectDamage +
+    socialMainScene.bossObjectDamage;
 
   //entspr. Szenen pro Mainszene Aktualisieren!!!
   bossObjectAmount =
@@ -700,14 +1038,18 @@ function bossStats() {
 
     soccerMainScene.bossObjectAmount +
     chefMainScene.bossObjectAmount +
-    coffeeMainScene.bossObjectAmount;
+    coffeeMainScene.bossObjectAmount +
+    investorMainScene.bossObjectAmount +
+    socialMainScene.bossObjectAmount;
 
   //entspr. Szenen pro Mainszene Aktualisieren!!!
   bossObjectSpeed =
     // Mainscenes
     soccerMainScene.bossObjectSpeed +
     chefMainScene.bossObjectSpeed +
-    coffeeMainScene.bossObjectSpeed;
+    coffeeMainScene.bossObjectSpeed +
+    investorMainScene.bossObjectSpeed +
+    socialMainScene.bossObjectSpeed;
 }
 
 let showUserlook = false;
@@ -757,6 +1099,17 @@ function userLook() {
     if (soccerMainScene.state === "negative") {
       soccerMainScene.returnNegativeLook();
     }
+    //-----InvestorMainScene(SHIELD)
+    if (investorMainScene.state === "toxic") {
+      investorMainScene.returnToxicLook();
+    }
+    if (investorMainScene.state === "positive") {
+      investorMainScene.returnPositiveLook();
+    }
+    if (investorMainScene.state === "negative") {
+      investorMainScene.returnNegativeLook();
+    }
+
     //-----CoffeeMainScene(PANTS)
     if (coffeeMainScene.state === "toxic") {
       coffeeMainScene.returnToxicLook();
@@ -777,11 +1130,26 @@ function userLook() {
     if (chefMainScene.state === "negative") {
       chefMainScene.returnNegativeLook();
     }
+
+    //-----socialMainScene (GLOVES)
+    if (socialMainScene.state === "toxic") {
+      socialMainScene.returnToxicLook();
+    }
+    if (socialMainScene.state === "positive") {
+      socialMainScene.returnPositiveLook();
+    }
+    if (socialMainScene.state === "negative") {
+      socialMainScene.returnNegativeLook();
+    }
+  } else {
+    //fades in again
+    fadeInItem = 0;
+    weiterButtonToNextScene.fadeInVariable = 0;
   }
 }
 //All events die p5 uses, have to be anhängt ans window
-window.mouseClicked = mouseClicked;
-function mouseClicked() {
+window.mousePressed = mousePressed;
+function mousePressed() {
   //JUST FOR TESTING (BEGIN BUTTON)
   if (startTestButton.click()) {
     soccerMainScene.showPanoramaScreen();
@@ -892,21 +1260,29 @@ function mouseClicked() {
     //it would make 2 clicks directly after another an jump directly to the next action
     //countSceneButtonClicks: Same Weiterbutton, different following scenes. The Array helps to define which scene is next
   } else if (
+    showUserlook === true &&
     weiterButtonToNextScene.click() &&
     countSceneButtonClicks.length === 0
   ) {
     //CALL HERE THE NEXT BETWEEN-SCENE!
     soccerToChefScene.showFirstScreen();
-    showUserlook = false;
+
     countSceneButtonClicks.push("Clicked");
+    showUserlook = false;
   }
 
   //-----------------------------------------------------------------------SoccerToChefScene (Between-Scene)
-  else if (
-    soccerToChefScene.weiterButtonNextPanoramaScreenFromMainSceneClick()
-  ) {
+  else if (soccerToChefScene.weiterButtonSecondScreenClick()) {
     if (soccerToChefScene.firstScreenText.sentence.typingEnded === false) {
       soccerToChefScene.firstScreenText.sentence.displayAllTextAtOnce();
+    } else {
+      soccerToChefScene.showSecondScreen();
+    }
+  } else if (
+    soccerToChefScene.weiterButtonNextPanoramaScreenFromMainSceneClick()
+  ) {
+    if (soccerToChefScene.secondScreenText.sentence.typingEnded === false) {
+      soccerToChefScene.secondScreenText.sentence.displayAllTextAtOnce();
     } else {
       soccerToChefScene.showNextPanoramaScreenFromMainScene();
       chefMainScene.showPanoramaScreen();
@@ -1018,13 +1394,14 @@ function mouseClicked() {
     //it would make 2 clicks directly after another an jump directly to the next action
     //countSceneButtonClicks: Same Weiterbutton, different following scenes. The Array helps to define which scene is next
   } else if (
+    showUserlook === true &&
     weiterButtonToNextScene.click() &&
     countSceneButtonClicks.length === 1
   ) {
-    showUserlook = false;
     //CALL HERE THE NEXT BETWEEN-SCENE!
     chefToCoffeeScene.showFirstScreen();
     countSceneButtonClicks.push("Clicked");
+    showUserlook = false;
   }
 
   //-----------------------------------------------------------------------chefToCoffeScene (Between-Scene)
@@ -1130,6 +1507,7 @@ function mouseClicked() {
     //it would make 2 clicks directly after another an jump directly to the next action
     //countSceneButtonClicks: Same Weiterbutton, different following scenes. The Array helps to define which scene is next
   } else if (
+    showUserlook === true &&
     weiterButtonToNextScene.click() &&
     countSceneButtonClicks.length === 2
   ) {
@@ -1139,7 +1517,251 @@ function mouseClicked() {
     countSceneButtonClicks.push("Clicked");
   }
 
-  //-----------------------------------------------------------------------chefToCoffeScene (Between-Scene)
+  //-----------------------------------------------------------------------coffeeToInvestorScene (Between-Scene)
+  else if (coffeeToInvestorScene.weiterButtonSecondScreenClick()) {
+    if (coffeeToInvestorScene.firstScreenText.sentence.typingEnded === false) {
+      coffeeToInvestorScene.firstScreenText.sentence.displayAllTextAtOnce();
+    } else {
+      coffeeToInvestorScene.showSecondScreen();
+    }
+  } else if (
+    coffeeToInvestorScene.weiterButtonNextPanoramaScreenFromMainSceneClick()
+  ) {
+    if (coffeeToInvestorScene.secondScreenText.sentence.typingEnded === false) {
+      coffeeToInvestorScene.secondScreenText.sentence.displayAllTextAtOnce();
+    } else {
+      coffeeToInvestorScene.showNextPanoramaScreenFromMainScene();
+      investorMainScene.showPanoramaScreen();
+    }
+  }
+
+  //-----------------------------------------------------------------------INVESTOR MAINSCENE
+  else if (investorMainScene.spellButtonClick()) {
+    investorMainScene.showNPCProblemScreen();
+  } else if (investorMainScene.weiterButtonChooseAnswerScreenClick()) {
+    //If you click on the "Weiterbutton" when the text-animation isn't finished yet,
+    //every sentence will be displayed instantly. Then you can click to get to the next screen
+    if (
+      investorMainScene.npcProblemSpeechbubble.speech.tenth.typingEnded ===
+      false
+    ) {
+      investorMainScene.npcProblemSpeechbubble.speech.displayAllTextAtOnce();
+    } else {
+      investorMainScene.showChooseAnswerScreen();
+    }
+  } else if (investorMainScene.chooseAnswerScreenClick()) {
+    investorMainScene.showAnswerScreen();
+  } else if (investorMainScene.weiterButtonReactionScreenClick()) {
+    //If you click on the "Weiterbutton" when the text-animation isn't finished yet,
+    //every sentence will be displayed instantly. Then you can click to get to the next screen
+    if (
+      investorMainScene.toxicTextButton.state === "choosed" &&
+      investorMainScene.toxicAnswer.speech.tenth.typingEnded === false
+    ) {
+      investorMainScene.toxicAnswer.speech.displayAllTextAtOnce();
+    } else if (
+      investorMainScene.positiveTextButton.state === "choosed" &&
+      investorMainScene.positiveAnswer.speech.tenth.typingEnded === false
+    ) {
+      investorMainScene.positiveAnswer.speech.displayAllTextAtOnce();
+    } else if (
+      investorMainScene.neutralTextButton.state === "choosed" &&
+      investorMainScene.neutralAnswer.speech.tenth.typingEnded === false
+    ) {
+      investorMainScene.neutralAnswer.speech.displayAllTextAtOnce();
+    } else if (
+      investorMainScene.negativeTextButton.state === "choosed" &&
+      investorMainScene.negativeAnswer.speech.tenth.typingEnded === false
+    ) {
+      investorMainScene.negativeAnswer.speech.displayAllTextAtOnce();
+    } else {
+      investorMainScene.showReactionScreen();
+    }
+
+    //Has to be an "Else If" condition, because button is on the same place than before,
+    //it would make 2 clicks directly after another an jump directly to the next action
+  } else if (investorMainScene.weiterButtonItemScreenClick()) {
+    //Had to define every state very detailed because of the "neutral"-button,
+    //which has another condition than the others
+    if (
+      investorMainScene.toxicTextButton.state === "choosed" &&
+      investorMainScene.toxicReaction.speech.tenth.typingEnded === false
+    ) {
+      investorMainScene.toxicReaction.speech.displayAllTextAtOnce();
+    } else if (
+      investorMainScene.toxicTextButton.state === "choosed" &&
+      investorMainScene.toxicReaction.speech.tenth.typingEnded === true
+    ) {
+      investorMainScene.showItemScreen();
+    }
+
+    if (
+      investorMainScene.positiveTextButton.state === "choosed" &&
+      investorMainScene.positiveReaction.speech.tenth.typingEnded === false
+    ) {
+      investorMainScene.positiveReaction.speech.displayAllTextAtOnce();
+    } else if (
+      investorMainScene.positiveTextButton.state === "choosed" &&
+      investorMainScene.positiveReaction.speech.tenth.typingEnded === true
+    ) {
+      investorMainScene.showItemScreen();
+    }
+
+    if (
+      investorMainScene.negativeTextButton.state === "choosed" &&
+      investorMainScene.negativeReaction.speech.tenth.typingEnded === false
+    ) {
+      investorMainScene.negativeReaction.speech.displayAllTextAtOnce();
+    } else if (
+      investorMainScene.negativeTextButton.state === "choosed" &&
+      investorMainScene.negativeReaction.speech.tenth.typingEnded === true
+    ) {
+      investorMainScene.showItemScreen();
+    }
+
+    if (
+      investorMainScene.neutralTextButton.state === "choosed" &&
+      investorMainScene.neutralReaction.speech.tenth.typingEnded === false
+    ) {
+      investorMainScene.neutralReaction.speech.displayAllTextAtOnce();
+    } else if (
+      investorMainScene.neutralTextButton.state === "choosed" &&
+      investorMainScene.neutralReaction.speech.tenth.typingEnded === true
+    ) {
+      investorMainScene.showReactionScreenBool = false;
+      //CALL HERE THE NEXT BETWEEN-SCENE!
+      investorToSocialScene.showFirstScreen();
+      //Jumps directly to next scene!
+      countSceneButtonClicks.push("Clicked");
+    }
+  } else if (investorMainScene.weiterButtonYourLookScreenClick()) {
+    investorMainScene.showItemScreenBool = false;
+    showUserlook = true;
+    //Has to be an "Else If" condition, because button is on the same place than before,
+    //it would make 2 clicks directly after another an jump directly to the next action
+    //countSceneButtonClicks: Same Weiterbutton, different following scenes. The Array helps to define which scene is next
+  } else if (
+    showUserlook === true &&
+    weiterButtonToNextScene.click() &&
+    countSceneButtonClicks.length === 3
+  ) {
+    showUserlook = false;
+    //CALL HERE THE NEXT BETWEEN-SCENE!
+    investorToSocialScene.showFirstScreen();
+    countSceneButtonClicks.push("Clicked");
+  }
+  //-----------------------------------------------------------------------investorToSocialScene (Between-Scene)
+  else if (investorToSocialScene.weiterButtonSecondScreenClick()) {
+    if (investorToSocialScene.firstScreenText.sentence.typingEnded === false) {
+      investorToSocialScene.firstScreenText.sentence.displayAllTextAtOnce();
+    } else {
+      investorToSocialScene.showSecondScreen();
+    }
+  } else if (investorToSocialScene.weiterButtonThirdScreenClick()) {
+    if (investorToSocialScene.secondScreenText.sentence.typingEnded === false) {
+      investorToSocialScene.secondScreenText.sentence.displayAllTextAtOnce();
+    } else {
+      investorToSocialScene.showThirdScreen();
+    }
+  } else if (
+    investorToSocialScene.weiterButtonNextPanoramaScreenFromMainSceneClick()
+  ) {
+    if (investorToSocialScene.thirdScreenText.sentence.typingEnded === false) {
+      investorToSocialScene.thirdScreenText.sentence.displayAllTextAtOnce();
+    } else {
+      investorToSocialScene.showNextPanoramaScreenFromMainScene();
+      socialMainScene.showPanoramaScreen();
+    }
+  }
+  //-----------------------------------------------------------------------SOCIAL MAINSCENE
+  else if (socialMainScene.spellButtonClick()) {
+    socialMainScene.showNPCProblemScreen();
+  } else if (socialMainScene.weiterButtonChooseAnswerScreenClick()) {
+    //If you click on the "Weiterbutton" when the text-animation isn't finished yet,
+    //every sentence will be displayed instantly. Then you can click to get to the next screen
+    if (
+      socialMainScene.npcProblemSpeechbubble.speech.tenth.typingEnded === false
+    ) {
+      socialMainScene.npcProblemSpeechbubble.speech.displayAllTextAtOnce();
+    } else {
+      socialMainScene.showChooseAnswerScreen();
+    }
+  } else if (socialMainScene.chooseAnswerScreenClick()) {
+    socialMainScene.showReactionScreen();
+  }
+
+  //Has to be an "Else If" condition, because button is on the same place than before,
+  //it would make 2 clicks directly after another an jump directly to the next action
+  else if (socialMainScene.weiterButtonItemScreenClick()) {
+    //Had to define every state very detailed because of the "neutral"-button,
+    //which has another condition than the others
+    if (
+      socialMainScene.toxicTextButton.state === "choosed" &&
+      socialMainScene.toxicReaction.speech.tenth.typingEnded === false
+    ) {
+      socialMainScene.toxicReaction.speech.displayAllTextAtOnce();
+    } else if (
+      socialMainScene.toxicTextButton.state === "choosed" &&
+      socialMainScene.toxicReaction.speech.tenth.typingEnded === true
+    ) {
+      socialMainScene.showItemScreen();
+    }
+
+    if (
+      socialMainScene.positiveTextButton.state === "choosed" &&
+      socialMainScene.positiveReaction.speech.tenth.typingEnded === false
+    ) {
+      socialMainScene.positiveReaction.speech.displayAllTextAtOnce();
+    } else if (
+      socialMainScene.positiveTextButton.state === "choosed" &&
+      socialMainScene.positiveReaction.speech.tenth.typingEnded === true
+    ) {
+      socialMainScene.showItemScreen();
+    }
+
+    if (
+      socialMainScene.negativeTextButton.state === "choosed" &&
+      socialMainScene.negativeReaction.speech.tenth.typingEnded === false
+    ) {
+      socialMainScene.negativeReaction.speech.displayAllTextAtOnce();
+    } else if (
+      socialMainScene.negativeTextButton.state === "choosed" &&
+      socialMainScene.negativeReaction.speech.tenth.typingEnded === true
+    ) {
+      socialMainScene.showItemScreen();
+    }
+
+    if (
+      socialMainScene.neutralTextButton.state === "choosed" &&
+      socialMainScene.neutralReaction.speech.tenth.typingEnded === false
+    ) {
+      socialMainScene.neutralReaction.speech.displayAllTextAtOnce();
+    } else if (
+      socialMainScene.neutralTextButton.state === "choosed" &&
+      socialMainScene.neutralReaction.speech.tenth.typingEnded === true
+    ) {
+      socialMainScene.showReactionScreenBool = false;
+      //CALL HERE THE NEXT BETWEEN-SCENE!
+      socialToDimensionScene.showFirstScreen();
+      //Jumps directly to next scene!
+      countSceneButtonClicks.push("Clicked");
+    }
+  } else if (socialMainScene.weiterButtonYourLookScreenClick()) {
+    socialMainScene.showItemScreenBool = false;
+    showUserlook = true;
+    //Has to be an "Else If" condition, because button is on the same place than before,
+    //it would make 2 clicks directly after another an jump directly to the next action
+    //countSceneButtonClicks: Same Weiterbutton, different following scenes. The Array helps to define which scene is next
+  } else if (
+    showUserlook === true &&
+    weiterButtonToNextScene.click() &&
+    countSceneButtonClicks.length === 4
+  ) {
+    showUserlook = false;
+    //CALL HERE THE NEXT BETWEEN-SCENE!
+    socialToDimensionScene.showFirstScreen();
+    countSceneButtonClicks.push("Clicked");
+  }
 }
 
 //All events die p5 uses, have to be anhängt ans window
@@ -1164,8 +1786,10 @@ function draw() {
 
   //01_soccerToChefScene
   soccerToChefScene.firstScreen();
+  soccerToChefScene.secondScreen();
 
   //02_chefMainScene
+  chefMainScene.panoramaFadeIn = 255; //Dont need to fade in: same Picture
   chefMainScene.panoramaScreen();
   chefMainScene.npcProblemScreen();
   chefMainScene.chooseAnswerScreen();
@@ -1193,11 +1817,34 @@ function draw() {
   coffeeMainScene.reactionScreen();
   coffeeMainScene.itemScreen();
 
+  //03_coffeeToInvestorScene
+  coffeeToInvestorScene.firstScreen();
+  coffeeToInvestorScene.secondScreen();
+
+  //04_investorMainScene
+  investorMainScene.panoramaFadeIn = 255; //Dont need to fade in: same Picture
+  investorMainScene.panoramaScreen();
+  investorMainScene.npcProblemScreen();
+  investorMainScene.chooseAnswerScreen();
+  investorMainScene.answerScreen();
+  investorMainScene.reactionScreen();
+  investorMainScene.itemScreen();
+
+  //04_InvestorToSocialScene
+  investorToSocialScene.firstScreen();
+  investorToSocialScene.secondScreen();
+  investorToSocialScene.thirdScreen();
+
+  //05_socialMainScene
+  socialMainScene.panoramaFadeIn = 255; //Dont need to fade in: same Picture
+  socialMainScene.panoramaScreen();
+  socialMainScene.npcProblemScreen();
+  socialMainScene.chooseAnswerScreen();
+  socialMainScene.reactionScreen();
+  socialMainScene.itemScreen();
+
   //"Global" functions
   userStats();
   userLook();
   bossStats();
-
-  //JUST FOR TESTING (NEXT SCENE)
-  nextScene();
 }

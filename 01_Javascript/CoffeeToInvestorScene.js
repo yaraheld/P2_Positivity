@@ -2,43 +2,42 @@ import BetweenScene from "./BetweenScene.js";
 import BetweenScenesText from "./BetweenScenesText.js";
 import WeiterButton from "./weiterButton.js";
 
-export default class SoccerToChefScene extends BetweenScene {
+export default class CoffeeToInvestorScene extends BetweenScene {
   constructor() {
     super();
 
     //First screen
     this.firstScreenImage = loadImage(
-      "00_Links/01_soccerToChefScene/firstScreen.png"
+      "00_Links/03_coffeeToInvestorScene/firstScreen.png"
     );
     this.firstScreenText = new BetweenScenesText(
       "Duper",
       18.5,
-      "Hm, interessante Zauberkraft... erstmal die Lage im Büro checken.",
-      -190,
-      -200,
+      "Die Hose wird safe Eindruck machen. Auf zum Meeting in der Chefetage!",
+      -180,
+      -220,
       1,
       false
     );
-    this.fadeInPic = 0;
-    this.firstScreenBool = false;
-
     this.weiterButtonToSecondScreen = new WeiterButton(210, 200);
+    this.firstScreenBool = false;
     this.secondScreenBool = false;
+    this.fadeInPic = 0;
 
     //Second screen
     this.secondScreenImageFadeIn = 0;
     this.secondScreenImage = loadImage(
-      "00_Links/01_soccerToChefScene/secondScreen.png"
+      "00_Links/03_coffeeToInvestorScene/secondScreen.png"
     );
 
     this.secondScreenText = new BetweenScenesText(
       "Duper",
       18.5,
-      "Nanu? Was ist denn dahinten mit dem Chef los?",
+      "Der traurige Typ am Aufzug... das ist doch der Investor!",
       15,
-      190,
+      -220,
       1,
-      true
+      false
     );
 
     this.weiterButtonToMainSceneStarts = new WeiterButton(23, 240);

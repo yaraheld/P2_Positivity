@@ -36,7 +36,7 @@ export default class BetweenScenesText {
     push();
     rectMode(CENTER);
     if (this.stroke === true) {
-      noFill();
+      fill(255);
       stroke(61, 18, 117, this.fade);
       strokeWeight(2.5);
     } else {

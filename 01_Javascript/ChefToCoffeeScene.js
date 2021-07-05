@@ -12,8 +12,8 @@ export default class ChefToCoffeeScene extends BetweenScene {
     );
     this.firstScreenText = new BetweenScenesText(
       "Duper",
-      19,
-      "Als du mit deiner alltäglichen Arbeit beginnst, vergeht die Zeit magisch schnell. Schon Mittagspause – geil!",
+      18.5,
+      "Als du mit deiner Arbeit beginnst, vergeht die Zeit super schnell. Sweet, Mittagspause!",
       0,
       -200,
       1,
@@ -31,7 +31,7 @@ export default class ChefToCoffeeScene extends BetweenScene {
 
     this.secondScreenText = new BetweenScenesText(
       "Duper",
-      19,
+      18.5,
       "Ah, da sind ja auch schon Steve und Fred, die heimlich das Essen für alle aufgegessen haben.",
       0,
       245,
@@ -52,7 +52,7 @@ export default class ChefToCoffeeScene extends BetweenScene {
 
     this.thirdScreenText = new BetweenScenesText(
       "Duper",
-      19,
+      18.5,
       "Immerhin kannst du den Kaf...",
       0,
       -20,

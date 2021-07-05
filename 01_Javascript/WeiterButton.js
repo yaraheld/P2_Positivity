@@ -30,6 +30,13 @@ export default class WeiterButton extends SpellButton {
 
   //Method doesn`t need to be called in MainScene (is contained in displayActiveOrSleeping)
   designActive() {
+    //Boolean makes it possible, that the sound isn`t played 30 times per second
+    if (this.playButtonSound === true) {
+      this.buttonSound.setVolume(0.5);
+      this.buttonSound.play();
+      this.playButtonSound = false;
+    }
+
     tint(255, this.fadeInVariable);
     image(
       this.buttonActive,
@@ -44,13 +51,6 @@ export default class WeiterButton extends SpellButton {
     this.buttonEffect.delay(60);
 
     this.buttonText.textColor = color(255, 236, 53, this.fadeInVariable);
-
-    //Boolean makes it possible, that the sound isn`t played 30 times per second
-    if (this.playButtonSound === true) {
-      this.buttonSound.setVolume(0.5);
-      this.buttonSound.play();
-      this.playButtonSound = false;
-    }
   }
 
   displayActiveOrSleeping() {
