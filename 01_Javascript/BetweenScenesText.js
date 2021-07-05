@@ -44,7 +44,7 @@ export default class BetweenScenesText {
       noStroke();
     }
     //rectangle expands | related to string counter "n"
-    rect(this.x, this.y - 5, 40 + this.sentence.n * 6.85, 40, 2);
+    rect(this.x, this.y - 5, 40 + this.sentence.n * 7, 40, 2);
     pop();
   }
 

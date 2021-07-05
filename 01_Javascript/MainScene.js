@@ -723,7 +723,7 @@ export default class MainScene {
       image(
         this.NPCproblem,
         180,
-        10,
+        20,
         this.NPCproblem.width / 1.2,
         this.NPCproblem.height / 1.2
       );
@@ -852,17 +852,17 @@ export default class MainScene {
       );
 
       image(
-        this.aura_sad,
+        this.npcProblemScreenAura,
         180,
         -20,
-        this.aura_sad.width / 1.3,
-        this.aura_sad.height / 1.3
+        this.npcProblemScreenAura.width / 1.3,
+        this.npcProblemScreenAura.height / 1.3
       );
 
       image(
         this.NPCproblem,
         180,
-        10,
+        20,
         this.NPCproblem.width / 1.2,
         this.NPCproblem.height / 1.2
       );
@@ -952,11 +952,11 @@ export default class MainScene {
       this.fadeInAnswerAuraTranceparency();
       tint(255, this.fadeInAuraTranceparency);
       image(
-        this.aura_sad,
+        this.npcProblemScreenAura,
         180,
         -20,
-        this.aura_sad.width / 1.3,
-        this.aura_sad.height / 1.3
+        this.npcProblemScreenAura.width / 1.3,
+        this.npcProblemScreenAura.height / 1.3
       );
 
       this.fadeInAnswerPic();
