@@ -6,6 +6,7 @@ import ChefToCoffeeScene from "./ChefToCoffeeScene.js";
 import CoffeeToInvestorScene from "./CoffeeToInvestorScene.js";
 import InvestorToSocialScene from "./InvestorToSocialSene.js";
 import SocialToDimensionScene from "./SocialToDimensionScene.js";
+import BossFight from "./BossFight.js";
 
 //variables & commentaries = english
 //classes: Capital Letter
@@ -910,7 +911,10 @@ function userStats() {
     //
     investorToSocialScene.firstScreenBool === false &&
     investorToSocialScene.secondScreenBool === false &&
-    investorToSocialScene.thirdScreenBool === false
+    investorToSocialScene.thirdScreenBool === false &&
+    //
+    //bossFight
+    bossFightStarts === false
   ) {
     push();
     tint(255, 255);
@@ -1147,16 +1151,79 @@ function userLook() {
     weiterButtonToNextScene.fadeInVariable = 0;
   }
 }
+
+function userLookForBossFight() {
+  //User
+  image(userBody, -10, -60, userBody.width / 1.4, userBody.height / 1.4);
+
+  //-------ITEMS
+  //-----------------------------------------------------CORRECT ORDER (ITEMS ABOVE AND BELOW!)
+  //entspr. Szenen per Mainszene Aktualisieren!!!
+  //-----SoccerMainScene (SHOES)
+  if (soccerMainScene.state === "toxic") {
+    soccerMainScene.returnToxicLook();
+  }
+  if (soccerMainScene.state === "positive") {
+    soccerMainScene.returnPositiveLook();
+  }
+  if (soccerMainScene.state === "negative") {
+    soccerMainScene.returnNegativeLook();
+  }
+  //-----InvestorMainScene(SHIELD)
+  if (investorMainScene.state === "toxic") {
+    investorMainScene.returnToxicLook();
+  }
+  if (investorMainScene.state === "positive") {
+    investorMainScene.returnPositiveLook();
+  }
+  if (investorMainScene.state === "negative") {
+    investorMainScene.returnNegativeLook();
+  }
+
+  //-----CoffeeMainScene(PANTS)
+  if (coffeeMainScene.state === "toxic") {
+    coffeeMainScene.returnToxicLook();
+  }
+  if (coffeeMainScene.state === "positive") {
+    coffeeMainScene.returnPositiveLook();
+  }
+  if (coffeeMainScene.state === "negative") {
+    coffeeMainScene.returnNegativeLook();
+  }
+  //-----ChefMainScene (CHESTPLATE)
+  if (chefMainScene.state === "toxic") {
+    chefMainScene.returnToxicLook();
+  }
+  if (chefMainScene.state === "positive") {
+    chefMainScene.returnPositiveLook();
+  }
+  if (chefMainScene.state === "negative") {
+    chefMainScene.returnNegativeLook();
+  }
+
+  //-----socialMainScene (GLOVES)
+  if (socialMainScene.state === "toxic") {
+    socialMainScene.returnToxicLook();
+  }
+  if (socialMainScene.state === "positive") {
+    socialMainScene.returnPositiveLook();
+  }
+  if (socialMainScene.state === "negative") {
+    socialMainScene.returnNegativeLook();
+  }
+}
+
 //All events die p5 uses, have to be anhängt ans window
 window.mousePressed = mousePressed;
 function mousePressed() {
   //JUST FOR TESTING (BEGIN BUTTON)
-  if (startTestButton.click()) {
-    soccerMainScene.showPanoramaScreen();
-    showStartTestButton = false;
-  }
+  // if (startTestButton.click()) {
+  //   soccerMainScene.showPanoramaScreen();
+  //   showStartTestButton = false;
+  // }
   //-----------------------------------------------------------------------SOCCER MAINSCENE
-  else if (soccerMainScene.spellButtonClick()) {
+  // else
+  if (soccerMainScene.spellButtonClick()) {
     soccerMainScene.showNPCProblemScreen();
   } else if (soccerMainScene.weiterButtonChooseAnswerScreenClick()) {
     //If you click on the "Weiterbutton" when the text-animation isn't finished yet,
@@ -1762,7 +1829,69 @@ function mousePressed() {
     socialToDimensionScene.showFirstScreen();
     countSceneButtonClicks.push("Clicked");
   }
+  //-----------------------------------------------------------------------SocialToDimensionScene (Between-Scene)
+  else if (socialToDimensionScene.weiterButtonSecondScreenClick()) {
+    if (socialToDimensionScene.firstScreenText.sentence.typingEnded === false) {
+      socialToDimensionScene.firstScreenText.sentence.displayAllTextAtOnce();
+    } else {
+      socialToDimensionScene.showSecondScreen();
+    }
+  } else if (socialToDimensionScene.weiterButtonThirdScreenClick()) {
+    if (
+      socialToDimensionScene.secondScreenText.sentence.typingEnded === false
+    ) {
+      socialToDimensionScene.secondScreenText.sentence.displayAllTextAtOnce();
+    } else {
+      socialToDimensionScene.showThirdScreen();
+    }
+  } else if (socialToDimensionScene.weiterButtonFourthScreenClick()) {
+    if (socialToDimensionScene.thirdScreenText.sentence.typingEnded === false) {
+      socialToDimensionScene.thirdScreenText.sentence.displayAllTextAtOnce();
+    } else {
+      socialToDimensionScene.showFourthScreen();
+    }
+  } else if (socialToDimensionScene.weiterButtonFifthScreenClick()) {
+    if (
+      socialToDimensionScene.fourthScreenText.sentence.typingEnded === false
+    ) {
+      socialToDimensionScene.fourthScreenText.sentence.displayAllTextAtOnce();
+    } else {
+      socialToDimensionScene.showFifthScreen();
+    }
+  } else if (socialToDimensionScene.weiterButtonSixthScreenClick()) {
+    if (socialToDimensionScene.fifthScreenText.sentence.typingEnded === false) {
+      socialToDimensionScene.fifthScreenText.sentence.displayAllTextAtOnce();
+    } else {
+      socialToDimensionScene.showSixthScreen();
+    }
+  } else if (
+    socialToDimensionScene.weiterButtonNextPanoramaScreenFromMainSceneClick()
+  ) {
+    if (socialToDimensionScene.sixthScreenText.sentence.typingEnded === false) {
+      socialToDimensionScene.sixthScreenText.sentence.displayAllTextAtOnce();
+    } else {
+      socialToDimensionScene.showNextPanoramaScreenFromMainScene();
+      dimensionScene.showPanoramaScreen();
+    }
+  }
 }
+
+let bossFight = new BossFight(
+  //User
+  //UserHealth
+  100,
+  //UserSpeed
+  15,
+  //Boss
+  //BossHealth
+  100,
+  //BossFireSpeed = BossAbjectAmount
+  20,
+  //BossFireBallSpeed = BossObjectSpeed
+  10
+);
+
+let bossFightStarts = true;
 
 //All events die p5 uses, have to be anhängt ans window
 window.draw = draw;
@@ -1770,11 +1899,13 @@ function draw() {
   standardSettings();
 
   //-------Start Button (Just for testing)
-  if (showStartTestButton === true) {
-    startTestButton.fadeIn();
-    startTestButton.displayActiveOrSleeping();
-    startTestButton.displayButtonSentence();
-  }
+  // if (showStartTestButton === true) {
+  //   startTestButton.fadeIn();
+  //   startTestButton.displayActiveOrSleeping();
+  //   startTestButton.displayButtonSentence();
+  // }
+
+  // socialToDimensionScene.showFirstScreen();
 
   //01_soccerMainScene
   soccerMainScene.panoramaScreen();
@@ -1842,6 +1973,40 @@ function draw() {
   socialMainScene.chooseAnswerScreen();
   socialMainScene.reactionScreen();
   socialMainScene.itemScreen();
+
+  //05_socialToDimensionScene
+  socialToDimensionScene.firstScreen();
+  socialToDimensionScene.secondScreen();
+  socialToDimensionScene.thirdScreen();
+  socialToDimensionScene.fourthScreen();
+  socialToDimensionScene.fifthScreen();
+  socialToDimensionScene.sixthScreen();
+
+  //Testing
+  if (bossFightStarts === true) {
+    //Lines have to be below user & boss
+    //User
+    bossFight.userControl();
+    //Boss
+    bossFight.displayBossHealth();
+    bossFight.displayFireBalls();
+
+    //Rest mothods of user & boss
+    //User
+    bossFight.displayUserHealth();
+    //The userLookForBossFight function is external and not contained in the bossFight class
+    //So you have to use push & pop to just affect the userLookForBossFight function
+    //DISPLAY USER
+    push();
+    bossFight.displayUser();
+    userLookForBossFight();
+    pop();
+
+    //Boss
+    bossFight.bossControl();
+    bossFight.displayBoss();
+    bossFight.switchBossImages();
+  }
 
   //"Global" functions
   userStats();
