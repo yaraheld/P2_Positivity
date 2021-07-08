@@ -10,6 +10,8 @@ export default class BossFight {
   ) {
     this.bossFightBool = false;
 
+    this.jvhif = 0;
+    this.jvhif2 = 0;
     //-------User stats
     this.userX = -430;
     this.userY = 0;
@@ -45,13 +47,22 @@ export default class BossFight {
     //
     this.counterNextFireball = 0;
     this.fireNextFireBall = false;
-    this.fireBall = new FireBall(this.bossX, this.bossY);
+    this.fireBall = new FireBall(this.bossX, this.bossY, 10);
     this.fireballArray = [];
 
     //Poses
     this.changeToFightPose = false;
     this.holdBossPose = false;
     this.holdBossPoseCounter = 0;
+
+    this.circleToRectPointX = 0;
+    this.circleToRectPointY = 0;
+
+    //Rectangle Circle collision
+    this.pointOnRectangleX = 0;
+    this.pointOnRectangleY = 0;
+
+    this.distanceBetweenRectAndCircle = 0;
   }
 
   //-----------------------------------------------------------------------------------------User
@@ -59,7 +70,7 @@ export default class BossFight {
     //User Life (Standard 100)
     //Max 200 Life
     stroke(255, 165, 255);
-    line(450, -250, -450, -250);
+    line(450, -230, -450, -230);
 
     fill(255);
     stroke(255, 165, 255);
@@ -76,11 +87,11 @@ export default class BossFight {
     //The -310 is the middle of the screen (620/2)
     this.userY = this.userY + (mouseY - this.userY - 310) / this.userSpeed;
 
-    if (this.userY > 195) {
-      this.userY = 195;
+    if (this.userY > 175) {
+      this.userY = 175;
     }
-    if (this.userY < -180) {
-      this.userY = -180;
+    if (this.userY < -160) {
+      this.userY = -160;
     }
 
     //------------TESTING: HITBOX
@@ -98,7 +109,7 @@ export default class BossFight {
     //Boss Life (Standard 100)
     //Max 300 Life
     stroke(0);
-    line(450, 250, -450, 250);
+    line(450, 230, -450, 230);
 
     fill(255);
     stroke(0);
@@ -144,7 +155,12 @@ export default class BossFight {
       //Pushes a new Fireball into the Array and sets the counter to 0 again
       if (this.fireNextFireBall === true) {
         this.fireballArray.push(
-          new FireBall(this.bossX, this.bossY, this.bossFireBallSpeed)
+          new FireBall(
+            this.bossX,
+            this.bossY,
+            this.bossFireBallSpeed,
+            color(255, 255, 0)
+          )
         );
         this.changeToFightPose = true;
         this.counterNextFireball = 0;
@@ -180,4 +196,88 @@ export default class BossFight {
       }
     }
   }
+
+  checkRectangleSide(min, max, value) {
+    //Does the whole magic
+    if (value < min) {
+      return min;
+    } else if (value > max) {
+      return max;
+    } else {
+      return value;
+    }
+  }
+
+  pointOnRectangle() {
+    //For loop to check every fireball
+    for (let i = 0; i < this.fireballArray.length; i++) {
+      this.pointOnRectangleX = this.checkRectangleSide(
+        //Rectangle position x (left corner)
+        -450,
+        //Rectagle position x + width (right Corner)
+        -450 + 35,
+        //Position X of Circle (-110 is the corrected position. Origin: Boss. But Center of Boss pic isn't center of Ball)
+        this.fireballArray[i].fireballX - 135
+      );
+      this.pointOnRectangleY = this.checkRectangleSide(
+        //Rectangle position x (left corner) | Minimum
+        -65 + this.userY,
+        //Rectagle position x + width (right Corner) | Maximum
+        -65 + this.userY + 125,
+        //Position Y of Circle
+        this.fireballArray[i].fireballY - 55
+      );
+
+      //Visualization
+      stroke(255, 255, 0);
+      line(
+        this.pointOnRectangleX,
+        this.pointOnRectangleY,
+        this.fireballArray[i].fireballX - 135,
+        this.fireballArray[i].fireballY - 55
+      );
+
+      // //Substract both positions (Fireball Position and Rectangle) to get endpoint
+      // fill(0);
+      // this.circleToRectPointX =
+      //   this.pointOnRectangleX - this.fireballArray[i].fireballX;
+      // this.circleToRectPoinY =
+      //   this.pointOnRectangleY - this.fireballArray[i].fireballY;
+
+      //Collision between Rectangle and circle
+      //Didn`t work with extra method below, because this.pointOnRectangleX & this.pointOnRectangleY weren't updated
+
+      for (let i = 0; i < this.fireballArray.length; i++) {
+        //calulate distance between point on Rectangle & position of fireball 2 points:
+        //by using the dist() function from p5
+        this.distanceBetweenRectAndCircle = dist(
+          this.pointOnRectangleX,
+          this.pointOnRectangleY,
+          this.fireballArray[i].fireballX - 135,
+          this.fireballArray[i].fireballY - 55
+        );
+        console.log(this.fireballArray[i].fireballX - 135);
+        if (this.distanceBetweenRectAndCircle < 27.5) {
+          this.fireballArray[i].color = color(0);
+        }
+      }
+    }
+  }
+  // collisionRectangleCircle() {
+  //   //For loop to check every fireball collision
+  //   for (let i = 0; i < this.fireballArray.length; i++) {
+  //     //calulate distance between point on Rectangle & position of fireball 2 points:
+  //     //by using the dist() function from p5
+  //     this.distanceBetweenRectAndCircle = dist(
+  //       this.pointOnRectangleX,
+  //       this.pointOnRectangleY,
+  //       this.fireballArray[i].fireballX - 135,
+  //       this.fireballArray[i].fireballY - 55
+  //     );
+  //     console.log(this.fireballArray[i].fireballX - 135);
+  //     if (this.distanceBetweenRectAndCircle < 27.5) {
+  //       this.fireballArray[i].color = color(0);
+  //     }
+  //   }
+  // }
 }

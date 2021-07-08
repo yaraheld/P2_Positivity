@@ -1,5 +1,6 @@
 import MainScene from "./MainScene.js";
 import MainSceneSelf from "./MainSceneSelf.js";
+import MainSceneDimension from "./MainSceneDimension.js";
 import WeiterButton from "./WeiterButton.js";
 import SoccerToChefScene from "./SoccerToChefScene.js";
 import ChefToCoffeeScene from "./ChefToCoffeeScene.js";
@@ -7,6 +8,10 @@ import CoffeeToInvestorScene from "./CoffeeToInvestorScene.js";
 import InvestorToSocialScene from "./InvestorToSocialSene.js";
 import SocialToDimensionScene from "./SocialToDimensionScene.js";
 import BossFight from "./BossFight.js";
+import DimensionToDestroyedScene from "./DimensionToDestroyedScene.js";
+import DestroyedToEvilMentorScene from "./DestroyedToEvilMentorScene.js";
+import EvilMentorMainScene from "./EvilMentorMainScene.js";
+import EvilMentorToEndBossScene from "./EvilMentorToEndBossScene.js";
 
 //variables & commentaries = english
 //classes: Capital Letter
@@ -874,6 +879,395 @@ let socialMainScene = new MainSceneSelf(
 
 let socialToDimensionScene = new SocialToDimensionScene();
 
+let dimensionMainScene = new MainSceneDimension(
+  "06_dimensionMainScene",
+
+  //Spellbutton x-y-Postion//
+  0,
+  -50,
+
+  //Type of Aura, Textbox and exclamation mark (NPC problem screen)
+  //Types:  |  Aura_sad  |  Aura_negative (angry)  |   Aura_shock  |  Aura_black
+  "Aura_sad",
+  "textBoxSad",
+  "exclamSad",
+
+  //NPC problem speechbububle text
+  "Wir arbeiten gerade an einem",
+  "Duper-Bold",
+  "Uni-Projekt und liegen voll zurück!",
+  "Duper-Bold",
+  "Selbst unsere Dozentin bekommt",
+  "jetzt Angst. Wie sollen wir dieses ",
+  "Semester überstehen?",
+  "Moment, irgendwie kommst",
+  "du uns bekannt vor...?",
+  "",
+  "",
+  "",
+
+  //Duration of answer Time
+  0.5,
+
+  //Choose answers:
+  //toxic
+  "SCHEITERN IST KEINE OPTION!",
+  //positive
+  "SCHEITERN GEHÖRT DAZU.",
+  //neutral
+  "SCHEITERN IST EIN THEMA FÜR SICH.",
+  //negative
+  "WIEDREHOLT DOCH DAS SEMESTER.",
+
+  //Answers
+  //Toxic
+  "Ihr seid nicht gescheitert.",
+  "Duper-Bold",
+  "Arbeitet weiter und holt",
+  "Duper",
+  "die Zeit wieder auf!",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  //positive
+  "Scheitern ist nichts Schlechtes,",
+  "Duper-Bold",
+  "wenn man daraus lernt.",
+  "Duper-Bold",
+  "Guckt, was ihr ändern müsst",
+  "und haut dann richtig rein!",
+  "Alleine für die Idee würde",
+  "ich euch eine 1.0 geben.",
+  "",
+  "",
+  "",
+  "",
+  //neutral
+  "... aber die Internetverbindung",
+  "Duper-Bold",
+  "war so schlecht,",
+  "Duper-Bold",
+  "ich habe leider nichts",
+  "verstanden.",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  //negative
+  "Wenn man scheitert,",
+  "Duper-Bold",
+  "sollte man seine Bemühungen",
+  "Duper",
+  "aufgeben und sich nicht",
+  "weiter sinnlos anstrengen.",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+
+  //NPC Reaction
+  //toxic
+  "Okay, wir schaffen das",
+  "Duper-Bold",
+  "irgendwie schon, solange wir",
+  "Duper",
+  "einfach weitermachen!",
+  "Das Semester schaffen",
+  "wir easy peasy. Piew Piew!",
+  "",
+  "",
+  "",
+  "",
+  "",
+
+  //positive
+  "Guter Punkt – wir strukturieren",
+  "Duper-Bold",
+  "uns nochmal neu und gucken,",
+  "Duper-Bold",
+  "was wir anders machen müssen.",
+  "Viel zu lernen wir noch haben!",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+
+  //neutral
+  "Was hast du gesagt?",
+  "Duper-Bold",
+  "Du warst gemutet.",
+  "Duper",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+
+  //negative
+  "Jo.",
+  "Duper-Bold",
+  "Wir lassen uns",
+  "Duper",
+  "einfach etwas gehen,",
+  "BAföG regelt.",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+
+  //Parameter User
+  //Health:
+  10,
+  //Speed
+  10,
+  //Positivity
+  20,
+  //Shield
+  10,
+
+  // Parameter Boss
+  //Toxic
+  //Health:
+  0,
+  //Object damage:
+  30,
+  //Object amount:
+  20,
+  //Object speed
+  0,
+
+  //Neutral
+  //Object amount:
+  30,
+
+  //Negative
+  //Health:
+  20,
+  //Object damage:
+  0,
+  //Object amount:
+  10,
+  //Object speed
+  20
+);
+
+let dimensionToDestroyedScene = new DimensionToDestroyedScene();
+
+let destroyedMainScene = new MainSceneSelf(
+  "07_destroyedMainScene",
+
+  //Spellbutton x-y-Postion//
+  18,
+  0,
+
+  //Type of Aura, ThoughtBubble and exclamation mark (NPC problem screen changes to "own problem thought screen")
+  //Types:  |  Aura_sad  |  Aura_negative (angry)  |   Aura_shock  |  Aura_black
+  "Aura_shock",
+  "thoughtBubbleShocked",
+  "exclamShocked",
+
+  //NPC problem speechbububle text
+  "Das kann doch nicht sein!",
+  "Duper-Bold",
+  "Gestern war alles normal...",
+  "Duper-Bold",
+  "und jetzt nimmt die Story völlig absurde",
+  "Ausmaße an! Was hat das für einen Sinn?",
+  "Vor allem für mich als User, wenn alle",
+  "Entscheidungen umsonst waren?",
+  "",
+  "",
+  "",
+  "",
+
+  //Duration of answer Time
+  0.5,
+
+  //Choose answers:
+  //toxic
+  "NICHTS WAR UMSONST.",
+  //positive
+  "JETZT MUSS ICH ERSTMAL KLARKOMMEN.",
+  //neutral
+  "HM, OKAY.",
+  //negative
+  "ICH HAB IMMERHIN DIE RÜSTUNG.",
+
+  //Jumps directly to reaction (formulated answer is not needed)
+  //NPC Reaction => own Reaction
+  //toxic
+  "...nichts war umsonst!",
+  "Duper-Bold",
+  "Good vibes only... mehr Lächeln...",
+  "Duper",
+  "pOsITiv dENkEn!",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  //positive
+  "Noch nie hat sich",
+  "Duper-Bold",
+  "etwas so sinnlos angefühlt.",
+  "Duper-Bold",
+  "Das ist gerade echt hart. Wenn ich mich",
+  "zusammenreiße, bekomme ich mich",
+  "wieder in den Griff.",
+  "",
+  "",
+  "",
+  "",
+  "",
+
+  //neutral
+  "...absurde Story?",
+  "Duper-Bold",
+  "Welche Story?...",
+  "Duper",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  //negative
+  "Wie es den Menschen in der",
+  "Duper-Bold",
+  "Simulation ergangen ist, ist mir egal.",
+  "Duper-Bold",
+  "Hauptsache ich habe Rüstungsteile",
+  "bekommen und gewinne",
+  "das Game!",
+  "",
+  "",
+  "",
+  "",
+  "",
+
+  //Parameter User
+  //Health:
+  20,
+  //Speed
+  0,
+  //Positivity
+  0,
+  //Shield
+  30,
+
+  // Parameter Boss
+  //Toxic
+  //Health:
+  20,
+  //Object damage:
+  0,
+  //Object amount:
+  0,
+  //Object speed
+  30,
+
+  //Neutral
+  //Object amount:
+  30,
+
+  //Negative
+  //Health:
+  40,
+  //Object damage:
+  0,
+  //Object amount:
+  10,
+  //Object speed
+  0
+);
+
+let destroyedToEvilMentorScene = new DestroyedToEvilMentorScene();
+
+let evilMentorMainScene = new EvilMentorMainScene(
+  "08_evilMentorMainScene",
+
+  //Spellbutton x-y-Postion//
+  0,
+  190,
+
+  //Type of Aura, Textbox and exclamation mark (NPC problem screen)
+  //Types:  |  Aura_sad  |  Aura_negative (angry)  |   Aura_shock  |  Aura_black
+  "Aura_negative",
+  "textBoxMad",
+  "exclamMad",
+
+  //NPC problem speechbububle text
+  "Mit Positivität kommt man doch",
+  "Duper-Bold",
+  "KEIN BISSCHEN WEITER IM LEBEN!",
+  "Duper-Bold",
+  "Diese naiven Menschen...",
+  "ich kann Sie nicht ausstehen!",
+  "Meine Geduld hat jetzt ein Ende.",
+  "Die ganzen Entscheidungen",
+  "MACHEN MICH IRRE!",
+  "",
+  "",
+  "",
+
+  //Duration of answer Time
+  0.5,
+
+  //Parameter User
+  //Health:
+  10,
+  //Speed
+  0,
+  //Positivity
+  10,
+  //Shield
+  20,
+
+  // Parameter Boss
+  //Toxic
+  //Health:
+  0,
+  //Object damage:
+  20,
+  //Object amount:
+  10,
+  //Object speed
+  10,
+
+  //Neutral
+  //Object amount:
+  20,
+
+  //Negative
+  //Health:
+  10,
+  //Object damage:
+  0,
+  //Object amount:
+  10,
+  //Object speed
+  20
+);
+
 //------------------------------"Global" functions, update it when adding a new mainscene
 let usersHeartIcon = loadImage("00_Links/00_UI-Elements/heart.png");
 let usersSpeedIcon = loadImage("00_Links/00_UI-Elements/speed.png");
@@ -898,6 +1292,12 @@ function userStats() {
     //
     socialMainScene.showPanoramaScreenBool === false &&
     //
+    dimensionMainScene.showPanoramaScreenBool === false &&
+    //
+    destroyedMainScene.showPanoramaScreenBool === false &&
+    //
+    evilMentorMainScene.showPanoramaScreenBool === false &&
+    //
     //betweenScenes
     //
     soccerToChefScene.firstScreenBool === false &&
@@ -912,6 +1312,25 @@ function userStats() {
     investorToSocialScene.firstScreenBool === false &&
     investorToSocialScene.secondScreenBool === false &&
     investorToSocialScene.thirdScreenBool === false &&
+    //
+    socialToDimensionScene.firstScreenBool === false &&
+    socialToDimensionScene.secondScreenBool === false &&
+    socialToDimensionScene.thirdScreenBool === false &&
+    socialToDimensionScene.fourthScreenBool === false &&
+    socialToDimensionScene.fifthScreenBool === false &&
+    socialToDimensionScene.sixthScreenBool === false &&
+    //
+    dimensionToDestroyedScene.firstScreenBool === false &&
+    dimensionToDestroyedScene.secondScreenBool === false &&
+    dimensionToDestroyedScene.thirdScreenBool === false &&
+    dimensionToDestroyedScene.fourthScreenBool === false &&
+    dimensionToDestroyedScene.fifthScreenBool === false &&
+    dimensionToDestroyedScene.sixthScreenBool === false &&
+    //
+    destroyedToEvilMentorScene.firstScreenBool === false &&
+    destroyedToEvilMentorScene.secondScreenBool === false &&
+    destroyedToEvilMentorScene.thirdScreenBool === false &&
+    destroyedToEvilMentorScene.fourthScreenBool === false &&
     //
     //bossFight
     bossFightStarts === false
@@ -934,7 +1353,10 @@ function userStats() {
       chefMainScene.userHealth +
       coffeeMainScene.userHealth +
       investorMainScene.userHealth +
-      socialMainScene.userHealth;
+      socialMainScene.userHealth +
+      dimensionMainScene.userHealth +
+      destroyedMainScene.userHealth +
+      evilMentorMainScene.userHealth;
 
     noStroke();
     fill(255, 165, 255);
@@ -956,7 +1378,10 @@ function userStats() {
       chefMainScene.userSpeed +
       coffeeMainScene.userSpeed +
       investorMainScene.userSpeed +
-      socialMainScene.userSpeed;
+      socialMainScene.userSpeed +
+      dimensionMainScene.userSpeed +
+      destroyedMainScene.userSpeed +
+      evilMentorMainScene.userSpeed;
 
     fill(33, 241, 207);
     rect(-500, -253, 10 + userSpeed, 10, 10);
@@ -977,7 +1402,10 @@ function userStats() {
       chefMainScene.userPositivity +
       coffeeMainScene.userPositivity +
       investorMainScene.userPositivity +
-      socialMainScene.userPositivity;
+      socialMainScene.userPositivity +
+      dimensionMainScene.userPositivity +
+      destroyedMainScene.userPositivity +
+      evilMentorMainScene.userPositivity;
 
     fill(148, 224, 255);
     rect(-500, -226, 10 + userPositivity, 10, 10);
@@ -998,7 +1426,10 @@ function userStats() {
       chefMainScene.userShield +
       coffeeMainScene.userShield +
       investorMainScene.userShield +
-      socialMainScene.userShield;
+      socialMainScene.userShield +
+      dimensionMainScene.userShield +
+      destroyedMainScene.userShield +
+      evilMentorMainScene.userShield;
 
     fill(130, 94, 196);
     rect(-500, -199, 10 + userShield, 10, 10);
@@ -1025,7 +1456,10 @@ function bossStats() {
     chefMainScene.bossHealth +
     coffeeMainScene.bossHealth +
     investorMainScene.bossHealth +
-    socialMainScene.bossHealth;
+    socialMainScene.bossHealth +
+    dimensionMainScene.bossHealth +
+    destroyedMainScene.bossHealth +
+    evilMentorMainScene.bossHealth;
 
   //entspr. Szenen pro Mainszene Aktualisieren!!!
   bossObjectDamage =
@@ -1034,17 +1468,22 @@ function bossStats() {
     chefMainScene.bossObjectDamage +
     coffeeMainScene.bossObjectDamage +
     investorMainScene.bossObjectDamage +
-    socialMainScene.bossObjectDamage;
+    socialMainScene.bossObjectDamage +
+    dimensionMainScene.bossObjectDamage +
+    destroyedMainScene.bossObjectDamage +
+    evilMentorMainScene.bossObjectDamage;
 
   //entspr. Szenen pro Mainszene Aktualisieren!!!
   bossObjectAmount =
     //Mainscenes
-
     soccerMainScene.bossObjectAmount +
     chefMainScene.bossObjectAmount +
     coffeeMainScene.bossObjectAmount +
     investorMainScene.bossObjectAmount +
-    socialMainScene.bossObjectAmount;
+    socialMainScene.bossObjectAmount +
+    dimensionMainScene.bossObjectAmount +
+    destroyedMainScene.bossObjectAmount +
+    evilMentorMainScene.bossObjectAmount;
 
   //entspr. Szenen pro Mainszene Aktualisieren!!!
   bossObjectSpeed =
@@ -1053,7 +1492,10 @@ function bossStats() {
     chefMainScene.bossObjectSpeed +
     coffeeMainScene.bossObjectSpeed +
     investorMainScene.bossObjectSpeed +
-    socialMainScene.bossObjectSpeed;
+    socialMainScene.bossObjectSpeed +
+    dimensionMainScene.bossObjectSpeed +
+    destroyedMainScene.bossObjectSpeed +
+    evilMentorMainScene.bossObjectSpeed;
 }
 
 let showUserlook = false;
@@ -1134,6 +1576,26 @@ function userLook() {
     if (chefMainScene.state === "negative") {
       chefMainScene.returnNegativeLook();
     }
+    //-----DestroyedMainScene (Helmet)
+    if (destroyedMainScene.state === "toxic") {
+      destroyedMainScene.returnToxicLook();
+    }
+    if (destroyedMainScene.state === "positive") {
+      destroyedMainScene.returnPositiveLook();
+    }
+    if (destroyedMainScene.state === "negative") {
+      destroyedMainScene.returnNegativeLook();
+    }
+    //-----DimensionMainScene (WEAPON)
+    if (dimensionMainScene.state === "toxic") {
+      dimensionMainScene.returnToxicLook();
+    }
+    if (dimensionMainScene.state === "positive") {
+      dimensionMainScene.returnPositiveLook();
+    }
+    if (dimensionMainScene.state === "negative") {
+      dimensionMainScene.returnNegativeLook();
+    }
 
     //-----socialMainScene (GLOVES)
     if (socialMainScene.state === "toxic") {
@@ -1144,6 +1606,17 @@ function userLook() {
     }
     if (socialMainScene.state === "negative") {
       socialMainScene.returnNegativeLook();
+    }
+
+    //-----evilMentorMainScene (Aura)
+    if (evilMentorMainScene.state === "toxic") {
+      evilMentorMainScene.returnToxicLook();
+    }
+    if (evilMentorMainScene.state === "positive") {
+      evilMentorMainScene.returnPositiveLook();
+    }
+    if (evilMentorMainScene.state === "negative") {
+      evilMentorMainScene.returnNegativeLook();
     }
   } else {
     //fades in again
@@ -1201,6 +1674,28 @@ function userLookForBossFight() {
     chefMainScene.returnNegativeLook();
   }
 
+  //-----DestroyedMainScene (Helmet)
+  if (destroyedMainScene.state === "toxic") {
+    destroyedMainScene.returnToxicLook();
+  }
+  if (destroyedMainScene.state === "positive") {
+    destroyedMainScene.returnPositiveLook();
+  }
+  if (destroyedMainScene.state === "negative") {
+    destroyedMainScene.returnNegativeLook();
+  }
+
+  //-----DimensionMainScene (WEAPON)
+  if (dimensionMainScene.state === "toxic") {
+    dimensionMainScene.returnToxicLook();
+  }
+  if (dimensionMainScene.state === "positive") {
+    dimensionMainScene.returnPositiveLook();
+  }
+  if (dimensionMainScene.state === "negative") {
+    dimensionMainScene.returnNegativeLook();
+  }
+
   //-----socialMainScene (GLOVES)
   if (socialMainScene.state === "toxic") {
     socialMainScene.returnToxicLook();
@@ -1210,6 +1705,17 @@ function userLookForBossFight() {
   }
   if (socialMainScene.state === "negative") {
     socialMainScene.returnNegativeLook();
+  }
+
+  //-----evilMentorMainScene (Aura)
+  if (evilMentorMainScene.state === "toxic") {
+    evilMentorMainScene.returnToxicLook();
+  }
+  if (evilMentorMainScene.state === "positive") {
+    evilMentorMainScene.returnPositiveLook();
+  }
+  if (evilMentorMainScene.state === "negative") {
+    evilMentorMainScene.returnNegativeLook();
   }
 }
 
@@ -1871,12 +2377,360 @@ function mousePressed() {
       socialToDimensionScene.sixthScreenText.sentence.displayAllTextAtOnce();
     } else {
       socialToDimensionScene.showNextPanoramaScreenFromMainScene();
-      dimensionScene.showPanoramaScreen();
+      dimensionMainScene.showPanoramaScreen();
     }
+  }
+  //-----------------------------------------------------------------------DIMENSION MAINSCENE
+  else if (dimensionMainScene.spellButtonClick()) {
+    dimensionMainScene.showNPCProblemScreen();
+  } else if (dimensionMainScene.weiterButtonChooseAnswerScreenClick()) {
+    //If you click on the "Weiterbutton" when the text-animation isn't finished yet,
+    //every sentence will be displayed instantly. Then you can click to get to the next screen
+    if (
+      dimensionMainScene.npcProblemSpeechbubble.speech.tenth.typingEnded ===
+      false
+    ) {
+      dimensionMainScene.npcProblemSpeechbubble.speech.displayAllTextAtOnce();
+    } else {
+      dimensionMainScene.showChooseAnswerScreen();
+    }
+  } else if (dimensionMainScene.chooseAnswerScreenClick()) {
+    dimensionMainScene.showAnswerScreen();
+  } else if (dimensionMainScene.weiterButtonReactionScreenClick()) {
+    //If you click on the "Weiterbutton" when the text-animation isn't finished yet,
+    //every sentence will be displayed instantly. Then you can click to get to the next screen
+    if (
+      dimensionMainScene.toxicTextButton.state === "choosed" &&
+      dimensionMainScene.toxicAnswer.speech.tenth.typingEnded === false
+    ) {
+      dimensionMainScene.toxicAnswer.speech.displayAllTextAtOnce();
+    } else if (
+      dimensionMainScene.positiveTextButton.state === "choosed" &&
+      dimensionMainScene.positiveAnswer.speech.tenth.typingEnded === false
+    ) {
+      dimensionMainScene.positiveAnswer.speech.displayAllTextAtOnce();
+    } else if (
+      dimensionMainScene.neutralTextButton.state === "choosed" &&
+      dimensionMainScene.neutralAnswer.speech.tenth.typingEnded === false
+    ) {
+      dimensionMainScene.neutralAnswer.speech.displayAllTextAtOnce();
+    } else if (
+      dimensionMainScene.negativeTextButton.state === "choosed" &&
+      dimensionMainScene.negativeAnswer.speech.tenth.typingEnded === false
+    ) {
+      dimensionMainScene.negativeAnswer.speech.displayAllTextAtOnce();
+    } else {
+      dimensionMainScene.showReactionScreen();
+    }
+
+    //Has to be an "Else If" condition, because button is on the same place than before,
+    //it would make 2 clicks directly after another an jump directly to the next action
+  } else if (dimensionMainScene.weiterButtonItemScreenClick()) {
+    //Had to define every state very detailed because of the "neutral"-button,
+    //which has another condition than the others
+    if (
+      dimensionMainScene.toxicTextButton.state === "choosed" &&
+      dimensionMainScene.toxicReaction.speech.tenth.typingEnded === false
+    ) {
+      dimensionMainScene.toxicReaction.speech.displayAllTextAtOnce();
+    } else if (
+      dimensionMainScene.toxicTextButton.state === "choosed" &&
+      dimensionMainScene.toxicReaction.speech.tenth.typingEnded === true
+    ) {
+      dimensionMainScene.showItemScreen();
+    }
+
+    if (
+      dimensionMainScene.positiveTextButton.state === "choosed" &&
+      dimensionMainScene.positiveReaction.speech.tenth.typingEnded === false
+    ) {
+      dimensionMainScene.positiveReaction.speech.displayAllTextAtOnce();
+    } else if (
+      dimensionMainScene.positiveTextButton.state === "choosed" &&
+      dimensionMainScene.positiveReaction.speech.tenth.typingEnded === true
+    ) {
+      dimensionMainScene.showItemScreen();
+    }
+
+    if (
+      dimensionMainScene.negativeTextButton.state === "choosed" &&
+      dimensionMainScene.negativeReaction.speech.tenth.typingEnded === false
+    ) {
+      dimensionMainScene.negativeReaction.speech.displayAllTextAtOnce();
+    } else if (
+      dimensionMainScene.negativeTextButton.state === "choosed" &&
+      dimensionMainScene.negativeReaction.speech.tenth.typingEnded === true
+    ) {
+      dimensionMainScene.showItemScreen();
+    }
+
+    if (
+      dimensionMainScene.neutralTextButton.state === "choosed" &&
+      dimensionMainScene.neutralReaction.speech.tenth.typingEnded === false
+    ) {
+      dimensionMainScene.neutralReaction.speech.displayAllTextAtOnce();
+    } else if (
+      dimensionMainScene.neutralTextButton.state === "choosed" &&
+      dimensionMainScene.neutralReaction.speech.tenth.typingEnded === true
+    ) {
+      dimensionMainScene.showReactionScreenBool = false;
+      //CALL HERE THE NEXT BETWEEN-SCENE!
+      //Jumps directly to next scene!
+      dimensionToDestroyedScene.showFirstScreen();
+      countSceneButtonClicks.push("Clicked");
+    }
+  } else if (dimensionMainScene.weiterButtonYourLookScreenClick()) {
+    dimensionMainScene.showItemScreenBool = false;
+    showUserlook = true;
+    //Has to be an "Else If" condition, because button is on the same place than before,
+    //it would make 2 clicks directly after another an jump directly to the next action
+    //countSceneButtonClicks: Same Weiterbutton, different following scenes. The Array helps to define which scene is next
+  } else if (
+    showUserlook === true &&
+    weiterButtonToNextScene.click() &&
+    countSceneButtonClicks.length === 5
+  ) {
+    showUserlook = false;
+    //CALL HERE THE NEXT BETWEEN-SCENE!
+    dimensionToDestroyedScene.showFirstScreen();
+    countSceneButtonClicks.push("Clicked");
+  }
+  //-----------------------------------------------------------------------dimensionToDestroyedScene (Between-Scene)
+  else if (dimensionToDestroyedScene.weiterButtonSecondScreenClick()) {
+    if (
+      dimensionToDestroyedScene.firstScreenText.sentence.typingEnded === false
+    ) {
+      dimensionToDestroyedScene.firstScreenText.sentence.displayAllTextAtOnce();
+    } else {
+      dimensionToDestroyedScene.showSecondScreen();
+    }
+  } else if (dimensionToDestroyedScene.weiterButtonThirdScreenClick()) {
+    if (
+      dimensionToDestroyedScene.secondScreenText.sentence.typingEnded === false
+    ) {
+      dimensionToDestroyedScene.secondScreenText.sentence.displayAllTextAtOnce();
+    } else {
+      dimensionToDestroyedScene.showThirdScreen();
+    }
+  } else if (dimensionToDestroyedScene.weiterButtonFourthScreenClick()) {
+    if (
+      dimensionToDestroyedScene.thirdScreenText.sentence.typingEnded === false
+    ) {
+      dimensionToDestroyedScene.thirdScreenText.sentence.displayAllTextAtOnce();
+    } else {
+      dimensionToDestroyedScene.showFourthScreen();
+    }
+  } else if (dimensionToDestroyedScene.weiterButtonFifthScreenClick()) {
+    if (
+      dimensionToDestroyedScene.fourthScreenText.sentence.typingEnded === false
+    ) {
+      dimensionToDestroyedScene.fourthScreenText.sentence.displayAllTextAtOnce();
+    } else {
+      dimensionToDestroyedScene.showFifthScreen();
+    }
+  } else if (dimensionToDestroyedScene.weiterButtonSixthScreenClick()) {
+    if (
+      dimensionToDestroyedScene.fifthScreenText.sentence.typingEnded === false
+    ) {
+      dimensionToDestroyedScene.fifthScreenText.sentence.displayAllTextAtOnce();
+    } else {
+      dimensionToDestroyedScene.showSixthScreen();
+    }
+  } else if (
+    dimensionToDestroyedScene.weiterButtonNextPanoramaScreenFromMainSceneClick()
+  ) {
+    if (
+      dimensionToDestroyedScene.sixthScreenText.sentence.typingEnded === false
+    ) {
+      dimensionToDestroyedScene.sixthScreenText.sentence.displayAllTextAtOnce();
+    } else {
+      dimensionToDestroyedScene.showNextPanoramaScreenFromMainScene();
+      destroyedMainScene.showPanoramaScreen();
+    }
+  }
+  //-----------------------------------------------------------------------DESTROYED MAINSCENE
+  else if (destroyedMainScene.spellButtonClick()) {
+    destroyedMainScene.showNPCProblemScreen();
+  } else if (destroyedMainScene.weiterButtonChooseAnswerScreenClick()) {
+    //If you click on the "Weiterbutton" when the text-animation isn't finished yet,
+    //every sentence will be displayed instantly. Then you can click to get to the next screen
+    if (
+      destroyedMainScene.npcProblemSpeechbubble.speech.tenth.typingEnded ===
+      false
+    ) {
+      destroyedMainScene.npcProblemSpeechbubble.speech.displayAllTextAtOnce();
+    } else {
+      destroyedMainScene.showChooseAnswerScreen();
+    }
+  } else if (destroyedMainScene.chooseAnswerScreenClick()) {
+    destroyedMainScene.showReactionScreen();
+  }
+
+  //Has to be an "Else If" condition, because button is on the same place than before,
+  //it would make 2 clicks directly after another an jump directly to the next action
+  else if (destroyedMainScene.weiterButtonItemScreenClick()) {
+    //Had to define every state very detailed because of the "neutral"-button,
+    //which has another condition than the others
+    if (
+      destroyedMainScene.toxicTextButton.state === "choosed" &&
+      destroyedMainScene.toxicReaction.speech.tenth.typingEnded === false
+    ) {
+      destroyedMainScene.toxicReaction.speech.displayAllTextAtOnce();
+    } else if (
+      destroyedMainScene.toxicTextButton.state === "choosed" &&
+      destroyedMainScene.toxicReaction.speech.tenth.typingEnded === true
+    ) {
+      destroyedMainScene.showItemScreen();
+    }
+
+    if (
+      destroyedMainScene.positiveTextButton.state === "choosed" &&
+      destroyedMainScene.positiveReaction.speech.tenth.typingEnded === false
+    ) {
+      destroyedMainScene.positiveReaction.speech.displayAllTextAtOnce();
+    } else if (
+      destroyedMainScene.positiveTextButton.state === "choosed" &&
+      destroyedMainScene.positiveReaction.speech.tenth.typingEnded === true
+    ) {
+      destroyedMainScene.showItemScreen();
+    }
+
+    if (
+      destroyedMainScene.negativeTextButton.state === "choosed" &&
+      destroyedMainScene.negativeReaction.speech.tenth.typingEnded === false
+    ) {
+      destroyedMainScene.negativeReaction.speech.displayAllTextAtOnce();
+    } else if (
+      destroyedMainScene.negativeTextButton.state === "choosed" &&
+      destroyedMainScene.negativeReaction.speech.tenth.typingEnded === true
+    ) {
+      destroyedMainScene.showItemScreen();
+    }
+
+    if (
+      destroyedMainScene.neutralTextButton.state === "choosed" &&
+      destroyedMainScene.neutralReaction.speech.tenth.typingEnded === false
+    ) {
+      destroyedMainScene.neutralReaction.speech.displayAllTextAtOnce();
+    } else if (
+      destroyedMainScene.neutralTextButton.state === "choosed" &&
+      destroyedMainScene.neutralReaction.speech.tenth.typingEnded === true
+    ) {
+      destroyedMainScene.showReactionScreenBool = false;
+      //CALL HERE THE NEXT BETWEEN-SCENE!
+      destroyedToEvilMentorScene.showFirstScreen();
+      //Jumps directly to next scene!
+      countSceneButtonClicks.push("Clicked");
+    }
+  } else if (destroyedMainScene.weiterButtonYourLookScreenClick()) {
+    destroyedMainScene.showItemScreenBool = false;
+    showUserlook = true;
+    //Has to be an "Else If" condition, because button is on the same place than before,
+    //it would make 2 clicks directly after another an jump directly to the next action
+    //countSceneButtonClicks: Same Weiterbutton, different following scenes. The Array helps to define which scene is next
+  } else if (
+    showUserlook === true &&
+    weiterButtonToNextScene.click() &&
+    countSceneButtonClicks.length === 6
+  ) {
+    showUserlook = false;
+    //CALL HERE THE NEXT BETWEEN-SCENE!
+    destroyedToEvilMentorScene.showFirstScreen();
+    countSceneButtonClicks.push("Clicked");
+  }
+
+  //-----------------------------------------------------------------------DestroyedToEvilMentorScene (Between-Scene)
+  else if (destroyedToEvilMentorScene.weiterButtonSecondScreenClick()) {
+    if (
+      destroyedToEvilMentorScene.firstScreenText.sentence.typingEnded === false
+    ) {
+      destroyedToEvilMentorScene.firstScreenText.sentence.displayAllTextAtOnce();
+    } else {
+      destroyedToEvilMentorScene.showSecondScreen();
+    }
+  } else if (destroyedToEvilMentorScene.weiterButtonThirdScreenClick()) {
+    if (
+      destroyedToEvilMentorScene.secondScreenText.sentence.typingEnded === false
+    ) {
+      destroyedToEvilMentorScene.secondScreenText.sentence.displayAllTextAtOnce();
+    } else {
+      destroyedToEvilMentorScene.showThirdScreen();
+    }
+  } else if (destroyedToEvilMentorScene.weiterButtonFourthScreenClick()) {
+    if (
+      destroyedToEvilMentorScene.thirdScreenText.sentence.typingEnded === false
+    ) {
+      destroyedToEvilMentorScene.thirdScreenText.sentence.displayAllTextAtOnce();
+    } else {
+      destroyedToEvilMentorScene.showFourthScreen();
+    }
+  } else if (
+    destroyedToEvilMentorScene.weiterButtonNextPanoramaScreenFromMainSceneClick()
+  ) {
+    if (
+      destroyedToEvilMentorScene.fourthScreenText.sentence.typingEnded === false
+    ) {
+      destroyedToEvilMentorScene.fourthScreenText.sentence.displayAllTextAtOnce();
+    } else {
+      destroyedToEvilMentorScene.showNextPanoramaScreenFromMainScene();
+      evilMentorMainScene.showPanoramaScreen();
+    }
+  }
+  //-----------------------------------------------------------------------EVIL MENTOR MAINSCENE
+  else if (evilMentorMainScene.spellButtonClick()) {
+    evilMentorMainScene.showNPCProblemScreen();
+  } else if (evilMentorMainScene.weiterButtonChooseAnswerScreenClick()) {
+    //If you click on the "Weiterbutton" when the text-animation isn't finished yet,
+    //every sentence will be displayed instantly. Then you can click to get to the next screen
+    if (
+      evilMentorMainScene.npcProblemSpeechbubble.speech.tenth.typingEnded ===
+      false
+    ) {
+      evilMentorMainScene.npcProblemSpeechbubble.speech.displayAllTextAtOnce();
+    } else {
+      evilMentorMainScene.showChooseAnswerScreen();
+    }
+  } else if (evilMentorMainScene.chooseAnswerScreenClick()) {
+    if (evilMentorMainScene.toxicTextButton.state === "choosed") {
+      evilMentorMainScene.showItemScreen();
+    }
+    if (evilMentorMainScene.positiveTextButton.state === "choosed") {
+      evilMentorMainScene.showItemScreen();
+    }
+    if (evilMentorMainScene.negativeTextButton.state === "choosed") {
+      evilMentorMainScene.showItemScreen();
+    }
+    if (evilMentorMainScene.neutralTextButton.state === "choosed") {
+      evilMentorMainScene.showChooseAnswerScreenBool = false;
+      //CALL HERE THE NEXT BETWEEN-SCENE!
+      evilMentorToEndBossScene.showFirstScreen();
+      //Jumps directly to next scene!
+      countSceneButtonClicks.push("Clicked");
+    }
+  } else if (evilMentorMainScene.weiterButtonYourLookScreenClick()) {
+    evilMentorMainScene.showItemScreenBool = false;
+    showUserlook = true;
+    //Has to be an "Else If" condition, because button is on the same place than before,
+    //it would make 2 clicks directly after another an jump directly to the next action
+    //countSceneButtonClicks: Same Weiterbutton, different following scenes. The Array helps to define which scene is next
+  } else if (
+    showUserlook === true &&
+    weiterButtonToNextScene.click() &&
+    countSceneButtonClicks.length === 7
+  ) {
+    showUserlook = false;
+    //CALL HERE THE NEXT BETWEEN-SCENE!
+    evilMentorToEndBossScene.showFirstScreen();
+    countSceneButtonClicks.push("Clicked");
   }
 }
 
-let bossFight = new BossFight(
+let evilMentorToEndBossScene = new EvilMentorToEndBossScene();
+
+let bossFight;
+//(Einmal aufrufen lassen)
+// function startOver() {
+bossFight = new BossFight(
   //User
   //UserHealth
   100,
@@ -1888,10 +2742,13 @@ let bossFight = new BossFight(
   //BossFireSpeed = BossAbjectAmount
   20,
   //BossFireBallSpeed = BossObjectSpeed
-  10
+  20
 );
+// }
 
-let bossFightStarts = true;
+let bossFightStarts = false;
+
+// evilMentorToEndBossScene.showFirstScreen();
 
 //All events die p5 uses, have to be anhängt ans window
 window.draw = draw;
@@ -1904,8 +2761,6 @@ function draw() {
   //   startTestButton.displayActiveOrSleeping();
   //   startTestButton.displayButtonSentence();
   // }
-
-  // socialToDimensionScene.showFirstScreen();
 
   //01_soccerMainScene
   soccerMainScene.panoramaScreen();
@@ -1982,18 +2837,57 @@ function draw() {
   socialToDimensionScene.fifthScreen();
   socialToDimensionScene.sixthScreen();
 
+  //06_DimensionMainScene
+  dimensionMainScene.panoramaFadeIn = 255; //Dont need to fade in: same Picture
+  dimensionMainScene.panoramaScreen();
+  dimensionMainScene.npcProblemScreen();
+  dimensionMainScene.chooseAnswerScreen();
+  dimensionMainScene.answerScreen();
+  dimensionMainScene.reactionScreen();
+  dimensionMainScene.itemScreen();
+
+  //06_dimensionToDestroyedScene
+  dimensionToDestroyedScene.firstScreen();
+  dimensionToDestroyedScene.secondScreen();
+  dimensionToDestroyedScene.thirdScreen();
+  dimensionToDestroyedScene.fourthScreen();
+  dimensionToDestroyedScene.fifthScreen();
+  dimensionToDestroyedScene.sixthScreen();
+
+  //07_destroyedMainScene
+  destroyedMainScene.panoramaFadeIn = 255; //Dont need to fade in: same Picture
+  destroyedMainScene.panoramaScreen();
+  destroyedMainScene.npcProblemScreen();
+  destroyedMainScene.chooseAnswerScreen();
+  destroyedMainScene.reactionScreen();
+  destroyedMainScene.itemScreen();
+
+  //07_destroyedToEvilMentorScene
+  destroyedToEvilMentorScene.firstScreen();
+  destroyedToEvilMentorScene.secondScreen();
+  destroyedToEvilMentorScene.thirdScreen();
+  destroyedToEvilMentorScene.fourthScreen();
+
+  //08_evilMentorMainScene
+  evilMentorMainScene.panoramaFadeIn = 255; //Dont need to fade in: same Picture
+  evilMentorMainScene.panoramaScreen();
+  evilMentorMainScene.npcProblemScreen();
+  evilMentorMainScene.chooseAnswerScreen();
+  evilMentorMainScene.itemScreen();
+
+  //08_EvilMentorToEndBossScene
+  evilMentorToEndBossScene.firstScreen();
+  evilMentorToEndBossScene.secondScreen();
+
   //Testing
   if (bossFightStarts === true) {
-    //Lines have to be below user & boss
-    //User
-    bossFight.userControl();
-    //Boss
-    bossFight.displayBossHealth();
-    bossFight.displayFireBalls();
+    //The order is because of displaying things in the correct way (Below/Above)
 
-    //Rest mothods of user & boss
-    //User
+    bossFight.userControl();
     bossFight.displayUserHealth();
+
+    bossFight.displayBossHealth();
+
     //The userLookForBossFight function is external and not contained in the bossFight class
     //So you have to use push & pop to just affect the userLookForBossFight function
     //DISPLAY USER
@@ -2002,10 +2896,14 @@ function draw() {
     userLookForBossFight();
     pop();
 
-    //Boss
+    bossFight.displayFireBalls();
+
     bossFight.bossControl();
     bossFight.displayBoss();
     bossFight.switchBossImages();
+
+    //Collision
+    bossFight.pointOnRectangle();
   }
 
   //"Global" functions
@@ -2013,3 +2911,33 @@ function draw() {
   userLook();
   bossStats();
 }
+
+//
+//
+//
+//
+//
+//
+//
+//
+
+/*
+–––––––––––––––––––––––– Fuer Franzi & Yara
+*/
+
+soccerMainScene.showPanoramaScreen();
+// soccerToChefScene.showFirstScreen();
+// chefMainScene.showPanoramaScreen();
+// chefToCoffeeScene.showFirstScreen();
+// coffeeMainScene.showPanoramaScreen();
+// coffeeToInvestorScene.showFirstScreen();
+// investorMainScene.showPanoramaScreen();
+// investorToSocialScene.showFirstScreen();
+// socialMainScene.showPanoramaScreen();
+// socialToDimensionScene,showFirstScreen();
+// dimensionMainScene.showPanoramaScreen();
+// dimensionToDestroyedScene.showFirstScreen();
+// destroyedMainScene.showPanoramaScreen();
+// destroyedToEvilMentorScene.showFirstScreen();
+// evilMentorMainScene.showPanoramaScreen();
+// evilMentorToEndBossScene.showFirstScreen();

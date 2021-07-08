@@ -518,7 +518,7 @@ export default class MainScene {
       this.firstNeutralReactiontext,
       this.firstNeutralReactionFont,
       this.secondNeutralReactiontext,
-      this.secondPositiveReactionFont,
+      this.secondNeutralReactionFont,
       this.thirdNeutralReactiontext,
       this.fourthNeutralReactiontext,
       this.fifthNeutralReactiontext,

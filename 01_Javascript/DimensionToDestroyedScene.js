@@ -2,7 +2,7 @@ import BetweenScene from "./BetweenScene.js";
 import BetweenScenesText from "./BetweenScenesText.js";
 import WeiterButton from "./weiterButton.js";
 
-export default class SocialToDimensionScene extends BetweenScene {
+export default class DimensionToDestroyedScene extends BetweenScene {
   constructor() {
     super();
 
@@ -10,84 +10,27 @@ export default class SocialToDimensionScene extends BetweenScene {
     this.firstScreenImageFadeIn = 0;
     this.firstScreenBool = false;
     this.firstScreenImage = loadImage(
-      "00_Links/05_socialToDimensionScene/firstScreen.png"
+      "00_Links/06_dimensionToDestroyedScene/firstScreen.png"
     );
     this.firstScreenText = new BetweenScenesText(
       "Duper",
       18.5,
-      "Okay jetzt aber zurück zum Arbeitsplatz...",
+      "Mentor: „Alles klar! Dann bringe ich uns wieder zurück in unsere Dimension.“",
       0,
       -200,
       1,
-      false
+      true
     );
-    this.weiterButtonToSecondScreen = new WeiterButton(440, 240);
+    this.weiterButtonToSecondScreen = new WeiterButton(0, 240);
 
     //Second screen
-    this.secondScreenImageFadeIn = 0;
+    this.secondScreenGIFfadeIn = 0;
     this.secondScreenBool = false;
-    this.secondScreenImage = loadImage(
-      "00_Links/05_socialToDimensionScene/secondScreen.png"
+    this.secondScreenGIF = loadImage(
+      "00_Links/06_dimensionToDestroyedScene/secondScreen.gif"
     );
 
     this.secondScreenText = new BetweenScenesText(
-      "Duper",
-      18.5,
-      "Huch, der Mentor!",
-      110,
-      -200,
-      1,
-      true
-    );
-
-    this.weiterButtonToThirdScreen = new WeiterButton(440, 240);
-
-    //Third screen
-    this.thirdScreenImageFadeIn = 0;
-    this.thirdScreenBool = false;
-    this.thirdScreenImage = loadImage(
-      "00_Links/05_socialToDimensionScene/thirdScreen.png"
-    );
-
-    this.thirdScreenText = new BetweenScenesText(
-      "Duper",
-      18.5,
-      "Mentor: „Es gibt einen Notfall in einer anderen Dimension! Deine Zauberkraft wird gebraucht!“",
-      0,
-      245,
-      1,
-      true
-    );
-
-    this.weiterButtonToFourthScreen = new WeiterButton(440, 240);
-
-    //Fourth screen
-    this.fourthScreenImageFadeIn = 0;
-    this.fourthScreenBool = false;
-    this.fourthScreenImage = loadImage(
-      "00_Links/05_socialToDimensionScene/thirdScreen.png"
-    );
-
-    this.fourthScreenText = new BetweenScenesText(
-      "Duper",
-      18.5,
-      "Mentor: „Ich bringe dich schnell mit einem Dimensionszauber dort hin!“",
-      0,
-      245,
-      1,
-      true
-    );
-
-    this.weiterButtonToFifthScreen = new WeiterButton(440, 240);
-
-    //Fifth screen
-    this.fifthScreenGIFFadeIn = 0;
-    this.fifthScreenBool = false;
-    this.fifthScreenGIF = loadImage(
-      "00_Links/05_socialToDimensionScene/fifthScreen.gif"
-    );
-
-    this.fifthScreenText = new BetweenScenesText(
       "Duper",
       18.5,
       "Wuuuuushhhh....",
@@ -97,21 +40,78 @@ export default class SocialToDimensionScene extends BetweenScene {
       true
     );
 
+    this.weiterButtonToThirdScreen = new WeiterButton(0, 240);
+
+    //Third screen
+    this.thirdScreenImageFadeIn = 0;
+    this.thirdScreenBool = false;
+    this.thirdScreenImage = loadImage(
+      "00_Links/06_dimensionToDestroyedScene/thirdScreen.png"
+    );
+
+    this.thirdScreenText = new BetweenScenesText(
+      "Duper",
+      18.5,
+      "Mentor: „Ups... irgendwie hatte mein Dimensionszauber zu viel Magie ausgestoßen...“",
+      0,
+      20,
+      1,
+      true
+    );
+
+    this.weiterButtonToFourthScreen = new WeiterButton(0, 240);
+
+    //Fourth screen
+    this.fourthScreenImageFadeIn = 0;
+    this.fourthScreenBool = false;
+    this.fourthScreenImage = loadImage(
+      "00_Links/06_dimensionToDestroyedScene/fourthScreen.png"
+    );
+
+    this.fourthScreenText = new BetweenScenesText(
+      "Duper-Bold",
+      18.5,
+      "...WTF?",
+      100,
+      -40,
+      1,
+      false
+    );
+
+    this.weiterButtonToFifthScreen = new WeiterButton(440, 240);
+
+    //Fifth screen
+    this.fifthScreenImageFadeIn = 0;
+    this.fifthScreenBool = false;
+    this.fifthScreenImage = loadImage(
+      "00_Links/06_dimensionToDestroyedScene/fifthScreen.png"
+    );
+
+    this.fifthScreenText = new BetweenScenesText(
+      "Duper",
+      18.5,
+      "...zu viel Magie ausgestoßen?! WAS IST HIER PASSIERT?!",
+      -48,
+      -240,
+      1,
+      false
+    );
+
     this.weiterButtonToSixthScreen = new WeiterButton(440, 240);
 
     //Sixth screen
     this.sixthScreenImageFadeIn = 0;
     this.sixthScreenBool = false;
     this.sixthScreenImage = loadImage(
-      "00_Links/05_socialToDimensionScene/sixthScreen.png"
+      "00_Links/06_dimensionToDestroyedScene/sixthScreen.png"
     );
 
     this.sixthScreenText = new BetweenScenesText(
-      "Duper",
+      "Duper-Bold",
       18.5,
-      "Die andere Dimension besteht aus... Bildschirmen?",
+      "Die ganze Welt... ZERSTÖRT?!",
+      18,
       0,
-      -50,
       1,
       false
     );
@@ -134,7 +134,7 @@ export default class SocialToDimensionScene extends BetweenScene {
       tint(255, this.firstScreenImageFadeIn);
       image(
         this.firstScreenImage,
-        0,
+        20,
         0,
         this.firstScreenImage.width,
         this.firstScreenImage.height
@@ -165,18 +165,19 @@ export default class SocialToDimensionScene extends BetweenScene {
 
   secondScreen() {
     if (this.secondScreenBool === true) {
-      this.secondScreenImageFadeIn += 5;
-      if (this.secondScreenImageFadeIn > 255) {
-        this.secondScreenImageFadeIn = 255;
+      this.secondScreenGIFfadeIn += 5;
+      if (this.secondScreenGIFfadeIn > 255) {
+        this.secondScreenGIFfadeIn = 255;
       }
-      tint(255, this.secondScreenImageFadeIn);
+      tint(255, this.secondScreenGIFfadeIn);
       image(
-        this.secondScreenImage,
+        this.secondScreenGIF,
         0,
         0,
-        this.secondScreenImage.width / 1,
-        this.secondScreenImage.height / 1
+        this.secondScreenGIF.width,
+        this.secondScreenGIF.height
       );
+      this.secondScreenGIF.delay(200);
 
       //WeiterButton
       this.weiterButtonToThirdScreen.fadeIn();
@@ -204,6 +205,11 @@ export default class SocialToDimensionScene extends BetweenScene {
 
   thirdScreen() {
     if (this.thirdScreenBool === true) {
+      //Mentor is above the text
+      this.thirdScreenText.fadeIn();
+      this.thirdScreenText.displayTextBox();
+      this.thirdScreenText.displayText();
+
       this.thirdScreenImageFadeIn += 5;
       if (this.thirdScreenImageFadeIn > 255) {
         this.thirdScreenImageFadeIn = 255;
@@ -212,8 +218,8 @@ export default class SocialToDimensionScene extends BetweenScene {
 
       image(
         this.thirdScreenImage,
-        0,
-        0,
+        10,
+        -145,
         this.thirdScreenImage.width / 1,
         this.thirdScreenImage.height / 1
       );
@@ -222,10 +228,6 @@ export default class SocialToDimensionScene extends BetweenScene {
       this.weiterButtonToFourthScreen.fadeIn();
       this.weiterButtonToFourthScreen.displayActiveOrSleeping();
       this.weiterButtonToFourthScreen.displayButtonSentence();
-
-      this.thirdScreenText.fadeIn();
-      this.thirdScreenText.displayTextBox();
-      this.thirdScreenText.displayText();
     }
   }
 
@@ -249,10 +251,7 @@ export default class SocialToDimensionScene extends BetweenScene {
       if (this.fourthScreenImageFadeIn > 255) {
         this.fourthScreenImageFadeIn = 255;
       }
-      tint(
-        255
-        // , this.fourthScreenImageFadeIn
-      );
+      tint(255, this.fourthScreenImageFadeIn);
       image(
         this.fourthScreenImage,
         0,
@@ -289,24 +288,23 @@ export default class SocialToDimensionScene extends BetweenScene {
 
   fifthScreen() {
     if (this.fifthScreenBool === true) {
+      this.fifthScreenImageFadeIn += 5;
+      if (this.fifthScreenImageFadeIn > 255) {
+        this.fifthScreenImageFadeIn = 255;
+      }
+      tint(255, this.fifthScreenImageFadeIn);
+      image(
+        this.fifthScreenImage,
+        0,
+        0,
+        this.fifthScreenImage.width,
+        this.fifthScreenImage.height
+      );
+
       //WeiterButton
       this.weiterButtonToSixthScreen.fadeIn();
       this.weiterButtonToSixthScreen.displayActiveOrSleeping();
       this.weiterButtonToSixthScreen.displayButtonSentence();
-
-      this.fifthScreenGIFFadeIn += 5;
-      if (this.fifthScreenGIFFadeIn > 255) {
-        this.fifthScreenGIFFadeIn = 255;
-      }
-      tint(255, this.fifthScreenGIFFadeIn);
-      image(
-        this.fifthScreenGIF,
-        0,
-        40,
-        this.fifthScreenGIF.width,
-        this.fifthScreenGIF.height
-      );
-      this.fifthScreenGIF.delay(200);
 
       this.fifthScreenText.fadeIn();
       this.fifthScreenText.displayTextBox();
