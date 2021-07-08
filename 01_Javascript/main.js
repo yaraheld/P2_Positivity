@@ -12,6 +12,8 @@ import DimensionToDestroyedScene from "./DimensionToDestroyedScene.js";
 import DestroyedToEvilMentorScene from "./DestroyedToEvilMentorScene.js";
 import EvilMentorMainScene from "./EvilMentorMainScene.js";
 import EvilMentorToEndBossScene from "./EvilMentorToEndBossScene.js";
+import FightButton from "./FightButton.js";
+import TextAnimationWithMultipleSentences from "./TextAnimationWithMultipleSentences.js";
 
 //variables & commentaries = english
 //classes: Capital Letter
@@ -1234,7 +1236,7 @@ let evilMentorMainScene = new EvilMentorMainScene(
 
   //Parameter User
   //Health:
-  10,
+  30,
   //Speed
   0,
   //Positivity
@@ -1247,23 +1249,23 @@ let evilMentorMainScene = new EvilMentorMainScene(
   //Health:
   0,
   //Object damage:
-  20,
+  30,
   //Object amount:
-  10,
+  20,
   //Object speed
   10,
 
   //Neutral
   //Object amount:
-  20,
+  30,
 
   //Negative
   //Health:
-  10,
+  20,
   //Object damage:
   0,
   //Object amount:
-  10,
+  0,
   //Object speed
   20
 );
@@ -1331,6 +1333,11 @@ function userStats() {
     destroyedToEvilMentorScene.secondScreenBool === false &&
     destroyedToEvilMentorScene.thirdScreenBool === false &&
     destroyedToEvilMentorScene.fourthScreenBool === false &&
+    //
+    evilMentorToEndBossScene.firstScreenBool === false &&
+    evilMentorToEndBossScene.secondScreenBool === false &&
+    //
+    showUserScoreAndFightManual === false &&
     //
     //bossFight
     bossFightStarts === false
@@ -1719,6 +1726,140 @@ function userLookForBossFight() {
   }
 }
 
+let showUserScoreAndFightManual = false;
+let statsImage = loadImage("00_Links/09_bossFight/stats.png");
+let scorefadeIn = 0;
+let weiterButtonToFight = new FightButton(0, 195, "LET'S FIGHT!", -60);
+let fightManualText = new TextAnimationWithMultipleSentences(
+  -405,
+  -90,
+  19,
+  25,
+  1,
+  color(62, 19, 118),
+  "That escalated quickly...",
+  "Duper-Bold",
+  "Kämpfe gegen deinen Mentor,",
+  "Duper",
+  "indem du den toxischen Feuerbällen",
+  "ausweichst (Maus bewegen ▴ / ▾).",
+  "Wenn du positive Feuerbälle (grün)",
+  "einsammelst, erleidet der Mentor",
+  "Schaden („Angriff“). ",
+  "Besiege die Negativität!",
+  "",
+  ""
+);
+let statsEffectGIF = loadImage("00_Links/00_UI-Elements/getItem.gif");
+function userScoreAndFightManual() {
+  if (showUserScoreAndFightManual === true) {
+    //Image(Lines)
+    scorefadeIn += 10;
+    if (scorefadeIn > 255) {
+      scorefadeIn = 255;
+    }
+    tint(255, scorefadeIn);
+    image(statsImage, 0, 0);
+
+    //Button
+    weiterButtonToFight.fadeIn();
+    weiterButtonToFight.displayActiveOrSleeping();
+    weiterButtonToFight.displayButtonSentence();
+
+    //Text
+    fightManualText.first.textColor = color(62, 19, 118, scorefadeIn);
+    fightManualText.second.textColor = color(62, 19, 118, scorefadeIn);
+    fightManualText.sentences();
+
+    tint(255, scorefadeIn);
+    image(
+      statsEffectGIF,
+      0,
+      -40,
+      statsEffectGIF.width / 1.5,
+      statsEffectGIF.height / 1.5
+    );
+
+    //Userlook
+    push();
+    translate(0, -20);
+    userLookForBossFight();
+    pop();
+
+    //Heart
+    image(
+      usersHeartIcon,
+      240,
+      -150,
+      usersHeartIcon.width / 5,
+      usersHeartIcon.height / 5
+    );
+    noStroke();
+    fill(255, 165, 255, scorefadeIn);
+    rect(255, -154, 10 + userHealth, 10, 10);
+    textFont("Duper-Bold");
+    textSize(21);
+    text("GESUNDHEIT", 255, -165);
+    textFont("Duper");
+    textSize(18);
+    text(userHealth + "/200", 255, -124);
+
+    //Speed
+    image(
+      usersSpeedIcon,
+      240,
+      -59,
+      usersSpeedIcon.width / 5,
+      usersSpeedIcon.height / 5
+    );
+
+    fill(33, 241, 207, scorefadeIn);
+    rect(255, -63, 10 + userSpeed, 10, 10);
+    textFont("Duper-Bold");
+    textSize(21);
+    text("BEWEGUNG", 255, -74);
+    textFont("Duper");
+    textSize(18);
+    text(userSpeed + "/200", 255, -33);
+
+    //Positivity
+    image(
+      usersPositivityIcon,
+      240,
+      29,
+      usersPositivityIcon.width / 5,
+      usersPositivityIcon.height / 5
+    );
+    fill(148, 224, 255, scorefadeIn);
+    rect(255, 25, 10 + userPositivity, 10, 10);
+    textFont("Duper-Bold");
+    textSize(21);
+    text("POSITIVITÄT/ANGRIFF", 255, 14);
+    textFont("Duper");
+    textSize(18);
+    text(userPositivity + "/200", 255, 55);
+
+    //Shield
+    image(
+      usersShieldIcon,
+      240,
+      119,
+      usersShieldIcon.width / 5,
+      usersShieldIcon.height / 5
+    );
+    fill(130, 94, 196, scorefadeIn);
+    rect(255, 115, 10 + userShield, 10, 10);
+    textFont("Duper-Bold");
+    textSize(21);
+    text("SCHILD", 255, 105);
+    textFont("Duper");
+    textSize(18);
+    text(userShield + "/200", 255, 146);
+  }
+}
+
+//
+let bossFightStarts = false;
 //All events die p5 uses, have to be anhängt ans window
 window.mousePressed = mousePressed;
 function mousePressed() {
@@ -2723,10 +2864,42 @@ function mousePressed() {
     evilMentorToEndBossScene.showFirstScreen();
     countSceneButtonClicks.push("Clicked");
   }
+  //-----------------------------------------------------------------------evilMentorToEndBossScene (Between-Scene)
+  else if (evilMentorToEndBossScene.weiterButtonSecondScreenClick()) {
+    if (
+      evilMentorToEndBossScene.firstScreenText.sentence.typingEnded === false
+    ) {
+      evilMentorToEndBossScene.firstScreenText.sentence.displayAllTextAtOnce();
+    } else {
+      evilMentorToEndBossScene.showSecondScreen();
+    }
+  } else if (
+    evilMentorToEndBossScene.weiterButtonNextPanoramaScreenFromMainSceneClick()
+  ) {
+    if (
+      evilMentorToEndBossScene.secondScreenText.sentence.typingEnded === false
+    ) {
+      evilMentorToEndBossScene.secondScreenText.sentence.displayAllTextAtOnce();
+    } else {
+      evilMentorToEndBossScene.showNextPanoramaScreenFromMainScene();
+      showUserScoreAndFightManual = true;
+    }
+  } else if (weiterButtonToFight.click()) {
+    if (fightManualText.everySentenceHasEnded === false) {
+      fightManualText.displayAllTextAtOnce();
+    } else {
+      showUserScoreAndFightManual = false;
+      bossFightStarts = true;
+    }
+  }
 }
 
 let evilMentorToEndBossScene = new EvilMentorToEndBossScene();
 
+//
+//
+//
+//Preperation for start over function (reset)
 let bossFight;
 //(Einmal aufrufen lassen)
 // function startOver() {
@@ -2746,12 +2919,16 @@ bossFight = new BossFight(
 );
 // }
 
-let bossFightStarts = false;
-
+// showUserScoreAndFightManual = true;
+// bossFightStarts = true;
 // evilMentorToEndBossScene.showFirstScreen();
-
+//
+//
+//
+//
 //All events die p5 uses, have to be anhängt ans window
 window.draw = draw;
+//
 function draw() {
   standardSettings();
 
@@ -2879,6 +3056,8 @@ function draw() {
   evilMentorToEndBossScene.firstScreen();
   evilMentorToEndBossScene.secondScreen();
 
+  userScoreAndFightManual();
+
   //Testing
   if (bossFightStarts === true) {
     //The order is because of displaying things in the correct way (Below/Above)
@@ -2904,6 +3083,8 @@ function draw() {
 
     //Collision
     bossFight.pointOnRectangle();
+
+    bossFight.countDown();
   }
 
   //"Global" functions

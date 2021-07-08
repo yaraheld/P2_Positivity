@@ -1,4 +1,5 @@
 import FireBall from "./FireBall.js";
+import CountDownToEndbossFight from "./CountdownToEndbossFight.js";
 
 export default class BossFight {
   constructor(
@@ -8,10 +9,9 @@ export default class BossFight {
     bossFireSpeed,
     bossFireBallSpeed
   ) {
+    this.countDownToEndbossFight = new CountDownToEndbossFight(0, 0);
     this.bossFightBool = false;
 
-    this.jvhif = 0;
-    this.jvhif2 = 0;
     //-------User stats
     this.userX = -430;
     this.userY = 0;
@@ -45,8 +45,10 @@ export default class BossFight {
     this.bossHurtPose = loadImage("00_Links/09_bossFight/boss_hurtpose.png");
     this.bossfightPose = loadImage("00_Links/09_bossFight/boss_fightpose.png");
     //
-    this.counterNextFireball = 0;
-    this.fireNextFireBall = false;
+    //Fires instantly after Timer
+    this.counterNextFireball = 1500;
+    this.fireNextFireBall = true;
+    //
     this.fireBall = new FireBall(this.bossX, this.bossY, 10);
     this.fireballArray = [];
 
@@ -63,6 +65,10 @@ export default class BossFight {
     this.pointOnRectangleY = 0;
 
     this.distanceBetweenRectAndCircle = 0;
+  }
+
+  countDown() {
+    this.countDownToEndbossFight.countDown();
   }
 
   //-----------------------------------------------------------------------------------------User
@@ -146,31 +152,33 @@ export default class BossFight {
   }
 
   displayFireBalls() {
-    //Defines, how fast a new Fireball is pushed into the array
-    this.counterNextFireball += this.bossFireSpeed;
+    if (this.countDownToEndbossFight.timeIsOver === true) {
+      //Defines, how fast a new Fireball is pushed into the array
+      this.counterNextFireball += this.bossFireSpeed;
 
-    if (this.counterNextFireball > 1500) {
-      this.fireNextFireBall = true;
+      if (this.counterNextFireball > 1500) {
+        this.fireNextFireBall = true;
 
-      //Pushes a new Fireball into the Array and sets the counter to 0 again
-      if (this.fireNextFireBall === true) {
-        this.fireballArray.push(
-          new FireBall(
-            this.bossX,
-            this.bossY,
-            this.bossFireBallSpeed,
-            color(255, 255, 0)
-          )
-        );
-        this.changeToFightPose = true;
-        this.counterNextFireball = 0;
-        this.fireNextFireBall = false;
+        //Pushes a new Fireball into the Array and sets the counter to 0 again
+        if (this.fireNextFireBall === true) {
+          this.fireballArray.push(
+            new FireBall(
+              this.bossX,
+              this.bossY,
+              this.bossFireBallSpeed,
+              color(255, 255, 0)
+            )
+          );
+          this.changeToFightPose = true;
+          this.counterNextFireball = 0;
+          this.fireNextFireBall = false;
+        }
       }
-    }
 
-    //Displays every new Fireball
-    for (let i = 0; i < this.fireballArray.length; i++) {
-      this.fireballArray[i].displayRandomFireBalls();
+      //Displays every new Fireball
+      for (let i = 0; i < this.fireballArray.length; i++) {
+        this.fireballArray[i].displayRandomFireBalls();
+      }
     }
   }
 
@@ -246,7 +254,6 @@ export default class BossFight {
 
       //Collision between Rectangle and circle
       //Didn`t work with extra method below, because this.pointOnRectangleX & this.pointOnRectangleY weren't updated
-
       for (let i = 0; i < this.fireballArray.length; i++) {
         //calulate distance between point on Rectangle & position of fireball 2 points:
         //by using the dist() function from p5

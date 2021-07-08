@@ -121,6 +121,36 @@ export default class EvilMentorMainScene extends MainScene {
 
     this.buttonPositionValuesX = [-357, -100, -357, -100];
     this.buttonPositionValuesY = [-45, -45, 150, 150];
+
+    //Had to add this code again from superior class
+    //User parameter
+    this.userHealth = 0;
+    this.userSpeed = 0;
+    this.userPositivity = 0;
+    this.userShield = 0;
+    //User Gain
+    this.userHealthGain = userHealthGain;
+    this.userSpeedGain = userSpeedGain;
+    this.userPositivityGain = userPositivityGain;
+    this.userShieldGain = userShieldGain;
+    //Boss parameter
+    this.bossHealth = 0;
+    this.bossObjectDamage = 0;
+    this.bossObjectAmount = 0;
+    this.bossObjectSpeed = 0;
+    //Boss Gain
+    //Toxic
+    this.bossHealthGainToxic = bossHealthGainToxic;
+    this.bossObjectDamageGainToxic = bossObjectDamageGainToxic;
+    this.bossObjectAmountGainToxic = bossObjectAmountGainToxic;
+    this.bossObjectSpeedGainToxic = bossObjectSpeedGainToxic;
+    //Neutral
+    this.bossObjectAmountGainNeutral = bossObjectAmountNeutral;
+    //Negative
+    this.bossHealthGainNegative = bossHealthGainNegative;
+    this.bossObjectDamageGainNegative = bossObjectDamageGainNegative;
+    this.bossObjectAmountGainNegative = bossObjectAmountGainNegative;
+    this.bossObjectSpeedGainNegative = bossObjectSpeedGainNegative;
   }
 
   //Functions for the "global" userlook class //call these functions from the main.js file
@@ -404,19 +434,74 @@ export default class EvilMentorMainScene extends MainScene {
   //-------------------------------------------------------------------------------------------------Item screen
   itemScreen() {
     if (this.showItemScreenBool === true) {
+      //-----Neutral Choice
       if (this.neutralTextButton.state === "choosed") {
+        //PARAMETER
+        this.bossHealth = 0;
+        this.bossObjectDamage = 0;
+        this.bossObjectAmount = this.bossObjectAmountGainNeutral;
+        this.bossObjectSpeed = 0;
+
         this.state = "neutral";
         //JUMP DIRECTLY TO NEXT SCENE
       }
+
+      //-----Button
       this.weiterButtonYourLookScreen.fadeIn();
       this.weiterButtonYourLookScreen.displayActiveOrSleeping();
       this.weiterButtonYourLookScreen.displayButtonSentence();
 
+      //-----Show stats
+      this.fadeInStatsText += this.fadeInStatsTextVariable;
+      if (this.fadeInStatsText > 255) {
+        this.fadeInStatsTextVariable -= 5;
+      }
+      if (this.fadeInStatsText < 0) {
+        this.fadeInStatsTextVariable = 0;
+      }
+      textSize(25);
+      //Health
+      noStroke();
+      if (this.userHealth === 0) {
+        fill(220, 220, 220, this.fadeInStatsText);
+      } else {
+        fill(255, 165, 255, this.fadeInStatsText);
+      }
+      textFont("Duper-Bold");
+      text("+" + this.userHealth, -325, -268);
+      //Speed
+      noStroke();
+      if (this.userSpeed === 0) {
+        fill(220, 220, 220, this.fadeInStatsText);
+      } else {
+        fill(33, 241, 207, this.fadeInStatsText);
+      }
+      textFont("Duper-Bold");
+      text("+" + this.userSpeed, -325, -241);
+      //Positivity
+      noStroke();
+      if (this.userPositivity === 0) {
+        fill(220, 220, 220, this.fadeInStatsText);
+      } else {
+        fill(148, 224, 255, this.fadeInStatsText);
+      }
+      textFont("Duper-Bold");
+      text("+" + this.userPositivity, -325, -216);
+      //Shield
+      noStroke();
+      if (this.userShield === 0) {
+        fill(220, 220, 220, this.fadeInStatsText);
+      } else {
+        fill(130, 94, 196, this.fadeInStatsText);
+      }
+      textFont("Duper-Bold");
+      text("+" + this.userShield, -325, -189);
+
+      //Fade in item text
       this.fadeInItem += 5;
       if (this.fadeInItem > 255) {
         this.fadeInItem = 255;
       }
-
       textFont("Duper-Bold");
       fill(61, 18, 117, this.fadeInItem);
       textSize(30);
@@ -432,8 +517,10 @@ export default class EvilMentorMainScene extends MainScene {
         this.getItemGIF.height / 1.8
       );
 
+      //-----shows items + sets values (User/Boss)
       if (this.toxicTextButton.state === "choosed") {
         this.state = "toxic";
+
         image(
           this.toxicItem,
           0,
@@ -441,10 +528,17 @@ export default class EvilMentorMainScene extends MainScene {
           this.toxicItem.width,
           this.toxicItem.height
         );
+
+        //PARAMETER
+        this.bossHealth = this.bossHealthGainToxic;
+        this.bossObjectDamage = this.bossObjectDamageGainToxic;
+        this.bossObjectAmount = this.bossObjectAmountGainToxic;
+        this.bossObjectSpeed = this.bossObjectSpeedGainToxic;
       }
 
       if (this.positiveTextButton.state === "choosed") {
         this.state = "positive";
+        console.log("POSITIV!");
         image(
           this.positiveItem,
           0,
@@ -452,10 +546,17 @@ export default class EvilMentorMainScene extends MainScene {
           this.positiveItem.width,
           this.positiveItem.height
         );
+
+        //PARAMETER
+        this.userHealth = this.userHealthGain;
+        this.userSpeed = this.userSpeedGain;
+        this.userPositivity = this.userPositivityGain;
+        this.userShield = this.userShieldGain;
       }
 
       if (this.negativeTextButton.state === "choosed") {
         this.state = "negative";
+
         image(
           this.negativeItem,
           0,
@@ -464,6 +565,11 @@ export default class EvilMentorMainScene extends MainScene {
           this.negativeItem.height
         );
       }
+      //PARAMETER
+      this.bossHealth = this.bossHealthGainNegative;
+      this.bossObjectDamage = this.bossObjectDamageGainNegative;
+      this.bossObjectAmount = this.bossObjectAmountGainNegative;
+      this.bossObjectSpeed = this.bossObjectSpeedGainNegative;
     }
   }
 
