@@ -3122,3 +3122,5 @@ soccerMainScene.showPanoramaScreen();
 // destroyedToEvilMentorScene.showFirstScreen();
 // evilMentorMainScene.showPanoramaScreen();
 // evilMentorToEndBossScene.showFirstScreen();
+// showUserScoreAndFightManual = true;
+// bossFightStarts = true;
