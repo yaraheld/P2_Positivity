@@ -12,9 +12,7 @@ export default class EvilMentorToEndBossScene extends BetweenScene {
     this.firstScreenGIFFadeIn = 0;
     this.firstScreenBool = false;
     this.GIFstopCounter = 0;
-    this.firstScreenGIF = loadImage(
-      "00_Links/08_evilMentorToEndBossScene/firstScreen_small.gif"
-    );
+
     this.ground = loadImage("00_Links/00_UI-Elements/ground.png");
 
     this.firstScreenText = new BetweenScenesText(
@@ -58,7 +56,7 @@ export default class EvilMentorToEndBossScene extends BetweenScene {
     this.firstScreenBool = true;
   }
 
-  firstScreen() {
+  firstScreen(transformationGIF) {
     if (this.firstScreenBool === true) {
       //For fading in the answer pic
       this.firstScreenGIFFadeIn += 5;
@@ -68,17 +66,17 @@ export default class EvilMentorToEndBossScene extends BetweenScene {
       tint(255, this.firstScreenGIFFadeIn);
       image(this.ground, 0, 150, this.ground.width / 2, this.ground.height / 2);
       image(
-        this.firstScreenGIF,
+        transformationGIF,
         20,
         -45,
-        this.firstScreenGIF.width / 1.2,
-        this.firstScreenGIF.height / 1.2
+        transformationGIF.width / 1.2,
+        transformationGIF.height / 1.2
       );
-      this.firstScreenGIF.delay(100);
+      transformationGIF.delay(100);
       this.GIFstopCounter += 1;
       //7 Sek
       if (this.GIFstopCounter > 210) {
-        this.firstScreenGIF.pause();
+        transformationGIF.pause();
       }
 
       //WeiterButton

@@ -1,3 +1,12 @@
+let duper;
+let duperBold;
+//textFont(duper);
+duper = loadFont("00_Links/00_Fonts/duper_regular.otf");
+// textFont(duperBold);
+duperBold = loadFont("00_Links/00_Fonts/duper_bold.otf");
+
+export { duper, duperBold };
+
 import MainScene from "./MainScene.js";
 import MainSceneSelf from "./MainSceneSelf.js";
 import MainSceneDimension from "./MainSceneDimension.js";
@@ -19,13 +28,6 @@ import TextAnimationWithMultipleSentences from "./TextAnimationWithMultipleSente
 //classes: Capital Letter
 //variables: lowercaseInitial
 //functions: self-explanatory naming
-
-//textFont(duper);
-let duper = loadFont("00_Links/00_Fonts/duper_regular.otf");
-// textFont(duperBold);
-let duperBold = loadFont("00_Links/00_Fonts/duper_bold.otf");
-
-export { duper, duperBold };
 
 //JUST FOR TESTING (BEGIN BUTTON)
 let showStartTestButton = true;
@@ -2935,7 +2937,7 @@ bossFight = new BossFight(
 );
 // }
 
-showUserScoreAndFightManual = true;
+// showUserScoreAndFightManual = true;
 // bossFightStarts = true;
 // evilMentorToEndBossScene.showFirstScreen();
 //
@@ -3065,11 +3067,16 @@ function draw() {
   evilMentorMainScene.panoramaFadeIn = 255; //Dont need to fade in: same Picture
   evilMentorMainScene.panoramaScreen();
   evilMentorMainScene.npcProblemScreen();
-  evilMentorMainScene.chooseAnswerScreen();
+  evilMentorMainScene.chooseAnswerScreen(
+    GIFChooseImageToxic,
+    GIFChooseImagePositive,
+    GIFChooseImageNegative,
+    GIFChooseImageNeutral
+  );
   evilMentorMainScene.itemScreen();
 
   //08_EvilMentorToEndBossScene
-  evilMentorToEndBossScene.firstScreen();
+  evilMentorToEndBossScene.firstScreen(transformationGIF);
   evilMentorToEndBossScene.secondScreen();
 
   userScoreAndFightManual();
@@ -3140,6 +3147,6 @@ function draw() {
 // destroyedMainScene.showPanoramaScreen();
 // destroyedToEvilMentorScene.showFirstScreen();
 // evilMentorMainScene.showPanoramaScreen();
-// evilMentorToEndBossScene.showFirstScreen();
+evilMentorToEndBossScene.showFirstScreen();
 // showUserScoreAndFightManual = true;
 // bossFightStarts = true;

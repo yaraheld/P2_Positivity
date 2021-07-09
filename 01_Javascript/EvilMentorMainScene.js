@@ -331,7 +331,12 @@ export default class EvilMentorMainScene extends MainScene {
     }
   }
 
-  chooseAnswerScreen() {
+  chooseAnswerScreen(
+    GIFChooseImageToxic,
+    GIFChooseImagePositive,
+    GIFChooseImageNegative,
+    GIFChooseImageNeutral
+  ) {
     if (this.showChooseAnswerScreenBool === true) {
       this.randomChooseAnswer();
 
@@ -361,16 +366,16 @@ export default class EvilMentorMainScene extends MainScene {
 
       //buttons (comes first, thus the fade in works properly)
       this.toxicTextButton.fadeIn();
-      this.toxicTextButton.displayActiveOrSleeping();
+      this.toxicTextButton.displayActiveOrSleeping(GIFChooseImageToxic);
 
       this.positiveTextButton.fadeIn();
-      this.positiveTextButton.displayActiveOrSleeping();
+      this.positiveTextButton.displayActiveOrSleeping(GIFChooseImagePositive);
 
       this.neutralTextButton.fadeIn();
-      this.neutralTextButton.displayActiveOrSleeping();
+      this.neutralTextButton.displayActiveOrSleeping(GIFChooseImageNeutral);
 
       this.negativeTextButton.fadeIn();
-      this.negativeTextButton.displayActiveOrSleeping();
+      this.negativeTextButton.displayActiveOrSleeping(GIFChooseImageNegative);
 
       //"Typing in"-Dots
       this.typingInDots();

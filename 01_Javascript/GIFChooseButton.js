@@ -7,9 +7,9 @@ export default class GIFChooseButton {
 
     this.GIFsize = 1.1;
     this.gifAnswerType = gifAnswerType;
-    this.GIFChooseImage = loadImage(
-      "00_Links/08_evilMentorMainScene/" + this.gifAnswerType + ".gif"
-    );
+    // this.GIFChooseImage = loadImage(
+    //   "00_Links/08_evilMentorMainScene/" + this.gifAnswerType + ".gif"
+    // );
     this.playButtonSound = false;
     this.buttonSound = loadSound("00_Links/00_Audio/woosh_2.wav");
     this.buttonClickSound = loadSound("00_Links/00_Audio/click.wav");
@@ -22,14 +22,14 @@ export default class GIFChooseButton {
     }
   }
 
-  displayActiveOrSleeping() {
+  displayActiveOrSleeping(GIFChooseImage) {
     tint(255, this.fadeInVariable);
     image(
-      this.GIFChooseImage,
+      GIFChooseImage,
       this.x,
       this.y,
-      this.GIFChooseImage.width / this.GIFsize,
-      this.GIFChooseImage.height / this.GIFsize
+      GIFChooseImage.width / this.GIFsize,
+      GIFChooseImage.height / this.GIFsize
     );
 
     //first value: midPoint
