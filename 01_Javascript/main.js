@@ -2909,16 +2909,32 @@ let bossFight;
 bossFight = new BossFight(
   //User
   //UserHealth
+  //(standard 100)
   100,
   //UserSpeed
+  //(standard:)
   15,
+  //UserDamage / Positivity / Attack
+  // (standard:)
+  50,
+  //UserShield
+  //(standard:)
+  20,
+  //
+  //
   //Boss
   //BossHealth
+  //(standard:)
   100,
-  //BossFireSpeed = BossAbjectAmount
-  20,
-  //BossFireBallSpeed = BossObjectSpeed
-  20
+  //BossFireSpeed = BossObjectAmount (More is more)
+  //(standard:)
+  100,
+  //BossFireBallSpeed = BossObjectSpeed (More is more) (30 max! | 10 Min!)
+  //(standard:)
+  30,
+  //BossFireBallDamage = boss object Damage (More is more)
+  //(standard:)
+  50
 );
 // }
 
@@ -3085,9 +3101,12 @@ function draw() {
     bossFight.switchBossImages();
 
     //Collision
-    bossFight.pointOnRectangleAndCollision();
 
     bossFight.countDown();
+    bossFight.pointOnRectangleAndCollision();
+    bossFight.displayPositiveHits();
+    bossFight.displayToxicHits();
+    bossFight.deleteFireBallsOutside();
   }
 
   //"Global" functions

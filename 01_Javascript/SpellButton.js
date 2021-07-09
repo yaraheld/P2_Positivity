@@ -1,3 +1,4 @@
+import { duperBold } from "./main.js";
 import TextAnimation from "./TextAnimation.js";
 export default class SpellButton {
   constructor(x, y) {
@@ -20,7 +21,7 @@ export default class SpellButton {
     this.counter = 0;
 
     this.buttonText = new TextAnimation(
-      "duper-bold",
+      duperBold,
       15,
       color(157, 157, 157),
       "ZAUBER ANWENDEN",

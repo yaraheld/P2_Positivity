@@ -7,9 +7,13 @@ export default class BossFight {
   constructor(
     userHealth,
     userSpeed,
+    //UserDamage / Positivity / Attack
+    userDamage,
+    userShield,
     bossHealth,
     bossFireSpeed,
-    bossFireBallSpeed
+    bossFireBallSpeed,
+    bossFireBallDamage
   ) {
     this.countDownToEndbossFight = new CountDownToEndbossFight(0, 0);
     this.bossFightBool = false;
@@ -19,6 +23,8 @@ export default class BossFight {
     this.userY = 0;
     this.userSpeed = userSpeed;
     this.userHealth = userHealth;
+    this.userDamage = userDamage;
+    this.userShield = userShield;
 
     //For setting the width of the life Box
     this.userLifeBox = this.userHealth;
@@ -26,18 +32,20 @@ export default class BossFight {
     //-------Boss stats
     this.bossX = 390;
     this.bossY = 0;
-    //Boss Health
-    this.bossHealth = bossHealth;
+
     //
     this.bossSpeed = 15;
     //
+    //Boss Health
+    this.bossHealth = bossHealth;
     //Boss Object Amount / Boss Fire Speed
     this.bossFireSpeed = bossFireSpeed;
     //Boss Object Speed / Boss Fire Ball Speed
     this.bossFireBallSpeed = bossFireBallSpeed;
+    // Object Damage / Boss fire ball damage
+    this.bossFireBallDamage = bossFireBallDamage;
     //For setting the width of the life Box
     this.bossLifeBox = this.bossHealth;
-    // Object Damage
 
     //
     this.bossPose = loadImage("00_Links/09_bossFight/boss_normalpose.png");
@@ -73,6 +81,10 @@ export default class BossFight {
     // this.positiveExplosion = new Explosion();
     this.toxicExplosions = [];
     this.positiveExplosions = [];
+    this.pushPositiveJustOnce = true;
+    this.pushToxicJustOnce = true;
+    this.positiveCounter = 0;
+    this.toxicCounter = 0;
   }
 
   countDown() {
@@ -130,7 +142,7 @@ export default class BossFight {
     strokeWeight(3);
     //Box weight is set in the constructor
     //Special: The minus-value doesn't look well on the stroke, so the stroke has to be moved to the left / to the right
-    rect(350 - this.bossHealth, 240, 100 + this.bossHealth, 20, 5);
+    rect(350 - this.bossLifeBox, 240, 100 + this.bossLifeBox, 20, 5);
 
     noStroke();
     fill(0);
@@ -177,6 +189,7 @@ export default class BossFight {
               color(255, 255, 0)
             )
           );
+
           this.changeToFightPose = true;
           this.counterNextFireball = 0;
           this.fireNextFireBall = false;
@@ -224,9 +237,12 @@ export default class BossFight {
     }
   }
 
+  //Colliosion, Explosions, End of Life
   pointOnRectangleAndCollision() {
-    //For loop to check every fireball
     for (let i = 0; i < this.fireballArray.length; i++) {
+      //Delete Fireballs outside
+
+      //For loop to check every fireball
       this.pointOnRectangleX = this.checkRectangleSide(
         //Rectangle position x (left corner)
         -450,
@@ -253,41 +269,68 @@ export default class BossFight {
         this.fireballArray[i].fireballY - 55
       );
 
-      // //Substract both positions (Fireball Position and Rectangle) to get endpoint
-      // fill(0);
-      // this.circleToRectPointX =
-      //   this.pointOnRectangleX - this.fireballArray[i].fireballX;
-      // this.circleToRectPoinY =
-      //   this.pointOnRectangleY - this.fireballArray[i].fireballY;
-
       //Collision between Rectangle and circle
       //Didn`t work with extra method below, because this.pointOnRectangleX & this.pointOnRectangleY weren't updated
-      for (let i = 0; i < this.fireballArray.length; i++) {
-        //calulate distance between point on Rectangle & position of fireball 2 points:
-        //by using the dist() function from p5
-        this.distanceBetweenRectAndCircle = dist(
-          this.pointOnRectangleX,
-          this.pointOnRectangleY,
-          this.fireballArray[i].fireballX - 135,
-          this.fireballArray[i].fireballY - 55
-        );
-        console.log(this.fireballArray[i].fireballX - 135);
-        if (this.distanceBetweenRectAndCircle < 27.5) {
-          if (this.fireballArray[i].fireBallType === "positive") {
+      //calulate distance between point on Rectangle & position of fireball 2 points:
+      //by using the dist() function from p5
+      this.distanceBetweenRectAndCircle = dist(
+        this.pointOnRectangleX,
+        this.pointOnRectangleY,
+        this.fireballArray[i].fireballX - 135,
+        this.fireballArray[i].fireballY - 55
+      );
+
+      // if (this.fireballArray[0].fireBallX < 300) {
+      //   console.log(this.fireballArray[0].fireBallX);
+      // }
+
+      //actual Collision
+      if (this.distanceBetweenRectAndCircle < 27.5) {
+        if (this.fireballArray[i].fireBallType === "positive") {
+          if (this.pushPositiveJustOnce === true) {
+            console.log("PositiveHit");
             this.positiveExplosions.push(
-              new ExplosionPositive(
-                this.fireballArray[i].fireballX,
-                this.fireballArray[i].fireballY
-              )
+              new ExplosionPositive(this.bossX, this.bossY)
             );
+
+            //Boss is hit
+            this.bossHealth = this.bossHealth - this.userDamage;
+            //+100 is Standard
+            if (this.bossHealth + 100 < 0) {
+              this.bossHealth = -100;
+            }
+
+            this.fireballArray.splice(i, 1);
+            this.pushPositiveJustOnce = false;
           }
-          if (this.fireballArray[i].fireBallType === "toxic") {
+        } else if (this.fireballArray[i].fireBallType === "toxic") {
+          console.log("-");
+          if (this.pushToxicJustOnce === true) {
             this.toxicExplosions.push(
               new ExplosionToxic(
-                this.fireballArray[i].fireballX,
-                this.fireballArray[i].fireballY
+                //480(GIF width)/2.5(scale)/2(GIF Center)=96(GIF Position) + corrigated
+                this.fireballArray[i].fireballX - 140,
+                //373(GIF width)/2.5(scale)/2(GIF Center)=96(GIF Position)+ corrigated
+                this.fireballArray[i].fireballY - 55
               )
             );
+
+            //User is hit + Shield
+            //Proofs, if shield value is not greater then damage
+            //(otherwise the user would gain health with each toxic hit)
+            if (this.bossFireBallDamage - this.userShield >= 0) {
+              this.userHealth =
+                this.userHealth - (this.bossFireBallDamage - this.userShield);
+            }
+
+            //+100 is Standard
+            if (this.userHealth + 100 < 0) {
+              this.userHealth = -100;
+            }
+
+            //Delete fireball and make shure just one explosion is pushed
+            this.fireballArray.splice(i, 1);
+            this.pushToxicJustOnce = false;
           }
         }
       }
@@ -295,11 +338,46 @@ export default class BossFight {
   }
 
   displayPositiveHits() {
-    for (let i = 0; i < this.positiveExplosions.length; i++) {}
+    for (let i = 0; i < this.positiveExplosions.length; i++) {
+      this.positiveExplosions[i].explosionPositive();
+      if (this.positiveExplosions[i].end === true) {
+        this.positiveExplosions.shift();
+      }
+
+      //Counter to avoid double pushes when moved too fast
+      if (this.pushPositiveJustOnce === false) {
+        this.positiveCounter += 1;
+        if (this.positiveCounter > 5) {
+          this.positiveCounter = 0;
+          this.pushPositiveJustOnce = true;
+        }
+      }
+    }
   }
 
   displayToxicHits() {
-    for (let i = 0; i < this.toxicExplosions.length; i++) {}
+    for (let i = 0; i < this.toxicExplosions.length; i++) {
+      this.toxicExplosions[i].explosionToxic();
+      if (this.toxicExplosions[i].end === true) {
+        this.toxicExplosions.shift();
+      }
+      //Counter to avoid double pushes when moved too fast
+      if (this.pushToxicJustOnce === false) {
+        this.toxicCounter += 1;
+        if (this.toxicCounter > 5) {
+          this.toxicCounter = 0;
+          this.pushToxicJustOnce = true;
+        }
+      }
+    }
+  }
+
+  deleteFireBallsOutside() {
+    for (let i = 0; i < this.fireballArray.length; i++) {
+      if (this.fireballArray[i].fireballX < -500) {
+        this.fireballArray.shift();
+      }
+    }
   }
   // collisionRectangleCircle() {
   //   //For loop to check every fireball collision

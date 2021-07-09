@@ -29,7 +29,7 @@ export default class FireBall {
 
     //random fireball probability (Wahrscheinlichkeit)
     //positive fireball: 0, 1, 2, 3 | negative Fireball  4, 5, 6, 7, 8, 9
-    if (this.randomFireBall > 3) {
+    if (this.randomFireBall > 2) {
       //Toxic
       image(
         this.toxicFireBallImage,
@@ -40,7 +40,7 @@ export default class FireBall {
       );
       this.fireBallType = "toxic";
     } else {
-      //Toxic
+      //Positive
       image(
         this.positiveFireBallImage,
         -110 + this.fireballX,
