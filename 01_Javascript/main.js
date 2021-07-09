@@ -1305,6 +1305,7 @@ function userStats() {
     //betweenScenes
     //
     soccerToChefScene.firstScreenBool === false &&
+    soccerToChefScene.secondScreenBool === false &&
     //
     chefToCoffeeScene.firstScreenBool === false &&
     chefToCoffeeScene.secondScreenBool === false &&
