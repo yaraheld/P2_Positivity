@@ -48,12 +48,12 @@ export default class BossFight {
     this.bossLifeBox = this.bossHealth;
 
     //
-    this.bossPose = loadImage("00_Links/09_bossFight/boss_normalpose.png");
+    this.bossPose = loadImage("00_Links/09_bossFight/boss_normalpose_.png");
     this.bossNormalPose = loadImage(
-      "00_Links/09_bossFight/boss_normalpose.png"
+      "00_Links/09_bossFight/boss_normalpose_.png"
     );
-    this.bossHurtPose = loadImage("00_Links/09_bossFight/boss_hurtpose.png");
-    this.bossfightPose = loadImage("00_Links/09_bossFight/boss_fightpose.png");
+    this.bossHurtPose = loadImage("00_Links/09_bossFight/boss_hurtpose_.png");
+    this.bossfightPose = loadImage("00_Links/09_bossFight/boss_fightpose_.png");
     //
     //Fires instantly after Timer
     this.counterNextFireball = 1500;
@@ -166,8 +166,8 @@ export default class BossFight {
       this.bossPose,
       this.bossX,
       this.bossY,
-      this.bossPose.width / 2.5,
-      this.bossPose.height / 2.5
+      this.bossPose.width,
+      this.bossPose.height
     );
   }
 
@@ -216,7 +216,7 @@ export default class BossFight {
     }
     //Holds the pose til counter is over
     if (this.holdBossPose === true) {
-      this.holdBossPoseCounter += 2;
+      this.holdBossPoseCounter += 4;
       if (this.holdBossPoseCounter > 28) {
         this.changeToFightPose = false;
         this.changeToHurtPose = false;

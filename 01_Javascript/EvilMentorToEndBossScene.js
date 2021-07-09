@@ -13,7 +13,7 @@ export default class EvilMentorToEndBossScene extends BetweenScene {
     this.firstScreenBool = false;
     this.GIFstopCounter = 0;
     this.firstScreenGIF = loadImage(
-      "00_Links/08_evilMentorToEndBossScene/firstScreen.gif"
+      "00_Links/08_evilMentorToEndBossScene/firstScreen_small.gif"
     );
     this.ground = loadImage("00_Links/00_UI-Elements/ground.png");
 
@@ -70,9 +70,9 @@ export default class EvilMentorToEndBossScene extends BetweenScene {
       image(
         this.firstScreenGIF,
         20,
-        -40,
-        this.firstScreenGIF.width / 2.5,
-        this.firstScreenGIF.height / 2.5
+        -45,
+        this.firstScreenGIF.width / 1.2,
+        this.firstScreenGIF.height / 1.2
       );
       this.firstScreenGIF.delay(100);
       this.GIFstopCounter += 1;

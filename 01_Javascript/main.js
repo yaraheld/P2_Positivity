@@ -22,12 +22,8 @@ import TextAnimationWithMultipleSentences from "./TextAnimationWithMultipleSente
 
 //textFont(duper);
 let duper = loadFont("00_Links/00_Fonts/duper_regular.otf");
-//textFont("Duper-Ita");
-let duperItalic = loadFont("00_Links/00_Fonts/duper-italic.otf");
 // textFont(duperBold);
 let duperBold = loadFont("00_Links/00_Fonts/duper_bold.otf");
-//textFont("Duper-BoldIta");
-let duperBoldItalic = loadFont("00_Links/00_Fonts/duper_bolditalic.otf");
 
 export { duper, duperBold };
 
@@ -2939,7 +2935,7 @@ bossFight = new BossFight(
 );
 // }
 
-// showUserScoreAndFightManual = true;
+showUserScoreAndFightManual = true;
 // bossFightStarts = true;
 // evilMentorToEndBossScene.showFirstScreen();
 //
@@ -3129,7 +3125,7 @@ function draw() {
 –––––––––––––––––––––––– Fuer Franzi & Yara
 */
 
-soccerMainScene.showPanoramaScreen();
+// soccerMainScene.showPanoramaScreen();
 // soccerToChefScene.showFirstScreen();
 // chefMainScene.showPanoramaScreen();
 // chefToCoffeeScene.showFirstScreen();
