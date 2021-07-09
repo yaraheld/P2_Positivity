@@ -1,6 +1,7 @@
 import TextAnimation from "./TextAnimation.js";
 import SpellButton from "./SpellButton.js";
 import Tween from "./Tween.js";
+import { duper, duperBold } from "./main.js";
 
 export default class ChooseButton extends SpellButton {
   constructor(x, y, buttonSentence, speed) {
@@ -19,7 +20,7 @@ export default class ChooseButton extends SpellButton {
     this.speed = speed;
     this.buttonSentence = buttonSentence;
     this.buttonText = new TextAnimation(
-      "duper-bold",
+      duperBold,
       17,
       color(157, 157, 157),
       this.buttonSentence,

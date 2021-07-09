@@ -9,6 +9,7 @@ export default class SpellButton {
     this.buttonSleeping = loadImage(
       "00_Links/00_UI-Elements/spellButtonSleeping.png"
     );
+
     this.buttonActive = loadImage(
       "00_Links/00_UI-Elements/spellButtonActive.png"
     );

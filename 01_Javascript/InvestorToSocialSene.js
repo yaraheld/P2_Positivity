@@ -1,6 +1,7 @@
 import BetweenScene from "./BetweenScene.js";
 import BetweenScenesText from "./BetweenScenesText.js";
 import WeiterButton from "./weiterButton.js";
+import { duper, duperBold } from "./main.js";
 
 export default class InvestorToSocialScene extends BetweenScene {
   constructor() {
@@ -11,7 +12,7 @@ export default class InvestorToSocialScene extends BetweenScene {
       "00_Links/04_investorToSocialScene/firstScreen.png"
     );
     this.firstScreenText = new BetweenScenesText(
-      "Duper",
+      duper,
       18.5,
       "Der Tag ist ziemlich verrückt... Erstmal wieder zurück zum Arbeitspl...",
       -190,
@@ -30,7 +31,7 @@ export default class InvestorToSocialScene extends BetweenScene {
     );
 
     this.secondScreenText = new BetweenScenesText(
-      "Duper",
+      duper,
       18.5,
       "Oh, die Kollegin hat was gepostet!",
       -300,
@@ -50,7 +51,7 @@ export default class InvestorToSocialScene extends BetweenScene {
     this.thirdScreenImageFadeIn = 0;
 
     this.thirdScreenText = new BetweenScenesText(
-      "Duper",
+      duper,
       18.5,
       "Uuuuuurlaauuuub...",
       0,

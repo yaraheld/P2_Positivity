@@ -1,6 +1,7 @@
 import BetweenScene from "./BetweenScene.js";
 import BetweenScenesText from "./BetweenScenesText.js";
 import WeiterButton from "./weiterButton.js";
+import { duper, duperBold } from "./main.js";
 
 export default class DimensionToDestroyedScene extends BetweenScene {
   constructor() {
@@ -13,7 +14,7 @@ export default class DimensionToDestroyedScene extends BetweenScene {
       "00_Links/06_dimensionToDestroyedScene/firstScreen.png"
     );
     this.firstScreenText = new BetweenScenesText(
-      "Duper",
+      duper,
       18.5,
       "Mentor: „Alles klar! Dann bringe ich uns wieder zurück in unsere Dimension.“",
       0,
@@ -31,7 +32,7 @@ export default class DimensionToDestroyedScene extends BetweenScene {
     );
 
     this.secondScreenText = new BetweenScenesText(
-      "Duper",
+      duper,
       18.5,
       "Wuuuuushhhh....",
       0,
@@ -50,7 +51,7 @@ export default class DimensionToDestroyedScene extends BetweenScene {
     );
 
     this.thirdScreenText = new BetweenScenesText(
-      "Duper",
+      duper,
       18.5,
       "Mentor: „Ups... irgendwie hatte mein Dimensionszauber zu viel Magie ausgestoßen...“",
       0,
@@ -69,7 +70,7 @@ export default class DimensionToDestroyedScene extends BetweenScene {
     );
 
     this.fourthScreenText = new BetweenScenesText(
-      "Duper-Bold",
+      duperBold,
       18.5,
       "...WTF?",
       100,
@@ -88,7 +89,7 @@ export default class DimensionToDestroyedScene extends BetweenScene {
     );
 
     this.fifthScreenText = new BetweenScenesText(
-      "Duper",
+      duper,
       18.5,
       "...zu viel Magie ausgestoßen?! WAS IST HIER PASSIERT?!",
       -48,
@@ -107,7 +108,7 @@ export default class DimensionToDestroyedScene extends BetweenScene {
     );
 
     this.sixthScreenText = new BetweenScenesText(
-      "Duper-Bold",
+      duperBold,
       18.5,
       "Die ganze Welt... ZERSTÖRT?!",
       18,

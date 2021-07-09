@@ -1,5 +1,6 @@
 import SpellButton from "./SpellButton.js";
 import TextAnimation from "./TextAnimation.js";
+import { duper, duperBold } from "./main.js";
 
 export default class FightButton extends SpellButton {
   constructor(x, y, fightButtonText, XpositionOfText) {
@@ -8,7 +9,7 @@ export default class FightButton extends SpellButton {
     this.fightButtonText = fightButtonText;
     this.XpositionOfText = XpositionOfText;
     this.buttonText = new TextAnimation(
-      "duper-bold",
+      duperBold,
       25,
       color(61, 18, 117),
       this.fightButtonText,

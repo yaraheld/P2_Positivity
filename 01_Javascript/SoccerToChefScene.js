@@ -1,6 +1,7 @@
 import BetweenScene from "./BetweenScene.js";
 import BetweenScenesText from "./BetweenScenesText.js";
 import WeiterButton from "./weiterButton.js";
+import { duper, duperBold } from "./main.js";
 
 export default class SoccerToChefScene extends BetweenScene {
   constructor() {
@@ -11,7 +12,7 @@ export default class SoccerToChefScene extends BetweenScene {
       "00_Links/01_soccerToChefScene/firstScreen.png"
     );
     this.firstScreenText = new BetweenScenesText(
-      "Duper",
+      duper,
       18.5,
       "Hm, interessante Zauberkraft... erstmal die Lage im Büro checken.",
       -190,
@@ -32,7 +33,7 @@ export default class SoccerToChefScene extends BetweenScene {
     );
 
     this.secondScreenText = new BetweenScenesText(
-      "Duper",
+      duper,
       18.5,
       "Nanu? Was ist denn dahinten mit dem Chef los?",
       15,

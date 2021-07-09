@@ -20,14 +20,16 @@ import TextAnimationWithMultipleSentences from "./TextAnimationWithMultipleSente
 //variables: lowercaseInitial
 //functions: self-explanatory naming
 
-//textFont("Duper");
+//textFont(duper);
 let duper = loadFont("00_Links/00_Fonts/duper_regular.otf");
 //textFont("Duper-Ita");
 let duperItalic = loadFont("00_Links/00_Fonts/duper-italic.otf");
-// textFont("Duper-Bold");
+// textFont(duperBold);
 let duperBold = loadFont("00_Links/00_Fonts/duper_bold.otf");
 //textFont("Duper-BoldIta");
 let duperBoldItalic = loadFont("00_Links/00_Fonts/duper_bolditalic.otf");
+
+export { duper, duperBold };
 
 //JUST FOR TESTING (BEGIN BUTTON)
 let showStartTestButton = true;
@@ -70,9 +72,9 @@ let soccerMainScene = new MainScene(
 
   //NPC problem speechbububle text
   "Wie kann man denn so verpeilt sein?",
-  "Duper-Bold",
+  duperBold,
   "Mein 12-jähriger Sohn hat gestern ",
-  "Duper",
+  duper,
   "beim Fußballspiel den Elfmeter",
   "INS FALSCHE TOR VERSENKT!",
   "Wie kann das denn bitte bei nem",
@@ -98,9 +100,9 @@ let soccerMainScene = new MainScene(
   //Answers
   //Toxic
   "Ich verstehe dich...",
-  "Duper-Bold",
+  duperBold,
   "aber sieh es mal so:",
-  "Duper",
+  duper,
   "Wenigstens hat er überhaupt",
   "ein Tor getroffen!",
   "",
@@ -111,9 +113,9 @@ let soccerMainScene = new MainScene(
   "",
   //positive
   "Mach dir nichts draus,",
-  "Duper-Bold",
+  duperBold,
   "dein Sohn ist doch erst 12!",
-  "Duper",
+  duper,
   "Ein Vater-Sohn-Training wird",
   "ihm bestimmt weiterhelfen.",
   "",
@@ -124,9 +126,9 @@ let soccerMainScene = new MainScene(
   "",
   //neutral
   "Naja, ich muss jetzt",
-  "Duper-Bold",
+  duperBold,
   "weiter zur Arbeit.",
-  "Duper-Bold",
+  duperBold,
   "",
   "",
   "",
@@ -137,9 +139,9 @@ let soccerMainScene = new MainScene(
   "",
   //negative
   "Das ist schon",
-  "Duper-Bold",
+  duperBold,
   "ein bisschen peinlich.",
-  "Duper-Bold",
+  duperBold,
   "Zum Glück habe ich",
   "keine Kinder.",
   "",
@@ -152,9 +154,9 @@ let soccerMainScene = new MainScene(
   //NPC Reaction
   //toxic
   "Hm, ja stimmt...",
-  "Duper-Bold",
+  duperBold,
   "Am besten spreche ich garnicht",
-  "Duper",
+  duper,
   "mit ihm darüber und freue mich",
   "einfach über meinen Sohn.",
   "Danke!",
@@ -165,9 +167,9 @@ let soccerMainScene = new MainScene(
   "",
   //positive
   "Haha, das ist ne Idee!",
-  "Duper-Bold",
+  duperBold,
   "Da wird sich nicht nur mein Sohn",
-  "Duper",
+  duper,
   "drüber freuen, sondern auch",
   "mein Gewicht.",
   "",
@@ -179,9 +181,9 @@ let soccerMainScene = new MainScene(
 
   //neutral
   "Aber wer bist du nochmal?",
-  "Duper-Bold",
+  duperBold,
   "Arbeiten wir nicht im",
-  "Duper",
+  duper,
   "gleichen Abteil?",
   "",
   "",
@@ -192,9 +194,9 @@ let soccerMainScene = new MainScene(
   "",
   //negative
   "Ein bisschen beneide",
-  "Duper-Bold",
+  duperBold,
   "ich dich schon...",
-  "Duper-Bold",
+  duperBold,
   "",
   "",
   "",
@@ -257,9 +259,9 @@ let chefMainScene = new MainScene(
 
   //NPC problem speechbububle text
   "Ich dachte, dass Geld immer",
-  "Duper-Bold",
+  duperBold,
   "alles wett macht...",
-  "Duper-Bold",
+  duperBold,
   "Aber was soll ich damit, wenn",
   "sich meine Frau immer mehr",
   "von mir distanziert?",
@@ -285,9 +287,9 @@ let chefMainScene = new MainScene(
   //Answers
   //Toxic
   "Alles passiert aus einem Grund...",
-  "Duper-Bold",
+  duperBold,
   "vielleicht sollten Sie einfach",
-  "Duper",
+  duper,
   "lernen, das Beste auch in so",
   "einer Situation zu sehen.",
   "",
@@ -298,9 +300,9 @@ let chefMainScene = new MainScene(
   "",
   //positive
   "Ist Ihnen denn die Arbeit und",
-  "Duper-Bold",
+  duperBold,
   "das Geld wichtiger, als Ihre Frau?",
-  "Duper-Bold",
+  duperBold,
   "Arbeiten Sie daran, ein ",
   "besserer Partner für sie",
   "zu werden. Das wird einiges",
@@ -311,9 +313,9 @@ let chefMainScene = new MainScene(
   "",
   //neutral
   "Ich war bis jetzt noch",
-  "Duper-Bold",
+  duperBold,
   "nicht auf dem Klo. ",
-  "Duper-Bold",
+  duperBold,
   "Entschuldigen Sie, es ist ",
   "schon fast zu spät!",
   "",
@@ -324,9 +326,9 @@ let chefMainScene = new MainScene(
   "",
   //negative
   "Sie haben sich doch",
-  "Duper-Bold",
+  duperBold,
   "den Job ausgesucht,",
-  "Duper-Bold",
+  duperBold,
   "kommen sie damit klar.",
   "",
   "",
@@ -339,9 +341,9 @@ let chefMainScene = new MainScene(
   //NPC Reaction
   //toxic
   "Sehen Sie! Das habe ich mir auch",
-  "Duper-Bold",
+  duperBold,
   "schon gesagt.",
-  "Duper-Bold",
+  duperBold,
   "Soll sich meine Frau mal nicht",
   "so anstellen. Und wer kann",
   "sich schon eine Rolli gönnen?",
@@ -352,9 +354,9 @@ let chefMainScene = new MainScene(
   "",
   //positive
   "Das ist aber ehrlich von Ihnen... ",
-  "Duper-Bold",
+  duperBold,
   "Zum Glück sind mir meine Sorgen ",
-  "Duper",
+  duper,
   "einfach so rausgerutscht!",
   "Mehr Zeit für meine Familie, ",
   "das ist gut! Sagen Sie – wollen Sie",
@@ -365,9 +367,9 @@ let chefMainScene = new MainScene(
   "",
   //neutral
   "Äähh... ",
-  "Duper-Bold",
+  duperBold,
   "was... ",
-  "Duper-Bold",
+  duperBold,
   "ist das hier?!",
   "",
   "",
@@ -378,9 +380,9 @@ let chefMainScene = new MainScene(
   "",
   //negative
   "Machen Sie sich an die Arbeit!",
-  "Duper-Bold",
+  duperBold,
   "Vergessen Sie ganz schnell, was",
-  "Duper",
+  duper,
   "ich Ihnen gerade erzählt habe!",
   "",
   "",
@@ -443,9 +445,9 @@ let coffeeMainScene = new MainSceneSelf(
 
   //NPC problem speechbububle text
   "Och nööö...",
-  "Duper-Bold",
+  duperBold,
   "Meine Hose ist total nass.",
-  "Duper-Bold",
+  duperBold,
   "Shit! Ist nicht gleich das Meeting mit",
   "dem Investor?! Jetzt muss ich mir wohl wieder",
   "die lange Unterhose meiner Kollegin leihen.",
@@ -472,9 +474,9 @@ let coffeeMainScene = new MainSceneSelf(
   //NPC Reaction => own Reaction
   //toxic
   "Den Gedanken",
-  "Duper-Bold",
+  duperBold,
   "schiebe ich einfach unter meinen",
-  "Duper",
+  duper,
   "Sorgenstapel. Und mit der langen",
   "Unterhose sehe ich eigentlich",
   "ganz sexy aus.",
@@ -485,9 +487,9 @@ let coffeeMainScene = new MainSceneSelf(
   "",
   //positive
   "Ich bin wohl etwas nervös,",
-  "Duper-Bold",
+  duperBold,
   "aber das ist normal. Ich versuche",
-  "Duper",
+  duper,
   "jetzt klare Gedanken zu fassen und",
   "schnell eine Alternative zur langen",
   "Unterhose zu finden.",
@@ -498,9 +500,9 @@ let coffeeMainScene = new MainSceneSelf(
   "",
   //neutral
   "Kaffe leer... egal.",
-  "Duper-Bold",
+  duperBold,
   "Hmmm... brauche...",
-  "Duper",
+  duper,
   "neuen... Kaffee...",
   "",
   "",
@@ -511,9 +513,9 @@ let coffeeMainScene = new MainSceneSelf(
   "",
   //negative
   "Wofür habe",
-  "Duper-Bold",
+  duperBold,
   "ich denn bitte Zauberkräfte,",
-  "Duper",
+  duper,
   "wenn ich noch nicht einmal richtig",
   "trinken kann?! Ich habe etwas",
   "schlimmeres als die lange",
@@ -576,9 +578,9 @@ let investorMainScene = new MainScene(
 
   //NPC problem speechbububle text
   "Meine Schildkröte muss heute",
-  "Duper-Bold",
+  duperBold,
   "eingeschläfert werden...",
-  "Duper-Bold",
+  duperBold,
   "Speedo war mein ein und alles! Mit",
   "wem gucke ich denn jetzt Tierdokus?",
   "In meiner Verfassung muss ich das",
@@ -604,9 +606,9 @@ let investorMainScene = new MainScene(
   //Answers
   //Toxic
   "So ist das im Leben.",
-  "Duper-Bold",
+  duperBold,
   "Konzentrieren Sie sich auf",
-  "Duper",
+  duper,
   "das Positive. Sie haben einen",
   "freien Tag! Nutzen Sie ihn.",
   "",
@@ -617,9 +619,9 @@ let investorMainScene = new MainScene(
   "",
   //positive
   "Das tut mir leid...",
-  "Duper-Bold",
+  duperBold,
   "lassen Sie es raus.",
-  "Duper-Bold",
+  duperBold,
   "Wenn ich Ihnen helfen kann",
   "oder Sie jemanden für einen",
   "Doku-Abend brauchen,",
@@ -630,9 +632,9 @@ let investorMainScene = new MainScene(
   "",
   //neutral
   "Ehrlich gesagt",
-  "Duper-Bold",
+  duperBold,
   "bekomme ich in Aufzügen",
-  "Duper",
+  duper,
   "schnell Platzangst...",
   "ich nehme die Treppen.",
   "",
@@ -643,9 +645,9 @@ let investorMainScene = new MainScene(
   "",
   //negative
   "Jetzt machen Sie mal LANGSAM...",
-  "Duper-Bold",
+  duperBold,
   "das Meeting fällt aus!?",
-  "Duper",
+  duper,
   "Dann pack ich mal speedomäßig",
   "meine Sachen. Ach...",
   "und herzliches Beileid.",
@@ -658,9 +660,9 @@ let investorMainScene = new MainScene(
   //NPC Reaction
   //toxic
   "Meinen Sie? Ich fühle mich",
-  "Duper-Bold",
+  duperBold,
   "so kraftlos...",
-  "Duper-Bold",
+  duperBold,
   "dann lass ich das Meeting zwar",
   "erstmal sausen, aber versuche",
   "mich trotzdem an etwas Produktivem.",
@@ -671,9 +673,9 @@ let investorMainScene = new MainScene(
   "",
   //positive
   "Das tut so gut,",
-  "Duper-Bold",
+  duperBold,
   "einfach mal trauern zu können...",
-  "Duper",
+  duper,
   "Ich werde das Meeting erstmal",
   "ausfallen lassen... Sie können mir",
   "gerne Ihre Nummer geben,",
@@ -684,9 +686,9 @@ let investorMainScene = new MainScene(
   "",
   //neutral
   "Warum sind sie dann überhaupt ",
-  "Duper-Bold",
+  duperBold,
   "zum Aufzug gegangen?...",
-  "Duper-Bold",
+  duperBold,
   "Naja, ich werde das Meeting",
   "erstmal ausfallen lassen.",
   "",
@@ -697,9 +699,9 @@ let investorMainScene = new MainScene(
   "",
   //negative
   "l...langsam?",
-  "Duper-Bold",
+  duperBold,
   "Speedo - w... was?",
-  "Duper-Bold",
+  duperBold,
   "Ich werde das Meeting",
   "erstmal ausfallen lassen...",
   "",
@@ -762,9 +764,9 @@ let socialMainScene = new MainSceneSelf(
 
   //NPC problem speechbububle text
   "Läuft bei meiner Kollegin…",
-  "Duper-Bold",
+  duperBold,
   "Bei anderen scheint immer",
-  "Duper",
+  duper,
   "alles super zu sein. Hier in der",
   "Description steht auch noch",
   "„positive vibes only“…",
@@ -791,9 +793,9 @@ let socialMainScene = new MainSceneSelf(
   //NPC Reaction => own Reaction
   //toxic
   "Ich like das Bild jetzt auch.",
-  "Duper-Bold",
+  duperBold,
   "Der Post hat mich motiviert!",
-  "Duper",
+  duper,
   "Mein Lächeln werde ich",
   "wieder aufsetzen.",
   "",
@@ -804,9 +806,9 @@ let socialMainScene = new MainSceneSelf(
   "",
   //positive
   "Ich kann nicht nur",
-  "Duper-Bold",
+  duperBold,
   "die positiven Gefühle fühlen",
-  "Duper-Bold",
+  duperBold,
   "und die negativen ausblenden.",
   "Alle Gefühle sind relevant.",
   "",
@@ -818,9 +820,9 @@ let socialMainScene = new MainSceneSelf(
 
   //neutral
   "Wieder ein Urlaubsbild.",
-  "Duper-Bold",
+  duperBold,
   "Ich scrolle noch ein bisschen weiter.",
-  "Duper",
+  duper,
   "Vielleicht gibts ja einen ",
   "witzigen Katzenpost",
   "von der h_da.",
@@ -831,9 +833,9 @@ let socialMainScene = new MainSceneSelf(
   "",
   //negative
   "Im Vergleich zu ihr",
-  "Duper-Bold",
+  duperBold,
   "ist mein Leben scheiße...",
-  "Duper-Bold",
+  duperBold,
   "Egal was ich mache, das Glück",
   "ist einfach nicht auf meiner Seite.",
   "Ich will mich auch so",
@@ -896,9 +898,9 @@ let dimensionMainScene = new MainSceneDimension(
 
   //NPC problem speechbububle text
   "Wir arbeiten gerade an einem",
-  "Duper-Bold",
+  duperBold,
   "Uni-Projekt und liegen voll zurück!",
-  "Duper-Bold",
+  duperBold,
   "Selbst unsere Dozentin bekommt",
   "jetzt Angst. Wie sollen wir dieses ",
   "Semester überstehen?",
@@ -924,9 +926,9 @@ let dimensionMainScene = new MainSceneDimension(
   //Answers
   //Toxic
   "Ihr seid nicht gescheitert.",
-  "Duper-Bold",
+  duperBold,
   "Arbeitet weiter und holt",
-  "Duper",
+  duper,
   "die Zeit wieder auf!",
   "",
   "",
@@ -937,9 +939,9 @@ let dimensionMainScene = new MainSceneDimension(
   "",
   //positive
   "Scheitern ist nichts Schlechtes,",
-  "Duper-Bold",
+  duperBold,
   "wenn man daraus lernt.",
-  "Duper-Bold",
+  duperBold,
   "Guckt, was ihr ändern müsst",
   "und haut dann richtig rein!",
   "Alleine für die Idee würde",
@@ -950,9 +952,9 @@ let dimensionMainScene = new MainSceneDimension(
   "",
   //neutral
   "... aber die Internetverbindung",
-  "Duper-Bold",
+  duperBold,
   "war so schlecht,",
-  "Duper-Bold",
+  duperBold,
   "ich habe leider nichts",
   "verstanden.",
   "",
@@ -963,9 +965,9 @@ let dimensionMainScene = new MainSceneDimension(
   "",
   //negative
   "Wenn man scheitert,",
-  "Duper-Bold",
+  duperBold,
   "sollte man seine Bemühungen",
-  "Duper",
+  duper,
   "aufgeben und sich nicht",
   "weiter sinnlos anstrengen.",
   "",
@@ -978,9 +980,9 @@ let dimensionMainScene = new MainSceneDimension(
   //NPC Reaction
   //toxic
   "Okay, wir schaffen das",
-  "Duper-Bold",
+  duperBold,
   "irgendwie schon, solange wir",
-  "Duper",
+  duper,
   "einfach weitermachen!",
   "Das Semester schaffen",
   "wir easy peasy. Piew Piew!",
@@ -992,9 +994,9 @@ let dimensionMainScene = new MainSceneDimension(
 
   //positive
   "Guter Punkt – wir strukturieren",
-  "Duper-Bold",
+  duperBold,
   "uns nochmal neu und gucken,",
-  "Duper-Bold",
+  duperBold,
   "was wir anders machen müssen.",
   "Viel zu lernen wir noch haben!",
   "",
@@ -1006,9 +1008,9 @@ let dimensionMainScene = new MainSceneDimension(
 
   //neutral
   "Was hast du gesagt?",
-  "Duper-Bold",
+  duperBold,
   "Du warst gemutet.",
-  "Duper",
+  duper,
   "",
   "",
   "",
@@ -1020,9 +1022,9 @@ let dimensionMainScene = new MainSceneDimension(
 
   //negative
   "Jo.",
-  "Duper-Bold",
+  duperBold,
   "Wir lassen uns",
-  "Duper",
+  duper,
   "einfach etwas gehen,",
   "BAföG regelt.",
   "",
@@ -1085,9 +1087,9 @@ let destroyedMainScene = new MainSceneSelf(
 
   //NPC problem speechbububle text
   "Das kann doch nicht sein!",
-  "Duper-Bold",
+  duperBold,
   "Gestern war alles normal...",
-  "Duper-Bold",
+  duperBold,
   "und jetzt nimmt die Story völlig absurde",
   "Ausmaße an! Was hat das für einen Sinn?",
   "Vor allem für mich als User, wenn alle",
@@ -1114,9 +1116,9 @@ let destroyedMainScene = new MainSceneSelf(
   //NPC Reaction => own Reaction
   //toxic
   "...nichts war umsonst!",
-  "Duper-Bold",
+  duperBold,
   "Good vibes only... mehr Lächeln...",
-  "Duper",
+  duper,
   "pOsITiv dENkEn!",
   "",
   "",
@@ -1127,9 +1129,9 @@ let destroyedMainScene = new MainSceneSelf(
   "",
   //positive
   "Noch nie hat sich",
-  "Duper-Bold",
+  duperBold,
   "etwas so sinnlos angefühlt.",
-  "Duper-Bold",
+  duperBold,
   "Das ist gerade echt hart. Wenn ich mich",
   "zusammenreiße, bekomme ich mich",
   "wieder in den Griff.",
@@ -1141,9 +1143,9 @@ let destroyedMainScene = new MainSceneSelf(
 
   //neutral
   "...absurde Story?",
-  "Duper-Bold",
+  duperBold,
   "Welche Story?...",
-  "Duper",
+  duper,
   "",
   "",
   "",
@@ -1154,9 +1156,9 @@ let destroyedMainScene = new MainSceneSelf(
   "",
   //negative
   "Wie es den Menschen in der",
-  "Duper-Bold",
+  duperBold,
   "Simulation ergangen ist, ist mir egal.",
-  "Duper-Bold",
+  duperBold,
   "Hauptsache ich habe Rüstungsteile",
   "bekommen und gewinne",
   "das Game!",
@@ -1219,9 +1221,9 @@ let evilMentorMainScene = new EvilMentorMainScene(
 
   //NPC problem speechbububle text
   "Mit Positivität kommt man doch",
-  "Duper-Bold",
+  duperBold,
   "KEIN BISSCHEN WEITER IM LEBEN!",
-  "Duper-Bold",
+  duperBold,
   "Diese naiven Menschen...",
   "ich kann Sie nicht ausstehen!",
   "Meine Geduld hat jetzt ein Ende.",
@@ -1523,7 +1525,7 @@ function userLook() {
     if (fadeInItem > 255) {
       fadeInItem = 255;
     }
-    textFont("Duper-Bold");
+    textFont(duperBold);
     fill(61, 18, 117, fadeInItem);
     textSize(70);
     text("DEIN", -310, 0);
@@ -1729,7 +1731,7 @@ function userLookForBossFight() {
 let showUserScoreAndFightManual = false;
 let statsImage = loadImage("00_Links/09_bossFight/stats.png");
 let scorefadeIn = 0;
-let weiterButtonToFight = new FightButton(0, 195, "LET'S FIGHT!", -60);
+let weiterButtonToFight = new FightButton(0, 220, "LET'S FIGHT!", -60);
 let fightManualText = new TextAnimationWithMultipleSentences(
   -405,
   -90,
@@ -1738,9 +1740,9 @@ let fightManualText = new TextAnimationWithMultipleSentences(
   1,
   color(62, 19, 118),
   "That escalated quickly...",
-  "Duper-Bold",
+  duperBold,
   "Kämpfe gegen deinen Mentor,",
-  "Duper",
+  duper,
   "indem du den toxischen Feuerbällen",
   "ausweichst (Maus bewegen ▴ / ▾).",
   "Wenn du positive Feuerbälle (grün)",
@@ -1783,6 +1785,7 @@ function userScoreAndFightManual() {
     //Userlook
     push();
     translate(0, -20);
+    scale(0.8);
     userLookForBossFight();
     pop();
 
@@ -1797,10 +1800,10 @@ function userScoreAndFightManual() {
     noStroke();
     fill(255, 165, 255, scorefadeIn);
     rect(255, -154, 10 + userHealth, 10, 10);
-    textFont("Duper-Bold");
+    textFont(duperBold);
     textSize(21);
     text("GESUNDHEIT", 255, -165);
-    textFont("Duper");
+    textFont(duper);
     textSize(18);
     text(userHealth + "/200", 255, -124);
 
@@ -1815,10 +1818,10 @@ function userScoreAndFightManual() {
 
     fill(33, 241, 207, scorefadeIn);
     rect(255, -63, 10 + userSpeed, 10, 10);
-    textFont("Duper-Bold");
+    textFont(duperBold);
     textSize(21);
     text("BEWEGUNG", 255, -74);
-    textFont("Duper");
+    textFont(duper);
     textSize(18);
     text(userSpeed + "/200", 255, -33);
 
@@ -1832,10 +1835,10 @@ function userScoreAndFightManual() {
     );
     fill(148, 224, 255, scorefadeIn);
     rect(255, 25, 10 + userPositivity, 10, 10);
-    textFont("Duper-Bold");
+    textFont(duperBold);
     textSize(21);
     text("POSITIVITÄT/ANGRIFF", 255, 14);
-    textFont("Duper");
+    textFont(duper);
     textSize(18);
     text(userPositivity + "/200", 255, 55);
 
@@ -1849,10 +1852,10 @@ function userScoreAndFightManual() {
     );
     fill(130, 94, 196, scorefadeIn);
     rect(255, 115, 10 + userShield, 10, 10);
-    textFont("Duper-Bold");
+    textFont(duperBold);
     textSize(21);
     text("SCHILD", 255, 105);
-    textFont("Duper");
+    textFont(duper);
     textSize(18);
     text(userShield + "/200", 255, 146);
   }
@@ -3082,7 +3085,7 @@ function draw() {
     bossFight.switchBossImages();
 
     //Collision
-    bossFight.pointOnRectangle();
+    bossFight.pointOnRectangleAndCollision();
 
     bossFight.countDown();
   }

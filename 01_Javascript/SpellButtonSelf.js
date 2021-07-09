@@ -1,12 +1,13 @@
 import SpellButton from "./SpellButton.js";
 import TextAnimation from "./TextAnimation.js";
+import { duper, duperBold } from "./main.js";
 
 export default class SpellButtonSelf extends SpellButton {
   constructor(x, y) {
     super(x, y);
 
     this.buttonText = new TextAnimation(
-      "duper-bold",
+      duperBold,
       15,
       color(157, 157, 157),
       "ZAUBER AUF SICH SELBST ANWENDEN",

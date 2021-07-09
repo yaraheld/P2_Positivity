@@ -1,3 +1,5 @@
+new p5();
+
 function setup() {
   //1100x620px
   let myCanvas = createCanvas(1100, 620);
@@ -13,6 +15,5 @@ window.addEventListener("keydown", function (event) {
   }
 });
 
-new p5();
 let width = windowWidth;
 let height = windowHeight;

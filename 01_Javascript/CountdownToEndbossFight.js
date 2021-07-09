@@ -1,3 +1,5 @@
+import { duper, duperBold } from "./main.js";
+
 export default class CountDownToEndbossFight {
   constructor(x, y) {
     this.x = x;
@@ -52,7 +54,7 @@ export default class CountDownToEndbossFight {
 
       textAlign(CENTER);
       textSize(165);
-      textFont("Duper-Bold");
+      textFont(duperBold);
 
       fill(61, 18, 117, this.numberThree + this.numberThree2);
       text(" " + this.countDownNumbers[3], -15, 15);

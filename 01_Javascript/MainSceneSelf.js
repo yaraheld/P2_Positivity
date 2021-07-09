@@ -1,9 +1,9 @@
 import ChooseButton from "./chooseButton.js";
 import WeiterButton from "./weiterButton.js";
 import Timer from "./Timer.js";
-import UserAnswerSpeechBubble from "./UserAnswerSpeechBubble.js";
 import SpellButtonSelf from "./SpellButtonSelf.js";
 import SpeechBubbleSelf from "./SpeechBubbleSelf.js";
+import { duper, duperBold } from "./main.js";
 
 //CANT MAKE A F***** EXTENSION BECAUSE OF A DOUBLED PNG ERROR (CLASS EXTENSION DIDN´T OVERWRITE PNG TO GIF)
 export default class MainSceneSelf {
@@ -902,7 +902,7 @@ export default class MainSceneSelf {
       } else {
         fill(255, 165, 255, this.fadeInStatsText);
       }
-      textFont("Duper-Bold");
+      textFont(duperBold);
       text("+" + this.userHealth, -325, -268);
 
       //Speed
@@ -912,7 +912,7 @@ export default class MainSceneSelf {
       } else {
         fill(33, 241, 207, this.fadeInStatsText);
       }
-      textFont("Duper-Bold");
+      textFont(duperBold);
       text("+" + this.userSpeed, -325, -241);
 
       //Positivity
@@ -922,7 +922,7 @@ export default class MainSceneSelf {
       } else {
         fill(148, 224, 255, this.fadeInStatsText);
       }
-      textFont("Duper-Bold");
+      textFont(duperBold);
       text("+" + this.userPositivity, -325, -216);
 
       //Shield
@@ -932,7 +932,7 @@ export default class MainSceneSelf {
       } else {
         fill(130, 94, 196, this.fadeInStatsText);
       }
-      textFont("Duper-Bold");
+      textFont(duperBold);
       text("+" + this.userShield, -325, -189);
     }
   }
@@ -969,7 +969,7 @@ export default class MainSceneSelf {
         this.fadeInItem = 255;
       }
 
-      textFont("Duper-Bold");
+      textFont(duperBold);
       fill(61, 18, 117, this.fadeInItem);
       textSize(30);
       text("DEIN", -35, -200);

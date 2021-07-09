@@ -1,6 +1,7 @@
 import BetweenScene from "./BetweenScene.js";
 import WeiterButton from "./weiterButton.js";
 import BetweenScenesText from "./BetweenScenesText.js";
+import { duper, duperBold } from "./main.js";
 
 export default class ChefToCoffeeScene extends BetweenScene {
   constructor() {
@@ -11,7 +12,7 @@ export default class ChefToCoffeeScene extends BetweenScene {
       "00_Links/02_chefToCoffeeScene/firstScreen.gif"
     );
     this.firstScreenText = new BetweenScenesText(
-      "Duper",
+      duper,
       18.5,
       "Als du mit deiner Arbeit beginnst, vergeht die Zeit super schnell. Sweet, Mittagspause!",
       0,
@@ -30,7 +31,7 @@ export default class ChefToCoffeeScene extends BetweenScene {
     );
 
     this.secondScreenText = new BetweenScenesText(
-      "Duper",
+      duper,
       18.5,
       "Ah, da sind ja auch schon Steve und Fred, die heimlich das Essen für alle aufgegessen haben.",
       0,
@@ -51,7 +52,7 @@ export default class ChefToCoffeeScene extends BetweenScene {
     this.thirdScreenImageFadeIn = 0;
 
     this.thirdScreenText = new BetweenScenesText(
-      "Duper",
+      duper,
       18.5,
       "Immerhin kannst du den Kaf...",
       0,

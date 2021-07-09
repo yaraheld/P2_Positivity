@@ -1,6 +1,7 @@
 import BetweenScene from "./BetweenScene.js";
 import BetweenScenesText from "./BetweenScenesText.js";
 import WeiterButton from "./weiterButton.js";
+import { duper, duperBold } from "./main.js";
 
 export default class SocialToDimensionScene extends BetweenScene {
   constructor() {
@@ -13,7 +14,7 @@ export default class SocialToDimensionScene extends BetweenScene {
       "00_Links/05_socialToDimensionScene/firstScreen.png"
     );
     this.firstScreenText = new BetweenScenesText(
-      "Duper",
+      duper,
       18.5,
       "Okay jetzt aber zurück zum Arbeitsplatz...",
       0,
@@ -31,7 +32,7 @@ export default class SocialToDimensionScene extends BetweenScene {
     );
 
     this.secondScreenText = new BetweenScenesText(
-      "Duper",
+      duper,
       18.5,
       "Huch, der Mentor!",
       110,
@@ -50,7 +51,7 @@ export default class SocialToDimensionScene extends BetweenScene {
     );
 
     this.thirdScreenText = new BetweenScenesText(
-      "Duper",
+      duper,
       18.5,
       "Mentor: „Es gibt einen Notfall in einer anderen Dimension! Deine Zauberkraft wird gebraucht!“",
       0,
@@ -69,7 +70,7 @@ export default class SocialToDimensionScene extends BetweenScene {
     );
 
     this.fourthScreenText = new BetweenScenesText(
-      "Duper",
+      duper,
       18.5,
       "Mentor: „Ich bringe dich schnell mit einem Dimensionszauber dort hin!“",
       0,
@@ -88,7 +89,7 @@ export default class SocialToDimensionScene extends BetweenScene {
     );
 
     this.fifthScreenText = new BetweenScenesText(
-      "Duper",
+      duper,
       18.5,
       "Wuuuuushhhh....",
       0,
@@ -107,7 +108,7 @@ export default class SocialToDimensionScene extends BetweenScene {
     );
 
     this.sixthScreenText = new BetweenScenesText(
-      "Duper",
+      duper,
       18.5,
       "Die andere Dimension besteht aus... Bildschirmen?",
       0,

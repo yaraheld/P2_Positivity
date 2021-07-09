@@ -1,5 +1,7 @@
 import FireBall from "./FireBall.js";
 import CountDownToEndbossFight from "./CountdownToEndbossFight.js";
+import ExplosionToxic from "./ExplosionToxic.js";
+import ExplosionPositive from "./ExplosionPositive.js";
 
 export default class BossFight {
   constructor(
@@ -65,6 +67,12 @@ export default class BossFight {
     this.pointOnRectangleY = 0;
 
     this.distanceBetweenRectAndCircle = 0;
+
+    //Explosion
+    // this.toxicExplosion = new Explosion();
+    // this.positiveExplosion = new Explosion();
+    this.toxicExplosions = [];
+    this.positiveExplosions = [];
   }
 
   countDown() {
@@ -216,7 +224,7 @@ export default class BossFight {
     }
   }
 
-  pointOnRectangle() {
+  pointOnRectangleAndCollision() {
     //For loop to check every fireball
     for (let i = 0; i < this.fireballArray.length; i++) {
       this.pointOnRectangleX = this.checkRectangleSide(
@@ -265,10 +273,33 @@ export default class BossFight {
         );
         console.log(this.fireballArray[i].fireballX - 135);
         if (this.distanceBetweenRectAndCircle < 27.5) {
-          this.fireballArray[i].color = color(0);
+          if (this.fireballArray[i].fireBallType === "positive") {
+            this.positiveExplosions.push(
+              new ExplosionPositive(
+                this.fireballArray[i].fireballX,
+                this.fireballArray[i].fireballY
+              )
+            );
+          }
+          if (this.fireballArray[i].fireBallType === "toxic") {
+            this.toxicExplosions.push(
+              new ExplosionToxic(
+                this.fireballArray[i].fireballX,
+                this.fireballArray[i].fireballY
+              )
+            );
+          }
         }
       }
     }
+  }
+
+  displayPositiveHits() {
+    for (let i = 0; i < this.positiveExplosions.length; i++) {}
+  }
+
+  displayToxicHits() {
+    for (let i = 0; i < this.toxicExplosions.length; i++) {}
   }
   // collisionRectangleCircle() {
   //   //For loop to check every fireball collision

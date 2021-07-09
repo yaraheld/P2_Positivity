@@ -1,6 +1,7 @@
 import BetweenScene from "./BetweenScene.js";
 import BetweenScenesText from "./BetweenScenesText.js";
 import WeiterButton from "./weiterButton.js";
+import { duper, duperBold } from "./main.js";
 
 export default class DestroyedToEvilMentorScene extends BetweenScene {
   constructor() {
@@ -13,7 +14,7 @@ export default class DestroyedToEvilMentorScene extends BetweenScene {
       "00_Links/07_destroyedToEvilMentorScene/firstScreen.png"
     );
     this.firstScreenText = new BetweenScenesText(
-      "Duper",
+      duper,
       18.5,
       "Und überhaupt... WAS BIST DU, DASS HIER ALLES ZERSTÖRT IST?",
       0,
@@ -31,7 +32,7 @@ export default class DestroyedToEvilMentorScene extends BetweenScene {
     );
 
     this.secondScreenText = new BetweenScenesText(
-      "Duper",
+      duper,
       18.5,
       "       WARUM HAST DU SO EINEN BESCHISSENEN DIMENSIONSZAUBER ANGEWENDET?!      ",
       0,
@@ -50,7 +51,7 @@ export default class DestroyedToEvilMentorScene extends BetweenScene {
     );
 
     this.thirdScreenText = new BetweenScenesText(
-      "Duper",
+      duper,
       18.5,
       "       Mentor: „Weißt du was? DIESE GANZEN ENTSCHEIDUNGEN GEHEN MIR AM A**** VORBEI!“       ",
       0,
@@ -69,7 +70,7 @@ export default class DestroyedToEvilMentorScene extends BetweenScene {
     );
 
     this.fourthScreenText = new BetweenScenesText(
-      "Duper-Bold",
+      duperBold,
       18.5,
       "...hast du etwa deswegen mit Absicht alles zerstört?!",
       0,

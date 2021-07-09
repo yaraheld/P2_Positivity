@@ -17,7 +17,7 @@ export default class SpeechBubble {
     ninthSen,
     tenthSen
   ) {
-    //the first two rows could be written in "duper-bold" and not "duper",
+    //the first two rows could be written in "duperBold" and not "duper",
     //so the possibility to make them bold is added (firstSenType/secondSenType)
     //because of that a for-loop is not possible/very complicated
     this.firstSen = firstSen;

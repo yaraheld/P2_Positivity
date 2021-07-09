@@ -1,4 +1,5 @@
 import TextAnimation from "./TextAnimation.js";
+import { duper, duperBold } from "./main.js";
 
 export default class TextAnimationWithMultipleSentences {
   constructor(
@@ -26,7 +27,7 @@ export default class TextAnimationWithMultipleSentences {
     //space between text rows
     this.spacing = spacing;
 
-    //the first two rows could be written in "duper-bold" and not "duper",
+    //the first two rows could be written in "duperBold" and not "duper",
     //so the possibility to make them bold is added (firstSenType/secondSenType)
     //because of that a for-loop is not possible/very complicated
     this.firstSen = firstSen;
@@ -44,7 +45,7 @@ export default class TextAnimationWithMultipleSentences {
     this.tenthSen = tenthSen;
 
     this.generalTextSize = generalTextSize;
-    this.generalTextFont = "Duper";
+    this.generalTextFont = duper;
     this.generalSpeed = generalSpeed;
     this.generalTextColor = generalTextColor;
 

@@ -2,6 +2,7 @@ import BetweenScene from "./BetweenScene.js";
 import BetweenScenesText from "./BetweenScenesText.js";
 import WeiterButton from "./weiterButton.js";
 import FightButton from "./fightButton.js";
+import { duper, duperBold } from "./main.js";
 
 export default class EvilMentorToEndBossScene extends BetweenScene {
   constructor() {
@@ -17,7 +18,7 @@ export default class EvilMentorToEndBossScene extends BetweenScene {
     this.ground = loadImage("00_Links/00_UI-Elements/ground.png");
 
     this.firstScreenText = new BetweenScenesText(
-      "Duper",
+      duper,
       18.5,
       "   Mentor: „UAAAAAARRGGGHHH!“   ",
       0,
@@ -36,7 +37,7 @@ export default class EvilMentorToEndBossScene extends BetweenScene {
     );
 
     this.secondScreenText = new BetweenScenesText(
-      "Duper",
+      duper,
       18.5,
       "Mentor: „Versuch mich erst garnicht aufzuhalten, Mensch.“",
       0,

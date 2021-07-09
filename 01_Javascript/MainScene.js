@@ -4,6 +4,7 @@ import WeiterButton from "./weiterButton.js";
 import SpeechBubble from "./SpeechBubble.js";
 import Timer from "./Timer.js";
 import UserAnswerSpeechBubble from "./UserAnswerSpeechBubble.js";
+import { duper, duperBold } from "./main.js";
 
 export default class MainScene {
   constructor(
@@ -1142,7 +1143,7 @@ export default class MainScene {
       } else {
         fill(255, 165, 255, this.fadeInStatsText);
       }
-      textFont("Duper-Bold");
+      textFont(duperBold);
       text("+" + this.userHealth, -325, -268);
 
       //Speed
@@ -1152,7 +1153,7 @@ export default class MainScene {
       } else {
         fill(33, 241, 207, this.fadeInStatsText);
       }
-      textFont("Duper-Bold");
+      textFont(duperBold);
       text("+" + this.userSpeed, -325, -241);
 
       //Positivity
@@ -1162,7 +1163,7 @@ export default class MainScene {
       } else {
         fill(148, 224, 255, this.fadeInStatsText);
       }
-      textFont("Duper-Bold");
+      textFont(duperBold);
       text("+" + this.userPositivity, -325, -216);
 
       //Shield
@@ -1172,7 +1173,7 @@ export default class MainScene {
       } else {
         fill(130, 94, 196, this.fadeInStatsText);
       }
-      textFont("Duper-Bold");
+      textFont(duperBold);
       text("+" + this.userShield, -325, -189);
     }
   }
@@ -1210,7 +1211,7 @@ export default class MainScene {
         this.fadeInItem = 255;
       }
 
-      textFont("Duper-Bold");
+      textFont(duperBold);
       fill(61, 18, 117, this.fadeInItem);
       textSize(30);
       text("DEIN", -35, -200);

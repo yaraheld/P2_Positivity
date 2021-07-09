@@ -1,5 +1,6 @@
 import TextAnimation from "./TextAnimation.js";
 import SpellButton from "./SpellButton.js";
+import { duper, duperBold } from "./main.js";
 
 export default class WeiterButton extends SpellButton {
   constructor(x, y) {
@@ -18,7 +19,7 @@ export default class WeiterButton extends SpellButton {
     );
 
     this.buttonText = new TextAnimation(
-      "duper-bold",
+      duperBold,
       25,
       color(157, 157, 157),
       "WEITER",
