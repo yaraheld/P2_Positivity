@@ -2,6 +2,7 @@ import FireBall from "./FireBall.js";
 import CountDownToEndbossFight from "./CountdownToEndbossFight.js";
 import ExplosionToxic from "./ExplosionToxic.js";
 import ExplosionPositive from "./ExplosionPositive.js";
+import { duper, duperBold } from "./main.js";
 
 export default class BossFight {
   constructor(
@@ -11,9 +12,9 @@ export default class BossFight {
     userDamage,
     userShield,
     bossHealth,
+    bossFireBallDamage,
     bossFireSpeed,
-    bossFireBallSpeed,
-    bossFireBallDamage
+    bossFireBallSpeed
   ) {
     this.countDownToEndbossFight = new CountDownToEndbossFight(0, 0);
     this.bossFightBool = false;
@@ -85,6 +86,13 @@ export default class BossFight {
     this.pushToxicJustOnce = true;
     this.positiveCounter = 0;
     this.toxicCounter = 0;
+
+    //State if you won or losed
+    this.winnerState = "none";
+
+    //Fades into White
+    this.fadeIntoEndScreen = 0;
+    this.showEndScreen = false;
   }
 
   countDown() {
@@ -100,13 +108,13 @@ export default class BossFight {
 
     fill(255);
     stroke(255, 165, 255);
-    strokeWeight(3);
+    strokeWeight(2);
     //Box width is set in the constructor
-    rect(-450, -260, 100 + this.userLifeBox, 20, 5);
+    rect(-450, -260, this.userLifeBox, 20, 5);
 
     noStroke();
     fill(255, 165, 255);
-    rect(-450, -260, 100 + this.userHealth, 20, 5);
+    rect(-450, -260, this.userHealth, 20, 5);
   }
 
   userControl() {
@@ -121,8 +129,8 @@ export default class BossFight {
     }
 
     //------------TESTING: HITBOX
-    stroke(0);
-    rect(-450, -65 + this.userY, 35, 125);
+    // stroke(0);
+    // rect(-450, -65 + this.userY, 35, 125);
   }
 
   displayUser() {
@@ -139,14 +147,14 @@ export default class BossFight {
 
     fill(255);
     stroke(0);
-    strokeWeight(3);
+    strokeWeight(2);
     //Box weight is set in the constructor
     //Special: The minus-value doesn't look well on the stroke, so the stroke has to be moved to the left / to the right
-    rect(350 - this.bossLifeBox, 240, 100 + this.bossLifeBox, 20, 5);
+    rect(450 - this.bossLifeBox, 240, this.bossLifeBox, 20, 5);
 
     noStroke();
     fill(0);
-    rect(450, 240, -100 - this.bossHealth, 20, 5);
+    rect(450, 240, -this.bossHealth, 20, 5);
   }
 
   bossControl() {
@@ -260,14 +268,14 @@ export default class BossFight {
         this.fireballArray[i].fireballY - 55
       );
 
-      //Visualization
-      stroke(255, 255, 0);
-      line(
-        this.pointOnRectangleX,
-        this.pointOnRectangleY,
-        this.fireballArray[i].fireballX - 135,
-        this.fireballArray[i].fireballY - 55
-      );
+      // //Visualization
+      // stroke(255, 255, 0);
+      // line(
+      //   this.pointOnRectangleX,
+      //   this.pointOnRectangleY,
+      //   this.fireballArray[i].fireballX - 135,
+      //   this.fireballArray[i].fireballY - 55
+      // );
 
       //Collision between Rectangle and circle
       //Didn`t work with extra method below, because this.pointOnRectangleX & this.pointOnRectangleY weren't updated
@@ -396,4 +404,93 @@ export default class BossFight {
   //     }
   //   }
   // }
+
+  displayUserParameter(
+    userHealthParameter,
+    userSpeedParameter,
+    userPositivtyParameter,
+    userShieldParameter
+  ) {
+    //Conclusion: Extra parameter plus standard parameter
+    let userHealthParameterInsg = 100 + userHealthParameter;
+    let userSpeedParameterInsg = 4 + userSpeedParameter;
+    let userPositivtyParameterInsg = 10 + userPositivtyParameter;
+    let userShieldParameterInsg = 0 + userShieldParameter;
+
+    fill(61, 18, 117, 100);
+    textSize(15);
+    textFont(duper);
+    text(
+      "INSG.:  Leben: " +
+        userHealthParameterInsg +
+        "/200  |  Speed: " +
+        userSpeedParameterInsg +
+        "/40  |  Angriff: " +
+        userPositivtyParameterInsg +
+        "/90  |  Schild: " +
+        userShieldParameterInsg +
+        "/52",
+      -450,
+      -269
+    );
+  }
+
+  displayBossParameter(
+    bossHealthParameter,
+    bossObjectDamageParameter,
+    bossObjectAmountParameter,
+    bossObjectSpeedParameter
+  ) {
+    //Conclusion: Extra parameter plus standard parameter
+    let bossHealthParameterInsg = 100 + bossHealthParameter;
+    let bossObjectDamageParameterInsg = 10 + bossObjectDamageParameter;
+    let bossObjectAmountParameterInsg = 30 + bossObjectAmountParameter;
+    let bossObjectSpeedParameterInsg = 10 + bossObjectSpeedParameter;
+    fill(0, 100);
+    textSize(15);
+    textFont(duper);
+    text(
+      "INSG.:  Leben: " +
+        bossHealthParameterInsg +
+        "/300  |  Speed: " +
+        bossObjectDamageParameterInsg +
+        "/98  |  Angriff: " +
+        bossObjectAmountParameterInsg +
+        "/102  |  Schild: " +
+        bossObjectSpeedParameterInsg +
+        "/30",
+      65,
+      280
+    );
+  }
+
+  winOrLose() {
+    //WIN OR LOSE
+    if (this.userHealth <= 0) {
+      this.userHealth = 0;
+      this.winnerState = "verloren";
+    } else if (this.bossHealth <= 0) {
+      this.bossHealth = 0;
+      this.winnerState = "gewonnen";
+    }
+  }
+
+  winOrLoseFade() {
+    if (this.winnerState === "verloren" || this.winnerState === "gewonnen") {
+      console.log("Verloren oder gewonnen");
+      //Fires no Balls
+      this.counterNextFireball = 0;
+      this.fireNextFireBall = false;
+
+      //Fades into White
+      this.fadeIntoEndScreen += 3;
+      if (this.fadeIntoEndScreen > 255) {
+        this.fadeIntoEndScreen = 255;
+        this.showEndScreen = true;
+      }
+      fill(255, this.fadeIntoEndScreen);
+      noStroke();
+      rect(-550, -310, 1100, 620);
+    }
+  }
 }

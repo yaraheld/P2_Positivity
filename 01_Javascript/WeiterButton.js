@@ -6,8 +6,6 @@ export default class WeiterButton extends SpellButton {
   constructor(x, y) {
     super(x, y);
 
-    this.buttonSound = loadSound("00_Links/00_Audio/weiter.mp3");
-
     this.buttonSound = loadSound("00_Links/00_Audio/glitter.mp3");
     this.buttonClickSound = loadSound("00_Links/00_Audio/click.wav");
 
@@ -33,7 +31,7 @@ export default class WeiterButton extends SpellButton {
   designActive() {
     //Boolean makes it possible, that the sound isn`t played 30 times per second
     if (this.playButtonSound === true) {
-      this.buttonSound.setVolume(0.5);
+      this.buttonSound.setVolume(0.2);
       this.buttonSound.play();
       this.playButtonSound = false;
     }

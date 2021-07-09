@@ -57,6 +57,7 @@ export default class SpellButton {
     //sets boolean to "true". Thus the sound can be played when the mouse is hovering over the button again
     //& then the sound is starting from the beginning because of "stop"
     this.playButtonSound = true;
+
     this.buttonSound.stop();
   }
 
@@ -79,6 +80,7 @@ export default class SpellButton {
 
     //Boolean makes it possible, that the sound isn`t played 30 times per second
     if (this.playButtonSound === true) {
+      this.buttonSound.setVolume(0.5);
       this.buttonSound.play();
       this.playButtonSound = false;
     }

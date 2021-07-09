@@ -1,12 +1,3 @@
-let duper;
-let duperBold;
-//textFont(duper);
-duper = loadFont("00_Links/00_Fonts/duper_regular.otf");
-// textFont(duperBold);
-duperBold = loadFont("00_Links/00_Fonts/duper_bold.otf");
-
-export { duper, duperBold };
-
 import MainScene from "./MainScene.js";
 import MainSceneSelf from "./MainSceneSelf.js";
 import MainSceneDimension from "./MainSceneDimension.js";
@@ -23,6 +14,14 @@ import EvilMentorMainScene from "./EvilMentorMainScene.js";
 import EvilMentorToEndBossScene from "./EvilMentorToEndBossScene.js";
 import FightButton from "./FightButton.js";
 import TextAnimationWithMultipleSentences from "./TextAnimationWithMultipleSentences.js";
+
+let duper;
+let duperBold;
+//textFont(duper);
+duper = loadFont("00_Links/00_Fonts/duper_regular.otf");
+// textFont(duperBold);
+duperBold = loadFont("00_Links/00_Fonts/duper_bold.otf");
+export { duper, duperBold };
 
 //variables & commentaries = english
 //classes: Capital Letter
@@ -206,38 +205,38 @@ let soccerMainScene = new MainScene(
 
   //Parameter User
   //Health:
-  10,
+  12.5,
   //Speed
-  20,
+  13.5,
   //Positivity
-  10,
-  //Shield
   0,
+  //Shield
+  6.5,
 
   // Parameter Boss
   //Toxic
   //Health:
-  0,
-  //Object damage:
   20,
+  //Object damage:
+  11,
   //Object amount:
-  0,
+  5,
   //Object speed
-  10,
+  6,
 
   //Neutral
   //Object amount:
-  20,
+  9,
 
   //Negative
   //Health:
-  30,
+  25,
   //Object damage:
-  0,
+  5,
   //Object amount:
-  0,
+  5,
   //Object speed
-  10
+  4
 );
 
 let soccerToChefScene = new SoccerToChefScene();
@@ -392,38 +391,38 @@ let chefMainScene = new MainScene(
 
   //Parameter User
   //Health:
-  10,
+  25,
   //Speed
   0,
   //Positivity
   10,
   //Shield
-  20,
+  6.5,
 
   // Parameter Boss
   //Toxic
   //Health:
-  0,
+  20,
   //Object damage:
-  10,
+  11,
   //Object amount:
-  10,
+  5,
   //Object speed
-  10,
+  2,
 
   //Neutral
   //Object amount:
-  20,
+  9,
 
   //Negative
   //Health:
-  40,
+  25,
   //Object damage:
-  0,
+  5,
   //Object amount:
-  0,
+  5,
   //Object speed
-  0
+  2
 );
 
 let chefToCoffeeScene = new ChefToCoffeeScene();
@@ -525,38 +524,38 @@ let coffeeMainScene = new MainSceneSelf(
 
   //Parameter User
   //Health:
-  10,
-  //Speed
   0,
+  //Speed
+  9,
   //Positivity
   10,
   //Shield
-  20,
+  6.5,
 
   // Parameter Boss
   //Toxic
   //Health:
-  0,
-  //Object damage:
   20,
+  //Object damage:
+  11,
   //Object amount:
-  10,
+  5,
   //Object speed
-  0,
+  2,
 
   //Neutral
   //Object amount:
-  20,
+  9,
 
   //Negative
   //Health:
-  30,
+  25,
   //Object damage:
-  0,
+  5,
   //Object amount:
-  0,
+  5,
   //Object speed
-  10
+  2
 );
 
 let coffeeToInvestorScene = new CoffeeToInvestorScene();
@@ -711,38 +710,38 @@ let investorMainScene = new MainScene(
 
   //Parameter User
   //Health:
-  10,
+  12.5,
   //Speed
   0,
   //Positivity
   10,
   //Shield
-  20,
+  19.5,
 
   // Parameter Boss
   //Toxic
   //Health:
-  0,
+  25,
   //Object damage:
-  20,
+  11,
   //Object amount:
-  10,
+  5,
   //Object speed
-  10,
+  2,
 
   //Neutral
   //Object amount:
-  20,
+  9,
 
   //Negative
   //Health:
-  10,
+  25,
   //Object damage:
-  0,
+  11,
   //Object amount:
-  10,
+  5,
   //Object speed
-  20
+  2
 );
 
 let investorToSocialScene = new InvestorToSocialScene();
@@ -845,38 +844,38 @@ let socialMainScene = new MainSceneSelf(
 
   //Parameter User
   //Health:
-  10,
+  12.5,
   //Speed
-  0,
+  4.5,
   //Positivity
-  20,
-  //Shield
   10,
+  //Shield
+  6.5,
 
   // Parameter Boss
   //Toxic
   //Health:
-  0,
-  //Object damage:
   20,
+  //Object damage:
+  11,
   //Object amount:
-  10,
+  5,
   //Object speed
-  0,
+  2,
 
   //Neutral
   //Object amount:
-  20,
+  9,
 
   //Negative
   //Health:
-  20,
+  25,
   //Object damage:
-  0,
+  5,
   //Object amount:
-  0,
+  5,
   //Object speed
-  20
+  2
 );
 
 let socialToDimensionScene = new SocialToDimensionScene();
@@ -1034,38 +1033,38 @@ let dimensionMainScene = new MainSceneDimension(
 
   //Parameter User
   //Health:
-  10,
+  0,
   //Speed
-  10,
+  4.5,
   //Positivity
-  20,
+  30,
   //Shield
-  10,
+  0,
 
   // Parameter Boss
   //Toxic
   //Health:
-  0,
-  //Object damage:
-  30,
-  //Object amount:
   20,
+  //Object damage:
+  11,
+  //Object amount:
+  9,
   //Object speed
-  0,
+  2,
 
   //Neutral
   //Object amount:
-  30,
+  9,
 
   //Negative
   //Health:
-  20,
+  25,
   //Object damage:
-  0,
+  11,
   //Object amount:
-  10,
+  5,
   //Object speed
-  20
+  2
 );
 
 let dimensionToDestroyedScene = new DimensionToDestroyedScene();
@@ -1168,38 +1167,38 @@ let destroyedMainScene = new MainSceneSelf(
 
   //Parameter User
   //Health:
-  20,
+  25,
   //Speed
   0,
   //Positivity
   0,
   //Shield
-  30,
+  6.5,
 
   // Parameter Boss
   //Toxic
   //Health:
   20,
   //Object damage:
-  0,
+  11,
   //Object amount:
-  0,
+  5,
   //Object speed
-  30,
+  2,
 
   //Neutral
   //Object amount:
-  30,
+  9,
 
   //Negative
   //Health:
-  40,
+  25,
   //Object damage:
-  0,
+  5,
   //Object amount:
-  10,
+  5,
   //Object speed
-  0
+  2
 );
 
 let destroyedToEvilMentorScene = new DestroyedToEvilMentorScene();
@@ -1236,38 +1235,38 @@ let evilMentorMainScene = new EvilMentorMainScene(
 
   //Parameter User
   //Health:
-  30,
+  12.5,
   //Speed
-  0,
+  4.5,
   //Positivity
   10,
   //Shield
-  20,
+  0,
 
   // Parameter Boss
   //Toxic
   //Health:
-  0,
-  //Object damage:
-  30,
-  //Object amount:
   20,
+  //Object damage:
+  11,
+  //Object amount:
+  9,
   //Object speed
-  10,
+  2,
 
   //Neutral
   //Object amount:
-  30,
+  9,
 
   //Negative
   //Health:
-  20,
+  25,
   //Object damage:
-  0,
+  5,
   //Object amount:
-  0,
+  9,
   //Object speed
-  20
+  2
 );
 
 //------------------------------"Global" functions, update it when adding a new mainscene
@@ -1368,7 +1367,7 @@ function userStats() {
 
     noStroke();
     fill(255, 165, 255);
-    rect(-500, -280, 10 + userHealth, 10, 10);
+    rect(-500, -280, 10 + userHealth * 1.6, 10, 10);
 
     //Speed
     image(
@@ -1392,7 +1391,7 @@ function userStats() {
       evilMentorMainScene.userSpeed;
 
     fill(33, 241, 207);
-    rect(-500, -253, 10 + userSpeed, 10, 10);
+    rect(-500, -253, 10 + userSpeed * 4.45, 10, 10);
 
     //Positivity
     image(
@@ -1416,7 +1415,7 @@ function userStats() {
       evilMentorMainScene.userPositivity;
 
     fill(148, 224, 255);
-    rect(-500, -226, 10 + userPositivity, 10, 10);
+    rect(-500, -226, 10 + userPositivity * 2, 10, 10);
 
     //Shield
     image(
@@ -1440,7 +1439,7 @@ function userStats() {
       evilMentorMainScene.userShield;
 
     fill(130, 94, 196);
-    rect(-500, -199, 10 + userShield, 10, 10);
+    rect(-500, -199, 10 + userShield * 3, 10, 10);
 
     // //Line bottom
     // strokeWeight(2);
@@ -1798,13 +1797,13 @@ function userScoreAndFightManual() {
     );
     noStroke();
     fill(255, 165, 255, scorefadeIn);
-    rect(255, -154, 10 + userHealth, 10, 10);
+    rect(255, -154, 10 + userHealth * 1.6, 10, 10);
     textFont(duperBold);
     textSize(21);
-    text("GESUNDHEIT", 255, -165);
+    text("EXTRA LEBEN", 255, -165);
     textFont(duper);
     textSize(18);
-    text(userHealth + "/200", 255, -124);
+    text(userHealth + "/100", 255, -124);
 
     //Speed
     image(
@@ -1816,13 +1815,13 @@ function userScoreAndFightManual() {
     );
 
     fill(33, 241, 207, scorefadeIn);
-    rect(255, -63, 10 + userSpeed, 10, 10);
+    rect(255, -63, 10 + userSpeed * 4.45, 10, 10);
     textFont(duperBold);
     textSize(21);
-    text("BEWEGUNG", 255, -74);
+    text("EXTRA SPEED", 255, -74);
     textFont(duper);
     textSize(18);
-    text(userSpeed + "/200", 255, -33);
+    text(userSpeed + "/36", 255, -33);
 
     //Positivity
     image(
@@ -1833,13 +1832,13 @@ function userScoreAndFightManual() {
       usersPositivityIcon.height / 5
     );
     fill(148, 224, 255, scorefadeIn);
-    rect(255, 25, 10 + userPositivity, 10, 10);
+    rect(255, 25, 10 + userPositivity * 2, 10, 10);
     textFont(duperBold);
     textSize(21);
-    text("POSITIVITÄT/ANGRIFF", 255, 14);
+    text("EXTRA ANGRIFFSSCHADEN", 255, 14);
     textFont(duper);
     textSize(18);
-    text(userPositivity + "/200", 255, 55);
+    text(userPositivity + "/80", 255, 55);
 
     //Shield
     image(
@@ -1850,18 +1849,19 @@ function userScoreAndFightManual() {
       usersShieldIcon.height / 5
     );
     fill(130, 94, 196, scorefadeIn);
-    rect(255, 115, 10 + userShield, 10, 10);
+    rect(255, 115, 10 + userShield * 3, 10, 10);
     textFont(duperBold);
     textSize(21);
-    text("SCHILD", 255, 105);
+    text("EXTRA SCHILD", 255, 105);
     textFont(duper);
     textSize(18);
-    text(userShield + "/200", 255, 146);
+    text(userShield + "/52", 255, 146);
   }
 }
 
 //
 let bossFightStarts = false;
+let showEndscreen = false;
 //All events die p5 uses, have to be anhängt ans window
 window.mousePressed = mousePressed;
 function mousePressed() {
@@ -2907,38 +2907,38 @@ let bossFight;
 // function startOver() {
 bossFight = new BossFight(
   //User
-  //UserHealth
-  //(standard 100)
-  100,
-  //UserSpeed
-  //(standard:)
-  15,
-  //UserDamage / Positivity / Attack
-  // (standard:)
-  50,
-  //UserShield
-  //(standard:)
-  20,
+  //UserHealth (More is more)
+  //(standard 100) (200 max! 100 min!)
+  100 + userHealth,
+  //UserSpeed (More is slower)
+  //(standard: 40) (40 worst speed! 4 best speed!)
+  40 - userSpeed,
+  //UserDamage / Positivity / Attack (More is more)
+  // (standard: 10) (100 max! 10 min!)
+  100 + userPositivity,
+  //UserShield (More is more)
+  //(standard: 10) (50 max! 0 min!)
+  0 + userShield,
   //
   //
   //Boss
-  //BossHealth
-  //(standard:)
-  100,
-  //BossFireSpeed = BossObjectAmount (More is more)
-  //(standard:)
-  100,
-  //BossFireBallSpeed = BossObjectSpeed (More is more) (30 max! | 10 Min!)
-  //(standard:)
-  30,
+  //BossHealth (More is more)
+  //(standard: 100) (300 max! 100 min!)
+  100 + bossHealth,
   //BossFireBallDamage = boss object Damage (More is more)
-  //(standard:)
-  50
+  //(standard: 10) (100 max! | 10 Min!)
+  10 + bossObjectDamage,
+  //BossFireAmount = BossObjectAmount (More is more)
+  //(standard: 30) (100 max! 30 min!)
+  30 + bossObjectAmount,
+  //BossFireBallSpeed = BossObjectSpeed (More is more)
+  //(standard: 10) (30 max! | 10 Min!)
+  10 + bossObjectSpeed
 );
 // }
 
 // showUserScoreAndFightManual = true;
-// bossFightStarts = true;
+bossFightStarts = true;
 // evilMentorToEndBossScene.showFirstScreen();
 //
 //
@@ -3105,12 +3105,35 @@ function draw() {
     bossFight.switchBossImages();
 
     //Collision
-
     bossFight.countDown();
     bossFight.pointOnRectangleAndCollision();
     bossFight.displayPositiveHits();
     bossFight.displayToxicHits();
     bossFight.deleteFireBallsOutside();
+
+    //Blends Stats in
+    bossFight.displayUserParameter(
+      userHealth,
+      userSpeed,
+      userPositivity,
+      userShield
+    );
+    bossFight.displayBossParameter(
+      bossHealth,
+      bossObjectDamage,
+      bossObjectAmount,
+      bossObjectSpeed
+    );
+
+    bossFight.winOrLose();
+    bossFight.winOrLoseFade();
+    if (bossFight.showEndScreen === true) {
+      bossFightStarts = false;
+      showEndscreen = true;
+    }
+
+    if (showEndscreen === true) {
+    }
   }
 
   //"Global" functions
@@ -3147,6 +3170,6 @@ function draw() {
 // destroyedMainScene.showPanoramaScreen();
 // destroyedToEvilMentorScene.showFirstScreen();
 // evilMentorMainScene.showPanoramaScreen();
-evilMentorToEndBossScene.showFirstScreen();
+// evilMentorToEndBossScene.showFirstScreen();
 // showUserScoreAndFightManual = true;
 // bossFightStarts = true;

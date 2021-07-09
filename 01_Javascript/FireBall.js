@@ -51,10 +51,12 @@ export default class FireBall {
       this.fireBallType = "positive";
     }
 
-    //VISUALISATION
-    stroke(this.color);
-    noFill();
-    ellipse(-135 + this.fireballX, -55 + this.fireballY, 50, 50);
+    // //VISUALISATION
+    // stroke(this.color);
+    // noFill();
+    // ellipse(-135 + this.fireballX, -55 + this.fireballY, 50, 50);
+
+    //SPEED
     this.fireballX -= this.fireBallSpeed;
   }
 }
