@@ -14,7 +14,7 @@ export default class ChefToCoffeeScene extends BetweenScene {
     this.firstScreenText = new BetweenScenesText(
       duper,
       18.5,
-      "Als du mit deiner Arbeit beginnst, vergeht die Zeit super schnell. Sweet, Mittagspause!",
+      "Die Zeit vergeht ja super schnell... sweet, Mittagspause!",
       0,
       -200,
       1,

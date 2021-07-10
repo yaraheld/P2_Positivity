@@ -14,6 +14,9 @@ import EvilMentorMainScene from "./EvilMentorMainScene.js";
 import EvilMentorToEndBossScene from "./EvilMentorToEndBossScene.js";
 import FightButton from "./FightButton.js";
 import TextAnimationWithMultipleSentences from "./TextAnimationWithMultipleSentences.js";
+import Endscreen from "./EndScreen.js";
+import MainSceneSelfDebugDestroy from "./MainSceneSelfDebugDestroy.js";
+import IntroToSoccerScene from "./IntroToSoccerScene.js";
 
 let duper;
 let duperBold;
@@ -51,6 +54,8 @@ function standardSettings() {
 }
 
 //----------------Define classes from all scenes and between scenes
+
+let introToSoccerScene = new IntroToSoccerScene();
 
 let soccerMainScene = new MainScene(
   "01_soccerMainScene",
@@ -1069,7 +1074,7 @@ let dimensionMainScene = new MainSceneDimension(
 
 let dimensionToDestroyedScene = new DimensionToDestroyedScene();
 
-let destroyedMainScene = new MainSceneSelf(
+let destroyedMainScene = new MainSceneSelfDebugDestroy(
   "07_destroyedMainScene",
 
   //Spellbutton x-y-Postion//
@@ -1269,6 +1274,8 @@ let evilMentorMainScene = new EvilMentorMainScene(
   2
 );
 
+let endScreen = new Endscreen();
+
 //------------------------------"Global" functions, update it when adding a new mainscene
 let usersHeartIcon = loadImage("00_Links/00_UI-Elements/heart.png");
 let usersSpeedIcon = loadImage("00_Links/00_UI-Elements/speed.png");
@@ -1300,6 +1307,15 @@ function userStats() {
     evilMentorMainScene.showPanoramaScreenBool === false &&
     //
     //betweenScenes
+    //
+    introToSoccerScene.firstScreenBool === false &&
+    introToSoccerScene.secondScreenBool === false &&
+    introToSoccerScene.thirdScreenBool === false &&
+    introToSoccerScene.fourthScreenBool === false &&
+    introToSoccerScene.fifthScreenBool === false &&
+    introToSoccerScene.sixthScreenBool === false &&
+    introToSoccerScene.seventhScreenBool === false &&
+    introToSoccerScene.eighthScreenBool === false &&
     //
     soccerToChefScene.firstScreenBool === false &&
     soccerToChefScene.secondScreenBool === false &&
@@ -1340,7 +1356,10 @@ function userStats() {
     showUserScoreAndFightManual === false &&
     //
     //bossFight
-    bossFightStarts === false
+    bossFightStarts === false &&
+    //
+    //Endscreen
+    showEndscreen === false
   ) {
     push();
     tint(255, 255);
@@ -1859,7 +1878,18 @@ function userScoreAndFightManual() {
   }
 }
 
+let evilMentorToEndBossScene = new EvilMentorToEndBossScene();
+
 //
+//
+//
+//Preperation for start over function (reset)
+let bossFight;
+//(Einmal aufrufen lassen)
+// function startOver() {
+
+//
+let createJustOneBossFight = true;
 let bossFightStarts = false;
 let showEndscreen = false;
 //All events die p5 uses, have to be anhängt ans window
@@ -1870,9 +1900,62 @@ function mousePressed() {
   //   soccerMainScene.showPanoramaScreen();
   //   showStartTestButton = false;
   // }
+  //-----------------------------------------------------------------------introToSoccerScene (Between-Scene)
+  if (introToSoccerScene.weiterButtonSecondScreenClick()) {
+    if (introToSoccerScene.firstScreenText.sentence.typingEnded === false) {
+      introToSoccerScene.firstScreenText.sentence.displayAllTextAtOnce();
+    } else {
+      introToSoccerScene.showSecondScreen();
+    }
+  } else if (introToSoccerScene.weiterButtonThirdScreenClick()) {
+    if (introToSoccerScene.secondScreenText.sentence.typingEnded === false) {
+      introToSoccerScene.secondScreenText.sentence.displayAllTextAtOnce();
+    } else {
+      introToSoccerScene.showThirdScreen();
+    }
+  } else if (introToSoccerScene.weiterButtonFourthScreenClick()) {
+    if (introToSoccerScene.thirdScreenText.sentence.typingEnded === false) {
+      introToSoccerScene.thirdScreenText.sentence.displayAllTextAtOnce();
+    } else {
+      introToSoccerScene.showFourthScreen();
+    }
+  } else if (introToSoccerScene.weiterButtonFifthScreenClick()) {
+    if (introToSoccerScene.fourthScreenText.sentence.typingEnded === false) {
+      introToSoccerScene.fourthScreenText.sentence.displayAllTextAtOnce();
+    } else {
+      introToSoccerScene.showFifthScreen();
+    }
+  } else if (introToSoccerScene.weiterButtonSixthScreenClick()) {
+    if (introToSoccerScene.fifthScreenText.sentence.typingEnded === false) {
+      introToSoccerScene.fifthScreenText.sentence.displayAllTextAtOnce();
+    } else {
+      introToSoccerScene.showSixthScreen();
+    }
+    //
+  } else if (introToSoccerScene.weiterButtonSeventhScreenClick()) {
+    if (introToSoccerScene.sixthScreenText.sentence.typingEnded === false) {
+      introToSoccerScene.sixthScreenText.sentence.displayAllTextAtOnce();
+    } else {
+      introToSoccerScene.showSeventhScreen();
+    }
+  } else if (introToSoccerScene.weiterButtonEighthScreenClick()) {
+    if (introToSoccerScene.seventhScreenText.sentence.typingEnded === false) {
+      introToSoccerScene.seventhScreenText.sentence.displayAllTextAtOnce();
+    } else {
+      introToSoccerScene.showEighthScreen();
+    }
+  } else if (
+    introToSoccerScene.weiterButtonNextPanoramaScreenFromMainSceneClick()
+  ) {
+    if (introToSoccerScene.eighthScreenText.sentence.typingEnded === false) {
+      introToSoccerScene.eighthScreenText.sentence.displayAllTextAtOnce();
+    } else {
+      introToSoccerScene.showNextPanoramaScreenFromMainScene();
+      soccerMainScene.showPanoramaScreen();
+    }
+  }
   //-----------------------------------------------------------------------SOCCER MAINSCENE
-  // else
-  if (soccerMainScene.spellButtonClick()) {
+  else if (soccerMainScene.spellButtonClick()) {
     soccerMainScene.showNPCProblemScreen();
   } else if (soccerMainScene.weiterButtonChooseAnswerScreenClick()) {
     //If you click on the "Weiterbutton" when the text-animation isn't finished yet,
@@ -2886,60 +2969,72 @@ function mousePressed() {
       evilMentorToEndBossScene.showNextPanoramaScreenFromMainScene();
       showUserScoreAndFightManual = true;
     }
-  } else if (weiterButtonToFight.click()) {
-    if (fightManualText.everySentenceHasEnded === false) {
-      fightManualText.displayAllTextAtOnce();
-    } else {
-      showUserScoreAndFightManual = false;
-      bossFightStarts = true;
+  } else if (showUserScoreAndFightManual === true) {
+    if (weiterButtonToFight.click()) {
+      if (fightManualText.everySentenceHasEnded === false) {
+        fightManualText.displayAllTextAtOnce();
+      } else {
+        showUserScoreAndFightManual = false;
+        bossFightStarts = true;
+      }
+    }
+  } else if (showEndscreen === true) {
+    if (endScreen.tippsButtonClick()) {
+      endScreen.showTipps();
+    }
+    if (endScreen.backButtonClick()) {
+      endScreen.dontShowTipps();
+    }
+    if (endScreen.menuButtonClick()) {
+      if (bossFight.winnerState === "verloren") {
+        if (endScreen.loserText.typingEnded === false) {
+          endScreen.loserText.displayAllTextAtOnce();
+        } else {
+          restart = true;
+        }
+      }
+      if (bossFight.winnerState === "gewonnen") {
+        if (endScreen.winnerText.typingEnded === false) {
+          endScreen.winnerText.displayAllTextAtOnce();
+        } else {
+          restart = true;
+        }
+      }
     }
   }
 }
 
-let evilMentorToEndBossScene = new EvilMentorToEndBossScene();
-
-//
-//
-//
-//Preperation for start over function (reset)
-let bossFight;
-//(Einmal aufrufen lassen)
-// function startOver() {
-bossFight = new BossFight(
-  //User
-  //UserHealth (More is more)
-  //(standard 100) (200 max! 100 min!)
-  100 + userHealth,
-  //UserSpeed (More is slower)
-  //(standard: 40) (40 worst speed! 4 best speed!)
-  40 - userSpeed,
-  //UserDamage / Positivity / Attack (More is more)
-  // (standard: 10) (100 max! 10 min!)
-  100 + userPositivity,
-  //UserShield (More is more)
-  //(standard: 10) (50 max! 0 min!)
-  0 + userShield,
-  //
-  //
-  //Boss
-  //BossHealth (More is more)
-  //(standard: 100) (300 max! 100 min!)
-  100 + bossHealth,
-  //BossFireBallDamage = boss object Damage (More is more)
-  //(standard: 10) (100 max! | 10 Min!)
-  10 + bossObjectDamage,
-  //BossFireAmount = BossObjectAmount (More is more)
-  //(standard: 30) (100 max! 30 min!)
-  30 + bossObjectAmount,
-  //BossFireBallSpeed = BossObjectSpeed (More is more)
-  //(standard: 10) (30 max! | 10 Min!)
-  10 + bossObjectSpeed
-);
-// }
-
-// showUserScoreAndFightManual = true;
-bossFightStarts = true;
-// evilMentorToEndBossScene.showFirstScreen();
+//TESTING
+// bossFight = new BossFight(
+//   //User
+//   //UserHealth (More is more)
+//   //(standard 100) (200 max! 100 min!)
+//   100 + userHealth,
+//   //UserSpeed (More is slower)
+//   //(standard: 40) (40 worst speed! 4 best speed!)
+//   40 - userSpeed,
+//   //UserDamage / Positivity / Attack (More is more)
+//   // (standard: 10) (100 max! 10 min!)
+//   10 + userPositivity,
+//   //UserShield (More is more)
+//   //(standard: 10) (50 max! 0 min!)
+//   0 + userShield,
+//   //
+//   //
+//   //Boss
+//   //BossHealth (More is more)
+//   //(standard: 100) (300 max! 100 min!)
+//   100 + bossHealth,
+//   //BossFireBallDamage = boss object Damage (More is more)
+//   //(standard: 10) (100 max! | 10 Min!)
+//   10 + bossObjectDamage,
+//   //BossFireAmount = BossObjectAmount (More is more)
+//   //(standard: 30) (100 max! 30 min!)
+//   30 + bossObjectAmount,
+//   //BossFireBallSpeed = BossObjectSpeed (More is more)
+//   //(standard: 10) (30 max! | 10 Min!)
+//   10 + bossObjectSpeed
+// );
 //
 //
 //
@@ -2950,139 +3045,177 @@ window.draw = draw;
 function draw() {
   standardSettings();
 
-  //-------Start Button (Just for testing)
+  // -------Start Button (Just for testing)
   // if (showStartTestButton === true) {
   //   startTestButton.fadeIn();
   //   startTestButton.displayActiveOrSleeping();
   //   startTestButton.displayButtonSentence();
   // }
 
-  //01_soccerMainScene
-  soccerMainScene.panoramaScreen();
-  soccerMainScene.npcProblemScreen();
-  soccerMainScene.chooseAnswerScreen();
-  soccerMainScene.answerScreen();
-  soccerMainScene.reactionScreen();
-  soccerMainScene.itemScreen();
+  if (bossFightStarts === false) {
+    //00_dimensionToDestroyedScene
+    introToSoccerScene.firstScreen();
+    introToSoccerScene.secondScreen();
+    introToSoccerScene.thirdScreen();
+    introToSoccerScene.fourthScreen();
+    introToSoccerScene.fifthScreen();
+    introToSoccerScene.sixthScreen();
+    introToSoccerScene.seventhScreen();
+    introToSoccerScene.eighthScreen();
 
-  //01_soccerToChefScene
-  soccerToChefScene.firstScreen();
-  soccerToChefScene.secondScreen();
+    //01_soccerMainScene
+    soccerMainScene.panoramaFadeIn = 255; //Dont need to fade in: same Picture
+    soccerMainScene.panoramaScreen();
+    soccerMainScene.npcProblemScreen();
+    soccerMainScene.chooseAnswerScreen();
+    soccerMainScene.answerScreen();
+    soccerMainScene.reactionScreen();
+    soccerMainScene.itemScreen();
 
-  //02_chefMainScene
-  chefMainScene.panoramaFadeIn = 255; //Dont need to fade in: same Picture
-  chefMainScene.panoramaScreen();
-  chefMainScene.npcProblemScreen();
-  chefMainScene.chooseAnswerScreen();
-  chefMainScene.answerScreen();
-  chefMainScene.reactionScreen();
-  chefMainScene.itemScreen();
+    //01_soccerToChefScene
+    soccerToChefScene.firstScreen();
+    soccerToChefScene.secondScreen();
 
-  //02_ChefToCoffeeScene
-  chefToCoffeeScene.firstScreen();
-  chefToCoffeeScene.secondScreen();
-  chefToCoffeeScene.thirdScreen();
+    //02_chefMainScene
+    chefMainScene.panoramaFadeIn = 255; //Dont need to fade in: same Picture
+    chefMainScene.panoramaScreen();
+    chefMainScene.npcProblemScreen();
+    chefMainScene.chooseAnswerScreen();
+    chefMainScene.answerScreen();
+    chefMainScene.reactionScreen();
+    chefMainScene.itemScreen();
 
-  //-------Jump to next Scene (Just for testing)
-  // coffeeMainScene.showNPCProblemScreen();
-  // chefMainScene.showChooseAnswerScreen();
-  // chefMainScene.negativeTextButton.state = "choosed";
-  // chefMainScene.showAnswerScreen();
-  // chefMainScene.positiveTextButton.state = "choosed";
-  // chefMainScene.showItemScreen();
+    //02_ChefToCoffeeScene
+    chefToCoffeeScene.firstScreen();
+    chefToCoffeeScene.secondScreen();
+    chefToCoffeeScene.thirdScreen();
 
-  //03_coffeeMainScene
-  coffeeMainScene.panoramaScreen();
-  coffeeMainScene.npcProblemScreen();
-  coffeeMainScene.chooseAnswerScreen();
-  coffeeMainScene.reactionScreen();
-  coffeeMainScene.itemScreen();
+    //03_coffeeMainScene
+    coffeeMainScene.panoramaScreen();
+    coffeeMainScene.npcProblemScreen();
+    coffeeMainScene.chooseAnswerScreen();
+    coffeeMainScene.reactionScreen();
+    coffeeMainScene.itemScreen();
 
-  //03_coffeeToInvestorScene
-  coffeeToInvestorScene.firstScreen();
-  coffeeToInvestorScene.secondScreen();
+    //03_coffeeToInvestorScene
+    coffeeToInvestorScene.firstScreen();
+    coffeeToInvestorScene.secondScreen();
 
-  //04_investorMainScene
-  investorMainScene.panoramaFadeIn = 255; //Dont need to fade in: same Picture
-  investorMainScene.panoramaScreen();
-  investorMainScene.npcProblemScreen();
-  investorMainScene.chooseAnswerScreen();
-  investorMainScene.answerScreen();
-  investorMainScene.reactionScreen();
-  investorMainScene.itemScreen();
+    //04_investorMainScene
+    investorMainScene.panoramaFadeIn = 255; //Dont need to fade in: same Picture
+    investorMainScene.panoramaScreen();
+    investorMainScene.npcProblemScreen();
+    investorMainScene.chooseAnswerScreen();
+    investorMainScene.answerScreen();
+    investorMainScene.reactionScreen();
+    investorMainScene.itemScreen();
 
-  //04_InvestorToSocialScene
-  investorToSocialScene.firstScreen();
-  investorToSocialScene.secondScreen();
-  investorToSocialScene.thirdScreen();
+    //04_InvestorToSocialScene
+    investorToSocialScene.firstScreen();
+    investorToSocialScene.secondScreen();
+    investorToSocialScene.thirdScreen();
 
-  //05_socialMainScene
-  socialMainScene.panoramaFadeIn = 255; //Dont need to fade in: same Picture
-  socialMainScene.panoramaScreen();
-  socialMainScene.npcProblemScreen();
-  socialMainScene.chooseAnswerScreen();
-  socialMainScene.reactionScreen();
-  socialMainScene.itemScreen();
+    //05_socialMainScene
+    socialMainScene.panoramaFadeIn = 255; //Dont need to fade in: same Picture
+    socialMainScene.panoramaScreen();
+    socialMainScene.npcProblemScreen();
+    socialMainScene.chooseAnswerScreen();
+    socialMainScene.reactionScreen();
+    socialMainScene.itemScreen();
 
-  //05_socialToDimensionScene
-  socialToDimensionScene.firstScreen();
-  socialToDimensionScene.secondScreen();
-  socialToDimensionScene.thirdScreen();
-  socialToDimensionScene.fourthScreen();
-  socialToDimensionScene.fifthScreen();
-  socialToDimensionScene.sixthScreen();
+    //05_socialToDimensionScene
+    socialToDimensionScene.firstScreen();
+    socialToDimensionScene.secondScreen();
+    socialToDimensionScene.thirdScreen();
+    socialToDimensionScene.fourthScreen();
+    socialToDimensionScene.fifthScreen();
+    socialToDimensionScene.sixthScreen();
 
-  //06_DimensionMainScene
-  dimensionMainScene.panoramaFadeIn = 255; //Dont need to fade in: same Picture
-  dimensionMainScene.panoramaScreen();
-  dimensionMainScene.npcProblemScreen();
-  dimensionMainScene.chooseAnswerScreen();
-  dimensionMainScene.answerScreen();
-  dimensionMainScene.reactionScreen();
-  dimensionMainScene.itemScreen();
+    //06_DimensionMainScene
+    dimensionMainScene.panoramaFadeIn = 255; //Dont need to fade in: same Picture
+    dimensionMainScene.panoramaScreen();
+    dimensionMainScene.npcProblemScreen();
+    dimensionMainScene.chooseAnswerScreen();
+    dimensionMainScene.answerScreen();
+    dimensionMainScene.reactionScreen();
+    dimensionMainScene.itemScreen();
 
-  //06_dimensionToDestroyedScene
-  dimensionToDestroyedScene.firstScreen();
-  dimensionToDestroyedScene.secondScreen();
-  dimensionToDestroyedScene.thirdScreen();
-  dimensionToDestroyedScene.fourthScreen();
-  dimensionToDestroyedScene.fifthScreen();
-  dimensionToDestroyedScene.sixthScreen();
+    //06_dimensionToDestroyedScene
+    dimensionToDestroyedScene.firstScreen();
+    dimensionToDestroyedScene.secondScreen();
+    dimensionToDestroyedScene.thirdScreen();
+    dimensionToDestroyedScene.fourthScreen();
+    dimensionToDestroyedScene.fifthScreen();
+    dimensionToDestroyedScene.sixthScreen();
 
-  //07_destroyedMainScene
-  destroyedMainScene.panoramaFadeIn = 255; //Dont need to fade in: same Picture
-  destroyedMainScene.panoramaScreen();
-  destroyedMainScene.npcProblemScreen();
-  destroyedMainScene.chooseAnswerScreen();
-  destroyedMainScene.reactionScreen();
-  destroyedMainScene.itemScreen();
+    //07_destroyedMainScene
+    destroyedMainScene.panoramaFadeIn = 255; //Dont need to fade in: same Picture
+    destroyedMainScene.panoramaScreen();
+    destroyedMainScene.npcProblemScreen();
+    destroyedMainScene.chooseAnswerScreen();
+    destroyedMainScene.reactionScreen();
+    destroyedMainScene.itemScreen();
 
-  //07_destroyedToEvilMentorScene
-  destroyedToEvilMentorScene.firstScreen();
-  destroyedToEvilMentorScene.secondScreen();
-  destroyedToEvilMentorScene.thirdScreen();
-  destroyedToEvilMentorScene.fourthScreen();
+    //07_destroyedToEvilMentorScene
+    destroyedToEvilMentorScene.firstScreen();
+    destroyedToEvilMentorScene.secondScreen();
+    destroyedToEvilMentorScene.thirdScreen();
+    destroyedToEvilMentorScene.fourthScreen();
 
-  //08_evilMentorMainScene
-  evilMentorMainScene.panoramaFadeIn = 255; //Dont need to fade in: same Picture
-  evilMentorMainScene.panoramaScreen();
-  evilMentorMainScene.npcProblemScreen();
-  evilMentorMainScene.chooseAnswerScreen(
-    GIFChooseImageToxic,
-    GIFChooseImagePositive,
-    GIFChooseImageNegative,
-    GIFChooseImageNeutral
-  );
-  evilMentorMainScene.itemScreen();
+    //08_evilMentorMainScene
+    evilMentorMainScene.panoramaFadeIn = 255; //Dont need to fade in: same Picture
+    evilMentorMainScene.panoramaScreen();
+    evilMentorMainScene.npcProblemScreen();
+    evilMentorMainScene.chooseAnswerScreen(
+      GIFChooseImageToxic,
+      GIFChooseImagePositive,
+      GIFChooseImageNegative,
+      GIFChooseImageNeutral
+    );
+    evilMentorMainScene.itemScreen();
 
-  //08_EvilMentorToEndBossScene
-  evilMentorToEndBossScene.firstScreen(transformationGIF);
-  evilMentorToEndBossScene.secondScreen();
+    //08_EvilMentorToEndBossScene
+    evilMentorToEndBossScene.firstScreen(transformationGIF);
+    evilMentorToEndBossScene.secondScreen();
 
-  userScoreAndFightManual();
-
+    userScoreAndFightManual();
+  }
   //Testing
   if (bossFightStarts === true) {
+    if (createJustOneBossFight === true) {
+      //Has to be created here, so that the parameter are correct and have the latest value by creating the class
+      bossFight = new BossFight(
+        //User
+        //UserHealth (More is more)
+        //(standard 100) (200 max! 100 min!)
+        100 + userHealth,
+        //UserSpeed (More is slower)
+        //(standard: 40) (40 worst speed! 4 best speed!)
+        40 - userSpeed,
+        //UserDamage / Positivity / Attack (More is more)
+        // (standard: 10) (100 max! 10 min!)
+        10 + userPositivity,
+        //UserShield (More is more)
+        //(standard: 10) (50 max! 0 min!)
+        0 + userShield,
+        //
+        //
+        //Boss
+        //BossHealth (More is more)
+        //(standard: 100) (300 max! 100 min!)
+        100 + bossHealth,
+        //BossFireBallDamage = boss object Damage (More is more)
+        //(standard: 10) (100 max! | 10 Min!)
+        10 + bossObjectDamage,
+        //BossFireAmount = BossObjectAmount (More is more)
+        //(standard: 30) (100 max! 30 min!)
+        30 + bossObjectAmount,
+        //BossFireBallSpeed = BossObjectSpeed (More is more)
+        //(standard: 10) (30 max! | 10 Min!)
+        10 + bossObjectSpeed
+      );
+      createJustOneBossFight = false;
+    }
     //The order is because of displaying things in the correct way (Below/Above)
 
     bossFight.userControl();
@@ -3127,13 +3260,36 @@ function draw() {
 
     bossFight.winOrLose();
     bossFight.winOrLoseFade();
+
+    //
     if (bossFight.showEndScreen === true) {
       bossFightStarts = false;
       showEndscreen = true;
     }
+  }
 
-    if (showEndscreen === true) {
+  //EndScreen
+  if (showEndscreen === true) {
+    if (bossFight.winnerState === "gewonnen") {
+      endScreen.displayWinnerScreen();
+      //The userLookForBossFight function is external and not contained in the bossFight class
+      //So you have to use push & pop to just affect the userLookForBossFight function
+      if (endScreen.showtipps === false) {
+        push();
+        endScreen.displayUser();
+        userLookForBossFight();
+        pop();
+      }
     }
+    if (bossFight.winnerState === "verloren") {
+      endScreen.displayLoserScreen();
+    }
+
+    //For both Screens
+    endScreen.displayTippsBackButton();
+    endScreen.displayTippsButton();
+    endScreen.displayTipps();
+    endScreen.displayMenuButton();
   }
 
   //"Global" functions
@@ -3155,6 +3311,7 @@ function draw() {
 –––––––––––––––––––––––– Fuer Franzi & Yara
 */
 
+introToSoccerScene.showFirstScreen();
 // soccerMainScene.showPanoramaScreen();
 // soccerToChefScene.showFirstScreen();
 // chefMainScene.showPanoramaScreen();
@@ -3164,7 +3321,7 @@ function draw() {
 // investorMainScene.showPanoramaScreen();
 // investorToSocialScene.showFirstScreen();
 // socialMainScene.showPanoramaScreen();
-// socialToDimensionScene,showFirstScreen();
+// socialToDimensionScene.showFirstScreen();
 // dimensionMainScene.showPanoramaScreen();
 // dimensionToDestroyedScene.showFirstScreen();
 // destroyedMainScene.showPanoramaScreen();
@@ -3173,3 +3330,13 @@ function draw() {
 // evilMentorToEndBossScene.showFirstScreen();
 // showUserScoreAndFightManual = true;
 // bossFightStarts = true;
+// showEndscreen = true;
+
+// soccerMainScene.state = "toxic";
+// chefMainScene.state = "toxic";
+// investorMainScene.state = "toxic";
+// coffeeMainScene.state = "toxic";
+// socialMainScene.state = "toxic";
+// dimensionMainScene.state = "toxic";
+// destroyedMainScene.state = "toxic";
+// evilMentorMainScene.state = "toxic";

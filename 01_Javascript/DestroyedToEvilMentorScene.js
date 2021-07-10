@@ -72,7 +72,7 @@ export default class DestroyedToEvilMentorScene extends BetweenScene {
     this.fourthScreenText = new BetweenScenesText(
       duperBold,
       18.5,
-      "...hast du etwa deswegen mit Absicht alles zerstört?!",
+      "...hast du etwa alles mit Absicht zerstört?!",
       0,
       -200,
       1,

@@ -1,0 +1,128 @@
+ "07_destroyedMainScene",
+
+  //Spellbutton x-y-Postion//
+  18,
+  0,
+
+  //Type of Aura, ThoughtBubble and exclamation mark (NPC problem screen changes to "own problem thought screen")
+  //Types:  |  Aura_sad  |  Aura_negative (angry)  |   Aura_shock  |  Aura_black
+  "Aura_shock",
+  "thoughtBubbleShocked",
+  "exclamShocked",
+
+  //NPC problem speechbububle text
+  "Das kann doch nicht sein!",
+  duperBold,
+  "Gestern war alles normal...",
+  duperBold,
+  "und jetzt nimmt die Story völlig absurde",
+  "Ausmaße an! Was hat das für einen Sinn?",
+  "Vor allem für mich als User, wenn alle",
+  "Entscheidungen umsonst waren?",
+  "",
+  "",
+  "",
+  "",
+
+  //Duration of answer Time
+  0.5,
+
+  //Choose answers:
+  //toxic
+  "NICHTS WAR UMSONST.",
+  //positive
+  "JETZT MUSS ICH ERSTMAL KLARKOMMEN.",
+  //neutral
+  "HM, OKAY.",
+  //negative
+  "ICH HAB IMMERHIN DIE RÜSTUNG.",
+
+  //Jumps directly to reaction (formulated answer is not needed)
+  //NPC Reaction => own Reaction
+  //toxic
+  "...nichts war umsonst!",
+  duperBold,
+  "Good vibes only... mehr Lächeln...",
+  duper,
+  "pOsITiv dENkEn!",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  //positive
+  "Noch nie hat sich",
+  duperBold,
+  "etwas so sinnlos angefühlt.",
+  duperBold,
+  "Das ist gerade echt hart. Wenn ich mich",
+  "zusammenreiße, bekomme ich mich",
+  "wieder in den Griff.",
+  "",
+  "",
+  "",
+  "",
+  "",
+  //neutral
+  "...absurde Story?",
+  duperBold,
+  "Welche Story?...",
+  duper,
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  //negative
+  "Wie es den Menschen in der",
+  duperBold,
+  "Simulation ergangen ist, ist mir egal.",
+  duperBold,
+  "Hauptsache ich habe Rüstungsteile",
+  "bekommen und gewinne",
+  "das Game!",
+  "",
+  "",
+  "",
+  "",
+  "",
+
+  //Parameter User
+  //Health:
+  25,
+  //Speed
+  0,
+  //Positivity
+  0,
+  //Shield
+  6.5,
+
+  // Parameter Boss
+  //Toxic
+  //Health:
+  20,
+  //Object damage:
+  11,
+  //Object amount:
+  5,
+  //Object speed
+  2,
+
+  //Neutral
+  //Object amount:
+  9,
+
+  //Negative
+  //Health:
+  25,
+  //Object damage:
+  5,
+  //Object amount:
+  5,
+  //Object speed
+  2
