@@ -93,6 +93,10 @@ export default class BossFight {
     //Fades into White
     this.fadeIntoEndScreen = 0;
     this.showEndScreen = false;
+
+    //Sound
+    this.bossHitSoundplay = true;
+    this.userHitSoundplay = true;
   }
 
   countDown() {
@@ -179,7 +183,7 @@ export default class BossFight {
     );
   }
 
-  displayFireBalls() {
+  displayFireBalls(fireballSound) {
     if (this.countDownToEndbossFight.timeIsOver === true) {
       //Defines, how fast a new Fireball is pushed into the array
       this.counterNextFireball += this.bossFireSpeed;
@@ -206,7 +210,7 @@ export default class BossFight {
 
       //Displays every new Fireball
       for (let i = 0; i < this.fireballArray.length; i++) {
-        this.fireballArray[i].displayRandomFireBalls();
+        this.fireballArray[i].displayRandomFireBalls(fireballSound);
       }
     }
   }
@@ -292,11 +296,17 @@ export default class BossFight {
       //   console.log(this.fireballArray[0].fireBallX);
       // }
 
+      //Resets Sound
+
       //actual Collision
       if (this.distanceBetweenRectAndCircle < 27.5) {
         if (this.fireballArray[i].fireBallType === "positive") {
           if (this.pushPositiveJustOnce === true) {
             console.log("PositiveHit");
+
+            bossHitSound.setVolume(0.4);
+            bossHitSound.play();
+
             this.positiveExplosions.push(
               new ExplosionPositive(this.bossX, this.bossY)
             );
@@ -314,6 +324,9 @@ export default class BossFight {
         } else if (this.fireballArray[i].fireBallType === "toxic") {
           console.log("-");
           if (this.pushToxicJustOnce === true) {
+            userHitSound.setVolume(0.4);
+            userHitSound.play();
+
             this.toxicExplosions.push(
               new ExplosionToxic(
                 //480(GIF width)/2.5(scale)/2(GIF Center)=96(GIF Position) + corrigated

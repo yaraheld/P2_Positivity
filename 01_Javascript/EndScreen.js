@@ -139,8 +139,8 @@ export default class ShowEndScreen {
 
   displayUser() {
     if (this.showtipps === false) {
-      translate(0, -145);
-      scale(0.45);
+      translate(0, -125);
+      scale(0.7);
     }
   }
 

@@ -57,7 +57,6 @@ export default class SpellButton {
     //sets boolean to "true". Thus the sound can be played when the mouse is hovering over the button again
     //& then the sound is starting from the beginning because of "stop"
     this.playButtonSound = true;
-
     this.buttonSound.stop();
   }
 

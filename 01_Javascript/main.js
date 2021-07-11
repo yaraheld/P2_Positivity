@@ -102,12 +102,23 @@ let bossObjectDamageSave;
 let bossObjectAmountSave;
 let bossObjectSpeedSave;
 //
+let playJustOnceWhenWin;
+//
 let setEverythingJustOnceForBossFight;
 //
 let setEverythingJustOnce = true;
 //(Einmal aufrufen lassen)
 function startOver() {
   if (setEverythingJustOnce === true) {
+    //bei Wiederholung
+    gameMusic.stop();
+    //
+    gameMusic.setVolume(0.1);
+    gameMusic.play();
+    gameMusic.loop();
+
+    playJustOnceWhenWin = true;
+
     //------------------------------"Global" functions, update it when adding a new mainscene
     usersHeartIcon = loadImage("00_Links/00_UI-Elements/heart.png");
     usersSpeedIcon = loadImage("00_Links/00_UI-Elements/speed.png");
@@ -4677,6 +4688,12 @@ function draw() {
         //(standard: 10) (30 max! | 10 Min!)
         10 + bossObjectSpeed
       );
+      gameMusic.stop();
+
+      battleMusic.setVolume(0.1);
+      battleMusic.play();
+      battleMusic.loop();
+
       createJustOneBossFight = false;
     }
     //The order is because of displaying things in the correct way (Below/Above)
@@ -4694,7 +4711,7 @@ function draw() {
     userLookForBossFight();
     pop();
 
-    bossFight.displayFireBalls();
+    bossFight.displayFireBalls(fireballSound);
 
     bossFight.bossControl();
     bossFight.displayBoss();
@@ -4702,7 +4719,7 @@ function draw() {
 
     //Collision
     bossFight.countDown();
-    bossFight.pointOnRectangleAndCollision();
+    bossFight.pointOnRectangleAndCollision(bossHitSound);
     bossFight.displayPositiveHits();
     bossFight.displayToxicHits();
     bossFight.deleteFireBallsOutside();
@@ -4735,6 +4752,14 @@ function draw() {
   if (showEndscreen === true) {
     if (bossFight.winnerState === "gewonnen") {
       endScreen.displayWinnerScreen();
+      battleMusic.stop();
+
+      if (playJustOnceWhenWin === true) {
+        gameMusic.setVolume(0.1);
+        gameMusic.play();
+        gameMusic.loop();
+        playJustOnceWhenWin = false;
+      }
       //The userLookForBossFight function is external and not contained in the bossFight class
       //So you have to use push & pop to just affect the userLookForBossFight function
       if (endScreen.showtipps === false) {
@@ -4767,6 +4792,7 @@ function draw() {
 
   if (restart === true) {
     setEverythingJustOnce = true;
+    battleMusic.stop();
     startOver();
     restart = false;
   }

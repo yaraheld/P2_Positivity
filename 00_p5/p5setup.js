@@ -7,6 +7,32 @@ function centerCanvas() {
   var y = (windowHeight - height) / 2;
   cnv.position(x, y);
 }
+
+//loads the biggest data
+window.preload = preload;
+function preload() {
+  battleMusic = loadSound("00_Links/00_Audio/epicBattle.mp3");
+  gameMusic = loadSound("00_Links/00_Audio/music.mp3");
+
+  fireballSound = loadSound("00_Links/00_Audio/fire.mp3");
+  userHitSound = loadSound("00_Links/00_Audio/userHit.mp3");
+  bossHitSound = loadSound("00_Links/00_Audio/bossHit.mp3");
+
+  GIFChooseImageToxic = loadImage("00_Links/08_evilMentorMainScene/toxic.gif");
+  GIFChooseImagePositive = loadImage(
+    "00_Links/08_evilMentorMainScene/positive.gif"
+  );
+  GIFChooseImageNegative = loadImage(
+    "00_Links/08_evilMentorMainScene/negative.gif"
+  );
+  GIFChooseImageNeutral = loadImage(
+    "00_Links/08_evilMentorMainScene/neutral.gif"
+  );
+  transformationGIF = loadImage(
+    "00_Links/08_evilMentorToEndBossScene/firstScreen_small.gif"
+  );
+}
+
 function setup() {
   cnv = createCanvas(1100, 620);
   centerCanvas();
@@ -24,24 +50,11 @@ let GIFChooseImagePositive;
 let GIFChooseImageNegative;
 let GIFChooseImageNeutral;
 let transformationGIF;
-
-//loads the biggest data
-window.preload = preload;
-function preload() {
-  GIFChooseImageToxic = loadImage("00_Links/08_evilMentorMainScene/toxic.gif");
-  GIFChooseImagePositive = loadImage(
-    "00_Links/08_evilMentorMainScene/positive.gif"
-  );
-  GIFChooseImageNegative = loadImage(
-    "00_Links/08_evilMentorMainScene/negative.gif"
-  );
-  GIFChooseImageNeutral = loadImage(
-    "00_Links/08_evilMentorMainScene/neutral.gif"
-  );
-  transformationGIF = loadImage(
-    "00_Links/08_evilMentorToEndBossScene/firstScreen_small.gif"
-  );
-}
+let fireballSound;
+let userHitSound;
+let bossHitSound;
+let battleMusic;
+let gameMusic;
 
 // deaktiviert Pfeiltasten
 window.addEventListener("keydown", function (event) {

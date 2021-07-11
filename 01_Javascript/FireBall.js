@@ -6,6 +6,9 @@ export default class FireBall {
     this.positiveFireBallImage = loadImage(
       "00_Links/09_bossFight/positive_fireball.gif"
     );
+
+    this.fireBallSoundBool = true;
+
     this.fireballX = fireballX;
     this.fireballY = fireballY;
     this.fireBallSpeed = fireBallSpeed;
@@ -20,11 +23,17 @@ export default class FireBall {
     this.randomFireBall = Math.floor(Math.random() * 10);
   }
 
-  displayRandomFireBalls() {
+  displayRandomFireBalls(fireballSound) {
     //Fade in
     this.fireBallSize -= 1;
     if (this.fireBallSize < -7) {
       this.fireBallSize = -7;
+    }
+
+    if (this.fireBallSoundBool === true) {
+      fireballSound.setVolume(0.4);
+      fireballSound.play();
+      this.fireBallSoundBool = false;
     }
 
     //random fireball probability (Wahrscheinlichkeit)
