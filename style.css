@@ -2,7 +2,7 @@
   --white: #fff;
   --black: #000;
   --blackAlt: #231359;
-  --first: #3e1376;
+  --first: #3d1275;
   --second: #21f1cf;
   --third: #ffec35;
   --fourth: #94e0ff;
@@ -12,7 +12,7 @@
 body {
   padding: 0;
   margin: 0;
-  background-color: var(--black);
+  background-color: var(--first);
 }
 
 body * {
