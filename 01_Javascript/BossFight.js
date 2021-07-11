@@ -465,14 +465,15 @@ export default class BossFight {
     text(
       "INSG.:  Leben: " +
         bossHealthParameterInsg +
-        "/300  |  Speed: " +
-        bossObjectDamageParameterInsg +
-        "/98  |  Angriff: " +
-        bossObjectAmountParameterInsg +
-        "/102  |  Schild: " +
+        "/300  | Objektspeed: " +
         bossObjectSpeedParameterInsg +
-        "/30",
-      65,
+        "/30  |  Angriff: " +
+        bossObjectDamageParameterInsg +
+        "/98  |  Objektanzahl: " +
+        bossObjectAmountParameterInsg +
+        "/102",
+
+      -15,
       280
     );
   }
