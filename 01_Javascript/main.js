@@ -17,6 +17,7 @@ import TextAnimationWithMultipleSentences from "./TextAnimationWithMultipleSente
 import Endscreen from "./EndScreen.js";
 import MainSceneSelfDebugDestroy from "./MainSceneSelfDebugDestroy.js";
 import IntroToSoccerScene from "./IntroToSoccerScene.js";
+import StartScreen from "./StartScreen.js";
 
 let duper;
 let duperBold;
@@ -31,9 +32,2697 @@ export { duper, duperBold };
 //variables: lowercaseInitial
 //functions: self-explanatory naming
 
-//JUST FOR TESTING (BEGIN BUTTON)
-let showStartTestButton = true;
-let startTestButton = new WeiterButton(0, 0);
+//Preperation for start over function (reset)
+let startScreen;
+let introToSoccerScene;
+let soccerMainScene;
+let soccerToChefScene;
+let chefMainScene;
+let chefToCoffeeScene;
+let coffeeMainScene;
+let coffeeToInvestorScene;
+let investorMainScene;
+let investorToSocialScene;
+let socialMainScene;
+let socialToDimensionScene;
+let dimensionMainScene;
+let dimensionToDestroyedScene;
+let destroyedMainScene;
+let destroyedToEvilMentorScene;
+let evilMentorMainScene;
+let evilMentorToEndBossScene;
+let endScreen;
+//------------------------------"
+let bossFight;
+//------------------------------"
+let usersHeartIcon;
+let usersSpeedIcon;
+let usersPositivityIcon;
+let usersShieldIcon;
+let userHealth;
+let userSpeed;
+let userPositivity;
+let userShield;
+//------------------------------
+let bossHealth;
+let bossObjectDamage;
+let bossObjectAmount;
+let bossObjectSpeed;
+//------------------------------
+let showUserlook;
+let userBody;
+let weiterButtonToNextScene;
+let userEffectGIF;
+let fadeInItem;
+let countSceneButtonClicks;
+//------------------------------
+let showUserScoreAndFightManual;
+let statsImage;
+let scorefadeIn;
+let weiterButtonToFight;
+let fightManualText;
+let statsEffectGIF;
+//------------------------------
+let soccerState;
+let investorState;
+let coffeeState;
+let chefState;
+let destroyedState;
+let dimensionState;
+let socialState;
+let evilMentorState;
+//------------------------------
+let createJustOneBossFight;
+let bossFightStarts;
+let showEndscreen;
+let restart;
+//
+let bossHealthSave;
+let bossObjectDamageSave;
+let bossObjectAmountSave;
+let bossObjectSpeedSave;
+//
+let setEverythingJustOnceForBossFight;
+//
+let setEverythingJustOnce = true;
+//(Einmal aufrufen lassen)
+function startOver() {
+  if (setEverythingJustOnce === true) {
+    //------------------------------"Global" functions, update it when adding a new mainscene
+    usersHeartIcon = loadImage("00_Links/00_UI-Elements/heart.png");
+    usersSpeedIcon = loadImage("00_Links/00_UI-Elements/speed.png");
+    usersPositivityIcon = loadImage("00_Links/00_UI-Elements/positivity.png");
+    usersShieldIcon = loadImage("00_Links/00_UI-Elements/shield.png");
+    userHealth = 0;
+    userSpeed = 0;
+    userPositivity = 0;
+    userShield = 0;
+
+    //----------------------
+
+    bossHealth = 0;
+    bossObjectDamage = 0;
+    bossObjectAmount = 0;
+    bossObjectSpeed = 0;
+
+    //----------------------
+    bossHealthSave = 0;
+    bossObjectDamageSave = 0;
+    bossObjectAmountSave = 0;
+    bossObjectSpeedSave = 0;
+    //----------------------
+
+    showUserlook = false;
+    userBody = loadImage("00_Links/00_UI-Elements/user.png");
+    weiterButtonToNextScene = new WeiterButton(0, 240);
+    userEffectGIF = loadImage("00_Links/00_UI-Elements/getItem.gif");
+    fadeInItem = 0;
+    countSceneButtonClicks = [];
+
+    //----------------------
+
+    showUserScoreAndFightManual = false;
+    statsImage = loadImage("00_Links/09_bossFight/stats.png");
+    scorefadeIn = 0;
+    weiterButtonToFight = new FightButton(0, 220, "LET'S FIGHT!", -60);
+    fightManualText = new TextAnimationWithMultipleSentences(
+      -405,
+      -90,
+      19,
+      25,
+      1,
+      color(62, 19, 118),
+      "That escalated quickly...",
+      duperBold,
+      "Kämpfe gegen deinen Mentor,",
+      duper,
+      "indem du den toxischen Feuerbällen",
+      "ausweichst (Maus bewegen ▴ / ▾).",
+      "Wenn du positive Feuerbälle (grün)",
+      "einsammelst, erleidet der Mentor",
+      "Schaden („Angriff“). ",
+      "Besiege die Negativität!",
+      "",
+      ""
+    );
+    statsEffectGIF = loadImage("00_Links/00_UI-Elements/getItem.gif");
+
+    //----------------
+    createJustOneBossFight = true;
+    bossFightStarts = false;
+    showEndscreen = false;
+    restart = false;
+    //----------------
+
+    soccerState;
+    investorState;
+    coffeeState;
+    chefState;
+    destroyedState;
+    dimensionState;
+    socialState;
+    evilMentorState;
+
+    //----------------Define classes from all scenes and between scenes
+    startScreen = new StartScreen();
+
+    introToSoccerScene = new IntroToSoccerScene();
+
+    soccerMainScene = new MainScene(
+      "01_soccerMainScene",
+
+      //Spellbutton x-Postion//
+      10,
+      200,
+
+      //Type of Aura, Textbox and exclamation mark (NPC problem screen)
+      //Types:  |  Aura_sad  |  Aura_negative (angry)  |   Aura_shock  |  Aura_black
+      //Types TextBox:  |   textBoxSad  |  textBoxMad  |  usw.
+      //Types Exlamation mark:  |   excalmSad  |  exclamMad  |  usw.
+      "Aura_negative",
+      "textBoxMad",
+      "exclamMad",
+
+      //NPC problem speechbububle text
+      "Wie kann man denn so verpeilt sein?",
+      duperBold,
+      "Mein 12-jähriger Sohn hat gestern ",
+      duper,
+      "beim Fußballspiel den Elfmeter",
+      "INS FALSCHE TOR VERSENKT!",
+      "Wie kann das denn bitte bei nem",
+      "Elfmeter passieren? Ich bin am Ende.",
+      "Moment, warum erzähle ich ",
+      "das überhaupt?",
+      "",
+      "",
+
+      //Duration of answer Time
+      0.5,
+
+      //Choose answers:
+      //toxic
+      "KÖNNTE SCHLIMMER SEIN.",
+      //positive
+      "TRAINIERE DOCH MIT DEINEM SOHN.",
+      //neutral
+      "ICH HABS EILIG...",
+      //negative
+      "DAS IST EIN BISSCHEN PEINLICH.",
+
+      //Answers
+      //Toxic
+      "Ich verstehe dich...",
+      duperBold,
+      "aber sieh es mal so:",
+      duper,
+      "Wenigstens hat er überhaupt",
+      "ein Tor getroffen!",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      //positive
+      "Mach dir nichts draus,",
+      duperBold,
+      "dein Sohn ist doch erst 12!",
+      duper,
+      "Ein Vater-Sohn-Training wird",
+      "ihm bestimmt weiterhelfen.",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      //neutral
+      "Naja, ich muss jetzt",
+      duperBold,
+      "weiter zur Arbeit.",
+      duperBold,
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      //negative
+      "Das ist schon",
+      duperBold,
+      "ein bisschen peinlich.",
+      duperBold,
+      "Zum Glück habe ich",
+      "keine Kinder.",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+
+      //NPC Reaction
+      //toxic
+      "Hm, ja stimmt...",
+      duperBold,
+      "Am besten spreche ich garnicht",
+      duper,
+      "mit ihm darüber und freue mich",
+      "einfach über meinen Sohn.",
+      "Danke!",
+      "",
+      "",
+      "",
+      "",
+      "",
+      //positive
+      "Haha, das ist ne Idee!",
+      duperBold,
+      "Da wird sich nicht nur mein Sohn",
+      duper,
+      "drüber freuen, sondern auch",
+      "mein Gewicht.",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+
+      //neutral
+      "Aber wer bist du nochmal?",
+      duperBold,
+      "Arbeiten wir nicht im",
+      duper,
+      "gleichen Abteil?",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      //negative
+      "Ein bisschen beneide",
+      duperBold,
+      "ich dich schon...",
+      duperBold,
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+
+      //Parameter User
+      //Health:
+      12.5,
+      //Speed
+      13.5,
+      //Positivity
+      0,
+      //Shield
+      6.5,
+
+      // Parameter Boss
+      //Toxic
+      //Health:
+      20,
+      //Object damage:
+      11,
+      //Object amount:
+      5,
+      //Object speed
+      6,
+
+      //Neutral
+      //Object amount:
+      9,
+
+      //Negative
+      //Health:
+      25,
+      //Object damage:
+      5,
+      //Object amount:
+      5,
+      //Object speed
+      4
+    );
+
+    soccerToChefScene = new SoccerToChefScene();
+
+    chefMainScene = new MainScene(
+      "02_chefMainScene",
+
+      //Spellbutton x-Postion//
+      10,
+      200,
+
+      //Type of Aura, Textbox and exclamation mark (NPC problem screen)
+      //Types:  |  Aura_sad  |  Aura_negative (angry)  |   Aura_shock  |  Aura_black
+      "Aura_sad",
+      "textBoxSad",
+      "exclamSad",
+
+      //NPC problem speechbububle text
+      "Ich dachte, dass Geld immer",
+      duperBold,
+      "alles wett macht...",
+      duperBold,
+      "Aber was soll ich damit, wenn",
+      "sich meine Frau immer mehr",
+      "von mir distanziert?",
+      "Moment, warum erzähle ich",
+      "Ihnen das überhaupt?",
+      "",
+      "",
+      "",
+
+      //Duration of answer Time
+      0.5,
+
+      //Choose answers:
+      //toxic
+      "VERSUCHEN SIE, POSITIV ZU BLEIBEN.",
+      //positive
+      "VERSUCHEN SIE, PRIORITÄTEN ZU SETZEN.",
+      //neutral
+      "UIUIUI MEINE BLASE...",
+      //negative
+      "DAS GEHT MICH EIGENTLICH NICHTS AN...",
+
+      //Answers
+      //Toxic
+      "Alles passiert aus einem Grund...",
+      duperBold,
+      "vielleicht sollten Sie einfach",
+      duper,
+      "lernen, das Beste auch in so",
+      "einer Situation zu sehen.",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      //positive
+      "Ist Ihnen denn die Arbeit und",
+      duperBold,
+      "das Geld wichtiger, als Ihre Frau?",
+      duperBold,
+      "Arbeiten Sie daran, ein ",
+      "besserer Partner für sie",
+      "zu werden. Das wird einiges",
+      "Verändern, sie schaffen das!",
+      "",
+      "",
+      "",
+      "",
+      //neutral
+      "Ich war bis jetzt noch",
+      duperBold,
+      "nicht auf dem Klo. ",
+      duperBold,
+      "Entschuldigen Sie, es ist ",
+      "schon fast zu spät!",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      //negative
+      "Sie haben sich doch",
+      duperBold,
+      "den Job ausgesucht,",
+      duperBold,
+      "kommen sie damit klar.",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+
+      //NPC Reaction
+      //toxic
+      "Sehen Sie! Das habe ich mir auch",
+      duperBold,
+      "schon gesagt.",
+      duperBold,
+      "Soll sich meine Frau mal nicht",
+      "so anstellen. Und wer kann",
+      "sich schon eine Rolli gönnen?",
+      "",
+      "",
+      "",
+      "",
+      "",
+      //positive
+      "Das ist aber ehrlich von Ihnen... ",
+      duperBold,
+      "Zum Glück sind mir meine Sorgen ",
+      duper,
+      "einfach so rausgerutscht!",
+      "Mehr Zeit für meine Familie, ",
+      "das ist gut! Sagen Sie – wollen Sie",
+      "nicht vielleicht meine Stelle",
+      "übernehmen?",
+      "",
+      "",
+      "",
+      //neutral
+      "Äähh... ",
+      duperBold,
+      "was... ",
+      duperBold,
+      "ist das hier?!",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      //negative
+      "Machen Sie sich an die Arbeit!",
+      duperBold,
+      "Vergessen Sie ganz schnell, was",
+      duper,
+      "ich Ihnen gerade erzählt habe!",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+
+      //Parameter User
+      //Health:
+      25,
+      //Speed
+      0,
+      //Positivity
+      10,
+      //Shield
+      6.5,
+
+      // Parameter Boss
+      //Toxic
+      //Health:
+      20,
+      //Object damage:
+      11,
+      //Object amount:
+      5,
+      //Object speed
+      2,
+
+      //Neutral
+      //Object amount:
+      9,
+
+      //Negative
+      //Health:
+      25,
+      //Object damage:
+      5,
+      //Object amount:
+      5,
+      //Object speed
+      2
+    );
+
+    chefToCoffeeScene = new ChefToCoffeeScene();
+
+    coffeeMainScene = new MainSceneSelf(
+      "03_coffeeMainScene",
+
+      //Spellbutton x-Postion//
+      0,
+      115,
+
+      //Type of Aura, ThoughtBubble and exclamation mark (NPC problem screen changes to "own problem thought screen")
+      //Types:  |  Aura_sad  |  Aura_negative (angry)  |   Aura_shock  |  Aura_black
+      "Aura_sad",
+      "thoughtBubbleSad",
+      "exclamSad",
+
+      //NPC problem speechbububle text
+      "Och nööö...",
+      duperBold,
+      "Meine Hose ist total nass.",
+      duperBold,
+      "Shit! Ist nicht gleich das Meeting mit",
+      "dem Investor?! Jetzt muss ich mir wohl wieder",
+      "die lange Unterhose meiner Kollegin leihen.",
+      "Moment, befinde ich mich gerade",
+      "in meinen Gedanken?",
+      "",
+      "",
+      "",
+
+      //Duration of answer Time
+      0.5,
+
+      //Choose answers:
+      //toxic
+      "DEN GEDANKEN IGNORIEREN.",
+      //positive
+      "AUF DEN GEDANKEN EINGEHEN",
+      //neutral
+      "ICH HOLE MIR NEUEN KAFFEE.",
+      //negative
+      "ICH HABE HALT ZWEI LINKE HÄNDE.",
+
+      //Jumps directly to reaction (formulated answer is not needed)
+      //NPC Reaction => own Reaction
+      //toxic
+      "Den Gedanken",
+      duperBold,
+      "schiebe ich einfach unter meinen",
+      duper,
+      "Sorgenstapel. Und mit der langen",
+      "Unterhose sehe ich eigentlich",
+      "ganz sexy aus.",
+      "",
+      "",
+      "",
+      "",
+      "",
+      //positive
+      "Ich bin wohl etwas nervös,",
+      duperBold,
+      "aber das ist normal. Ich versuche",
+      duper,
+      "jetzt klare Gedanken zu fassen und",
+      "schnell eine Alternative zur langen",
+      "Unterhose zu finden.",
+      "",
+      "",
+      "",
+      "",
+      "",
+      //neutral
+      "Kaffe leer... egal.",
+      duperBold,
+      "Hmmm... brauche...",
+      duper,
+      "neuen... Kaffee...",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      //negative
+      "Wofür habe",
+      duperBold,
+      "ich denn bitte Zauberkräfte,",
+      duper,
+      "wenn ich noch nicht einmal richtig",
+      "trinken kann?! Ich habe etwas",
+      "schlimmeres als die lange",
+      "Unterhose verdient.",
+      "",
+      "",
+      "",
+      "",
+
+      //Parameter User
+      //Health:
+      0,
+      //Speed
+      9,
+      //Positivity
+      10,
+      //Shield
+      6.5,
+
+      // Parameter Boss
+      //Toxic
+      //Health:
+      20,
+      //Object damage:
+      11,
+      //Object amount:
+      5,
+      //Object speed
+      2,
+
+      //Neutral
+      //Object amount:
+      9,
+
+      //Negative
+      //Health:
+      25,
+      //Object damage:
+      5,
+      //Object amount:
+      5,
+      //Object speed
+      2
+    );
+
+    coffeeToInvestorScene = new CoffeeToInvestorScene();
+
+    investorMainScene = new MainScene(
+      "04_investorMainScene",
+
+      //Spellbutton x-y-Postion//
+      23,
+      190,
+
+      //Type of Aura, Textbox and exclamation mark (NPC problem screen)
+      //Types:  |  Aura_sad  |  Aura_negative (angry)  |   Aura_shock  |  Aura_black
+      "Aura_sad",
+      "textBoxSad",
+      "exclamSad",
+
+      //NPC problem speechbububle text
+      "Meine Schildkröte muss heute",
+      duperBold,
+      "eingeschläfert werden...",
+      duperBold,
+      "Speedo war mein ein und alles! Mit",
+      "wem gucke ich denn jetzt Tierdokus?",
+      "In meiner Verfassung muss ich das",
+      "Meeting verschieben... Moment,",
+      " warum erzähle ich Ihnen das?",
+      "",
+      "",
+      "",
+
+      //Duration of answer Time
+      0.5,
+
+      //Choose answers:
+      //toxic
+      "ES IST, WIE ES IST.",
+      //positive
+      "LASSEN SIE ES RAUS...",
+      //neutral
+      "ÄHH... ICH HABE PLATZANGST.",
+      //negative
+      "FÄLLT DAS MEETING ALSO AUS?",
+
+      //Answers
+      //Toxic
+      "So ist das im Leben.",
+      duperBold,
+      "Konzentrieren Sie sich auf",
+      duper,
+      "das Positive. Sie haben einen",
+      "freien Tag! Nutzen Sie ihn.",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      //positive
+      "Das tut mir leid...",
+      duperBold,
+      "lassen Sie es raus.",
+      duperBold,
+      "Wenn ich Ihnen helfen kann",
+      "oder Sie jemanden für einen",
+      "Doku-Abend brauchen,",
+      "sagen Sie bescheid.",
+      "",
+      "",
+      "",
+      "",
+      //neutral
+      "Ehrlich gesagt",
+      duperBold,
+      "bekomme ich in Aufzügen",
+      duper,
+      "schnell Platzangst...",
+      "ich nehme die Treppen.",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      //negative
+      "Jetzt machen Sie mal LANGSAM...",
+      duperBold,
+      "das Meeting fällt aus!?",
+      duper,
+      "Dann pack ich mal speedomäßig",
+      "meine Sachen. Ach...",
+      "und herzliches Beileid.",
+      "",
+      "",
+      "",
+      "",
+      "",
+
+      //NPC Reaction
+      //toxic
+      "Meinen Sie? Ich fühle mich",
+      duperBold,
+      "so kraftlos...",
+      duperBold,
+      "dann lass ich das Meeting zwar",
+      "erstmal sausen, aber versuche",
+      "mich trotzdem an etwas Produktivem.",
+      "Das Leben muss ja weitergehen...",
+      "",
+      "",
+      "",
+      "",
+      //positive
+      "Das tut so gut,",
+      duperBold,
+      "einfach mal trauern zu können...",
+      duper,
+      "Ich werde das Meeting erstmal",
+      "ausfallen lassen... Sie können mir",
+      "gerne Ihre Nummer geben,",
+      "es gibt bald eine neue Staffel von",
+      "„Unser Planet“ auf Netflix (schnief).",
+      "",
+      "",
+      "",
+      //neutral
+      "Warum sind sie dann überhaupt ",
+      duperBold,
+      "zum Aufzug gegangen?...",
+      duperBold,
+      "Naja, ich werde das Meeting",
+      "erstmal ausfallen lassen.",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      //negative
+      "l...langsam?",
+      duperBold,
+      "Speedo - w... was?",
+      duperBold,
+      "Ich werde das Meeting",
+      "erstmal ausfallen lassen...",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+
+      //Parameter User
+      //Health:
+      12.5,
+      //Speed
+      0,
+      //Positivity
+      10,
+      //Shield
+      19.5,
+
+      // Parameter Boss
+      //Toxic
+      //Health:
+      25,
+      //Object damage:
+      11,
+      //Object amount:
+      5,
+      //Object speed
+      2,
+
+      //Neutral
+      //Object amount:
+      9,
+
+      //Negative
+      //Health:
+      25,
+      //Object damage:
+      11,
+      //Object amount:
+      5,
+      //Object speed
+      2
+    );
+
+    investorToSocialScene = new InvestorToSocialScene();
+
+    socialMainScene = new MainSceneSelf(
+      "05_socialMainScene",
+
+      //Spellbutton x-Postion//
+      5,
+      73,
+
+      //Type of Aura, ThoughtBubble and exclamation mark (NPC problem screen changes to "own problem thought screen")
+      //Types:  |  Aura_sad  |  Aura_negative (angry)  |   Aura_shock  |  Aura_black
+      "Aura_sad",
+      "thoughtBubbleSad",
+      "exclamSad",
+
+      //NPC problem speechbububle text
+      "Läuft bei meiner Kollegin…",
+      duperBold,
+      "Bei anderen scheint immer",
+      duper,
+      "alles super zu sein. Hier in der",
+      "Description steht auch noch",
+      "„positive vibes only“…",
+      "",
+      "",
+      "",
+      "",
+      "",
+
+      //Duration of answer Time
+      0.5,
+
+      //Choose answers:
+      //toxic
+      "POSITIVES DENKEN = POSITIVER SELBSTWERT.",
+      //positive
+      "ALLE GEFÜHLE SIND GLEICH WICHTIG.",
+      //neutral
+      "WEITER SCROLLEN",
+      //negative
+      "WARUM IST MEIN LEBEN NICHT AUCH SO?",
+
+      //Jumps directly to reaction (formulated answer is not needed)
+      //NPC Reaction => own Reaction
+      //toxic
+      "Ich like das Bild jetzt auch.",
+      duperBold,
+      "Der Post hat mich motiviert!",
+      duper,
+      "Mein Lächeln werde ich",
+      "wieder aufsetzen.",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      //positive
+      "Ich kann nicht nur",
+      duperBold,
+      "die positiven Gefühle fühlen",
+      duperBold,
+      "und die negativen ausblenden.",
+      "Alle Gefühle sind relevant.",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+
+      //neutral
+      "Wieder ein Urlaubsbild.",
+      duperBold,
+      "Ich scrolle noch ein bisschen weiter.",
+      duper,
+      "Vielleicht gibts ja einen ",
+      "witzigen Katzenpost",
+      "von der h_da.",
+      "",
+      "",
+      "",
+      "",
+      "",
+      //negative
+      "Im Vergleich zu ihr",
+      duperBold,
+      "ist mein Leben scheiße...",
+      duperBold,
+      "Egal was ich mache, das Glück",
+      "ist einfach nicht auf meiner Seite.",
+      "Ich will mich auch so",
+      "fühlen wie sie...",
+      "",
+      "",
+      "",
+      "",
+
+      //Parameter User
+      //Health:
+      12.5,
+      //Speed
+      4.5,
+      //Positivity
+      10,
+      //Shield
+      6.5,
+
+      // Parameter Boss
+      //Toxic
+      //Health:
+      20,
+      //Object damage:
+      11,
+      //Object amount:
+      5,
+      //Object speed
+      2,
+
+      //Neutral
+      //Object amount:
+      9,
+
+      //Negative
+      //Health:
+      25,
+      //Object damage:
+      5,
+      //Object amount:
+      5,
+      //Object speed
+      2
+    );
+
+    socialToDimensionScene = new SocialToDimensionScene();
+
+    dimensionMainScene = new MainSceneDimension(
+      "06_dimensionMainScene",
+
+      //Spellbutton x-y-Postion//
+      0,
+      -50,
+
+      //Type of Aura, Textbox and exclamation mark (NPC problem screen)
+      //Types:  |  Aura_sad  |  Aura_negative (angry)  |   Aura_shock  |  Aura_black
+      "Aura_sad",
+      "textBoxSad",
+      "exclamSad",
+
+      //NPC problem speechbububle text
+      "Wir arbeiten gerade an einem",
+      duperBold,
+      "Uni-Projekt und liegen voll zurück!",
+      duperBold,
+      "Selbst unsere Dozentin bekommt",
+      "jetzt Angst. Wie sollen wir dieses ",
+      "Semester überstehen?",
+      "Moment, irgendwie kommst",
+      "du uns bekannt vor...?",
+      "",
+      "",
+      "",
+
+      //Duration of answer Time
+      0.5,
+
+      //Choose answers:
+      //toxic
+      "SCHEITERN IST KEINE OPTION!",
+      //positive
+      "SCHEITERN GEHÖRT DAZU.",
+      //neutral
+      "SCHEITERN IST EIN THEMA FÜR SICH.",
+      //negative
+      "WIEDREHOLT DOCH DAS SEMESTER.",
+
+      //Answers
+      //Toxic
+      "Ihr seid nicht gescheitert.",
+      duperBold,
+      "Arbeitet weiter und holt",
+      duper,
+      "die Zeit wieder auf!",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      //positive
+      "Scheitern ist nichts Schlechtes,",
+      duperBold,
+      "wenn man daraus lernt.",
+      duperBold,
+      "Guckt, was ihr ändern müsst",
+      "und haut dann richtig rein!",
+      "Alleine für die Idee würde",
+      "ich euch eine 1.0 geben.",
+      "",
+      "",
+      "",
+      "",
+      //neutral
+      "... aber die Internetverbindung",
+      duperBold,
+      "war so schlecht,",
+      duperBold,
+      "ich habe leider nichts",
+      "verstanden.",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      //negative
+      "Wenn man scheitert,",
+      duperBold,
+      "sollte man seine Bemühungen",
+      duper,
+      "aufgeben und sich nicht",
+      "weiter sinnlos anstrengen.",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+
+      //NPC Reaction
+      //toxic
+      "Okay, wir schaffen das",
+      duperBold,
+      "irgendwie schon, solange wir",
+      duper,
+      "einfach weitermachen!",
+      "Das Semester schaffen",
+      "wir easy peasy. Piew Piew!",
+      "",
+      "",
+      "",
+      "",
+      "",
+
+      //positive
+      "Guter Punkt – wir strukturieren",
+      duperBold,
+      "uns nochmal neu und gucken,",
+      duperBold,
+      "was wir anders machen müssen.",
+      "Viel zu lernen wir noch haben!",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+
+      //neutral
+      "Was hast du gesagt?",
+      duperBold,
+      "Du warst gemutet.",
+      duper,
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+
+      //negative
+      "Jo.",
+      duperBold,
+      "Wir lassen uns",
+      duper,
+      "einfach etwas gehen,",
+      "BAföG regelt.",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+
+      //Parameter User
+      //Health:
+      0,
+      //Speed
+      4.5,
+      //Positivity
+      30,
+      //Shield
+      0,
+
+      // Parameter Boss
+      //Toxic
+      //Health:
+      20,
+      //Object damage:
+      11,
+      //Object amount:
+      9,
+      //Object speed
+      2,
+
+      //Neutral
+      //Object amount:
+      9,
+
+      //Negative
+      //Health:
+      25,
+      //Object damage:
+      11,
+      //Object amount:
+      5,
+      //Object speed
+      2
+    );
+
+    dimensionToDestroyedScene = new DimensionToDestroyedScene();
+
+    destroyedMainScene = new MainSceneSelfDebugDestroy(
+      "07_destroyedMainScene",
+
+      //Spellbutton x-y-Postion//
+      18,
+      0,
+
+      //Type of Aura, ThoughtBubble and exclamation mark (NPC problem screen changes to "own problem thought screen")
+      //Types:  |  Aura_sad  |  Aura_negative (angry)  |   Aura_shock  |  Aura_black
+      "Aura_shock",
+      "thoughtBubbleShocked",
+      "exclamShocked",
+
+      //NPC problem speechbububle text
+      "Das kann doch nicht sein!",
+      duperBold,
+      "Gestern war alles normal...",
+      duperBold,
+      "und jetzt nimmt die Story völlig absurde",
+      "Ausmaße an! Was hat das für einen Sinn?",
+      "Vor allem für mich als User, wenn alle",
+      "Entscheidungen umsonst waren?",
+      "",
+      "",
+      "",
+      "",
+
+      //Duration of answer Time
+      0.5,
+
+      //Choose answers:
+      //toxic
+      "NICHTS WAR UMSONST.",
+      //positive
+      "JETZT MUSS ICH ERSTMAL KLARKOMMEN.",
+      //neutral
+      "HM, OKAY.",
+      //negative
+      "ICH HAB IMMERHIN DIE RÜSTUNG.",
+
+      //Jumps directly to reaction (formulated answer is not needed)
+      //NPC Reaction => own Reaction
+      //toxic
+      "...nichts war umsonst!",
+      duperBold,
+      "Good vibes only... mehr Lächeln...",
+      duper,
+      "pOsITiv dENkEn!",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      //positive
+      "Noch nie hat sich",
+      duperBold,
+      "etwas so sinnlos angefühlt.",
+      duperBold,
+      "Das ist gerade echt hart. Wenn ich mich",
+      "zusammenreiße, bekomme ich mich",
+      "wieder in den Griff.",
+      "",
+      "",
+      "",
+      "",
+      "",
+
+      //neutral
+      "...absurde Story?",
+      duperBold,
+      "Welche Story?...",
+      duper,
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      //negative
+      "Wie es den Menschen in der",
+      duperBold,
+      "Simulation ergangen ist, ist mir egal.",
+      duperBold,
+      "Hauptsache ich habe Rüstungsteile",
+      "bekommen und gewinne",
+      "das Game!",
+      "",
+      "",
+      "",
+      "",
+      "",
+
+      //Parameter User
+      //Health:
+      25,
+      //Speed
+      0,
+      //Positivity
+      0,
+      //Shield
+      6.5,
+
+      // Parameter Boss
+      //Toxic
+      //Health:
+      20,
+      //Object damage:
+      11,
+      //Object amount:
+      5,
+      //Object speed
+      2,
+
+      //Neutral
+      //Object amount:
+      9,
+
+      //Negative
+      //Health:
+      25,
+      //Object damage:
+      5,
+      //Object amount:
+      5,
+      //Object speed
+      2
+    );
+
+    destroyedToEvilMentorScene = new DestroyedToEvilMentorScene();
+
+    evilMentorMainScene = new EvilMentorMainScene(
+      "08_evilMentorMainScene",
+
+      //Spellbutton x-y-Postion//
+      0,
+      190,
+
+      //Type of Aura, Textbox and exclamation mark (NPC problem screen)
+      //Types:  |  Aura_sad  |  Aura_negative (angry)  |   Aura_shock  |  Aura_black
+      "Aura_negative",
+      "textBoxMad",
+      "exclamMad",
+
+      //NPC problem speechbububle text
+      "Mit Positivität kommt man doch",
+      duperBold,
+      "KEIN BISSCHEN WEITER IM LEBEN!",
+      duperBold,
+      "Diese naiven Menschen...",
+      "ich kann Sie nicht ausstehen!",
+      "Meine Geduld hat jetzt ein Ende.",
+      "Die ganzen Entscheidungen",
+      "MACHEN MICH IRRE!",
+      "",
+      "",
+      "",
+
+      //Duration of answer Time
+      0.5,
+
+      //Parameter User
+      //Health:
+      12.5,
+      //Speed
+      4.5,
+      //Positivity
+      10,
+      //Shield
+      0,
+
+      // Parameter Boss
+      //Toxic
+      //Health:
+      20,
+      //Object damage:
+      11,
+      //Object amount:
+      9,
+      //Object speed
+      2,
+
+      //Neutral
+      //Object amount:
+      9,
+
+      //Negative
+      //Health:
+      25,
+      //Object damage:
+      5,
+      //Object amount:
+      9,
+      //Object speed
+      2
+    );
+
+    evilMentorToEndBossScene = new EvilMentorToEndBossScene();
+
+    endScreen = new Endscreen();
+
+    setEverythingJustOnceForBossFight = false;
+
+    setEverythingJustOnce = false;
+  }
+}
+//Doesnt work to reset everything before Bossfight to make it more fluently
+// function startOverForBossFight() {
+//   if (setEverythingJustOnceForBossFight === true) {
+//     //------------------------------"Global" functions, update it when adding a new mainscene
+//     // usersHeartIcon = loadImage("00_Links/00_UI-Elements/heart.png");
+//     // usersSpeedIcon = loadImage("00_Links/00_UI-Elements/speed.png");
+//     // usersPositivityIcon = loadImage("00_Links/00_UI-Elements/positivity.png");
+//     // usersShieldIcon = loadImage("00_Links/00_UI-Elements/shield.png");
+//     // userHealth = 0;
+//     // userSpeed = 0;
+//     // userPositivity = 0;
+//     // userShield = 0;
+
+//     //----------------------
+
+//     // bossHealth = 0;
+//     // bossObjectDamage = 0;
+//     // bossObjectAmount = 0;
+//     // bossObjectSpeed = 0;
+
+//     //----------------------
+
+//     showUserlook = false;
+//     userBody = loadImage("00_Links/00_UI-Elements/user.png");
+//     weiterButtonToNextScene = new WeiterButton(0, 240);
+//     userEffectGIF = loadImage("00_Links/00_UI-Elements/getItem.gif");
+//     fadeInItem = 0;
+//     countSceneButtonClicks = [];
+
+//     //----------------------
+
+//     // showUserScoreAndFightManual = false;
+//     // statsImage = loadImage("00_Links/09_bossFight/stats.png");
+//     // scorefadeIn = 0;
+//     // weiterButtonToFight = new FightButton(0, 220, "LET'S FIGHT!", -60);
+//     // fightManualText = new TextAnimationWithMultipleSentences(
+//     //   -405,
+//     //   -90,
+//     //   19,
+//     //   25,
+//     //   1,
+//     //   color(62, 19, 118),
+//     //   "That escalated quickly...",
+//     //   duperBold,
+//     //   "Kämpfe gegen deinen Mentor,",
+//     //   duper,
+//     //   "indem du den toxischen Feuerbällen",
+//     //   "ausweichst (Maus bewegen ▴ / ▾).",
+//     //   "Wenn du positive Feuerbälle (grün)",
+//     //   "einsammelst, erleidet der Mentor",
+//     //   "Schaden („Angriff“). ",
+//     //   "Besiege die Negativität!",
+//     //   "",
+//     //   ""
+//     // );
+//     // statsEffectGIF = loadImage("00_Links/00_UI-Elements/getItem.gif");
+
+//     //----------------
+//     // createJustOneBossFight = true;
+//     // bossFightStarts = false;
+//     // showEndscreen = false;
+//     // restart = false;
+//     //----------------
+
+//     //----------------Define classes from all scenes and between scenes
+//     // startScreen = new StartScreen();
+
+//     introToSoccerScene = new IntroToSoccerScene();
+
+//     soccerMainScene = new MainScene(
+//       "01_soccerMainScene",
+
+//       //Spellbutton x-Postion//
+//       10,
+//       200,
+
+//       //Type of Aura, Textbox and exclamation mark (NPC problem screen)
+//       //Types:  |  Aura_sad  |  Aura_negative (angry)  |   Aura_shock  |  Aura_black
+//       //Types TextBox:  |   textBoxSad  |  textBoxMad  |  usw.
+//       //Types Exlamation mark:  |   excalmSad  |  exclamMad  |  usw.
+//       "Aura_negative",
+//       "textBoxMad",
+//       "exclamMad",
+
+//       //NPC problem speechbububle text
+//       "Wie kann man denn so verpeilt sein?",
+//       duperBold,
+//       "Mein 12-jähriger Sohn hat gestern ",
+//       duper,
+//       "beim Fußballspiel den Elfmeter",
+//       "INS FALSCHE TOR VERSENKT!",
+//       "Wie kann das denn bitte bei nem",
+//       "Elfmeter passieren? Ich bin am Ende.",
+//       "Moment, warum erzähle ich ",
+//       "das überhaupt?",
+//       "",
+//       "",
+
+//       //Duration of answer Time
+//       0.5,
+
+//       //Choose answers:
+//       //toxic
+//       "KÖNNTE SCHLIMMER SEIN.",
+//       //positive
+//       "TRAINIERE DOCH MIT DEINEM SOHN.",
+//       //neutral
+//       "ICH HABS EILIG...",
+//       //negative
+//       "DAS IST EIN BISSCHEN PEINLICH.",
+
+//       //Answers
+//       //Toxic
+//       "Ich verstehe dich...",
+//       duperBold,
+//       "aber sieh es mal so:",
+//       duper,
+//       "Wenigstens hat er überhaupt",
+//       "ein Tor getroffen!",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       //positive
+//       "Mach dir nichts draus,",
+//       duperBold,
+//       "dein Sohn ist doch erst 12!",
+//       duper,
+//       "Ein Vater-Sohn-Training wird",
+//       "ihm bestimmt weiterhelfen.",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       //neutral
+//       "Naja, ich muss jetzt",
+//       duperBold,
+//       "weiter zur Arbeit.",
+//       duperBold,
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       //negative
+//       "Das ist schon",
+//       duperBold,
+//       "ein bisschen peinlich.",
+//       duperBold,
+//       "Zum Glück habe ich",
+//       "keine Kinder.",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+
+//       //NPC Reaction
+//       //toxic
+//       "Hm, ja stimmt...",
+//       duperBold,
+//       "Am besten spreche ich garnicht",
+//       duper,
+//       "mit ihm darüber und freue mich",
+//       "einfach über meinen Sohn.",
+//       "Danke!",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       //positive
+//       "Haha, das ist ne Idee!",
+//       duperBold,
+//       "Da wird sich nicht nur mein Sohn",
+//       duper,
+//       "drüber freuen, sondern auch",
+//       "mein Gewicht.",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+
+//       //neutral
+//       "Aber wer bist du nochmal?",
+//       duperBold,
+//       "Arbeiten wir nicht im",
+//       duper,
+//       "gleichen Abteil?",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       //negative
+//       "Ein bisschen beneide",
+//       duperBold,
+//       "ich dich schon...",
+//       duperBold,
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+
+//       //Parameter User
+//       //Health:
+//       12.5,
+//       //Speed
+//       13.5,
+//       //Positivity
+//       0,
+//       //Shield
+//       6.5,
+
+//       // Parameter Boss
+//       //Toxic
+//       //Health:
+//       20,
+//       //Object damage:
+//       11,
+//       //Object amount:
+//       5,
+//       //Object speed
+//       6,
+
+//       //Neutral
+//       //Object amount:
+//       9,
+
+//       //Negative
+//       //Health:
+//       25,
+//       //Object damage:
+//       5,
+//       //Object amount:
+//       5,
+//       //Object speed
+//       4
+//     );
+
+//     soccerToChefScene = new SoccerToChefScene();
+
+//     chefMainScene = new MainScene(
+//       "02_chefMainScene",
+
+//       //Spellbutton x-Postion//
+//       10,
+//       200,
+
+//       //Type of Aura, Textbox and exclamation mark (NPC problem screen)
+//       //Types:  |  Aura_sad  |  Aura_negative (angry)  |   Aura_shock  |  Aura_black
+//       "Aura_sad",
+//       "textBoxSad",
+//       "exclamSad",
+
+//       //NPC problem speechbububle text
+//       "Ich dachte, dass Geld immer",
+//       duperBold,
+//       "alles wett macht...",
+//       duperBold,
+//       "Aber was soll ich damit, wenn",
+//       "sich meine Frau immer mehr",
+//       "von mir distanziert?",
+//       "Moment, warum erzähle ich",
+//       "Ihnen das überhaupt?",
+//       "",
+//       "",
+//       "",
+
+//       //Duration of answer Time
+//       0.5,
+
+//       //Choose answers:
+//       //toxic
+//       "VERSUCHEN SIE, POSITIV ZU BLEIBEN.",
+//       //positive
+//       "VERSUCHEN SIE, PRIORITÄTEN ZU SETZEN.",
+//       //neutral
+//       "UIUIUI MEINE BLASE...",
+//       //negative
+//       "DAS GEHT MICH EIGENTLICH NICHTS AN...",
+
+//       //Answers
+//       //Toxic
+//       "Alles passiert aus einem Grund...",
+//       duperBold,
+//       "vielleicht sollten Sie einfach",
+//       duper,
+//       "lernen, das Beste auch in so",
+//       "einer Situation zu sehen.",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       //positive
+//       "Ist Ihnen denn die Arbeit und",
+//       duperBold,
+//       "das Geld wichtiger, als Ihre Frau?",
+//       duperBold,
+//       "Arbeiten Sie daran, ein ",
+//       "besserer Partner für sie",
+//       "zu werden. Das wird einiges",
+//       "Verändern, sie schaffen das!",
+//       "",
+//       "",
+//       "",
+//       "",
+//       //neutral
+//       "Ich war bis jetzt noch",
+//       duperBold,
+//       "nicht auf dem Klo. ",
+//       duperBold,
+//       "Entschuldigen Sie, es ist ",
+//       "schon fast zu spät!",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       //negative
+//       "Sie haben sich doch",
+//       duperBold,
+//       "den Job ausgesucht,",
+//       duperBold,
+//       "kommen sie damit klar.",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+
+//       //NPC Reaction
+//       //toxic
+//       "Sehen Sie! Das habe ich mir auch",
+//       duperBold,
+//       "schon gesagt.",
+//       duperBold,
+//       "Soll sich meine Frau mal nicht",
+//       "so anstellen. Und wer kann",
+//       "sich schon eine Rolli gönnen?",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       //positive
+//       "Das ist aber ehrlich von Ihnen... ",
+//       duperBold,
+//       "Zum Glück sind mir meine Sorgen ",
+//       duper,
+//       "einfach so rausgerutscht!",
+//       "Mehr Zeit für meine Familie, ",
+//       "das ist gut! Sagen Sie – wollen Sie",
+//       "nicht vielleicht meine Stelle",
+//       "übernehmen?",
+//       "",
+//       "",
+//       "",
+//       //neutral
+//       "Äähh... ",
+//       duperBold,
+//       "was... ",
+//       duperBold,
+//       "ist das hier?!",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       //negative
+//       "Machen Sie sich an die Arbeit!",
+//       duperBold,
+//       "Vergessen Sie ganz schnell, was",
+//       duper,
+//       "ich Ihnen gerade erzählt habe!",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+
+//       //Parameter User
+//       //Health:
+//       25,
+//       //Speed
+//       0,
+//       //Positivity
+//       10,
+//       //Shield
+//       6.5,
+
+//       // Parameter Boss
+//       //Toxic
+//       //Health:
+//       20,
+//       //Object damage:
+//       11,
+//       //Object amount:
+//       5,
+//       //Object speed
+//       2,
+
+//       //Neutral
+//       //Object amount:
+//       9,
+
+//       //Negative
+//       //Health:
+//       25,
+//       //Object damage:
+//       5,
+//       //Object amount:
+//       5,
+//       //Object speed
+//       2
+//     );
+
+//     chefToCoffeeScene = new ChefToCoffeeScene();
+
+//     coffeeMainScene = new MainSceneSelf(
+//       "03_coffeeMainScene",
+
+//       //Spellbutton x-Postion//
+//       0,
+//       115,
+
+//       //Type of Aura, ThoughtBubble and exclamation mark (NPC problem screen changes to "own problem thought screen")
+//       //Types:  |  Aura_sad  |  Aura_negative (angry)  |   Aura_shock  |  Aura_black
+//       "Aura_sad",
+//       "thoughtBubbleSad",
+//       "exclamSad",
+
+//       //NPC problem speechbububle text
+//       "Och nööö...",
+//       duperBold,
+//       "Meine Hose ist total nass.",
+//       duperBold,
+//       "Shit! Ist nicht gleich das Meeting mit",
+//       "dem Investor?! Jetzt muss ich mir wohl wieder",
+//       "die lange Unterhose meiner Kollegin leihen.",
+//       "Moment, befinde ich mich gerade",
+//       "in meinen Gedanken?",
+//       "",
+//       "",
+//       "",
+
+//       //Duration of answer Time
+//       0.5,
+
+//       //Choose answers:
+//       //toxic
+//       "DEN GEDANKEN IGNORIEREN.",
+//       //positive
+//       "AUF DEN GEDANKEN EINGEHEN",
+//       //neutral
+//       "ICH HOLE MIR NEUEN KAFFEE.",
+//       //negative
+//       "ICH HABE HALT ZWEI LINKE HÄNDE.",
+
+//       //Jumps directly to reaction (formulated answer is not needed)
+//       //NPC Reaction => own Reaction
+//       //toxic
+//       "Den Gedanken",
+//       duperBold,
+//       "schiebe ich einfach unter meinen",
+//       duper,
+//       "Sorgenstapel. Und mit der langen",
+//       "Unterhose sehe ich eigentlich",
+//       "ganz sexy aus.",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       //positive
+//       "Ich bin wohl etwas nervös,",
+//       duperBold,
+//       "aber das ist normal. Ich versuche",
+//       duper,
+//       "jetzt klare Gedanken zu fassen und",
+//       "schnell eine Alternative zur langen",
+//       "Unterhose zu finden.",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       //neutral
+//       "Kaffe leer... egal.",
+//       duperBold,
+//       "Hmmm... brauche...",
+//       duper,
+//       "neuen... Kaffee...",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       //negative
+//       "Wofür habe",
+//       duperBold,
+//       "ich denn bitte Zauberkräfte,",
+//       duper,
+//       "wenn ich noch nicht einmal richtig",
+//       "trinken kann?! Ich habe etwas",
+//       "schlimmeres als die lange",
+//       "Unterhose verdient.",
+//       "",
+//       "",
+//       "",
+//       "",
+
+//       //Parameter User
+//       //Health:
+//       0,
+//       //Speed
+//       9,
+//       //Positivity
+//       10,
+//       //Shield
+//       6.5,
+
+//       // Parameter Boss
+//       //Toxic
+//       //Health:
+//       20,
+//       //Object damage:
+//       11,
+//       //Object amount:
+//       5,
+//       //Object speed
+//       2,
+
+//       //Neutral
+//       //Object amount:
+//       9,
+
+//       //Negative
+//       //Health:
+//       25,
+//       //Object damage:
+//       5,
+//       //Object amount:
+//       5,
+//       //Object speed
+//       2
+//     );
+
+//     coffeeToInvestorScene = new CoffeeToInvestorScene();
+
+//     investorMainScene = new MainScene(
+//       "04_investorMainScene",
+
+//       //Spellbutton x-y-Postion//
+//       23,
+//       190,
+
+//       //Type of Aura, Textbox and exclamation mark (NPC problem screen)
+//       //Types:  |  Aura_sad  |  Aura_negative (angry)  |   Aura_shock  |  Aura_black
+//       "Aura_sad",
+//       "textBoxSad",
+//       "exclamSad",
+
+//       //NPC problem speechbububle text
+//       "Meine Schildkröte muss heute",
+//       duperBold,
+//       "eingeschläfert werden...",
+//       duperBold,
+//       "Speedo war mein ein und alles! Mit",
+//       "wem gucke ich denn jetzt Tierdokus?",
+//       "In meiner Verfassung muss ich das",
+//       "Meeting verschieben... Moment,",
+//       " warum erzähle ich Ihnen das?",
+//       "",
+//       "",
+//       "",
+
+//       //Duration of answer Time
+//       0.5,
+
+//       //Choose answers:
+//       //toxic
+//       "ES IST, WIE ES IST.",
+//       //positive
+//       "LASSEN SIE ES RAUS...",
+//       //neutral
+//       "ÄHH... ICH HABE PLATZANGST.",
+//       //negative
+//       "FÄLLT DAS MEETING ALSO AUS?",
+
+//       //Answers
+//       //Toxic
+//       "So ist das im Leben.",
+//       duperBold,
+//       "Konzentrieren Sie sich auf",
+//       duper,
+//       "das Positive. Sie haben einen",
+//       "freien Tag! Nutzen Sie ihn.",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       //positive
+//       "Das tut mir leid...",
+//       duperBold,
+//       "lassen Sie es raus.",
+//       duperBold,
+//       "Wenn ich Ihnen helfen kann",
+//       "oder Sie jemanden für einen",
+//       "Doku-Abend brauchen,",
+//       "sagen Sie bescheid.",
+//       "",
+//       "",
+//       "",
+//       "",
+//       //neutral
+//       "Ehrlich gesagt",
+//       duperBold,
+//       "bekomme ich in Aufzügen",
+//       duper,
+//       "schnell Platzangst...",
+//       "ich nehme die Treppen.",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       //negative
+//       "Jetzt machen Sie mal LANGSAM...",
+//       duperBold,
+//       "das Meeting fällt aus!?",
+//       duper,
+//       "Dann pack ich mal speedomäßig",
+//       "meine Sachen. Ach...",
+//       "und herzliches Beileid.",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+
+//       //NPC Reaction
+//       //toxic
+//       "Meinen Sie? Ich fühle mich",
+//       duperBold,
+//       "so kraftlos...",
+//       duperBold,
+//       "dann lass ich das Meeting zwar",
+//       "erstmal sausen, aber versuche",
+//       "mich trotzdem an etwas Produktivem.",
+//       "Das Leben muss ja weitergehen...",
+//       "",
+//       "",
+//       "",
+//       "",
+//       //positive
+//       "Das tut so gut,",
+//       duperBold,
+//       "einfach mal trauern zu können...",
+//       duper,
+//       "Ich werde das Meeting erstmal",
+//       "ausfallen lassen... Sie können mir",
+//       "gerne Ihre Nummer geben,",
+//       "es gibt bald eine neue Staffel von",
+//       "„Unser Planet“ auf Netflix (schnief).",
+//       "",
+//       "",
+//       "",
+//       //neutral
+//       "Warum sind sie dann überhaupt ",
+//       duperBold,
+//       "zum Aufzug gegangen?...",
+//       duperBold,
+//       "Naja, ich werde das Meeting",
+//       "erstmal ausfallen lassen.",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       //negative
+//       "l...langsam?",
+//       duperBold,
+//       "Speedo - w... was?",
+//       duperBold,
+//       "Ich werde das Meeting",
+//       "erstmal ausfallen lassen...",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+
+//       //Parameter User
+//       //Health:
+//       12.5,
+//       //Speed
+//       0,
+//       //Positivity
+//       10,
+//       //Shield
+//       19.5,
+
+//       // Parameter Boss
+//       //Toxic
+//       //Health:
+//       25,
+//       //Object damage:
+//       11,
+//       //Object amount:
+//       5,
+//       //Object speed
+//       2,
+
+//       //Neutral
+//       //Object amount:
+//       9,
+
+//       //Negative
+//       //Health:
+//       25,
+//       //Object damage:
+//       11,
+//       //Object amount:
+//       5,
+//       //Object speed
+//       2
+//     );
+
+//     investorToSocialScene = new InvestorToSocialScene();
+
+//     socialMainScene = new MainSceneSelf(
+//       "05_socialMainScene",
+
+//       //Spellbutton x-Postion//
+//       5,
+//       73,
+
+//       //Type of Aura, ThoughtBubble and exclamation mark (NPC problem screen changes to "own problem thought screen")
+//       //Types:  |  Aura_sad  |  Aura_negative (angry)  |   Aura_shock  |  Aura_black
+//       "Aura_sad",
+//       "thoughtBubbleSad",
+//       "exclamSad",
+
+//       //NPC problem speechbububle text
+//       "Läuft bei meiner Kollegin…",
+//       duperBold,
+//       "Bei anderen scheint immer",
+//       duper,
+//       "alles super zu sein. Hier in der",
+//       "Description steht auch noch",
+//       "„positive vibes only“…",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+
+//       //Duration of answer Time
+//       0.5,
+
+//       //Choose answers:
+//       //toxic
+//       "POSITIVES DENKEN = POSITIVER SELBSTWERT.",
+//       //positive
+//       "ALLE GEFÜHLE SIND GLEICH WICHTIG.",
+//       //neutral
+//       "WEITER SCROLLEN",
+//       //negative
+//       "WARUM IST MEIN LEBEN NICHT AUCH SO?",
+
+//       //Jumps directly to reaction (formulated answer is not needed)
+//       //NPC Reaction => own Reaction
+//       //toxic
+//       "Ich like das Bild jetzt auch.",
+//       duperBold,
+//       "Der Post hat mich motiviert!",
+//       duper,
+//       "Mein Lächeln werde ich",
+//       "wieder aufsetzen.",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       //positive
+//       "Ich kann nicht nur",
+//       duperBold,
+//       "die positiven Gefühle fühlen",
+//       duperBold,
+//       "und die negativen ausblenden.",
+//       "Alle Gefühle sind relevant.",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+
+//       //neutral
+//       "Wieder ein Urlaubsbild.",
+//       duperBold,
+//       "Ich scrolle noch ein bisschen weiter.",
+//       duper,
+//       "Vielleicht gibts ja einen ",
+//       "witzigen Katzenpost",
+//       "von der h_da.",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       //negative
+//       "Im Vergleich zu ihr",
+//       duperBold,
+//       "ist mein Leben scheiße...",
+//       duperBold,
+//       "Egal was ich mache, das Glück",
+//       "ist einfach nicht auf meiner Seite.",
+//       "Ich will mich auch so",
+//       "fühlen wie sie...",
+//       "",
+//       "",
+//       "",
+//       "",
+
+//       //Parameter User
+//       //Health:
+//       12.5,
+//       //Speed
+//       4.5,
+//       //Positivity
+//       10,
+//       //Shield
+//       6.5,
+
+//       // Parameter Boss
+//       //Toxic
+//       //Health:
+//       20,
+//       //Object damage:
+//       11,
+//       //Object amount:
+//       5,
+//       //Object speed
+//       2,
+
+//       //Neutral
+//       //Object amount:
+//       9,
+
+//       //Negative
+//       //Health:
+//       25,
+//       //Object damage:
+//       5,
+//       //Object amount:
+//       5,
+//       //Object speed
+//       2
+//     );
+
+//     socialToDimensionScene = new SocialToDimensionScene();
+
+//     dimensionMainScene = new MainSceneDimension(
+//       "06_dimensionMainScene",
+
+//       //Spellbutton x-y-Postion//
+//       0,
+//       -50,
+
+//       //Type of Aura, Textbox and exclamation mark (NPC problem screen)
+//       //Types:  |  Aura_sad  |  Aura_negative (angry)  |   Aura_shock  |  Aura_black
+//       "Aura_sad",
+//       "textBoxSad",
+//       "exclamSad",
+
+//       //NPC problem speechbububle text
+//       "Wir arbeiten gerade an einem",
+//       duperBold,
+//       "Uni-Projekt und liegen voll zurück!",
+//       duperBold,
+//       "Selbst unsere Dozentin bekommt",
+//       "jetzt Angst. Wie sollen wir dieses ",
+//       "Semester überstehen?",
+//       "Moment, irgendwie kommst",
+//       "du uns bekannt vor...?",
+//       "",
+//       "",
+//       "",
+
+//       //Duration of answer Time
+//       0.5,
+
+//       //Choose answers:
+//       //toxic
+//       "SCHEITERN IST KEINE OPTION!",
+//       //positive
+//       "SCHEITERN GEHÖRT DAZU.",
+//       //neutral
+//       "SCHEITERN IST EIN THEMA FÜR SICH.",
+//       //negative
+//       "WIEDREHOLT DOCH DAS SEMESTER.",
+
+//       //Answers
+//       //Toxic
+//       "Ihr seid nicht gescheitert.",
+//       duperBold,
+//       "Arbeitet weiter und holt",
+//       duper,
+//       "die Zeit wieder auf!",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       //positive
+//       "Scheitern ist nichts Schlechtes,",
+//       duperBold,
+//       "wenn man daraus lernt.",
+//       duperBold,
+//       "Guckt, was ihr ändern müsst",
+//       "und haut dann richtig rein!",
+//       "Alleine für die Idee würde",
+//       "ich euch eine 1.0 geben.",
+//       "",
+//       "",
+//       "",
+//       "",
+//       //neutral
+//       "... aber die Internetverbindung",
+//       duperBold,
+//       "war so schlecht,",
+//       duperBold,
+//       "ich habe leider nichts",
+//       "verstanden.",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       //negative
+//       "Wenn man scheitert,",
+//       duperBold,
+//       "sollte man seine Bemühungen",
+//       duper,
+//       "aufgeben und sich nicht",
+//       "weiter sinnlos anstrengen.",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+
+//       //NPC Reaction
+//       //toxic
+//       "Okay, wir schaffen das",
+//       duperBold,
+//       "irgendwie schon, solange wir",
+//       duper,
+//       "einfach weitermachen!",
+//       "Das Semester schaffen",
+//       "wir easy peasy. Piew Piew!",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+
+//       //positive
+//       "Guter Punkt – wir strukturieren",
+//       duperBold,
+//       "uns nochmal neu und gucken,",
+//       duperBold,
+//       "was wir anders machen müssen.",
+//       "Viel zu lernen wir noch haben!",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+
+//       //neutral
+//       "Was hast du gesagt?",
+//       duperBold,
+//       "Du warst gemutet.",
+//       duper,
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+
+//       //negative
+//       "Jo.",
+//       duperBold,
+//       "Wir lassen uns",
+//       duper,
+//       "einfach etwas gehen,",
+//       "BAföG regelt.",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+
+//       //Parameter User
+//       //Health:
+//       0,
+//       //Speed
+//       4.5,
+//       //Positivity
+//       30,
+//       //Shield
+//       0,
+
+//       // Parameter Boss
+//       //Toxic
+//       //Health:
+//       20,
+//       //Object damage:
+//       11,
+//       //Object amount:
+//       9,
+//       //Object speed
+//       2,
+
+//       //Neutral
+//       //Object amount:
+//       9,
+
+//       //Negative
+//       //Health:
+//       25,
+//       //Object damage:
+//       11,
+//       //Object amount:
+//       5,
+//       //Object speed
+//       2
+//     );
+
+//     dimensionToDestroyedScene = new DimensionToDestroyedScene();
+
+//     destroyedMainScene = new MainSceneSelfDebugDestroy(
+//       "07_destroyedMainScene",
+
+//       //Spellbutton x-y-Postion//
+//       18,
+//       0,
+
+//       //Type of Aura, ThoughtBubble and exclamation mark (NPC problem screen changes to "own problem thought screen")
+//       //Types:  |  Aura_sad  |  Aura_negative (angry)  |   Aura_shock  |  Aura_black
+//       "Aura_shock",
+//       "thoughtBubbleShocked",
+//       "exclamShocked",
+
+//       //NPC problem speechbububle text
+//       "Das kann doch nicht sein!",
+//       duperBold,
+//       "Gestern war alles normal...",
+//       duperBold,
+//       "und jetzt nimmt die Story völlig absurde",
+//       "Ausmaße an! Was hat das für einen Sinn?",
+//       "Vor allem für mich als User, wenn alle",
+//       "Entscheidungen umsonst waren?",
+//       "",
+//       "",
+//       "",
+//       "",
+
+//       //Duration of answer Time
+//       0.5,
+
+//       //Choose answers:
+//       //toxic
+//       "NICHTS WAR UMSONST.",
+//       //positive
+//       "JETZT MUSS ICH ERSTMAL KLARKOMMEN.",
+//       //neutral
+//       "HM, OKAY.",
+//       //negative
+//       "ICH HAB IMMERHIN DIE RÜSTUNG.",
+
+//       //Jumps directly to reaction (formulated answer is not needed)
+//       //NPC Reaction => own Reaction
+//       //toxic
+//       "...nichts war umsonst!",
+//       duperBold,
+//       "Good vibes only... mehr Lächeln...",
+//       duper,
+//       "pOsITiv dENkEn!",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       //positive
+//       "Noch nie hat sich",
+//       duperBold,
+//       "etwas so sinnlos angefühlt.",
+//       duperBold,
+//       "Das ist gerade echt hart. Wenn ich mich",
+//       "zusammenreiße, bekomme ich mich",
+//       "wieder in den Griff.",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+
+//       //neutral
+//       "...absurde Story?",
+//       duperBold,
+//       "Welche Story?...",
+//       duper,
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+//       //negative
+//       "Wie es den Menschen in der",
+//       duperBold,
+//       "Simulation ergangen ist, ist mir egal.",
+//       duperBold,
+//       "Hauptsache ich habe Rüstungsteile",
+//       "bekommen und gewinne",
+//       "das Game!",
+//       "",
+//       "",
+//       "",
+//       "",
+//       "",
+
+//       //Parameter User
+//       //Health:
+//       25,
+//       //Speed
+//       0,
+//       //Positivity
+//       0,
+//       //Shield
+//       6.5,
+
+//       // Parameter Boss
+//       //Toxic
+//       //Health:
+//       20,
+//       //Object damage:
+//       11,
+//       //Object amount:
+//       5,
+//       //Object speed
+//       2,
+
+//       //Neutral
+//       //Object amount:
+//       9,
+
+//       //Negative
+//       //Health:
+//       25,
+//       //Object damage:
+//       5,
+//       //Object amount:
+//       5,
+//       //Object speed
+//       2
+//     );
+
+//     destroyedToEvilMentorScene = new DestroyedToEvilMentorScene();
+
+//     evilMentorMainScene = new EvilMentorMainScene(
+//       "08_evilMentorMainScene",
+
+//       //Spellbutton x-y-Postion//
+//       0,
+//       190,
+
+//       //Type of Aura, Textbox and exclamation mark (NPC problem screen)
+//       //Types:  |  Aura_sad  |  Aura_negative (angry)  |   Aura_shock  |  Aura_black
+//       "Aura_negative",
+//       "textBoxMad",
+//       "exclamMad",
+
+//       //NPC problem speechbububle text
+//       "Mit Positivität kommt man doch",
+//       duperBold,
+//       "KEIN BISSCHEN WEITER IM LEBEN!",
+//       duperBold,
+//       "Diese naiven Menschen...",
+//       "ich kann Sie nicht ausstehen!",
+//       "Meine Geduld hat jetzt ein Ende.",
+//       "Die ganzen Entscheidungen",
+//       "MACHEN MICH IRRE!",
+//       "",
+//       "",
+//       "",
+
+//       //Duration of answer Time
+//       0.5,
+
+//       //Parameter User
+//       //Health:
+//       12.5,
+//       //Speed
+//       4.5,
+//       //Positivity
+//       10,
+//       //Shield
+//       0,
+
+//       // Parameter Boss
+//       //Toxic
+//       //Health:
+//       20,
+//       //Object damage:
+//       11,
+//       //Object amount:
+//       9,
+//       //Object speed
+//       2,
+
+//       //Neutral
+//       //Object amount:
+//       9,
+
+//       //Negative
+//       //Health:
+//       25,
+//       //Object damage:
+//       5,
+//       //Object amount:
+//       9,
+//       //Object speed
+//       2
+//     );
+
+//     evilMentorToEndBossScene = new EvilMentorToEndBossScene();
+
+//     //To still have the looks
+//     soccerMainScene.state = soccerState;
+//     investorMainScene.state = investorState;
+//     coffeeMainScene.state = coffeeState;
+//     chefMainScene.state = chefState;
+//     destroyedMainScene.state = destroyedState;
+//     dimensionMainScene.state = dimensionState;
+//     socialMainScene.state = socialState;
+//     evilMentorMainScene.state = evilMentorState;
+
+//     bossHealth = bossHealthSave;
+//     bossObjectDamage = bossObjectDamageSave;
+//     bossObjectAmount = bossObjectAmountSave;
+//     bossObjectSpeed = bossObjectSpeedSave;
+
+//     // endScreen = new Endscreen();
+
+//     setEverythingJustOnceForBossFight = false;
+//     // setEverythingJustOnce = false;
+//   }
+// }
 
 function standardSettings() {
   //Screen center (midpoint)
@@ -53,1242 +2742,12 @@ function standardSettings() {
   scale(1);
 }
 
-//----------------Define classes from all scenes and between scenes
-
-let introToSoccerScene = new IntroToSoccerScene();
-
-let soccerMainScene = new MainScene(
-  "01_soccerMainScene",
-
-  //Spellbutton x-Postion//
-  10,
-  200,
-
-  //Type of Aura, Textbox and exclamation mark (NPC problem screen)
-  //Types:  |  Aura_sad  |  Aura_negative (angry)  |   Aura_shock  |  Aura_black
-  //Types TextBox:  |   textBoxSad  |  textBoxMad  |  usw.
-  //Types Exlamation mark:  |   excalmSad  |  exclamMad  |  usw.
-  "Aura_negative",
-  "textBoxMad",
-  "exclamMad",
-
-  //NPC problem speechbububle text
-  "Wie kann man denn so verpeilt sein?",
-  duperBold,
-  "Mein 12-jähriger Sohn hat gestern ",
-  duper,
-  "beim Fußballspiel den Elfmeter",
-  "INS FALSCHE TOR VERSENKT!",
-  "Wie kann das denn bitte bei nem",
-  "Elfmeter passieren? Ich bin am Ende.",
-  "Moment, warum erzähle ich ",
-  "das überhaupt?",
-  "",
-  "",
-
-  //Duration of answer Time
-  0.5,
-
-  //Choose answers:
-  //toxic
-  "KÖNNTE SCHLIMMER SEIN.",
-  //positive
-  "TRAINIERE DOCH MIT DEINEM SOHN.",
-  //neutral
-  "ICH HABS EILIG...",
-  //negative
-  "DAS IST EIN BISSCHEN PEINLICH.",
-
-  //Answers
-  //Toxic
-  "Ich verstehe dich...",
-  duperBold,
-  "aber sieh es mal so:",
-  duper,
-  "Wenigstens hat er überhaupt",
-  "ein Tor getroffen!",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  //positive
-  "Mach dir nichts draus,",
-  duperBold,
-  "dein Sohn ist doch erst 12!",
-  duper,
-  "Ein Vater-Sohn-Training wird",
-  "ihm bestimmt weiterhelfen.",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  //neutral
-  "Naja, ich muss jetzt",
-  duperBold,
-  "weiter zur Arbeit.",
-  duperBold,
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  //negative
-  "Das ist schon",
-  duperBold,
-  "ein bisschen peinlich.",
-  duperBold,
-  "Zum Glück habe ich",
-  "keine Kinder.",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-
-  //NPC Reaction
-  //toxic
-  "Hm, ja stimmt...",
-  duperBold,
-  "Am besten spreche ich garnicht",
-  duper,
-  "mit ihm darüber und freue mich",
-  "einfach über meinen Sohn.",
-  "Danke!",
-  "",
-  "",
-  "",
-  "",
-  "",
-  //positive
-  "Haha, das ist ne Idee!",
-  duperBold,
-  "Da wird sich nicht nur mein Sohn",
-  duper,
-  "drüber freuen, sondern auch",
-  "mein Gewicht.",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-
-  //neutral
-  "Aber wer bist du nochmal?",
-  duperBold,
-  "Arbeiten wir nicht im",
-  duper,
-  "gleichen Abteil?",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  //negative
-  "Ein bisschen beneide",
-  duperBold,
-  "ich dich schon...",
-  duperBold,
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-
-  //Parameter User
-  //Health:
-  12.5,
-  //Speed
-  13.5,
-  //Positivity
-  0,
-  //Shield
-  6.5,
-
-  // Parameter Boss
-  //Toxic
-  //Health:
-  20,
-  //Object damage:
-  11,
-  //Object amount:
-  5,
-  //Object speed
-  6,
-
-  //Neutral
-  //Object amount:
-  9,
-
-  //Negative
-  //Health:
-  25,
-  //Object damage:
-  5,
-  //Object amount:
-  5,
-  //Object speed
-  4
-);
-
-let soccerToChefScene = new SoccerToChefScene();
-
-let chefMainScene = new MainScene(
-  "02_chefMainScene",
-
-  //Spellbutton x-Postion//
-  10,
-  200,
-
-  //Type of Aura, Textbox and exclamation mark (NPC problem screen)
-  //Types:  |  Aura_sad  |  Aura_negative (angry)  |   Aura_shock  |  Aura_black
-  "Aura_sad",
-  "textBoxSad",
-  "exclamSad",
-
-  //NPC problem speechbububle text
-  "Ich dachte, dass Geld immer",
-  duperBold,
-  "alles wett macht...",
-  duperBold,
-  "Aber was soll ich damit, wenn",
-  "sich meine Frau immer mehr",
-  "von mir distanziert?",
-  "Moment, warum erzähle ich",
-  "Ihnen das überhaupt?",
-  "",
-  "",
-  "",
-
-  //Duration of answer Time
-  0.5,
-
-  //Choose answers:
-  //toxic
-  "VERSUCHEN SIE, POSITIV ZU BLEIBEN.",
-  //positive
-  "VERSUCHEN SIE, PRIORITÄTEN ZU SETZEN.",
-  //neutral
-  "UIUIUI MEINE BLASE...",
-  //negative
-  "DAS GEHT MICH EIGENTLICH NICHTS AN...",
-
-  //Answers
-  //Toxic
-  "Alles passiert aus einem Grund...",
-  duperBold,
-  "vielleicht sollten Sie einfach",
-  duper,
-  "lernen, das Beste auch in so",
-  "einer Situation zu sehen.",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  //positive
-  "Ist Ihnen denn die Arbeit und",
-  duperBold,
-  "das Geld wichtiger, als Ihre Frau?",
-  duperBold,
-  "Arbeiten Sie daran, ein ",
-  "besserer Partner für sie",
-  "zu werden. Das wird einiges",
-  "Verändern, sie schaffen das!",
-  "",
-  "",
-  "",
-  "",
-  //neutral
-  "Ich war bis jetzt noch",
-  duperBold,
-  "nicht auf dem Klo. ",
-  duperBold,
-  "Entschuldigen Sie, es ist ",
-  "schon fast zu spät!",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  //negative
-  "Sie haben sich doch",
-  duperBold,
-  "den Job ausgesucht,",
-  duperBold,
-  "kommen sie damit klar.",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-
-  //NPC Reaction
-  //toxic
-  "Sehen Sie! Das habe ich mir auch",
-  duperBold,
-  "schon gesagt.",
-  duperBold,
-  "Soll sich meine Frau mal nicht",
-  "so anstellen. Und wer kann",
-  "sich schon eine Rolli gönnen?",
-  "",
-  "",
-  "",
-  "",
-  "",
-  //positive
-  "Das ist aber ehrlich von Ihnen... ",
-  duperBold,
-  "Zum Glück sind mir meine Sorgen ",
-  duper,
-  "einfach so rausgerutscht!",
-  "Mehr Zeit für meine Familie, ",
-  "das ist gut! Sagen Sie – wollen Sie",
-  "nicht vielleicht meine Stelle",
-  "übernehmen?",
-  "",
-  "",
-  "",
-  //neutral
-  "Äähh... ",
-  duperBold,
-  "was... ",
-  duperBold,
-  "ist das hier?!",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  //negative
-  "Machen Sie sich an die Arbeit!",
-  duperBold,
-  "Vergessen Sie ganz schnell, was",
-  duper,
-  "ich Ihnen gerade erzählt habe!",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-
-  //Parameter User
-  //Health:
-  25,
-  //Speed
-  0,
-  //Positivity
-  10,
-  //Shield
-  6.5,
-
-  // Parameter Boss
-  //Toxic
-  //Health:
-  20,
-  //Object damage:
-  11,
-  //Object amount:
-  5,
-  //Object speed
-  2,
-
-  //Neutral
-  //Object amount:
-  9,
-
-  //Negative
-  //Health:
-  25,
-  //Object damage:
-  5,
-  //Object amount:
-  5,
-  //Object speed
-  2
-);
-
-let chefToCoffeeScene = new ChefToCoffeeScene();
-
-let coffeeMainScene = new MainSceneSelf(
-  "03_coffeeMainScene",
-
-  //Spellbutton x-Postion//
-  0,
-  115,
-
-  //Type of Aura, ThoughtBubble and exclamation mark (NPC problem screen changes to "own problem thought screen")
-  //Types:  |  Aura_sad  |  Aura_negative (angry)  |   Aura_shock  |  Aura_black
-  "Aura_sad",
-  "thoughtBubbleSad",
-  "exclamSad",
-
-  //NPC problem speechbububle text
-  "Och nööö...",
-  duperBold,
-  "Meine Hose ist total nass.",
-  duperBold,
-  "Shit! Ist nicht gleich das Meeting mit",
-  "dem Investor?! Jetzt muss ich mir wohl wieder",
-  "die lange Unterhose meiner Kollegin leihen.",
-  "Moment, befinde ich mich gerade",
-  "in meinen Gedanken?",
-  "",
-  "",
-  "",
-
-  //Duration of answer Time
-  0.5,
-
-  //Choose answers:
-  //toxic
-  "DEN GEDANKEN IGNORIEREN.",
-  //positive
-  "AUF DEN GEDANKEN EINGEHEN",
-  //neutral
-  "ICH HOLE MIR NEUEN KAFFEE.",
-  //negative
-  "ICH HABE HALT ZWEI LINKE HÄNDE.",
-
-  //Jumps directly to reaction (formulated answer is not needed)
-  //NPC Reaction => own Reaction
-  //toxic
-  "Den Gedanken",
-  duperBold,
-  "schiebe ich einfach unter meinen",
-  duper,
-  "Sorgenstapel. Und mit der langen",
-  "Unterhose sehe ich eigentlich",
-  "ganz sexy aus.",
-  "",
-  "",
-  "",
-  "",
-  "",
-  //positive
-  "Ich bin wohl etwas nervös,",
-  duperBold,
-  "aber das ist normal. Ich versuche",
-  duper,
-  "jetzt klare Gedanken zu fassen und",
-  "schnell eine Alternative zur langen",
-  "Unterhose zu finden.",
-  "",
-  "",
-  "",
-  "",
-  "",
-  //neutral
-  "Kaffe leer... egal.",
-  duperBold,
-  "Hmmm... brauche...",
-  duper,
-  "neuen... Kaffee...",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  //negative
-  "Wofür habe",
-  duperBold,
-  "ich denn bitte Zauberkräfte,",
-  duper,
-  "wenn ich noch nicht einmal richtig",
-  "trinken kann?! Ich habe etwas",
-  "schlimmeres als die lange",
-  "Unterhose verdient.",
-  "",
-  "",
-  "",
-  "",
-
-  //Parameter User
-  //Health:
-  0,
-  //Speed
-  9,
-  //Positivity
-  10,
-  //Shield
-  6.5,
-
-  // Parameter Boss
-  //Toxic
-  //Health:
-  20,
-  //Object damage:
-  11,
-  //Object amount:
-  5,
-  //Object speed
-  2,
-
-  //Neutral
-  //Object amount:
-  9,
-
-  //Negative
-  //Health:
-  25,
-  //Object damage:
-  5,
-  //Object amount:
-  5,
-  //Object speed
-  2
-);
-
-let coffeeToInvestorScene = new CoffeeToInvestorScene();
-
-let investorMainScene = new MainScene(
-  "04_investorMainScene",
-
-  //Spellbutton x-y-Postion//
-  23,
-  190,
-
-  //Type of Aura, Textbox and exclamation mark (NPC problem screen)
-  //Types:  |  Aura_sad  |  Aura_negative (angry)  |   Aura_shock  |  Aura_black
-  "Aura_sad",
-  "textBoxSad",
-  "exclamSad",
-
-  //NPC problem speechbububle text
-  "Meine Schildkröte muss heute",
-  duperBold,
-  "eingeschläfert werden...",
-  duperBold,
-  "Speedo war mein ein und alles! Mit",
-  "wem gucke ich denn jetzt Tierdokus?",
-  "In meiner Verfassung muss ich das",
-  "Meeting verschieben... Moment,",
-  " warum erzähle ich Ihnen das?",
-  "",
-  "",
-  "",
-
-  //Duration of answer Time
-  0.5,
-
-  //Choose answers:
-  //toxic
-  "ES IST, WIE ES IST.",
-  //positive
-  "LASSEN SIE ES RAUS...",
-  //neutral
-  "ÄHH... ICH HABE PLATZANGST.",
-  //negative
-  "FÄLLT DAS MEETING ALSO AUS?",
-
-  //Answers
-  //Toxic
-  "So ist das im Leben.",
-  duperBold,
-  "Konzentrieren Sie sich auf",
-  duper,
-  "das Positive. Sie haben einen",
-  "freien Tag! Nutzen Sie ihn.",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  //positive
-  "Das tut mir leid...",
-  duperBold,
-  "lassen Sie es raus.",
-  duperBold,
-  "Wenn ich Ihnen helfen kann",
-  "oder Sie jemanden für einen",
-  "Doku-Abend brauchen,",
-  "sagen Sie bescheid.",
-  "",
-  "",
-  "",
-  "",
-  //neutral
-  "Ehrlich gesagt",
-  duperBold,
-  "bekomme ich in Aufzügen",
-  duper,
-  "schnell Platzangst...",
-  "ich nehme die Treppen.",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  //negative
-  "Jetzt machen Sie mal LANGSAM...",
-  duperBold,
-  "das Meeting fällt aus!?",
-  duper,
-  "Dann pack ich mal speedomäßig",
-  "meine Sachen. Ach...",
-  "und herzliches Beileid.",
-  "",
-  "",
-  "",
-  "",
-  "",
-
-  //NPC Reaction
-  //toxic
-  "Meinen Sie? Ich fühle mich",
-  duperBold,
-  "so kraftlos...",
-  duperBold,
-  "dann lass ich das Meeting zwar",
-  "erstmal sausen, aber versuche",
-  "mich trotzdem an etwas Produktivem.",
-  "Das Leben muss ja weitergehen...",
-  "",
-  "",
-  "",
-  "",
-  //positive
-  "Das tut so gut,",
-  duperBold,
-  "einfach mal trauern zu können...",
-  duper,
-  "Ich werde das Meeting erstmal",
-  "ausfallen lassen... Sie können mir",
-  "gerne Ihre Nummer geben,",
-  "es gibt bald eine neue Staffel von",
-  "„Unser Planet“ auf Netflix (schnief).",
-  "",
-  "",
-  "",
-  //neutral
-  "Warum sind sie dann überhaupt ",
-  duperBold,
-  "zum Aufzug gegangen?...",
-  duperBold,
-  "Naja, ich werde das Meeting",
-  "erstmal ausfallen lassen.",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  //negative
-  "l...langsam?",
-  duperBold,
-  "Speedo - w... was?",
-  duperBold,
-  "Ich werde das Meeting",
-  "erstmal ausfallen lassen...",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-
-  //Parameter User
-  //Health:
-  12.5,
-  //Speed
-  0,
-  //Positivity
-  10,
-  //Shield
-  19.5,
-
-  // Parameter Boss
-  //Toxic
-  //Health:
-  25,
-  //Object damage:
-  11,
-  //Object amount:
-  5,
-  //Object speed
-  2,
-
-  //Neutral
-  //Object amount:
-  9,
-
-  //Negative
-  //Health:
-  25,
-  //Object damage:
-  11,
-  //Object amount:
-  5,
-  //Object speed
-  2
-);
-
-let investorToSocialScene = new InvestorToSocialScene();
-
-let socialMainScene = new MainSceneSelf(
-  "05_socialMainScene",
-
-  //Spellbutton x-Postion//
-  5,
-  73,
-
-  //Type of Aura, ThoughtBubble and exclamation mark (NPC problem screen changes to "own problem thought screen")
-  //Types:  |  Aura_sad  |  Aura_negative (angry)  |   Aura_shock  |  Aura_black
-  "Aura_sad",
-  "thoughtBubbleSad",
-  "exclamSad",
-
-  //NPC problem speechbububle text
-  "Läuft bei meiner Kollegin…",
-  duperBold,
-  "Bei anderen scheint immer",
-  duper,
-  "alles super zu sein. Hier in der",
-  "Description steht auch noch",
-  "„positive vibes only“…",
-  "",
-  "",
-  "",
-  "",
-  "",
-
-  //Duration of answer Time
-  0.5,
-
-  //Choose answers:
-  //toxic
-  "POSITIVES DENKEN = POSITIVER SELBSTWERT.",
-  //positive
-  "ALLE GEFÜHLE SIND GLEICH WICHTIG.",
-  //neutral
-  "WEITER SCROLLEN",
-  //negative
-  "WARUM IST MEIN LEBEN NICHT AUCH SO?",
-
-  //Jumps directly to reaction (formulated answer is not needed)
-  //NPC Reaction => own Reaction
-  //toxic
-  "Ich like das Bild jetzt auch.",
-  duperBold,
-  "Der Post hat mich motiviert!",
-  duper,
-  "Mein Lächeln werde ich",
-  "wieder aufsetzen.",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  //positive
-  "Ich kann nicht nur",
-  duperBold,
-  "die positiven Gefühle fühlen",
-  duperBold,
-  "und die negativen ausblenden.",
-  "Alle Gefühle sind relevant.",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-
-  //neutral
-  "Wieder ein Urlaubsbild.",
-  duperBold,
-  "Ich scrolle noch ein bisschen weiter.",
-  duper,
-  "Vielleicht gibts ja einen ",
-  "witzigen Katzenpost",
-  "von der h_da.",
-  "",
-  "",
-  "",
-  "",
-  "",
-  //negative
-  "Im Vergleich zu ihr",
-  duperBold,
-  "ist mein Leben scheiße...",
-  duperBold,
-  "Egal was ich mache, das Glück",
-  "ist einfach nicht auf meiner Seite.",
-  "Ich will mich auch so",
-  "fühlen wie sie...",
-  "",
-  "",
-  "",
-  "",
-
-  //Parameter User
-  //Health:
-  12.5,
-  //Speed
-  4.5,
-  //Positivity
-  10,
-  //Shield
-  6.5,
-
-  // Parameter Boss
-  //Toxic
-  //Health:
-  20,
-  //Object damage:
-  11,
-  //Object amount:
-  5,
-  //Object speed
-  2,
-
-  //Neutral
-  //Object amount:
-  9,
-
-  //Negative
-  //Health:
-  25,
-  //Object damage:
-  5,
-  //Object amount:
-  5,
-  //Object speed
-  2
-);
-
-let socialToDimensionScene = new SocialToDimensionScene();
-
-let dimensionMainScene = new MainSceneDimension(
-  "06_dimensionMainScene",
-
-  //Spellbutton x-y-Postion//
-  0,
-  -50,
-
-  //Type of Aura, Textbox and exclamation mark (NPC problem screen)
-  //Types:  |  Aura_sad  |  Aura_negative (angry)  |   Aura_shock  |  Aura_black
-  "Aura_sad",
-  "textBoxSad",
-  "exclamSad",
-
-  //NPC problem speechbububle text
-  "Wir arbeiten gerade an einem",
-  duperBold,
-  "Uni-Projekt und liegen voll zurück!",
-  duperBold,
-  "Selbst unsere Dozentin bekommt",
-  "jetzt Angst. Wie sollen wir dieses ",
-  "Semester überstehen?",
-  "Moment, irgendwie kommst",
-  "du uns bekannt vor...?",
-  "",
-  "",
-  "",
-
-  //Duration of answer Time
-  0.5,
-
-  //Choose answers:
-  //toxic
-  "SCHEITERN IST KEINE OPTION!",
-  //positive
-  "SCHEITERN GEHÖRT DAZU.",
-  //neutral
-  "SCHEITERN IST EIN THEMA FÜR SICH.",
-  //negative
-  "WIEDREHOLT DOCH DAS SEMESTER.",
-
-  //Answers
-  //Toxic
-  "Ihr seid nicht gescheitert.",
-  duperBold,
-  "Arbeitet weiter und holt",
-  duper,
-  "die Zeit wieder auf!",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  //positive
-  "Scheitern ist nichts Schlechtes,",
-  duperBold,
-  "wenn man daraus lernt.",
-  duperBold,
-  "Guckt, was ihr ändern müsst",
-  "und haut dann richtig rein!",
-  "Alleine für die Idee würde",
-  "ich euch eine 1.0 geben.",
-  "",
-  "",
-  "",
-  "",
-  //neutral
-  "... aber die Internetverbindung",
-  duperBold,
-  "war so schlecht,",
-  duperBold,
-  "ich habe leider nichts",
-  "verstanden.",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  //negative
-  "Wenn man scheitert,",
-  duperBold,
-  "sollte man seine Bemühungen",
-  duper,
-  "aufgeben und sich nicht",
-  "weiter sinnlos anstrengen.",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-
-  //NPC Reaction
-  //toxic
-  "Okay, wir schaffen das",
-  duperBold,
-  "irgendwie schon, solange wir",
-  duper,
-  "einfach weitermachen!",
-  "Das Semester schaffen",
-  "wir easy peasy. Piew Piew!",
-  "",
-  "",
-  "",
-  "",
-  "",
-
-  //positive
-  "Guter Punkt – wir strukturieren",
-  duperBold,
-  "uns nochmal neu und gucken,",
-  duperBold,
-  "was wir anders machen müssen.",
-  "Viel zu lernen wir noch haben!",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-
-  //neutral
-  "Was hast du gesagt?",
-  duperBold,
-  "Du warst gemutet.",
-  duper,
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-
-  //negative
-  "Jo.",
-  duperBold,
-  "Wir lassen uns",
-  duper,
-  "einfach etwas gehen,",
-  "BAföG regelt.",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-
-  //Parameter User
-  //Health:
-  0,
-  //Speed
-  4.5,
-  //Positivity
-  30,
-  //Shield
-  0,
-
-  // Parameter Boss
-  //Toxic
-  //Health:
-  20,
-  //Object damage:
-  11,
-  //Object amount:
-  9,
-  //Object speed
-  2,
-
-  //Neutral
-  //Object amount:
-  9,
-
-  //Negative
-  //Health:
-  25,
-  //Object damage:
-  11,
-  //Object amount:
-  5,
-  //Object speed
-  2
-);
-
-let dimensionToDestroyedScene = new DimensionToDestroyedScene();
-
-let destroyedMainScene = new MainSceneSelfDebugDestroy(
-  "07_destroyedMainScene",
-
-  //Spellbutton x-y-Postion//
-  18,
-  0,
-
-  //Type of Aura, ThoughtBubble and exclamation mark (NPC problem screen changes to "own problem thought screen")
-  //Types:  |  Aura_sad  |  Aura_negative (angry)  |   Aura_shock  |  Aura_black
-  "Aura_shock",
-  "thoughtBubbleShocked",
-  "exclamShocked",
-
-  //NPC problem speechbububle text
-  "Das kann doch nicht sein!",
-  duperBold,
-  "Gestern war alles normal...",
-  duperBold,
-  "und jetzt nimmt die Story völlig absurde",
-  "Ausmaße an! Was hat das für einen Sinn?",
-  "Vor allem für mich als User, wenn alle",
-  "Entscheidungen umsonst waren?",
-  "",
-  "",
-  "",
-  "",
-
-  //Duration of answer Time
-  0.5,
-
-  //Choose answers:
-  //toxic
-  "NICHTS WAR UMSONST.",
-  //positive
-  "JETZT MUSS ICH ERSTMAL KLARKOMMEN.",
-  //neutral
-  "HM, OKAY.",
-  //negative
-  "ICH HAB IMMERHIN DIE RÜSTUNG.",
-
-  //Jumps directly to reaction (formulated answer is not needed)
-  //NPC Reaction => own Reaction
-  //toxic
-  "...nichts war umsonst!",
-  duperBold,
-  "Good vibes only... mehr Lächeln...",
-  duper,
-  "pOsITiv dENkEn!",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  //positive
-  "Noch nie hat sich",
-  duperBold,
-  "etwas so sinnlos angefühlt.",
-  duperBold,
-  "Das ist gerade echt hart. Wenn ich mich",
-  "zusammenreiße, bekomme ich mich",
-  "wieder in den Griff.",
-  "",
-  "",
-  "",
-  "",
-  "",
-
-  //neutral
-  "...absurde Story?",
-  duperBold,
-  "Welche Story?...",
-  duper,
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  //negative
-  "Wie es den Menschen in der",
-  duperBold,
-  "Simulation ergangen ist, ist mir egal.",
-  duperBold,
-  "Hauptsache ich habe Rüstungsteile",
-  "bekommen und gewinne",
-  "das Game!",
-  "",
-  "",
-  "",
-  "",
-  "",
-
-  //Parameter User
-  //Health:
-  25,
-  //Speed
-  0,
-  //Positivity
-  0,
-  //Shield
-  6.5,
-
-  // Parameter Boss
-  //Toxic
-  //Health:
-  20,
-  //Object damage:
-  11,
-  //Object amount:
-  5,
-  //Object speed
-  2,
-
-  //Neutral
-  //Object amount:
-  9,
-
-  //Negative
-  //Health:
-  25,
-  //Object damage:
-  5,
-  //Object amount:
-  5,
-  //Object speed
-  2
-);
-
-let destroyedToEvilMentorScene = new DestroyedToEvilMentorScene();
-
-let evilMentorMainScene = new EvilMentorMainScene(
-  "08_evilMentorMainScene",
-
-  //Spellbutton x-y-Postion//
-  0,
-  190,
-
-  //Type of Aura, Textbox and exclamation mark (NPC problem screen)
-  //Types:  |  Aura_sad  |  Aura_negative (angry)  |   Aura_shock  |  Aura_black
-  "Aura_negative",
-  "textBoxMad",
-  "exclamMad",
-
-  //NPC problem speechbububle text
-  "Mit Positivität kommt man doch",
-  duperBold,
-  "KEIN BISSCHEN WEITER IM LEBEN!",
-  duperBold,
-  "Diese naiven Menschen...",
-  "ich kann Sie nicht ausstehen!",
-  "Meine Geduld hat jetzt ein Ende.",
-  "Die ganzen Entscheidungen",
-  "MACHEN MICH IRRE!",
-  "",
-  "",
-  "",
-
-  //Duration of answer Time
-  0.5,
-
-  //Parameter User
-  //Health:
-  12.5,
-  //Speed
-  4.5,
-  //Positivity
-  10,
-  //Shield
-  0,
-
-  // Parameter Boss
-  //Toxic
-  //Health:
-  20,
-  //Object damage:
-  11,
-  //Object amount:
-  9,
-  //Object speed
-  2,
-
-  //Neutral
-  //Object amount:
-  9,
-
-  //Negative
-  //Health:
-  25,
-  //Object damage:
-  5,
-  //Object amount:
-  9,
-  //Object speed
-  2
-);
-
-let endScreen = new Endscreen();
-
-//------------------------------"Global" functions, update it when adding a new mainscene
-let usersHeartIcon = loadImage("00_Links/00_UI-Elements/heart.png");
-let usersSpeedIcon = loadImage("00_Links/00_UI-Elements/speed.png");
-let usersPositivityIcon = loadImage("00_Links/00_UI-Elements/positivity.png");
-let usersShieldIcon = loadImage("00_Links/00_UI-Elements/shield.png");
-let userHealth = 0;
-let userSpeed = 0;
-let userPositivity = 0;
-let userShield = 0;
-
 function userStats() {
   //entspr. Szenen pro Main- & BetweenScenes aktualisieren!!!
   if (
+    //StartScreen
+    startScreen.startScreen === false &&
+    startScreen.startIntroductionBool === false &&
     //MainScenes
     soccerMainScene.showPanoramaScreenBool === false &&
     //
@@ -1307,6 +2766,7 @@ function userStats() {
     evilMentorMainScene.showPanoramaScreenBool === false &&
     //
     //betweenScenes
+
     //
     introToSoccerScene.firstScreenBool === false &&
     introToSoccerScene.secondScreenBool === false &&
@@ -1469,11 +2929,6 @@ function userStats() {
   }
 }
 
-let bossHealth = 0;
-let bossObjectDamage = 0;
-let bossObjectAmount = 0;
-let bossObjectSpeed = 0;
-
 function bossStats() {
   //entspr. Szenen pro Mainszene Aktualisieren!!!
   bossHealth =
@@ -1524,13 +2979,6 @@ function bossStats() {
     evilMentorMainScene.bossObjectSpeed;
 }
 
-let showUserlook = false;
-let userBody = loadImage("00_Links/00_UI-Elements/user.png");
-let weiterButtonToNextScene = new WeiterButton(0, 240);
-let userEffectGIF = loadImage("00_Links/00_UI-Elements/getItem.gif");
-let fadeInItem = 0;
-let countSceneButtonClicks = [];
-
 function userLook() {
   if (showUserlook === true) {
     weiterButtonToNextScene.fadeIn();
@@ -1555,8 +3003,11 @@ function userLook() {
       userEffectGIF.height / 1.4
     );
 
+    push();
+    scale(1.4);
+    translate(3, 10);
     //User
-    image(userBody, -10, -60, userBody.width / 1.4, userBody.height / 1.4);
+    image(userBody, -10, -60, userBody.width / 1, userBody.height / 1);
 
     //-------ITEMS
     //-----------------------------------------------------CORRECT ORDER (ITEMS ABOVE AND BELOW!)
@@ -1644,6 +3095,7 @@ function userLook() {
     if (evilMentorMainScene.state === "negative") {
       evilMentorMainScene.returnNegativeLook();
     }
+    pop();
   } else {
     //fades in again
     fadeInItem = 0;
@@ -1651,9 +3103,25 @@ function userLook() {
   }
 }
 
+function saveStatesForBossFight() {
+  soccerState = soccerMainScene.state;
+  investorState = investorMainScene.state;
+  coffeeState = coffeeMainScene.state;
+  chefState = chefMainScene.state;
+  destroyedState = destroyedMainScene.state;
+  dimensionState = dimensionMainScene.state;
+  socialState = socialMainScene.state;
+  evilMentorState = evilMentorMainScene.state;
+
+  bossHealthSave = bossHealth;
+  bossObjectDamageSave = bossObjectDamage;
+  bossObjectAmountSave = bossObjectAmount;
+  bossObjectSpeedSave = bossObjectSpeed;
+}
+
 function userLookForBossFight() {
   //User
-  image(userBody, -10, -60, userBody.width / 1.4, userBody.height / 1.4);
+  image(userBody, -10, -60, userBody.width / 1, userBody.height / 1);
 
   //-------ITEMS
   //-----------------------------------------------------CORRECT ORDER (ITEMS ABOVE AND BELOW!)
@@ -1745,31 +3213,6 @@ function userLookForBossFight() {
   }
 }
 
-let showUserScoreAndFightManual = false;
-let statsImage = loadImage("00_Links/09_bossFight/stats.png");
-let scorefadeIn = 0;
-let weiterButtonToFight = new FightButton(0, 220, "LET'S FIGHT!", -60);
-let fightManualText = new TextAnimationWithMultipleSentences(
-  -405,
-  -90,
-  19,
-  25,
-  1,
-  color(62, 19, 118),
-  "That escalated quickly...",
-  duperBold,
-  "Kämpfe gegen deinen Mentor,",
-  duper,
-  "indem du den toxischen Feuerbällen",
-  "ausweichst (Maus bewegen ▴ / ▾).",
-  "Wenn du positive Feuerbälle (grün)",
-  "einsammelst, erleidet der Mentor",
-  "Schaden („Angriff“). ",
-  "Besiege die Negativität!",
-  "",
-  ""
-);
-let statsEffectGIF = loadImage("00_Links/00_UI-Elements/getItem.gif");
 function userScoreAndFightManual() {
   if (showUserScoreAndFightManual === true) {
     //Image(Lines)
@@ -1801,8 +3244,8 @@ function userScoreAndFightManual() {
 
     //Userlook
     push();
-    translate(0, -20);
-    scale(0.8);
+    translate(0, 10);
+    scale(1.4);
     userLookForBossFight();
     pop();
 
@@ -1878,20 +3321,12 @@ function userScoreAndFightManual() {
   }
 }
 
-let evilMentorToEndBossScene = new EvilMentorToEndBossScene();
+//
+//
+//
 
 //
-//
-//
-//Preperation for start over function (reset)
-let bossFight;
-//(Einmal aufrufen lassen)
-// function startOver() {
 
-//
-let createJustOneBossFight = true;
-let bossFightStarts = false;
-let showEndscreen = false;
 //All events die p5 uses, have to be anhängt ans window
 window.mousePressed = mousePressed;
 function mousePressed() {
@@ -1900,8 +3335,19 @@ function mousePressed() {
   //   soccerMainScene.showPanoramaScreen();
   //   showStartTestButton = false;
   // }
+
+  //-----------------------------------------------------------------------Start Screeen
+  if (startScreen.startButtonClick()) {
+    startScreen.startIntroductionBool = true;
+    // introToSoccerScene.showFirstScreen();
+  } else if (
+    startScreen.introductionText.everySentenceHasEnded === false &&
+    startScreen.startIntroductionBool === true
+  ) {
+    startScreen.introductionText.displayAllTextAtOnce();
+  }
   //-----------------------------------------------------------------------introToSoccerScene (Between-Scene)
-  if (introToSoccerScene.weiterButtonSecondScreenClick()) {
+  else if (introToSoccerScene.weiterButtonSecondScreenClick()) {
     if (introToSoccerScene.firstScreenText.sentence.typingEnded === false) {
       introToSoccerScene.firstScreenText.sentence.displayAllTextAtOnce();
     } else {
@@ -2975,6 +4421,11 @@ function mousePressed() {
         fightManualText.displayAllTextAtOnce();
       } else {
         showUserScoreAndFightManual = false;
+        //-------------------------------------------------------------------------------SETS EVERYTHING BACK FOR A FLUID BOSS FIGHT EXPERIENCE
+        //Doesnt work to reset everything before Bossfight to make it more fluently
+        // setEverythingJustOnceForBossFight = true;
+        // startOverForBossFight();
+        //
         bossFightStarts = true;
       }
     }
@@ -3044,14 +4495,22 @@ window.draw = draw;
 //
 function draw() {
   standardSettings();
+  startOver();
+  //StartScreen
+  startScreen.fadeIn();
+  startScreen.displayStartScreen();
+  startScreen.displayStartButton();
+  //Introduction screen
+  startScreen.displayIntroduction();
+  if (startScreen.showFirstScreen === true) {
+    introToSoccerScene.showFirstScreen();
+    //Start Screen and Introduction Screen are still active
+    startScreen.startScreen = false;
+    startScreen.showFirstScreen = false;
+    startScreen.startIntroductionBool === false;
+  }
 
-  // -------Start Button (Just for testing)
-  // if (showStartTestButton === true) {
-  //   startTestButton.fadeIn();
-  //   startTestButton.displayActiveOrSleeping();
-  //   startTestButton.displayButtonSentence();
-  // }
-
+  //-------Game scenes
   if (bossFightStarts === false) {
     //00_dimensionToDestroyedScene
     introToSoccerScene.firstScreen();
@@ -3178,11 +4637,15 @@ function draw() {
     evilMentorToEndBossScene.firstScreen(transformationGIF);
     evilMentorToEndBossScene.secondScreen();
 
+    //Doesnt work to reset everything before Bossfight to make it more fluently
+    // saveStatesForBossFight();
     userScoreAndFightManual();
   }
-  //Testing
+
   if (bossFightStarts === true) {
     if (createJustOneBossFight === true) {
+      // ---------------------------------------------------------------------------------------------------------------------------FOR TESTING BOSSFIGHT
+      // tint(255, 255);
       //Has to be created here, so that the parameter are correct and have the latest value by creating the class
       bossFight = new BossFight(
         //User
@@ -3292,26 +4755,58 @@ function draw() {
     endScreen.displayMenuButton();
   }
 
-  //"Global" functions
-  userStats();
-  userLook();
-  bossStats();
-}
+  if (bossFightStarts === false) {
+    //When its inside this bool the boss stats are not overwritten
+    //"Global" functions
+    userStats();
 
-//
-//
-//
-//
-//
-//
-//
-//
+    userLook();
 
-/*
+    bossStats();
+  }
+
+  if (restart === true) {
+    setEverythingJustOnce = true;
+    startOver();
+    restart = false;
+  }
+
+  // showUserScoreAndFightManual = true;
+  /*
 –––––––––––––––––––––––– Fuer Franzi & Yara
 */
 
-introToSoccerScene.showFirstScreen();
+  // HAVE TO BE ACTIVE THE WHOLE TIME
+  // ---------------------------------------------------------------------------------------------------------------------------FOR TESTING BOSSFIGHT
+  // startScreen.startScreen = false;
+  // startScreen.showFirstScreen = false;
+  // startScreen.startIntroductionBool === false;
+
+  // HERE THE OTHER SCENE
+  // evilMentorMainScene.showPanoramaScreen();
+
+  // bossFightStarts = true;
+
+  //For ENDBOSS FIGHT (Lags by over 3 Objects)
+  // soccerMainScene.state = "toxic";
+  // chefMainScene.state = "toxic";
+  // investorMainScene.state = "toxic";
+  // coffeeMainScene.state = "toxic";
+  // socialMainScene.state = "toxic";
+  // dimensionMainScene.state = "toxic";
+  // destroyedMainScene.state = "toxic";
+  // evilMentorMainScene.state = "toxic";
+}
+
+// createJustOneBossFight = true;
+// ---------------------------------------------------------------------------------------------------------------------------FOR TESTING BOSSFIGHT
+
+// evilMentorMainScene.showPanoramaScreen();
+// startScreen.startScreen = false;
+// startScreen.showFirstScreen = false;
+// startScreen.startIntroductionBool === false;
+
+// introToSoccerScene.showFirstScreen();
 // soccerMainScene.showPanoramaScreen();
 // soccerToChefScene.showFirstScreen();
 // chefMainScene.showPanoramaScreen();
@@ -3329,14 +4824,7 @@ introToSoccerScene.showFirstScreen();
 // evilMentorMainScene.showPanoramaScreen();
 // evilMentorToEndBossScene.showFirstScreen();
 // showUserScoreAndFightManual = true;
-// bossFightStarts = true;
+
 // showEndscreen = true;
 
-// soccerMainScene.state = "toxic";
-// chefMainScene.state = "toxic";
-// investorMainScene.state = "toxic";
-// coffeeMainScene.state = "toxic";
-// socialMainScene.state = "toxic";
-// dimensionMainScene.state = "toxic";
-// destroyedMainScene.state = "toxic";
-// evilMentorMainScene.state = "toxic";
+// countSceneButtonClicks.length = [1, 1, 3, 1, 1, 1, 7];

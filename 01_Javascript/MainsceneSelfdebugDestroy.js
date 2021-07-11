@@ -446,8 +446,8 @@ export default class MainSceneSelfDebugDestroy {
       this.toxicLook,
       -10,
       -60,
-      this.toxicLook.width / 1.4,
-      this.toxicLook.height / 1.4
+      this.toxicLook.width / 1,
+      this.toxicLook.height / 1
     );
   }
 
@@ -456,8 +456,8 @@ export default class MainSceneSelfDebugDestroy {
       this.positiveLook,
       -10,
       -60,
-      this.positiveLook.width / 1.4,
-      this.positiveLook.height / 1.4
+      this.positiveLook.width / 1,
+      this.positiveLook.height / 1
     );
   }
 
@@ -466,8 +466,8 @@ export default class MainSceneSelfDebugDestroy {
       this.negativeLook,
       -10,
       -60,
-      this.negativeLook.width / 1.4,
-      this.negativeLook.height / 1.4
+      this.negativeLook.width / 1,
+      this.negativeLook.height / 1
     );
   }
   //-------------------------------------------------------------------------------------------------Panorama screen

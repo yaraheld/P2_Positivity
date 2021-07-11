@@ -27,7 +27,7 @@ export default class FightButton extends SpellButton {
   }
 
   fadeIn() {
-    this.fadeInVariable += 2;
+    this.fadeInVariable += 10;
     if (this.fadeInVariable > 255) {
       this.fadeInVariable = 255;
     }

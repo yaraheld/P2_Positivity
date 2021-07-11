@@ -403,7 +403,12 @@ export default class IntroToSoccerScene extends BetweenScene {
 
   seventhScreen() {
     if (this.seventhScreenBool === true) {
-      tint(255, 255);
+      this.seventhScreenImageFadeIn += 5;
+      if (this.seventhScreenImageFadeIn > 255) {
+        this.seventhScreenImageFadeIn = 255;
+      }
+
+      tint(255, this.seventhScreenImageFadeIn);
       image(
         this.seventhScreenImage,
         0,
@@ -443,7 +448,12 @@ export default class IntroToSoccerScene extends BetweenScene {
 
   eighthScreen() {
     if (this.eighthScreenBool === true) {
-      tint(255, 255);
+      this.eighthScreenImageFadeIn += 5;
+      if (this.eighthScreenImageFadeIn > 255) {
+        this.eighthScreenImageFadeIn = 255;
+      }
+
+      tint(255, this.eighthScreenImageFadeIn);
       image(
         this.eighthScreenImage,
         0,

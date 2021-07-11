@@ -134,8 +134,8 @@ export default class BossFight {
   }
 
   displayUser() {
-    translate(this.userX, this.userY);
-    scale(0.32);
+    translate(this.userX, this.userY + 10);
+    scale(0.55);
   }
 
   //-----------------------------------------------------------------------------------------Boss
