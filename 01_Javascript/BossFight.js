@@ -238,6 +238,8 @@ export default class BossFight {
     }
   }
 
+  //how to & source https://www.youtube.com/watch?v=_xj8FyG-aac
+  //altered to fit own code
   checkRectangleSide(min, max, value) {
     //Does the whole magic
     if (value < min) {
@@ -248,6 +250,9 @@ export default class BossFight {
       return value;
     }
   }
+
+  //how to & source https://www.youtube.com/watch?v=_xj8FyG-aac (same as above)
+  //altered to fit own code (same as above)
 
   //Colliosion, Explosions, End of Life
   pointOnRectangleAndCollision() {

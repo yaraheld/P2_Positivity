@@ -1,6 +1,6 @@
 new p5();
 
-// From Garrit to center canvas
+// how to & source: https://github.com/processing/p5.js/wiki/Positioning-your-canvas#relocating-the-canvas
 var cnv;
 function centerCanvas() {
   var x = (windowWidth - width) / 2;
@@ -40,7 +40,9 @@ function setup() {
   cnv.parent("positivity");
   frameRate(30);
 }
-// From Garrit to center canvas
+
+// how to & source: https://github.com/processing/p5.js/wiki/Positioning-your-canvas#relocating-the-canvas
+
 function windowResized() {
   centerCanvas();
 }
@@ -57,6 +59,7 @@ let battleMusic;
 let gameMusic;
 
 // deaktiviert Pfeiltasten
+// how to & source: https://github.com/processing/p5.js/wiki/Positioning-your-canvas#relocating-the-canvas
 window.addEventListener("keydown", function (event) {
   if ([38, 40].indexOf(event.keyCode) > -1) {
     event.preventDefault();

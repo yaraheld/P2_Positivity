@@ -21,6 +21,8 @@ export default class TextAnimation {
         textFont(this.textFont);
         textSize(this.textSize);
 
+        //source: can`t find the source again :((( For the next time I know better.
+
         //substring:
         //string is like an array
         //span between first array-index (0) and second array-index (this.n + 1)
