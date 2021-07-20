@@ -771,6 +771,9 @@ export default class MainScene {
     ellipse(-437, -130, 8, 8);
   }
 
+  //source: https://www.w3docs.com/snippets/javascript/how-to-randomize-shuffle-a-javascript-array.html
+  //modified a bit
+
   //doesn't need to be clalled in Main, because chooseAnswerScreen includes this Method
   randomChooseAnswer() {
     if (this.randomOrderJustOnce === false) {
