@@ -772,7 +772,7 @@ export default class MainScene {
   }
 
   //source: https://www.w3docs.com/snippets/javascript/how-to-randomize-shuffle-a-javascript-array.html
-  //modified a bit
+  //modified slightly
 
   //doesn't need to be clalled in Main, because chooseAnswerScreen includes this Method
   randomChooseAnswer() {
