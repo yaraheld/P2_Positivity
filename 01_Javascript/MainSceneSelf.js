@@ -1,5 +1,5 @@
-import ChooseButton from "./chooseButton.js";
-import WeiterButton from "./weiterButton.js";
+import ChooseButton from "./ChooseButton.js";
+import WeiterButton from "./WeiterButton.js";
 import Timer from "./Timer.js";
 import SpellButtonSelf from "./SpellButtonSelf.js";
 import SpeechBubbleSelf from "./SpeechBubbleSelf.js";
