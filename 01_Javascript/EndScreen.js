@@ -1,7 +1,7 @@
 import { duper, duperBold } from "./main.js";
 import TextAnimation from "./TextAnimation.js";
 import TextAnimationWithMultipleSentences from "./TextAnimationWithMultipleSentences.js";
-import WeiterButton from "./weiterButton.js";
+import WeiterButton from "./WeiterButton.js";
 
 export default class ShowEndScreen {
   constructor() {

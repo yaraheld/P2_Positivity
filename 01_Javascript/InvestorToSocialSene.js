@@ -1,6 +1,6 @@
 import BetweenScene from "./BetweenScene.js";
 import BetweenScenesText from "./BetweenScenesText.js";
-import WeiterButton from "./weiterButton.js";
+import WeiterButton from "./WeiterButton.js";
 import { duper, duperBold } from "./main.js";
 
 export default class InvestorToSocialScene extends BetweenScene {

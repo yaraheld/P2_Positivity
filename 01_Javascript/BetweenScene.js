@@ -1,4 +1,4 @@
-import WeiterButton from "./weiterButton.js";
+import WeiterButton from "./WeiterButton.js";
 
 export default class BetweenScene {
   constructor() {}

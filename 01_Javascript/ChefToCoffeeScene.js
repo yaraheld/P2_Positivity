@@ -1,5 +1,5 @@
 import BetweenScene from "./BetweenScene.js";
-import WeiterButton from "./weiterButton.js";
+import WeiterButton from "./WeiterButton.js";
 import BetweenScenesText from "./BetweenScenesText.js";
 import { duper, duperBold } from "./main.js";
 
