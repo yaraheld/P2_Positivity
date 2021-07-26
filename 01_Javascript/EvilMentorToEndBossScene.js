@@ -1,7 +1,7 @@
 import BetweenScene from "./BetweenScene.js";
 import BetweenScenesText from "./BetweenScenesText.js";
-import WeiterButton from "./weiterButton.js";
-import FightButton from "./fightButton.js";
+import WeiterButton from "./WeiterButton.js";
+import FightButton from "./FightButton.js";
 import { duper, duperBold } from "./main.js";
 
 export default class EvilMentorToEndBossScene extends BetweenScene {
